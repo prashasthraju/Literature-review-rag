@@ -1,0 +1,10 @@
+﻿Method,LVE ↓,FFD ↓,MOD ↓
+FaceFormer [Fan et al. 2022],12.80,30.67,2.94
+CodeTalker [Xing et al. 2023],11.36,30.90,2.59
+SelfTalk [Peng et al. 2023a],11.50,32.44,2.55
+FaceDiffuser [Stan et al. 2023],10.23,31.61,2.38
+MultiTalk ∗ [Sung-Bin et al. 2024],11.53,34.03,2.62
+ScanTalk [Nocentini et al. 2024],9.83,24.33,2.85
+UniTalker [Fan et al. 2024],13.72,34.18,3.39
+DiffPoseTalk ∗ [Sun et al. 2024],10.28,29.40,2.43
+ARTalk (Ours) ∗,8.64,26.33,1.89

@@ -1,0 +1,669 @@
+{
+  "document_id": "facecraft",
+  "source_file": "facecraft.pdf",
+  "markdown_path": "parsed\\facecraft\\document.md",
+  "structured_json_path": "parsed\\facecraft\\document.json",
+  "picture_count": 25,
+  "table_count": 6,
+  "pictures": [
+    {
+      "figure_number": 1,
+      "path": "parsed\\facecraft\\images\\figure_001.png",
+      "caption": "Figure 1. Given a single image input, our method is capable of generating 4D avatars, producing photorealistic textures and consistent expressions across multiple views. Our approach also demonstrates robust performance on challenging inputs, including cartoon characters or old photographs.",
+      "provenance": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 316.8058776855469,
+            "t": 591.8300933837891,
+            "r": 563.7505493164062,
+            "b": 416.6899719238281,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 2,
+      "path": "parsed\\facecraft\\images\\figure_002.png",
+      "caption": "Figure 2. Overview of FaceCraft4D: Our approach begins with estimating the shape of a single input image using a shape Prior. This shape guides the synthesis of personalized multiview images, providing 360◦ views and varied expressions, with support from both 2D image and video priors. Since the synthesized data often exhibit inconsistency across views, we propose COIN optimization for robust 4D optimization. By fitting the model to the multiview data, we achieve our final 4D avatar. All faces in this manuscript come from the public FFHQ dataset [15].",
+      "provenance": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 57.83433151245117,
+            "t": 719.420280456543,
+            "r": 546.0198364257812,
+            "b": 580.2143096923828,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 3,
+      "path": "parsed\\facecraft\\images\\figure_003.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 58.460968017578125,
+            "t": 718.6188049316406,
+            "r": 301.38623046875,
+            "b": 508.8738708496094,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 4,
+      "path": "parsed\\facecraft\\images\\figure_004.png",
+      "caption": "Figure 3. Image Prior: We introduce a cross-view mutual attention mechanism and epipolar constraints to enhance consistency in generated novel views. Our approach aligns reference and target images, maintaining visual coherence across viewpoints.",
+      "provenance": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 58.60520553588867,
+            "t": 446.9141845703125,
+            "r": 304.024658203125,
+            "b": 303.6909484863281,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 5,
+      "path": "parsed\\facecraft\\images\\figure_005.png",
+      "caption": "Figure 5. COIN-Training: To address shape and color inconsistencies between the views, we train two 3D representations: a view-consistent base model (GaussianAvatar) and an MLP, encoding inconsistencies between the views. The MLP with inconsistencies lets us robustly reconstruct the high-quality 3D base model.",
+      "provenance": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 60.746864318847656,
+            "t": 719.9597930908203,
+            "r": 303.1574401855469,
+            "b": 592.58984375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 6,
+      "path": "parsed\\facecraft\\images\\figure_006.png",
+      "caption": "Figure 6. Qualitative comparison on static 3D head generation from a single image.",
+      "provenance": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 62.94105529785156,
+            "t": 723.4392318725586,
+            "r": 542.3153686523438,
+            "b": 440.7064208984375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 7,
+      "path": "parsed\\facecraft\\images\\figure_007.png",
+      "caption": "Figure 7. Qualitative comparison on animation of different views.",
+      "provenance": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 73.30337524414062,
+            "t": 721.1337203979492,
+            "r": 553.0139770507812,
+            "b": 574.1807556152344,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 8,
+      "path": "parsed\\facecraft\\images\\figure_008.png",
+      "caption": "Input Warped Image w/o Warping w/o MA",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 59.82350540161133,
+            "t": 719.379280090332,
+            "r": 103.97357177734375,
+            "b": 660.2373199462891,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 9,
+      "path": "parsed\\facecraft\\images\\figure_009.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 116.64385223388672,
+            "t": 718.4853973388672,
+            "r": 155.9674835205078,
+            "b": 663.7837219238281,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 10,
+      "path": "parsed\\facecraft\\images\\figure_010.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 161.7079620361328,
+            "t": 719.7678298950195,
+            "r": 205.66871643066406,
+            "b": 663.9891052246094,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 11,
+      "path": "parsed\\facecraft\\images\\figure_011.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 212.4901123046875,
+            "t": 718.8832092285156,
+            "r": 254.652587890625,
+            "b": 662.7229766845703,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 12,
+      "path": "parsed\\facecraft\\images\\figure_012.png",
+      "caption": "Full",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 260.5959777832031,
+            "t": 720.5445327758789,
+            "r": 304.6763610839844,
+            "b": 662.1867218017578,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 13,
+      "path": "parsed\\facecraft\\images\\figure_013.png",
+      "caption": "Input",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 63.81111145019531,
+            "t": 634.9233703613281,
+            "r": 113.20948028564453,
+            "b": 573.0924072265625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 14,
+      "path": "parsed\\facecraft\\images\\figure_014.png",
+      "caption": "w/o Video Prior",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 120.28878021240234,
+            "t": 636.9609222412109,
+            "r": 179.90586853027344,
+            "b": 548.3064575195312,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 15,
+      "path": "parsed\\facecraft\\images\\figure_015.png",
+      "caption": "w/o COIN",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 182.1038360595703,
+            "t": 638.1114044189453,
+            "r": 243.55679321289062,
+            "b": 547.9234161376953,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 16,
+      "path": "parsed\\facecraft\\images\\figure_016.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 244.8424072265625,
+            "t": 637.1757507324219,
+            "r": 304.7705383300781,
+            "b": 546.1129608154297,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 17,
+      "path": "parsed\\facecraft\\images\\figure_017.png",
+      "caption": "Input Novel View",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 58.99236297607422,
+            "t": 519.1841430664062,
+            "r": 101.41902923583984,
+            "b": 471.8299560546875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 18,
+      "path": "parsed\\facecraft\\images\\figure_018.png",
+      "caption": "Figure 9. Ablation of animation modules.",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 101.65431213378906,
+            "t": 516.9671325683594,
+            "r": 143.16732788085938,
+            "b": 471.98370361328125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 19,
+      "path": "parsed\\facecraft\\images\\figure_019.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 144.20065307617188,
+            "t": 516.2441711425781,
+            "r": 190.40367126464844,
+            "b": 467.60137939453125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 20,
+      "path": "parsed\\facecraft\\images\\figure_020.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 189.95852661132812,
+            "t": 516.9529418945312,
+            "r": 229.75914001464844,
+            "b": 469.3214416503906,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 21,
+      "path": "parsed\\facecraft\\images\\figure_021.png",
+      "caption": "Full",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 231.7858428955078,
+            "t": 516.2052307128906,
+            "r": 267.0238952636719,
+            "b": 473.64105224609375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 22,
+      "path": "parsed\\facecraft\\images\\figure_022.png",
+      "caption": "Input Novel View Input Novel View",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 269.7694091796875,
+            "t": 516.4494018554688,
+            "r": 302.248046875,
+            "b": 473.705322265625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 23,
+      "path": "parsed\\facecraft\\images\\figure_023.png",
+      "caption": "Figure 11. Qualitative comparison with controllable 3D GANs.",
+      "provenance": [
+        {
+          "page_no": 12,
+          "bbox": {
+            "l": 64.71133422851562,
+            "t": 686.6802062988281,
+            "r": 552.401123046875,
+            "b": 593.1887664794922,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 24,
+      "path": "parsed\\facecraft\\images\\figure_024.png",
+      "caption": "Figure 12. Qualitative comparison on static 3D head generation from a single image on MEAD (1). Red box indicates the input image.",
+      "provenance": [
+        {
+          "page_no": 12,
+          "bbox": {
+            "l": 64.23992919921875,
+            "t": 491.5563659667969,
+            "r": 553.8794555664062,
+            "b": 134.68170166015625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 25,
+      "path": "parsed\\facecraft\\images\\figure_025.png",
+      "caption": "Figure 13. Qualitative comparison on static 3D head generation from a single image on MEAD (2). Red box indicates the input image.",
+      "provenance": [
+        {
+          "page_no": 13,
+          "bbox": {
+            "l": 63.538291931152344,
+            "t": 586.7843627929688,
+            "r": 554.6932373046875,
+            "b": 233.17254638671875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "table_number": 1,
+      "caption": "Table 1. Comparison of methods for avatar generation and animation. The first two methods focus on general object generation, while the remaining methods are specifically designed for avatar applications.",
+      "provenance": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 73.35400390625,
+            "t": 689.3125991821289,
+            "r": 538.7817993164062,
+            "b": 599.6287994384766,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\facecraft\\tables\\table_001\\table.html",
+      "csv_path": "parsed\\facecraft\\tables\\table_001\\table.csv"
+    },
+    {
+      "table_number": 2,
+      "caption": "Table 2. Quantitative comparison on static 3D head generation.",
+      "provenance": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 60.803096771240234,
+            "t": 533.9145202636719,
+            "r": 292.04644775390625,
+            "b": 386.03033447265625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\facecraft\\tables\\table_002\\table.html",
+      "csv_path": "parsed\\facecraft\\tables\\table_002\\table.csv"
+    },
+    {
+      "table_number": 3,
+      "caption": "Table 4. Ablation of multiview image generation modules. \"Warp\" refers to the warping-based control generation (Sec. 3.2) and MA to cross-view mutual attention (Sec. 3.2).",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 316.36297607421875,
+            "t": 687.5827178955078,
+            "r": 554.1595458984375,
+            "b": 621.9937591552734,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\facecraft\\tables\\table_003\\table.html",
+      "csv_path": "parsed\\facecraft\\tables\\table_003\\table.csv"
+    },
+    {
+      "table_number": 4,
+      "caption": "Table 5. Ablation of animation modules.",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 316.71917724609375,
+            "t": 604.5697937011719,
+            "r": 553.8945922851562,
+            "b": 561.4791564941406,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\facecraft\\tables\\table_004\\table.html",
+      "csv_path": "parsed\\facecraft\\tables\\table_004\\table.csv"
+    },
+    {
+      "table_number": 5,
+      "caption": "Table 6. Time comparison with optimization-based avatar reconstruction methods.",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 318.9693298339844,
+            "t": 533.1992797851562,
+            "r": 550.824951171875,
+            "b": 490.3779296875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\facecraft\\tables\\table_005\\table.html",
+      "csv_path": "parsed\\facecraft\\tables\\table_005\\table.csv"
+    },
+    {
+      "table_number": 6,
+      "caption": "Table 7. Quantitative comparison on static 3D head generation on MEAD [39].",
+      "provenance": [
+        {
+          "page_no": 11,
+          "bbox": {
+            "l": 322.1776428222656,
+            "t": 636.0507659912109,
+            "r": 552.1878051757812,
+            "b": 579.3289794921875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\facecraft\\tables\\table_006\\table.html",
+      "csv_path": "parsed\\facecraft\\tables\\table_006\\table.csv"
+    }
+  ]
+}

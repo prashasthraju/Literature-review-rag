@@ -1,0 +1,53 @@
+{
+  "document_id": "anipotrait",
+  "source_file": "text_driven_generation\\anipotrait.pdf",
+  "markdown_path": "parsed\\text_driven_generation\\anipotrait\\document.md",
+  "structured_json_path": "parsed\\text_driven_generation\\anipotrait\\document.json",
+  "picture_count": 2,
+  "table_count": 0,
+  "pictures": [
+    {
+      "figure_number": 1,
+      "path": "parsed\\text_driven_generation\\anipotrait\\images\\figure_001.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 139.28489685058594,
+            "t": 412.1687316894531,
+            "r": 473.40008544921875,
+            "b": 179.38861083984375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 2,
+      "path": "parsed\\text_driven_generation\\anipotrait\\images\\figure_002.png",
+      "caption": "Fig. 2. Results of our method.",
+      "provenance": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 138.88795471191406,
+            "t": 616.4476776123047,
+            "r": 475.7424011230469,
+            "b": 409.4215393066406,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  ],
+  "tables": []
+}

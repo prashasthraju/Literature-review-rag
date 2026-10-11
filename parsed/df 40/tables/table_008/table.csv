@@ -1,0 +1,3 @@
+﻿Test / Train.Test / Train,FS.FSGAN,FS.BlendFace,FR.LIA,FR.Wav2Lip,EFS.DiT,EFS.DDIM,FE.e4e
+SRI,0.772,0.835,0.746,0.564,0.687,0.713,0.543
+SRI + Super-Resolution,0.983,0.825,0.988,0.833,0.997,0.946,0.978

@@ -1,0 +1,11 @@
+﻿Models,ACC,AUC
+DSP-FWA [23],n,47.2
+Block shuffling [26],n,93.13
+X-ray [22],n,61.6
+Xception [8],n,86.5
+MesoNet [1],87.27,n
+DCL [39],n,96.9
+LRNet [41],92.4,95.7
+SBIs [38],92.1,95.3
+FTDN [40],83.55,n
+FFP-ChT (ours),93.7,96.8

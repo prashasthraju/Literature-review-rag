@@ -1,0 +1,10 @@
+﻿Models,ACC,AUC
+DSP-FWA [23],n,64.6
+X-ray [22],n,99.1
+STDT [47],97.9,99.7
+PPG cell [9],93.6,n
+Xception [8],n,99.7
+FTDN [40],99.4,99.8
+LRNet [41],99.2,99.9
+SBIs [38],99.4,99.9
+FFP-ChT (ours),99.5,99.9

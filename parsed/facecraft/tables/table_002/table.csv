@@ -1,0 +1,11 @@
+﻿Method,CLIP-I ↑,ID ↑,FID ↓
+GaussianCube [47],0.6830,0.4300,258.81
+PanoHead [1],0.8233,0.4246,195.28
+SV3D [38],0.7656,0.4331,234.86
+Portrait3D [41],0.7066,0.3719,302.74
+Ours,0.8053,0.5082,174.36
+Table 3. Quantitative comparison on 3D head animation.,Table 3. Quantitative comparison on 3D head animation.,Table 3. Quantitative comparison on 3D head animation.,Table 3. Quantitative comparison on 3D head animation.
+Method,CLIP-I ↑,ID ↑,FID ↓
+AniPortrait [40],0.4653,0.4171,364.99
+Portrait-4D [7],0.5236,0.4592,248.36
+Ours,0.5737,0.4602,201.76

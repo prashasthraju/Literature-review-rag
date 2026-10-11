@@ -1,0 +1,8 @@
+﻿Method.Method,Eye Blink.Eye Blink,Lip Synchronization.LSE-C↑,Lip Synchronization.LSE-D↓,Learned Head Motion.Diversity↑,Learned Head Motion.Beat Align↑,Video Quality.FID↓,Video Quality.CPBD↑,Video Quality.CSIM↑
+Real Video,N./A.,8.211,6.982,0.259,0.271,0.000,0.428,1.000
+Wav2Lip* [30],N./A.,10.221,5.535,N./A.,N./A.,21.725,0.368,0.849
+PC-AVS** [51],from ref.,9.053,6.355,N./A.,N./A.,69.127,0.206,0.683
+MakeItTalk [52],automatic,5.110,10.059,0.257,0.268,28.243,0.283,0.838
+Audio2Head [39],automatic,7.357,7.535,0.181,0.267,24.392,0.281,0.823
+Wang et al. [40],automatic,4.932,10.055,0.226,0.268,22.432,0.295,0.811
+Ours,controllable,7.290,7.772,0.278,0.293,22.057,0.335,0.843

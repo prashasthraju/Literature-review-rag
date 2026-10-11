@@ -1,0 +1,9 @@
+﻿Method,LVE↓,FFD↓,MOD ↓
+w/o Multi-Scale AR,14.14,22.04,3.06
+w/o Temporal VQ,9.82,18.60,1.86
+w/o Temporal AR,9.97,18.71,1.99
+w/o Style Embedding,11.80,21.46,2.37
+Clip Length 8 Layer 5,11.73,24.89,2.25
+Clip Length 25 Layer 5,10.20,19.00,1.97
+Clip Length 50 Layer 5,9.78,18.03,1.89
+ARTalk (Full),9.34,18.15,1.81

@@ -1,0 +1,13 @@
+﻿Avatar Generator used for:.Development,Avatar Generator used for:.Evaluation,CREMA-D.Graph,CREMA-D.DINOv2,CREMA-D.CLIP,CREMA-D.Fusion,RAVDESS.Graph,RAVDESS.DINOv2,RAVDESS.CLIP,RAVDESS.Fusion
+GAGA,GAGA,88.0,87.0,86.4,93.8,77.1,75.9,76.0,83.0
+GAGA,LIVE,-1.5,-18.1,-10.6,-7.7,-9.6,-11.2,-10.5,-12.6
+GAGA,HUNY,-2.9,-20.3,-14.6,-8.4,-2.7,-13.7,-10.7,-11.5
+All,GAGA,-2.2,-14.2,-12.4,-7.4,-1.4,-2.9,-4.5,-3.8
+LIVE,LIVE,92.3,88.8,88.6,95.2,75.8,68.2,70.2,79.4
+LIVE,GAGA,-8.5,-18.9,-17.3,-16.8,-1.1,-2.8,-7.3,-10.0
+LIVE,HUNY,-11.4,-14.6,-14.9,-15.9,-2.9,-5.0,-4.4,-11.9
+All,LIVE,-4.5,-12.3,-9.1,-5.6,-0.3,-4.4,-1.2,-1.8
+HUNY,HUNY,83.5,79.8,81.0,87.6,75.4,74.0,77.0,78.8
+HUNY,GAGA,+3.0,-16.3,-8.9,-8.5,-3.9,-10.2,-9.9,-5.8
+HUNY,LIVE,+3.9,0.0,-5.8,-0.9,-6.6,-6.5,-7.5,-4.3
+All,HUNY,-1.2,-8.0,-10.1,-5.0,+2.4,-2.4,-5.8,+0.3

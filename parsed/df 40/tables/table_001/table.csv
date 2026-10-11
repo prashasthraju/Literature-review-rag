@@ -1,0 +1,18 @@
+﻿Dataset,Publication,Latest Fake,Methods,FS,FR,EFS,FE,Fake Videos,Fake Images,Pretraining
+DF-TIMIT [37],ArXiv'18,faceswap-GAN [64] (2018),2,2,-,-,-,640,-,-
+UADFV [91],ICASSP'19,Unknown,1,1,-,-,-,49,252,-
+FaceForensics++ [62],ICCV'19,NeuralTextures [71],4,2,2,-,-,4K,-,-
+DeepFakeDetection [17],None,Unknown,5,5,-,-,-,3068,-,-
+CDF [42],CVPR'20,Unknown,1,1,-,-,-,"5,639",-,-
+DFFD [13],CVPR'20,StyleGAN [34] (2018),7,7,-,-,-,3000,0.2M+,-
+DeeperForensics-1.0 [30],CVPR'20,DF-VAE [30] (2020),1,1,-,-,-,10K,-,-
+DFDC [18],ArXiv'20,StyleGAN [34] (2018),8,5,1,2,-,0.1M+,-,
+ForgeryNet [22],CVPR'21,StarGANv2 [11] (2020),15,6,4,2,3,0.1M+,1M+,✓
+FakeAVCeleb [36],NeurIPS'21,Wav2Lip [55] (2021),4,2,2,-,-,9.5K,-,-
+KoDF [38],ICCV'21,Wav2Lip [55] (2021),6,3,3,-,-,0.1M+,-,-
+FFIW [94],CVPR'21,FSGAN [52] (2019),3,3,-,-,-,10K,-,-
+DF3 [32],TMM'22,StyleGAN3 [33] (2021),6,-,-,6,-,15k+,-,-
+DeepFakeFace [69],ArXiv'23,Stable-Diffusion [78] (2021),3,1,-,2,-,-,90K,-
+DF-Platter [51],CVPR'23,FaceShifter [39] (2020),3,3,-,-,-,0.1M+,-,-
+DiffusionDeepfake [4],ArXiv'24,Stable-Diffusion [78] (2021),2,-,-,2,-,-,0.1M+,-
+DF40 (Ours),-,PixArt-α [8] (2024),40,10,13,12,5,0.1M+,1M+,✓

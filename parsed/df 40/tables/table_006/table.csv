@@ -1,0 +1,4 @@
+﻿Training Set.Training Set,Model.Model,Testing Set.FS (CDF),Testing Set.FR (CDF),Testing Set.EFS (CDF),Testing Set.DeepFaceLab,Testing Set.HeyGen,Testing Set.MidJourney-6,Testing Set.Whichisreal,Testing Set.StarGAN,Testing Set.StarGAN2,Testing Set.StyleCLIP,Testing Set.CollabDiff,Testing Set.e4e Avg.
+DF40 (FF),Xception,0.752,0.831,0.681,0.851,0.704,0.269,0.632,0.721,0.569,0.495,0.675,0.542 0.644
+DF40 (FF),CLIP-base,0.915,0.926,0.843,0.907,0.671,0.548,0.684,0.913,0.782,0.813,0.948,0.823 0.814
+DF40 (FF),CLIP-large,0.942,0.896,0.858,0.948,0.784,0.746,0.849,0.974,0.909,0.929,0.977,0.967 0.898

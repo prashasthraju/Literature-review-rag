@@ -1,0 +1,137 @@
+{
+  "document_id": "avatar imposter attack scenario",
+  "source_file": "avatar imposter attack scenario.pdf",
+  "markdown_path": "parsed\\avatar imposter attack scenario\\document.md",
+  "structured_json_path": "parsed\\avatar imposter attack scenario\\document.json",
+  "picture_count": 6,
+  "table_count": 0,
+  "pictures": [
+    {
+      "figure_number": 1,
+      "path": "parsed\\avatar imposter attack scenario\\images\\figure_001.png",
+      "caption": "Figure 1. Avatar impostor attack scenario: An impostor steals a target identity's avatar and pretends to be that identity in a virtual meeting. The visual appearance and voice of the impostor's avatar is exactly the same as the target's. The behavioral biometrics, such as facial gestures, however, are driven by the impostor.",
+      "provenance": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 307.98046875,
+            "t": 562.8849334716797,
+            "r": 542.8615112304688,
+            "b": 469.5931396484375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 2,
+      "path": "parsed\\avatar imposter attack scenario\\images\\figure_002.png",
+      "caption": "Figure 2. Avatar generation and the proposed evaluation protocol. (Left): An avatar video is generated using a target image (leftmost column) as the appearance for the identity, plus a driving video (top row) to generate the facial motion in the avatar. (Right): For the evaluation of our proposed biometric system in avatar scenarios, we generate all genuine and impostor comparisons for each target identity i, using all videos from i and some videos from impostor identities, respectively.",
+      "provenance": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 72.48090362548828,
+            "t": 720.8249130249023,
+            "r": 521.6937255859375,
+            "b": 488.3363037109375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 3,
+      "path": "parsed\\avatar imposter attack scenario\\images\\figure_003.png",
+      "caption": "Figure 3. Proposed biometric verification system: For each frame t in a video, a graph G(t) is built. All the T graphs from the video are passed to the 3-layer GCN, obtaining one graph embedding h(t) G per frame t. Finally, those T graph embeddings are passed to the attention pooling module, resulting in a single embedding e per video, with e ∈ Rd(L) , d(L) being the output dimension of the last GCN layer, L.",
+      "provenance": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 48.94142150878906,
+            "t": 720.485221862793,
+            "r": 544.96484375,
+            "b": 630.3560180664062,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 4,
+      "path": "parsed\\avatar imposter attack scenario\\images\\figure_004.png",
+      "caption": "Figure 4. Landmarks extracted for each video frame: (a) shows all MediaPipe [20] landmarks. (b) shows the 109 selected landmarks connected via Delaunay triangulation [9]. (c) The normalization of landmarks is done subtracting the nose tip landmark position and scaling with intercanthal distance d over the frames.",
+      "provenance": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 58.15874099731445,
+            "t": 574.1375122070312,
+            "r": 275.6392822265625,
+            "b": 460.77886962890625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 5,
+      "path": "parsed\\avatar imposter attack scenario\\images\\figure_005.png",
+      "caption": "Figure 5. Experimental results using our proposed biometric system. (Left) ROC curves obtained when we train our model with avatar clips based on RAVDESS data. (Center) ROC curves when we train our model with avatar clips based on CREMA-D data. (Right) ROC curves when we train our model with avatar clips based on RAVDESS and CREMA-D data combined.",
+      "provenance": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 63.84844970703125,
+            "t": 720.5434799194336,
+            "r": 532.0269775390625,
+            "b": 569.4016265869141,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 6,
+      "path": "parsed\\avatar imposter attack scenario\\images\\figure_006.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 70.27400207519531,
+            "t": 721.444953918457,
+            "r": 523.8309326171875,
+            "b": 504.1566467285156,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  ],
+  "tables": []
+}

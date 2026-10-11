@@ -1,0 +1,10 @@
+﻿Method,w/ Style,w/ Pose,Real-time
+FaceFormer [Fan et al. 2022],✘,✘,✘
+CodeTalker [Xing et al. 2023],✘,✘,✘
+SelfTalk [Peng et al. 2023a],✘,✘,✔
+FaceDiffuser [Stan et al. 2023],✘,✘,✘
+MultiTalk [Sung-Bin et al. 2024],✔,✘,✘
+ScanTalk [Nocentini et al. 2024],✘,✘,✘
+UniTalker [Fan et al. 2024],✔,✘,✘
+DiffPoseTalk [Sun et al. 2024],✔,✔,✘
+ARTalk (Ours),✔,✔,✔

@@ -1,0 +1,12 @@
+﻿0,1
+Models,AUC
+LRNet [41],65.4
+Block shuffling [26],69.1
+X-ray [22],74.7
+High-frequency [28],79.4
+SPSL [25],76.8
+MPSM [7],78.2
+FFIW [6],78.3
+DCL [39],81.0
+SBIs [38],81.9
+FFP-ChT (ours),82.2

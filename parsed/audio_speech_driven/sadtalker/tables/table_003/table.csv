@@ -1,0 +1,4 @@
+﻿Method,LSE-C ↑,LSE-D ↓
+Speech2Gesture [10],0.878,13.889
+OursFull (Lip coeffs. + β0 + Lread),7.290,7.772
+w/o β0 & Lread,5.241,9.532

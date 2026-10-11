@@ -1,0 +1,6 @@
+﻿Methods,Goal,Dimension,Input,360◦ view,Animation,3D Consistency,Quality
+"LDM [32] DreamFusion [26], SV3D [38]",Image Generation Image-to-3D,2D 3D,Single Image Single Image,�,,- Low,High Low
+"LivePortrait [10], AniPortrait [40] PanoHead [1], SPI [45] Portrait4D [7], CAP4D [36] FaceCraft4D",Video Generation 3D GAN Inversion 3D Talking Head Avatar,2D 3D 3D,Single Image Single Image Single Image Single Image,�,� � � �,Low Medium Medium High,High Medium High High
+,,,,�,,,
+,4D Generation,3D,,,,,
+"HQ3D [37], GA [27]",4D Avatar Generation,3D,Multi-viewVideos,�,,High,High

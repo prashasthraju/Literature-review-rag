@@ -1,0 +1,7 @@
+﻿Method,Lip Sync.,Motion Diversity,Video Sharpness,Overall Naturalness
+Wav2Lip [30],15.6%,3.1%,2.0%,2.8%
+PC-AVS [51],18.1%,9.6%,3.4%,9.1%
+MakeItTalk [52],5.6%,5.3%,5.7%,6.9%
+Wang et al. [40],12.5%,12.1%,16.3%,11.6%
+Audio2Head [39],9.5%,12.1%,9.7%,14.7%
+Ours,38.7%,57.9%,62.8%,54.8%

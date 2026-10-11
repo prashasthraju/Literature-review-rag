@@ -1,0 +1,9 @@
+﻿Method,Dataset,Input type,E2E,KP-free,RT,AUC†,Cross-gen
+NVFAIR [8],NVFAIR,Landmark dist. (126 pts),✗,✗,✗,0.87,✓
+IsItReallyYou [14],GAGAvatar-BM,Landmark feat. (109 pts),✗,✗,✗,0.80,-
+Unmasking Puppeteers [15],NVIDIA-VC,Codec latents,✗,✓,✓,-,✓
+ResNet18 + PIXEL_DIFF,NVFAIR,Raw grayscale,✓,✓,✓,0.759‡,✗
+F5C + STATIC,NVFAIR,Raw grayscale,✓,✓,✓,0.610,✗
+F5C + RAW_FEAT,NVFAIR,Raw grayscale,✓,✓,✓,0.649,✗
+F5C + PIXEL_DIFF,NVFAIR,Raw grayscale,✓,✓,✓,0.861,✓
+F5C + FEAT_DIFF (ours),NVFAIR,Raw grayscale,✓,✓,✓,0.877‡,✓

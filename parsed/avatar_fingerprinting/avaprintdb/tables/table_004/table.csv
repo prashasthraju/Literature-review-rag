@@ -1,0 +1,5 @@
+﻿Dataset,Genuine pairs,Impostor pairs
+CREMA-D,"124,416","247,536"
+RAVDESS,"28,800","50,400"
+Pairs per generator,"153,216","297,936"
+Total pairs (GAGA+LIVE+HUNY),"459,648","893,808"

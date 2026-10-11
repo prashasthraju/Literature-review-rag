@@ -1,0 +1,3286 @@
+{
+  "document_id": "df 40",
+  "source_file": "df 40.pdf",
+  "markdown_path": "parsed\\df 40\\document.md",
+  "structured_json_path": "parsed\\df 40\\document.json",
+  "picture_count": 136,
+  "table_count": 19,
+  "pictures": [
+    {
+      "figure_number": 1,
+      "path": "parsed\\df 40\\images\\figure_001.png",
+      "caption": "Figure 1: Overview of our DF40 dataset. DF40 shows advantages in data diversity, synthesis quality, and deepfake realism. Note all the above figures are deepfake, which does not exist in the real world.",
+      "provenance": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 120.16372680664062,
+            "t": 716.5407943725586,
+            "r": 492.5211181640625,
+            "b": 487.6965026855469,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 2,
+      "path": "parsed\\df 40\\images\\figure_002.png",
+      "caption": "Figure 2: The general fake data generation pipeline of the proposed DF40 dataset.",
+      "provenance": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 265.8356018066406,
+            "t": 454.007080078125,
+            "r": 504.9384460449219,
+            "b": 306.7190856933594,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 3,
+      "path": "parsed\\df 40\\images\\figure_003.png",
+      "caption": "Figure 3: One-Verse-All (OvA) evaluation (Protocol-4): Training the baseline (i.e., Xception) on one fake and testing it on other remaining fakes. We show the cross-forgery evaluations on both the FF++ domain and CDF domain. We also show the performance \"drop\" from the FF++ to the CDF. Blue donates all FS methods, Green for FR, and Yellow for EFS. In each heatmap, more \"red\" indicates higher values; \"White\" means 0.5 AUC (by chance), and \"blue\" indicates values below 0.5.",
+      "provenance": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 111.15032958984375,
+            "t": 539.9949035644531,
+            "r": 502.6757507324219,
+            "b": 395.77740478515625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 4,
+      "path": "parsed\\df 40\\images\\figure_004.png",
+      "caption": "Figure 4: t-SNE visualization for real, whole-fake, face-fake, and mouth-fake images. The results show that a well-trained EFS detector (Xception) can effectively distinguish between whole-fake and real images, but struggles to identify fakes with only face or mouth manipulation. This observation highlights the significant influence of the manipulated region on detection performance.",
+      "provenance": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 170.1837158203125,
+            "t": 719.7661972045898,
+            "r": 454.3750305175781,
+            "b": 648.8552551269531,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 5,
+      "path": "parsed\\df 40\\images\\figure_005.png",
+      "caption": "Figure 5: Causal graph.",
+      "provenance": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 445.5039367675781,
+            "t": 248.14764404296875,
+            "r": 504.2588806152344,
+            "b": 176.63714599609375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 6,
+      "path": "parsed\\df 40\\images\\figure_006.png",
+      "caption": "Figure 7: t-SNE Visualizations for three models: Xception, CLIP-base, and CLIP-large.",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 110.21406555175781,
+            "t": 706.3740768432617,
+            "r": 502.1067199707031,
+            "b": 323.0654602050781,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 7,
+      "path": "parsed\\df 40\\images\\figure_007.png",
+      "caption": "Figure 8: Evaluation of existing detectors on previous datasets and our DF40.",
+      "provenance": [
+        {
+          "page_no": 9,
+          "bbox": {
+            "l": 110.43253326416016,
+            "t": 572.5265350341797,
+            "r": 502.75885009765625,
+            "b": 465.68414306640625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 8,
+      "path": "parsed\\df 40\\images\\figure_008.png",
+      "caption": "Figure 9: Frequency analysis on selected fake data within the proposed DF40.",
+      "provenance": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 147.3217010498047,
+            "t": 644.8226013183594,
+            "r": 463.6712341308594,
+            "b": 564.2166900634766,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 9,
+      "path": "parsed\\df 40\\images\\figure_009.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 193.26290893554688,
+            "t": 702.5330200195312,
+            "r": 228.8507843017578,
+            "b": 667.1412506103516,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 10,
+      "path": "parsed\\df 40\\images\\figure_010.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 193.10873413085938,
+            "t": 658.5213012695312,
+            "r": 228.9956512451172,
+            "b": 621.8855285644531,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 11,
+      "path": "parsed\\df 40\\images\\figure_011.png",
+      "caption": "FF++ (real data)",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 243.89454650878906,
+            "t": 703.485221862793,
+            "r": 280.0866394042969,
+            "b": 666.662353515625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 12,
+      "path": "parsed\\df 40\\images\\figure_012.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 243.93899536132812,
+            "t": 658.5165100097656,
+            "r": 279.74981689453125,
+            "b": 622.1299133300781,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 13,
+      "path": "parsed\\df 40\\images\\figure_013.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 292.0594787597656,
+            "t": 703.8505706787109,
+            "r": 328.0096740722656,
+            "b": 666.9949340820312,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 14,
+      "path": "parsed\\df 40\\images\\figure_014.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 291.9049987792969,
+            "t": 658.7526702880859,
+            "r": 327.9710388183594,
+            "b": 622.0536193847656,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 15,
+      "path": "parsed\\df 40\\images\\figure_015.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 340.5860290527344,
+            "t": 703.6946258544922,
+            "r": 376.4064636230469,
+            "b": 667.1739883422852,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 16,
+      "path": "parsed\\df 40\\images\\figure_016.png",
+      "caption": "UniFace",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 340.9405517578125,
+            "t": 658.5603790283203,
+            "r": 376.2608642578125,
+            "b": 622.2076721191406,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 17,
+      "path": "parsed\\df 40\\images\\figure_017.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 388.9483337402344,
+            "t": 703.4773864746094,
+            "r": 424.8018798828125,
+            "b": 667.160758972168,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 18,
+      "path": "parsed\\df 40\\images\\figure_018.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 389.2159118652344,
+            "t": 658.1261596679688,
+            "r": 425.1585998535156,
+            "b": 622.4731140136719,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 19,
+      "path": "parsed\\df 40\\images\\figure_019.png",
+      "caption": "SimSwap",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 193.06895446777344,
+            "t": 585.5643463134766,
+            "r": 229.01832580566406,
+            "b": 550.5888671875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 20,
+      "path": "parsed\\df 40\\images\\figure_020.png",
+      "caption": "MobileSwap",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 193.02456665039062,
+            "t": 532.6906433105469,
+            "r": 228.9563446044922,
+            "b": 497.7070617675781,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 21,
+      "path": "parsed\\df 40\\images\\figure_021.png",
+      "caption": "InSwap",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 192.8325653076172,
+            "t": 479.59210205078125,
+            "r": 228.7810516357422,
+            "b": 444.3999938964844,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 22,
+      "path": "parsed\\df 40\\images\\figure_022.png",
+      "caption": "FSGAN",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 192.97679138183594,
+            "t": 425.7479553222656,
+            "r": 228.87513732910156,
+            "b": 391.4527587890625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 23,
+      "path": "parsed\\df 40\\images\\figure_023.png",
+      "caption": "FaceDancer",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 193.05125427246094,
+            "t": 372.4471740722656,
+            "r": 229.0023956298828,
+            "b": 338.6407165527344,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 24,
+      "path": "parsed\\df 40\\images\\figure_024.png",
+      "caption": "BlendFace",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 192.98756408691406,
+            "t": 321.03338623046875,
+            "r": 228.73739624023438,
+            "b": 285.6900939941406,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 25,
+      "path": "parsed\\df 40\\images\\figure_025.png",
+      "caption": "e4s",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 193.0399932861328,
+            "t": 266.41888427734375,
+            "r": 229.0955810546875,
+            "b": 233.140380859375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 26,
+      "path": "parsed\\df 40\\images\\figure_026.png",
+      "caption": "FaceSwap",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 193.21896362304688,
+            "t": 218.0997314453125,
+            "r": 229.43968200683594,
+            "b": 182.02398681640625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 27,
+      "path": "parsed\\df 40\\images\\figure_027.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 192.89002990722656,
+            "t": 165.7625732421875,
+            "r": 229.30264282226562,
+            "b": 131.60272216796875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 28,
+      "path": "parsed\\df 40\\images\\figure_028.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 243.7628936767578,
+            "t": 586.9945526123047,
+            "r": 279.9796447753906,
+            "b": 550.8434295654297,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 29,
+      "path": "parsed\\df 40\\images\\figure_029.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 243.77499389648438,
+            "t": 533.7270812988281,
+            "r": 280.0721130371094,
+            "b": 497.82574462890625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 30,
+      "path": "parsed\\df 40\\images\\figure_030.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 243.983642578125,
+            "t": 480.99261474609375,
+            "r": 279.95062255859375,
+            "b": 444.5898132324219,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 31,
+      "path": "parsed\\df 40\\images\\figure_031.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 243.7152557373047,
+            "t": 427.7347412109375,
+            "r": 280.026123046875,
+            "b": 391.6492614746094,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 32,
+      "path": "parsed\\df 40\\images\\figure_032.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 243.68003845214844,
+            "t": 374.500244140625,
+            "r": 280.1305236816406,
+            "b": 338.8476257324219,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 33,
+      "path": "parsed\\df 40\\images\\figure_033.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 243.7282257080078,
+            "t": 322.5775451660156,
+            "r": 280.16107177734375,
+            "b": 286.09075927734375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 34,
+      "path": "parsed\\df 40\\images\\figure_034.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 292.0126647949219,
+            "t": 586.9468841552734,
+            "r": 328.06036376953125,
+            "b": 550.6619415283203,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 35,
+      "path": "parsed\\df 40\\images\\figure_035.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 292.034423828125,
+            "t": 534.0034790039062,
+            "r": 328.10064697265625,
+            "b": 497.5480041503906,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 36,
+      "path": "parsed\\df 40\\images\\figure_036.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 292.1041259765625,
+            "t": 481.1891784667969,
+            "r": 328.13043212890625,
+            "b": 444.3475036621094,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 37,
+      "path": "parsed\\df 40\\images\\figure_037.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 292.0000915527344,
+            "t": 427.98797607421875,
+            "r": 328.32171630859375,
+            "b": 391.5346984863281,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 38,
+      "path": "parsed\\df 40\\images\\figure_038.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 292.0920104980469,
+            "t": 375.00732421875,
+            "r": 328.27532958984375,
+            "b": 338.26678466796875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 39,
+      "path": "parsed\\df 40\\images\\figure_039.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 292.0850830078125,
+            "t": 322.5553894042969,
+            "r": 328.0955505371094,
+            "b": 286.020751953125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 40,
+      "path": "parsed\\df 40\\images\\figure_040.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 244.36521911621094,
+            "t": 269.73681640625,
+            "r": 280.42510986328125,
+            "b": 233.4647216796875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 41,
+      "path": "parsed\\df 40\\images\\figure_041.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 243.75360107421875,
+            "t": 218.4793701171875,
+            "r": 280.3707275390625,
+            "b": 181.9254150390625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 42,
+      "path": "parsed\\df 40\\images\\figure_042.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 243.75755310058594,
+            "t": 167.586669921875,
+            "r": 280.3980712890625,
+            "b": 131.5672607421875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 43,
+      "path": "parsed\\df 40\\images\\figure_043.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 292.07794189453125,
+            "t": 269.94244384765625,
+            "r": 328.268310546875,
+            "b": 233.38494873046875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 44,
+      "path": "parsed\\df 40\\images\\figure_044.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 292.03900146484375,
+            "t": 218.72161865234375,
+            "r": 328.1266784667969,
+            "b": 181.7493896484375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 45,
+      "path": "parsed\\df 40\\images\\figure_045.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 340.56951904296875,
+            "t": 586.5043487548828,
+            "r": 376.4758605957031,
+            "b": 550.6398162841797,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 46,
+      "path": "parsed\\df 40\\images\\figure_046.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 340.4307556152344,
+            "t": 533.7060852050781,
+            "r": 376.46221923828125,
+            "b": 497.41253662109375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 47,
+      "path": "parsed\\df 40\\images\\figure_047.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 340.5122375488281,
+            "t": 481.03594970703125,
+            "r": 376.51263427734375,
+            "b": 444.3094787597656,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 48,
+      "path": "parsed\\df 40\\images\\figure_048.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 340.4774475097656,
+            "t": 427.61444091796875,
+            "r": 376.49884033203125,
+            "b": 391.2447204589844,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 49,
+      "path": "parsed\\df 40\\images\\figure_049.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 389.0180358886719,
+            "t": 586.5238952636719,
+            "r": 424.8288879394531,
+            "b": 550.8876647949219,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 50,
+      "path": "parsed\\df 40\\images\\figure_050.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 388.8177795410156,
+            "t": 533.5235595703125,
+            "r": 424.6314697265625,
+            "b": 497.7088623046875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 51,
+      "path": "parsed\\df 40\\images\\figure_051.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 388.95928955078125,
+            "t": 480.479248046875,
+            "r": 424.87738037109375,
+            "b": 444.450927734375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 52,
+      "path": "parsed\\df 40\\images\\figure_052.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 388.85272216796875,
+            "t": 427.5675964355469,
+            "r": 424.89404296875,
+            "b": 391.51708984375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 53,
+      "path": "parsed\\df 40\\images\\figure_053.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 340.4393310546875,
+            "t": 374.62237548828125,
+            "r": 376.5974426269531,
+            "b": 338.098876953125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 54,
+      "path": "parsed\\df 40\\images\\figure_054.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 340.372314453125,
+            "t": 322.6648254394531,
+            "r": 376.60455322265625,
+            "b": 285.9369201660156,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 55,
+      "path": "parsed\\df 40\\images\\figure_055.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 340.4784851074219,
+            "t": 269.75146484375,
+            "r": 376.4994812011719,
+            "b": 233.16265869140625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 56,
+      "path": "parsed\\df 40\\images\\figure_056.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 340.51214599609375,
+            "t": 218.41571044921875,
+            "r": 376.50225830078125,
+            "b": 182.00372314453125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 57,
+      "path": "parsed\\df 40\\images\\figure_057.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 291.9237365722656,
+            "t": 168.18402099609375,
+            "r": 328.28326416015625,
+            "b": 131.681884765625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 58,
+      "path": "parsed\\df 40\\images\\figure_058.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 340.26025390625,
+            "t": 167.47247314453125,
+            "r": 376.58514404296875,
+            "b": 131.426513671875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 59,
+      "path": "parsed\\df 40\\images\\figure_059.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 388.74755859375,
+            "t": 374.2934265136719,
+            "r": 424.62933349609375,
+            "b": 338.46697998046875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 60,
+      "path": "parsed\\df 40\\images\\figure_060.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 388.7640380859375,
+            "t": 321.8611145019531,
+            "r": 424.6157531738281,
+            "b": 286.00579833984375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 61,
+      "path": "parsed\\df 40\\images\\figure_061.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 388.7237854003906,
+            "t": 269.4278564453125,
+            "r": 424.5458679199219,
+            "b": 233.54010009765625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 62,
+      "path": "parsed\\df 40\\images\\figure_062.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 388.8200378417969,
+            "t": 218.13812255859375,
+            "r": 424.5087585449219,
+            "b": 182.19293212890625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 63,
+      "path": "parsed\\df 40\\images\\figure_063.png",
+      "caption": "Figure 10: Illustration of visual examples for all FS (face-swapping) generated data on the FF domain.",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 388.6500244140625,
+            "t": 167.62091064453125,
+            "r": 424.6769714355469,
+            "b": 131.7900390625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 64,
+      "path": "parsed\\df 40\\images\\figure_064.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 194.41128540039062,
+            "t": 703.912956237793,
+            "r": 226.02880859375,
+            "b": 673.8152389526367,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 65,
+      "path": "parsed\\df 40\\images\\figure_065.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 194.67913818359375,
+            "t": 666.8136444091797,
+            "r": 226.39187622070312,
+            "b": 635.103515625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 66,
+      "path": "parsed\\df 40\\images\\figure_066.png",
+      "caption": "FF++ (real data)",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 244.6614532470703,
+            "t": 705.8054580688477,
+            "r": 276.9786376953125,
+            "b": 673.935173034668,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 67,
+      "path": "parsed\\df 40\\images\\figure_067.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 244.70884704589844,
+            "t": 666.8447189331055,
+            "r": 276.8968200683594,
+            "b": 635.0068664550781,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 68,
+      "path": "parsed\\df 40\\images\\figure_068.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 293.4138488769531,
+            "t": 705.9112319946289,
+            "r": 325.1388244628906,
+            "b": 673.869987487793,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 69,
+      "path": "parsed\\df 40\\images\\figure_069.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 293.20257568359375,
+            "t": 666.8170471191406,
+            "r": 325.1440124511719,
+            "b": 634.7842102050781,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 70,
+      "path": "parsed\\df 40\\images\\figure_070.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 341.5495300292969,
+            "t": 705.7891464233398,
+            "r": 373.430908203125,
+            "b": 673.4890441894531,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 71,
+      "path": "parsed\\df 40\\images\\figure_071.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 341.5690612792969,
+            "t": 666.8017654418945,
+            "r": 373.5697021484375,
+            "b": 635.1184234619141,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 72,
+      "path": "parsed\\df 40\\images\\figure_072.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 388.5424499511719,
+            "t": 705.661247253418,
+            "r": 419.9519958496094,
+            "b": 673.6166763305664,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 73,
+      "path": "parsed\\df 40\\images\\figure_073.png",
+      "caption": "Pirender",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 388.56658935546875,
+            "t": 666.5898742675781,
+            "r": 420.3662414550781,
+            "b": 634.7812957763672,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 74,
+      "path": "parsed\\df 40\\images\\figure_074.png",
+      "caption": "OneShot",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 194.0023956298828,
+            "t": 601.8600006103516,
+            "r": 226.30104064941406,
+            "b": 569.4124603271484,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 75,
+      "path": "parsed\\df 40\\images\\figure_075.png",
+      "caption": "HyperReenact",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 193.3041534423828,
+            "t": 554.3206634521484,
+            "r": 226.29656982421875,
+            "b": 522.3532104492188,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 76,
+      "path": "parsed\\df 40\\images\\figure_076.png",
+      "caption": "FOMM",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 193.37046813964844,
+            "t": 505.0751647949219,
+            "r": 226.1973114013672,
+            "b": 473.3760986328125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 77,
+      "path": "parsed\\df 40\\images\\figure_077.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 194.34765625,
+            "t": 458.455078125,
+            "r": 227.60549926757812,
+            "b": 428.18157958984375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 78,
+      "path": "parsed\\df 40\\images\\figure_078.png",
+      "caption": "FS_vid2vid",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 192.7789764404297,
+            "t": 416.2829895019531,
+            "r": 225.94732666015625,
+            "b": 385.8691711425781,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 79,
+      "path": "parsed\\df 40\\images\\figure_079.png",
+      "caption": "MRAA",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 191.990478515625,
+            "t": 372.553955078125,
+            "r": 225.72705078125,
+            "b": 341.9328308105469,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 80,
+      "path": "parsed\\df 40\\images\\figure_080.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 245.27671813964844,
+            "t": 601.5884399414062,
+            "r": 277.1722106933594,
+            "b": 569.7779846191406,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 81,
+      "path": "parsed\\df 40\\images\\figure_081.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 244.9440155029297,
+            "t": 554.8995513916016,
+            "r": 277.2160949707031,
+            "b": 522.959716796875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 82,
+      "path": "parsed\\df 40\\images\\figure_082.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 293.3112487792969,
+            "t": 601.5025482177734,
+            "r": 325.1640319824219,
+            "b": 569.793212890625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 83,
+      "path": "parsed\\df 40\\images\\figure_083.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 293.2640686035156,
+            "t": 554.7765197753906,
+            "r": 324.9879150390625,
+            "b": 522.9002075195312,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 84,
+      "path": "parsed\\df 40\\images\\figure_084.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 341.1905212402344,
+            "t": 601.3385009765625,
+            "r": 372.8304138183594,
+            "b": 569.5901794433594,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 85,
+      "path": "parsed\\df 40\\images\\figure_085.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 341.024658203125,
+            "t": 554.6327209472656,
+            "r": 372.8750915527344,
+            "b": 522.8100891113281,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 86,
+      "path": "parsed\\df 40\\images\\figure_086.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 244.83421325683594,
+            "t": 506.41937255859375,
+            "r": 276.88232421875,
+            "b": 475.0962829589844,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 87,
+      "path": "parsed\\df 40\\images\\figure_087.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 244.60256958007812,
+            "t": 460.4864501953125,
+            "r": 276.9341125488281,
+            "b": 428.8183288574219,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 88,
+      "path": "parsed\\df 40\\images\\figure_088.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 293.2683410644531,
+            "t": 506.6024475097656,
+            "r": 325.05340576171875,
+            "b": 474.8940124511719,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 89,
+      "path": "parsed\\df 40\\images\\figure_089.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 293.2696838378906,
+            "t": 460.5138854980469,
+            "r": 325.6088562011719,
+            "b": 428.49700927734375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 90,
+      "path": "parsed\\df 40\\images\\figure_090.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 244.77195739746094,
+            "t": 417.185302734375,
+            "r": 276.9622497558594,
+            "b": 385.96490478515625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 91,
+      "path": "parsed\\df 40\\images\\figure_091.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 245.31097412109375,
+            "t": 374.61480712890625,
+            "r": 277.3061218261719,
+            "b": 342.5599365234375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 92,
+      "path": "parsed\\df 40\\images\\figure_092.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 293.39166259765625,
+            "t": 417.46337890625,
+            "r": 325.5486145019531,
+            "b": 385.5361328125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 93,
+      "path": "parsed\\df 40\\images\\figure_093.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 293.1695861816406,
+            "t": 374.35565185546875,
+            "r": 325.196533203125,
+            "b": 342.2190856933594,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 94,
+      "path": "parsed\\df 40\\images\\figure_094.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 341.1951599121094,
+            "t": 506.66058349609375,
+            "r": 372.8265075683594,
+            "b": 474.76153564453125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 95,
+      "path": "parsed\\df 40\\images\\figure_095.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 388.6618347167969,
+            "t": 601.1566925048828,
+            "r": 419.9716796875,
+            "b": 569.7711944580078,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 96,
+      "path": "parsed\\df 40\\images\\figure_096.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 388.1608581542969,
+            "t": 554.7309875488281,
+            "r": 419.7012939453125,
+            "b": 522.9107666015625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 97,
+      "path": "parsed\\df 40\\images\\figure_097.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 388.0392761230469,
+            "t": 506.6827087402344,
+            "r": 419.98907470703125,
+            "b": 474.84246826171875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 98,
+      "path": "parsed\\df 40\\images\\figure_098.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 341.1351013183594,
+            "t": 459.7701110839844,
+            "r": 372.865966796875,
+            "b": 427.8118896484375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 99,
+      "path": "parsed\\df 40\\images\\figure_099.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 340.9247741699219,
+            "t": 417.5290832519531,
+            "r": 372.8497009277344,
+            "b": 385.6145324707031,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 100,
+      "path": "parsed\\df 40\\images\\figure_100.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 341.01556396484375,
+            "t": 374.755859375,
+            "r": 372.9343566894531,
+            "b": 342.25469970703125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 101,
+      "path": "parsed\\df 40\\images\\figure_101.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 388.4874572753906,
+            "t": 459.4971618652344,
+            "r": 419.8161926269531,
+            "b": 427.58660888671875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 102,
+      "path": "parsed\\df 40\\images\\figure_102.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 388.1662902832031,
+            "t": 417.4891052246094,
+            "r": 419.90875244140625,
+            "b": 385.4968566894531,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 103,
+      "path": "parsed\\df 40\\images\\figure_103.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 388.03497314453125,
+            "t": 374.5589599609375,
+            "r": 420.37237548828125,
+            "b": 342.22320556640625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 104,
+      "path": "parsed\\df 40\\images\\figure_104.png",
+      "caption": "TPSM",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 193.46888732910156,
+            "t": 325.4405517578125,
+            "r": 225.249755859375,
+            "b": 294.4120178222656,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 105,
+      "path": "parsed\\df 40\\images\\figure_105.png",
+      "caption": "MCNet",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 193.46383666992188,
+            "t": 276.1328125,
+            "r": 226.1778106689453,
+            "b": 245.29681396484375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 106,
+      "path": "parsed\\df 40\\images\\figure_106.png",
+      "caption": "Lia",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 193.6513671875,
+            "t": 230.7730712890625,
+            "r": 226.31158447265625,
+            "b": 200.06011962890625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 107,
+      "path": "parsed\\df 40\\images\\figure_107.png",
+      "caption": "DaGAN",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 192.9471893310547,
+            "t": 188.04541015625,
+            "r": 226.45166015625,
+            "b": 155.5689697265625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 108,
+      "path": "parsed\\df 40\\images\\figure_108.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 243.87994384765625,
+            "t": 326.6213684082031,
+            "r": 276.0833435058594,
+            "b": 294.5806579589844,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 109,
+      "path": "parsed\\df 40\\images\\figure_109.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 243.8218231201172,
+            "t": 277.1669921875,
+            "r": 276.10205078125,
+            "b": 245.1761474609375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 110,
+      "path": "parsed\\df 40\\images\\figure_110.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 244.39088439941406,
+            "t": 232.69342041015625,
+            "r": 276.4046936035156,
+            "b": 200.7861328125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 111,
+      "path": "parsed\\df 40\\images\\figure_111.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 245.1322479248047,
+            "t": 190.70452880859375,
+            "r": 277.7781677246094,
+            "b": 158.55419921875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 112,
+      "path": "parsed\\df 40\\images\\figure_112.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 292.42138671875,
+            "t": 326.76068115234375,
+            "r": 324.4449768066406,
+            "b": 294.5466003417969,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 113,
+      "path": "parsed\\df 40\\images\\figure_113.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 292.35125732421875,
+            "t": 277.450439453125,
+            "r": 324.57012939453125,
+            "b": 245.22503662109375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 114,
+      "path": "parsed\\df 40\\images\\figure_114.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 292.4925231933594,
+            "t": 232.7049560546875,
+            "r": 324.5354309082031,
+            "b": 200.25225830078125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 115,
+      "path": "parsed\\df 40\\images\\figure_115.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 293.8880615234375,
+            "t": 191.0155029296875,
+            "r": 326.4433288574219,
+            "b": 158.61456298828125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 116,
+      "path": "parsed\\df 40\\images\\figure_116.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 339.7993469238281,
+            "t": 326.4771423339844,
+            "r": 372.195068359375,
+            "b": 294.2339172363281,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 117,
+      "path": "parsed\\df 40\\images\\figure_117.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 339.770263671875,
+            "t": 276.85552978515625,
+            "r": 372.23779296875,
+            "b": 244.77618408203125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 118,
+      "path": "parsed\\df 40\\images\\figure_118.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 387.29840087890625,
+            "t": 326.60357666015625,
+            "r": 418.8208923339844,
+            "b": 294.4499206542969,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 119,
+      "path": "parsed\\df 40\\images\\figure_119.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 387.27935791015625,
+            "t": 277.0599365234375,
+            "r": 418.8996887207031,
+            "b": 245.04974365234375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 120,
+      "path": "parsed\\df 40\\images\\figure_120.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 339.967529296875,
+            "t": 232.78668212890625,
+            "r": 372.7817687988281,
+            "b": 200.27459716796875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 121,
+      "path": "parsed\\df 40\\images\\figure_121.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 340.9399108886719,
+            "t": 190.73388671875,
+            "r": 373.8259582519531,
+            "b": 158.56903076171875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 122,
+      "path": "parsed\\df 40\\images\\figure_122.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 387.296875,
+            "t": 232.4456787109375,
+            "r": 418.885986328125,
+            "b": 200.31689453125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 123,
+      "path": "parsed\\df 40\\images\\figure_123.png",
+      "caption": "Figure 11: Illustration of visual examples for all FR (face-reenactment) generated data on the FF domain.",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 388.2789306640625,
+            "t": 190.94464111328125,
+            "r": 420.9576416015625,
+            "b": 158.3570556640625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 124,
+      "path": "parsed\\df 40\\images\\figure_124.png",
+      "caption": "VQGAN",
+      "provenance": [
+        {
+          "page_no": 21,
+          "bbox": {
+            "l": 191.81578063964844,
+            "t": 710.240966796875,
+            "r": 425.9553527832031,
+            "b": 201.0157470703125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 125,
+      "path": "parsed\\df 40\\images\\figure_125.png",
+      "caption": "DeepFaceLab (FS)",
+      "provenance": [
+        {
+          "page_no": 22,
+          "bbox": {
+            "l": 193.66064453125,
+            "t": 705.4042892456055,
+            "r": 426.19439697265625,
+            "b": 256.80902099609375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 126,
+      "path": "parsed\\df 40\\images\\figure_126.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 30,
+          "bbox": {
+            "l": 108.3133773803711,
+            "t": 705.5701599121094,
+            "r": 299.5219421386719,
+            "b": 604.6934967041016,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 127,
+      "path": "parsed\\df 40\\images\\figure_127.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 30,
+          "bbox": {
+            "l": 107.54927062988281,
+            "t": 588.3543853759766,
+            "r": 299.8825988769531,
+            "b": 470.8926696777344,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 128,
+      "path": "parsed\\df 40\\images\\figure_128.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 30,
+          "bbox": {
+            "l": 305.5435791015625,
+            "t": 706.4368515014648,
+            "r": 504.5057678222656,
+            "b": 604.5529022216797,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 129,
+      "path": "parsed\\df 40\\images\\figure_129.png",
+      "caption": "Figure 14: The general fake data generation pipeline of the proposed DF40 dataset.",
+      "provenance": [
+        {
+          "page_no": 30,
+          "bbox": {
+            "l": 304.7904357910156,
+            "t": 588.9313507080078,
+            "r": 504.73883056640625,
+            "b": 471.46685791015625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 130,
+      "path": "parsed\\df 40\\images\\figure_130.png",
+      "caption": "Figure 15: Logits and confidence analysis for comparing CLIP-base and CLIP-large. We show that CLIP-large can learn more robust real-people features, thereby generalizing well in unseen forgeries.",
+      "provenance": [
+        {
+          "page_no": 42,
+          "bbox": {
+            "l": 113.17631530761719,
+            "t": 704.2559967041016,
+            "r": 495.7258605957031,
+            "b": 462.12677001953125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 131,
+      "path": "parsed\\df 40\\images\\figure_131.png",
+      "caption": "Figure 16: t-SNE visualizations for comparing CLIP-base and CLIP-large. We show that CLIP-large can learn more robust real-people features, thereby generalizing well in unseen forgeries.",
+      "provenance": [
+        {
+          "page_no": 43,
+          "bbox": {
+            "l": 109.3157730102539,
+            "t": 719.637321472168,
+            "r": 501.38397216796875,
+            "b": 568.6580200195312,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 132,
+      "path": "parsed\\df 40\\images\\figure_132.png",
+      "caption": "Figure 17: t-SNE visualization and logits analysis for analyzing the model, which is trained on FR (FF) and tested on StyleCLIP, achieving only about 0.2 AUC. See the text for our analysis and more details.",
+      "provenance": [
+        {
+          "page_no": 44,
+          "bbox": {
+            "l": 117.99555969238281,
+            "t": 696.7391967773438,
+            "r": 500.38671875,
+            "b": 538.3428039550781,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 133,
+      "path": "parsed\\df 40\\images\\figure_133.png",
+      "caption": "Figure 18: Frequency visualizations (std) of both the training and testing phases, for real and fake, respectively.",
+      "provenance": [
+        {
+          "page_no": 44,
+          "bbox": {
+            "l": 108.245361328125,
+            "t": 474.76092529296875,
+            "r": 504.2535705566406,
+            "b": 382.8606262207031,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 134,
+      "path": "parsed\\df 40\\images\\figure_134.png",
+      "caption": "Figure 19: Confidence distribution comparison between Xception (image model) and I3D (video model). We show that I3D has less uncertainty in making real/fake classification decisions, while Xception has higher uncertainty.",
+      "provenance": [
+        {
+          "page_no": 45,
+          "bbox": {
+            "l": 110.70980072021484,
+            "t": 718.3592987060547,
+            "r": 500.8656005859375,
+            "b": 600.6066741943359,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 135,
+      "path": "parsed\\df 40\\images\\figure_135.png",
+      "caption": "Figure 20: t-SNE visualization for illustrating the detection results of CLIP-large on the MidJourney dataset. We show that (fake) people of different races and genders can group into different clusters, highlighting that CLIP-large has already learned rich information about the real people's attributions.",
+      "provenance": [
+        {
+          "page_no": 45,
+          "bbox": {
+            "l": 198.61483764648438,
+            "t": 543.0355072021484,
+            "r": 422.82269287109375,
+            "b": 364.695556640625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 136,
+      "path": "parsed\\df 40\\images\\figure_136.png",
+      "caption": "Figure 21: Std of the frequency analysis for visualizing different deepfake methods from the frequency domain.",
+      "provenance": [
+        {
+          "page_no": 47,
+          "bbox": {
+            "l": 109.33082580566406,
+            "t": 715.0920181274414,
+            "r": 501.5584716796875,
+            "b": 159.56329345703125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "table_number": 1,
+      "caption": "Table 1: Comparison of existing/previous deepfake datasets. DF40 surpasses any other dataset in diversity, scale, and modeling. Deepfake data in DF40 is created by 40 deepfake techniques, including 10 FS methods, 13 FR methods, 12 EFS methods, and 5 FE methods.",
+      "provenance": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 108.59398651123047,
+            "t": 681.8426284790039,
+            "r": 502.99090576171875,
+            "b": 551.9452819824219,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\df 40\\tables\\table_001\\table.html",
+      "csv_path": "parsed\\df 40\\tables\\table_001\\table.csv"
+    },
+    {
+      "table_number": 2,
+      "caption": "Table 2: Involved/Implemented deepfake methods of the proposed DF40 dataset. We use the following 40 distinct methods to create deepfake videos and images for evaluation.",
+      "provenance": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 108.66229248046875,
+            "t": 692.2840805053711,
+            "r": 503.3450012207031,
+            "b": 452.2974853515625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\df 40\\tables\\table_002\\table.html",
+      "csv_path": "parsed\\df 40\\tables\\table_002\\table.csv"
+    },
+    {
+      "table_number": 3,
+      "caption": "Table 3: Same data domain, different forgery types (Protocol-1): Cross-forgery evaluation of different models on the FF domain. FS (FF) denotes all FS data within the FF domain, with FR (FF), FS (CDF), etc, being similar. The results of the within-forgery evaluations are in gray (as the validation set only).",
+      "provenance": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 108.37826538085938,
+            "t": 637.3323669433594,
+            "r": 285.4083557128906,
+            "b": 508.859619140625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\df 40\\tables\\table_003\\table.html",
+      "csv_path": "parsed\\df 40\\tables\\table_003\\table.csv"
+    },
+    {
+      "table_number": 4,
+      "caption": "Table 4: Same forgery types, different data domains (Protocol-2): Cross-domain evaluation of different models on CDF domain. FS (FF) denotes all FS data within the FF domain, with FR (FF), FS (CDF), etc, having similar meanings. FS (FF) and FS (CDF) represent the same forgery methods used but created on different data domains.",
+      "provenance": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 306.1719970703125,
+            "t": 638.4519348144531,
+            "r": 503.2602233886719,
+            "b": 508.30474853515625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\df 40\\tables\\table_004\\table.html",
+      "csv_path": "parsed\\df 40\\tables\\table_004\\table.csv"
+    },
+    {
+      "table_number": 5,
+      "caption": "Table 5: Different forgery types, different data domains (Protocol-3): toward real-world open-set evaluation of different models on the unknown domain. FS (FF) denotes all FS data within the FF domain, with FR (FF) and EFS (FF) being similar. Here, we use ❶ to mark the FS method, ❷ for the FR, ❸ for the EFS, and ❹ for the FE.",
+      "provenance": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 108.19506072998047,
+            "t": 671.7636871337891,
+            "r": 504.6573181152344,
+            "b": 554.0617065429688,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\df 40\\tables\\table_005\\table.html",
+      "csv_path": "parsed\\df 40\\tables\\table_005\\table.csv"
+    },
+    {
+      "table_number": 6,
+      "caption": "Table 6: Comparison of different models/baselines used for pre-training. FS (CDF) denotes all FS data within the CDF domain. DF40 (FF) is the combination of FS (FF), FR (FF), and EFS (FF).",
+      "provenance": [
+        {
+          "page_no": 9,
+          "bbox": {
+            "l": 108.71773529052734,
+            "t": 692.2741088867188,
+            "r": 503.9501647949219,
+            "b": 663.2164611816406,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\df 40\\tables\\table_006\\table.html",
+      "csv_path": "parsed\\df 40\\tables\\table_006\\table.csv"
+    },
+    {
+      "table_number": 7,
+      "caption": "Table 7: Similar to Tab. 6, we evaluate on GenImage [95] (non-face domain deepfakes).",
+      "provenance": [
+        {
+          "page_no": 9,
+          "bbox": {
+            "l": 167.51019287109375,
+            "t": 632.6229858398438,
+            "r": 445.2517395019531,
+            "b": 599.4688415527344,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\df 40\\tables\\table_007\\table.html",
+      "csv_path": "parsed\\df 40\\tables\\table_007\\table.csv"
+    },
+    {
+      "table_number": 8,
+      "caption": "Table 8: Ablation study regarding the impact of super-resolution to the fake images. We use selfreconstruction images (SRI) as the fake and apply GFPGAN [81] to perform the super-resolution.",
+      "provenance": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 148.58863830566406,
+            "t": 692.2404632568359,
+            "r": 464.4984130859375,
+            "b": 656.8432769775391,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\df 40\\tables\\table_008\\table.html",
+      "csv_path": "parsed\\df 40\\tables\\table_008\\table.csv"
+    },
+    {
+      "table_number": 9,
+      "caption": "Table 9: The results of our experiments are generated using the following settings.",
+      "provenance": [
+        {
+          "page_no": 34,
+          "bbox": {
+            "l": 171.13995361328125,
+            "t": 697.179069519043,
+            "r": 438.6744079589844,
+            "b": 482.9136657714844,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\df 40\\tables\\table_009\\table.html",
+      "csv_path": "parsed\\df 40\\tables\\table_009\\table.csv"
+    },
+    {
+      "table_number": 10,
+      "caption": "Table 10: Summary of the datasets used for deepfake detection. The table provides information on the number of real and fake videos, the total number of videos, whether rights have been cleared, the number of agreeing subjects, the total number of subjects, the number of synthesis methods, and the number of perturbations.",
+      "provenance": [
+        {
+          "page_no": 35,
+          "bbox": {
+            "l": 108.77127075195312,
+            "t": 664.1201324462891,
+            "r": 502.7532958984375,
+            "b": 620.3890686035156,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\df 40\\tables\\table_010\\table.html",
+      "csv_path": "parsed\\df 40\\tables\\table_010\\table.csv"
+    },
+    {
+      "table_number": 11,
+      "caption": "Table 11: Part of quantitative results of OvA (Protocol-4): Testing on FS (FF) and Training on DF40 (FF). FS (FF) denotes all FS data within the FF domain, and DF40 (FF) denotes the combination results of FS (FF), FR (FF), and EFS (FF).",
+      "provenance": [
+        {
+          "page_no": 38,
+          "bbox": {
+            "l": 108.81771850585938,
+            "t": 658.3244476318359,
+            "r": 504.233642578125,
+            "b": 391.5482177734375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\df 40\\tables\\table_011\\table.html",
+      "csv_path": "parsed\\df 40\\tables\\table_011\\table.csv"
+    },
+    {
+      "table_number": 12,
+      "caption": "Table 12: Part of quantitative results of OvA (Protocol-4): Testing on FR (FF) and Training on DF40 (FF). FR (FF) denotes all FR data within the FF domain, and DF40 (FF) denotes the combination results of FS (FF), FR (FF), and EFS (FF).",
+      "provenance": [
+        {
+          "page_no": 38,
+          "bbox": {
+            "l": 108.33821868896484,
+            "t": 306.3870849609375,
+            "r": 504.1940612792969,
+            "b": 87.25897216796875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\df 40\\tables\\table_012\\table.html",
+      "csv_path": "parsed\\df 40\\tables\\table_012\\table.csv"
+    },
+    {
+      "table_number": 13,
+      "caption": "Table 13: Part of quantitative results of OvA (Protocol-4): Testing on EFS (FF) and Training on DF40 (FF). EFS (FF) denotes all EFS data within the FF domain, and DF40 (FF) denotes the combination results of FS (FF), FR (FF), and EFS (FF).",
+      "provenance": [
+        {
+          "page_no": 39,
+          "bbox": {
+            "l": 108.88872528076172,
+            "t": 668.9139022827148,
+            "r": 504.3858337402344,
+            "b": 406.8656921386719,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\df 40\\tables\\table_013\\table.html",
+      "csv_path": "parsed\\df 40\\tables\\table_013\\table.csv"
+    },
+    {
+      "table_number": 14,
+      "caption": "Table 14: Part of quantitative results of OvA (Protocol-4): Testing on FS (CDF) and Training on DF40 (FF). FS (FF) denotes all FS data within the FF domain, and DF40 (FF) denotes the combination results of FS (CDF), FR (CDF), and EFS (CDF).",
+      "provenance": [
+        {
+          "page_no": 39,
+          "bbox": {
+            "l": 108.98946380615234,
+            "t": 343.5533142089844,
+            "r": 504.2659606933594,
+            "b": 76.8260498046875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\df 40\\tables\\table_014\\table.html",
+      "csv_path": "parsed\\df 40\\tables\\table_014\\table.csv"
+    },
+    {
+      "table_number": 15,
+      "caption": "Table 15: Part of quantitative results of OvA (Protocol-4): Testing on FR (CDF) and Training on DF40 (FF). FR (FF) denotes all FR data within the FF domain, and DF40 (FF) denotes the combination results of FS (CDF), FR (CDF), and EFS (CDF).",
+      "provenance": [
+        {
+          "page_no": 40,
+          "bbox": {
+            "l": 108.33491516113281,
+            "t": 656.8197784423828,
+            "r": 504.0543212890625,
+            "b": 438.482666015625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\df 40\\tables\\table_015\\table.html",
+      "csv_path": "parsed\\df 40\\tables\\table_015\\table.csv"
+    },
+    {
+      "table_number": 16,
+      "caption": "Table 16: Part of quantitative results of OvA (Protocol-4): Testing on EFS (CDF) and Training on DF40 (FF). EFS (FF) denotes all EFS data within the FF domain, and DF40 (FF) denotes the combination results of FS (CDF), FR (CDF), and EFS (CDF).",
+      "provenance": [
+        {
+          "page_no": 40,
+          "bbox": {
+            "l": 108.68116760253906,
+            "t": 350.1846008300781,
+            "r": 504.04754638671875,
+            "b": 88.75054931640625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\df 40\\tables\\table_016\\table.html",
+      "csv_path": "parsed\\df 40\\tables\\table_016\\table.csv"
+    },
+    {
+      "table_number": 17,
+      "caption": "Table 17: Ablation study regarding the impact of the fake region.",
+      "provenance": [
+        {
+          "page_no": 41,
+          "bbox": {
+            "l": 149.36094665527344,
+            "t": 697.3792495727539,
+            "r": 464.9457092285156,
+            "b": 672.5076446533203,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\df 40\\tables\\table_017\\table.html",
+      "csv_path": "parsed\\df 40\\tables\\table_017\\table.csv"
+    },
+    {
+      "table_number": 18,
+      "caption": "Table 18: Results of evaluating three models (i.e., I3D, CLIP-base, and CLIP-large) trained on different variants of the proposed DF40 on other previous deepfake datasets.",
+      "provenance": [
+        {
+          "page_no": 41,
+          "bbox": {
+            "l": 108.52436828613281,
+            "t": 631.9298858642578,
+            "r": 503.8924255371094,
+            "b": 539.3351898193359,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\df 40\\tables\\table_018\\table.html",
+      "csv_path": "parsed\\df 40\\tables\\table_018\\table.csv"
+    },
+    {
+      "table_number": 19,
+      "caption": "Table 19: Evaluation of training CLIP-large on different variants of the proposed DF40 (face domain) to detect GenImage [95] (non-face domain), pure AIGCs.",
+      "provenance": [
+        {
+          "page_no": 41,
+          "bbox": {
+            "l": 109.2396240234375,
+            "t": 113.7012939453125,
+            "r": 504.214111328125,
+            "b": 58.62542724609375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\df 40\\tables\\table_019\\table.html",
+      "csv_path": "parsed\\df 40\\tables\\table_019\\table.csv"
+    }
+  ]
+}

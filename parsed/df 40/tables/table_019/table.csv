@@ -1,0 +1,5 @@
+﻿Model.Model,Training Set.Training Set,Testing Set.ADM,Testing Set.BigGAN,Testing Set.GLide,Testing Set.MidJourney,Testing Set.SD-v4,Testing Set.SD-v5,Testing Set.Vqdm,Testing Set.Wukong,Testing Set.Avg.
+,FS (FF),0.589,0.679,0.407,0.447,0.513,0.494,0.806,0.574,0.564
+,CLIP-large FR (FF),0.695,0.595,0.230,0.505,0.437,0.417,0.549,0.519,0.493
+,EFS (FF),0.912,0.992,0.906,0.591,0.729,0.72,0.956,0.713,0.815
+,DF40 (FF),0.911,0.967,0.736,0.571,0.630,0.614,0.882,0.660,0.746

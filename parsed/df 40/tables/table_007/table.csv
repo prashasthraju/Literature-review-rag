@@ -1,0 +1,4 @@
+﻿Training Set.Training Set,Model.Model,Testing Set.ADM,Testing Set.BigGAN,Testing Set.GLide,Testing Set.MidJourney,Testing Set.SD-v4,Testing Set.SD-v5,Testing Set.Vqdm,Testing Set.Wukong,Testing Set.Avg.
+DF40 (FF),Xception,0.723,0.529,0.514,0.558,0.490,0.494,0.469,0.505,0.535
+DF40 (FF),CLIP-base,0.940,0.850,0.666,0.447,0.494,0.494,0.682,0.542,0.639
+DF40 (FF),CLIP-large,0.911,0.967,0.736,0.571,0.630,0.614,0.882,0.660,0.746

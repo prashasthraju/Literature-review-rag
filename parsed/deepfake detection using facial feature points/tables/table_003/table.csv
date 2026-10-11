@@ -1,0 +1,10 @@
+﻿Models,ACC,AUC
+DSP-FWA [23],n,57.7
+X-ray [22],98.1,87.3
+Xception [8],n,93.3
+DCL [39],n,99.6
+LRNet [41],96.8,97.3
+High frequency [28],n,99.2
+SBIs [38],97.7,98.9
+FTDN [40],98.0,n
+FFP-ChT (ours),98.5,99.7

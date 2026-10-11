@@ -1,0 +1,4 @@
+﻿Train \ Test,FV2V,TPS,LIA
+Face-vid2vid,0.869,0.833,0.842
+TPS,0.838,0.879,0.872
+LIA,0.852,0.869,0.902

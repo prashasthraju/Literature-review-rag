@@ -1,0 +1,8 @@
+﻿Method.Method,Lip Synchronization.LSE-C↑,Lip Synchronization.LSE-D↓,Learned Head Motion.Diversity↑,Learned Head Motion.Beat Align↑,Video Quality.FID↓,Video Quality.CPBD↑,Video Quality.CSIM↑
+Real Video,6.209,7.911,0.4879,0.266,0,0.099,1.000
+Wav2Lip* [30],7.640,7.099,N./A.,N./A.,19.293,0.107,0.936
+PC-AVS** [51],7.168,7.443,N./A.,N./A.,111.043,0.074,0.494
+MakeItTalk [52],3.756,10.222,0.5230,0.275,23.501,0.063,0.883
+Audio2Head [39],5.266,8.788,0.2064,0.273,54.694,0.098,0.602
+Wang et al. [40],3.441,10.519,0.2547,0.272,42.092,0.136,0.750
+Ours,5.571,8.503,0.5211,0.277,22.738,0.081,0.893

@@ -1,0 +1,396 @@
+{
+  "document_id": "sadtalker",
+  "source_file": "audio_speech_driven\\sadtalker.pdf",
+  "markdown_path": "parsed\\audio_speech_driven\\sadtalker\\document.md",
+  "structured_json_path": "parsed\\audio_speech_driven\\sadtalker\\document.json",
+  "picture_count": 12,
+  "table_count": 6,
+  "pictures": [
+    {
+      "figure_number": 1,
+      "path": "parsed\\audio_speech_driven\\sadtalker\\images\\figure_001.png",
+      "caption": "Figure 1. The proposed SadTalker produces diverse, realistic, synchronized talking videos from an input audio and a single reference image.",
+      "provenance": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 51.01136779785156,
+            "t": 564.6571655273438,
+            "r": 544.25048828125,
+            "b": 276.5736083984375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 2,
+      "path": "parsed\\audio_speech_driven\\sadtalker\\images\\figure_002.png",
+      "caption": "Figure 2. Main pipeline. Our method uses the coefficients of 3DMM as intermediate motion representation. To this end, we first generate realistic 3D motion coefficients (facial expression β, head pose ρ) from audio, then these coefficients are used to implicitly modulate the 3D-aware face render for final video generation.",
+      "provenance": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 53.043827056884766,
+            "t": 718.6914291381836,
+            "r": 283.9952087402344,
+            "b": 614.2835845947266,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 3,
+      "path": "parsed\\audio_speech_driven\\sadtalker\\images\\figure_003.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 54.35211944580078,
+            "t": 712.1165466308594,
+            "r": 233.86915588378906,
+            "b": 559.4086151123047,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 4,
+      "path": "parsed\\audio_speech_driven\\sadtalker\\images\\figure_004.png",
+      "caption": "Figure 4. The pipeline of the proposed PoseVAE. We learn the residual of the input head pose ρ0 via a conditional VAE structure. Given the conditions: first frame ρ0, style identity Zstyle and the audio clip a{1,...,t}, our method learns a distribution of the residual head pose ∆ρ{1,...,t} = ρ{1,...,t} - ρ0. After training, we can generate the stylized results through the pose decoder and the conditions (cond.) only.",
+      "provenance": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 311.1693115234375,
+            "t": 717.7555465698242,
+            "r": 540.5420532226562,
+            "b": 574.0437622070312,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 5,
+      "path": "parsed\\audio_speech_driven\\sadtalker\\images\\figure_005.png",
+      "caption": "Fig.5 Render",
+      "provenance": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 52.238243103027344,
+            "t": 718.1798629760742,
+            "r": 284.0125427246094,
+            "b": 575.1844177246094,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 6,
+      "path": "parsed\\audio_speech_driven\\sadtalker\\images\\figure_006.png",
+      "caption": "Figure 6. We compare our method with several state-of-the-art methods for single image audio-driven talking head generation. Our method produces much higher quality results in terms of lip synchronization, identity preservation, head motion and image quality. We give the target image above for both lip shape and identity reference. Please refer our supplementary video for better comparison.",
+      "provenance": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 51.66427230834961,
+            "t": 559.0832977294922,
+            "r": 543.5599975585938,
+            "b": 194.6585693359375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 7,
+      "path": "parsed\\audio_speech_driven\\sadtalker\\images\\figure_007.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 50.39510726928711,
+            "t": 718.4654998779297,
+            "r": 285.1128845214844,
+            "b": 614.4705657958984,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 8,
+      "path": "parsed\\audio_speech_driven\\sadtalker\\images\\figure_008.png",
+      "caption": "Figure 8. The ablation of ExpNet. We choose four frames from the generated video as comparison. Our method largely reduces the uncertainty of audio to expression generation. The reference β0 is used to provide the identity information while the lip only coefficients generate better lip synchronization. Notice that, the target image is provided as the identity and lip motion reference.",
+      "provenance": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 311.7728271484375,
+            "t": 608.8908996582031,
+            "r": 600.8543701171875,
+            "b": 378.0793762207031,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 9,
+      "path": "parsed\\audio_speech_driven\\sadtalker\\images\\figure_009.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 50.880950927734375,
+            "t": 579.5652160644531,
+            "r": 241.49205017089844,
+            "b": 435.2243957519531,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 10,
+      "path": "parsed\\audio_speech_driven\\sadtalker\\images\\figure_010.png",
+      "caption": "Figure 10. Limitation. Our method may show some teeth artifacts in the lip region in some examples, it can be improved via the face restoration network, i.e., GFPGAN [43].",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 310.41351318359375,
+            "t": 718.407341003418,
+            "r": 542.05712890625,
+            "b": 630.3872833251953,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 11,
+      "path": "parsed\\audio_speech_driven\\sadtalker\\images\\figure_011.png",
+      "caption": "Figure B11. The architectures of the networks in our model. Here, '3×3-s1,1-p1-Conv-32' means a convolutional layer with the kernel size 3×3, the stride size (1,1), padding size (1,1) and the output channel is 32.",
+      "provenance": [
+        {
+          "page_no": 13,
+          "bbox": {
+            "l": 58.898067474365234,
+            "t": 713.192626953125,
+            "r": 532.1988525390625,
+            "b": 235.44696044921875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 12,
+      "path": "parsed\\audio_speech_driven\\sadtalker\\images\\figure_012.png",
+      "caption": "Figure B13. Example of the cropped interesting region in the 3D rendered face sequences to calculate the lip-reading loss.",
+      "provenance": [
+        {
+          "page_no": 14,
+          "bbox": {
+            "l": 95.73514556884766,
+            "t": 719.4121704101562,
+            "r": 240.1282958984375,
+            "b": 552.5619659423828,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "table_number": 1,
+      "caption": "Table 1. Comparison with the state-of-the-art method on HDTF dataset. We evaluate Wav2Lip [30] and PC-AVS [51] in the one-shot settings.",
+      "provenance": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 49.356014251708984,
+            "t": 720.5093765258789,
+            "r": 543.5310668945312,
+            "b": 601.9832000732422,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\audio_speech_driven\\sadtalker\\tables\\table_001\\table.html",
+      "csv_path": "parsed\\audio_speech_driven\\sadtalker\\tables\\table_001\\table.csv"
+    },
+    {
+      "table_number": 2,
+      "caption": "Table 2. User study.",
+      "provenance": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 49.569801330566406,
+            "t": 233.08453369140625,
+            "r": 286.808837890625,
+            "b": 146.0885009765625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\audio_speech_driven\\sadtalker\\tables\\table_002\\table.html",
+      "csv_path": "parsed\\audio_speech_driven\\sadtalker\\tables\\table_002\\table.csv"
+    },
+    {
+      "table_number": 3,
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 308.2976379394531,
+            "t": 720.5742492675781,
+            "r": 542.9227905273438,
+            "b": 671.2994918823242,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\audio_speech_driven\\sadtalker\\tables\\table_003\\table.html",
+      "csv_path": "parsed\\audio_speech_driven\\sadtalker\\tables\\table_003\\table.csv"
+    },
+    {
+      "table_number": 4,
+      "caption": "Table A5. Face render evaluation.",
+      "provenance": [
+        {
+          "page_no": 11,
+          "bbox": {
+            "l": 64.74081420898438,
+            "t": 505.61578369140625,
+            "r": 271.3877868652344,
+            "b": 462.5675048828125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\audio_speech_driven\\sadtalker\\tables\\table_004\\table.html",
+      "csv_path": "parsed\\audio_speech_driven\\sadtalker\\tables\\table_004\\table.csv"
+    },
+    {
+      "table_number": 5,
+      "caption": "Table A6. Comparison with the state-of-the-art method on HDTF dataset [49] with cross-identity setting. Wav2Lip* achieves the best video quality since it only animates the lip region while other regions are the same as the original frame. In cross-identity setting, PC-AVS** is evaluated using the reference pose from the driving video and fails in some samples.",
+      "provenance": [
+        {
+          "page_no": 12,
+          "bbox": {
+            "l": 48.89726638793945,
+            "t": 720.6557846069336,
+            "r": 543.0178833007812,
+            "b": 584.434326171875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\audio_speech_driven\\sadtalker\\tables\\table_005\\table.html",
+      "csv_path": "parsed\\audio_speech_driven\\sadtalker\\tables\\table_005\\table.csv"
+    },
+    {
+      "table_number": 6,
+      "caption": "Table A7. Comparison with the state-of-the-art method on VoxCeleb2 [26] dataset under cross-identity setting. Wav2Lip* achieves the best video quality since it only animates the lip region while other regions are the same as the original frame. In cross-identity setting, PC-AVS** is evaluated using the reference pose from the driving video and fails in some samples.",
+      "provenance": [
+        {
+          "page_no": 12,
+          "bbox": {
+            "l": 48.869815826416016,
+            "t": 530.3084411621094,
+            "r": 543.0767211914062,
+            "b": 395.19091796875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\audio_speech_driven\\sadtalker\\tables\\table_006\\table.html",
+      "csv_path": "parsed\\audio_speech_driven\\sadtalker\\tables\\table_006\\table.csv"
+    }
+  ]
+}

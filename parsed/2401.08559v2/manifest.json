@@ -1,0 +1,224 @@
+{
+  "document_id": "2401.08559v2",
+  "source_file": "2401.08559v2.pdf",
+  "markdown_path": "parsed\\2401.08559v2\\document.md",
+  "structured_json_path": "parsed\\2401.08559v2\\document.json",
+  "picture_count": 8,
+  "table_count": 2,
+  "pictures": [
+    {
+      "figure_number": 1,
+      "path": "parsed\\2401.08559v2\\images\\figure_001.png",
+      "caption": "Figure 1. Multi-track timeline control: We introduce a new problem setting for text-driven motion synthesis, where the input consists of parallel tracks allowing simultaneous actions, as well as continuous temporal intervals enabling sequential actions. A long and complex motion can be generated (top) given the structured input of multiple simple textual descriptions, each corresponding to a temporal interval (bottom).",
+      "provenance": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 50.098670959472656,
+            "t": 647.6438903808594,
+            "r": 543.86572265625,
+            "b": 431.5370788574219,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 2,
+      "path": "parsed\\2401.08559v2\\images\\figure_002.png",
+      "caption": "Figure 2. Text-driven motion synthesis tasks: Our framework generalizes (a) traditional text-to-motion synthesis given one text and one duration, (b) temporal composition given a sequence of texts for non-overlapping intervals, and (c) spatial composition given a set of texts for a single interval. (d) Multi-track timeline control uses a set of texts for arbitrary intervals, allowing fine-grained control over the timings of several complex actions.",
+      "provenance": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 49.29680252075195,
+            "t": 788.8238031864166,
+            "r": 286.7707824707031,
+            "b": 653.92626953125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 3,
+      "path": "parsed\\2401.08559v2\\images\\figure_003.png",
+      "caption": "Figure 3. Overview of STMC: Before denoising, the multi-track timeline is first (a) partitioned into relevant body parts per text (using LLM-based labeling [5]) to create body part timelines, which are then (b) extended to overlap, leading to the transition intervals used for temporal stitching per body part with DiffCollage [68]. (c) At each denoising step, motions for each prompt are denoised independently before being combined based on the body-part timelines. The composite motion is re-noised by sampling xt-1 fromN(µt(xt,ˆx0),Σt) (as in Eq. (2)) before being passed to the next step.",
+      "provenance": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 50.277137756347656,
+            "t": 720.6371536254883,
+            "r": 543.7866821289062,
+            "b": 555.3281707763672,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 4,
+      "path": "parsed\\2401.08559v2\\images\\figure_004.png",
+      "caption": "Figure 4. Perception study results: Our STMC method is preferred over baselines by human raters for both motion realism and semantic accuracy. (Left) Comparison against the strong SINC with Lerp baseline. (Right) Comparison against the DiffCollage baseline. MDM [55] is used as the denoiser in these experiments.",
+      "provenance": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 48.86102294921875,
+            "t": 444.051025390625,
+            "r": 286.57293701171875,
+            "b": 352.9993896484375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 5,
+      "path": "parsed\\2401.08559v2\\images\\figure_005.png",
+      "caption": "Figure 5. Qualitative results: We visualize the results of STMC with MDM-SMPL on several input timelines and color the bodies depending on their location in the timeline. We see that STMC is capable of generating realistic motions, which capture the semantics of the given text prompts with the desired timing and duration. In (a) and (c), STMC generates motions that precisely follow the instructions, controlling a single arm while still performing another action. The accurate timing of intervals is demonstrated in (b) where the arms are still up in the air when transitioning from \"walking\" to \"jumping\", which is difficult to achieve with alternative methods. In (c) and (d), we observe that STMC is capable of generating compositions that were not present in the ground truth data, such as \"walking backwards while eating\" or \"walking while playing violin\".",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 50.193511962890625,
+            "t": 719.4941635131836,
+            "r": 544.9124145507812,
+            "b": 478.34466552734375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 6,
+      "path": "parsed\\2401.08559v2\\images\\figure_006.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 12,
+          "bbox": {
+            "l": 77.26620483398438,
+            "t": 705.983757019043,
+            "r": 290.9905700683594,
+            "b": 438.9872131347656,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 7,
+      "path": "parsed\\2401.08559v2\\images\\figure_007.png",
+      "caption": "Figure A.1. Additional details of STMC: To create the final body parts timeline, we need to \"fill the holes\" by assigning a text to all locations of the body parts timeline (left). This is done by first splitting the timelines such that there is no intersection with other intervals, and then applying the SINC heuristic for each cut (right). Finally, we regroup the intervals by removing the cuts to obtain full body part timelines.",
+      "provenance": [
+        {
+          "page_no": 12,
+          "bbox": {
+            "l": 305.3679504394531,
+            "t": 705.3251037597656,
+            "r": 519.03076171875,
+            "b": 439.07269287109375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 8,
+      "path": "parsed\\2401.08559v2\\images\\figure_008.png",
+      "caption": "Figure A.2. Example timelines from MTT dataset: We display several generated timelines, along with the automatically generated body part timelines. Although each timeline contains only three prompts, the generated timelines are diverse and specify complicated motions.",
+      "provenance": [
+        {
+          "page_no": 13,
+          "bbox": {
+            "l": 51.23213577270508,
+            "t": 718.648063659668,
+            "r": 544.002197265625,
+            "b": 488.5198974609375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "table_number": 1,
+      "caption": "Table 1. Quantitative baseline comparison: Our method STMC is compared to several strong baselines when using three different denoising models. The single-text and DiffCollage baselines struggle to handle complex compositional prompts that results from collapsing the timeline down to a single track. The SINC baselines produce reasonable semantic accuracy by denoising prompts independently as in STMC, but cause abrupt or unnatural transitions with higher transition distance (underlined) or FID.",
+      "provenance": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 100.01270294189453,
+            "t": 721.1529083251953,
+            "r": 492.7001037597656,
+            "b": 492.5559997558594,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\2401.08559v2\\tables\\table_001\\table.html",
+      "csv_path": "parsed\\2401.08559v2\\tables\\table_001\\table.csv"
+    },
+    {
+      "table_number": 2,
+      "caption": "Table A.1. Influence of the overlap size: We report the performance of STMC (with MDM-SMPL) while varying the total overlap size (2 ∗ l). We observe that a smaller overlap size leads to a higher transition distance but each crop matches the description better (higher per-crop semantic correctness metrics). We observe the opposite for a larger overlap size.",
+      "provenance": [
+        {
+          "page_no": 13,
+          "bbox": {
+            "l": 310.0517578125,
+            "t": 437.715087890625,
+            "r": 541.4872436523438,
+            "b": 347.6103515625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\2401.08559v2\\tables\\table_002\\table.html",
+      "csv_path": "parsed\\2401.08559v2\\tables\\table_002\\table.csv"
+    }
+  ]
+}

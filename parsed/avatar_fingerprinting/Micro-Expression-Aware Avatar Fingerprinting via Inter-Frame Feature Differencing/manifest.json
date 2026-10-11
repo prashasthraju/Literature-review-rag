@@ -1,0 +1,230 @@
+{
+  "document_id": "Micro-Expression-Aware Avatar Fingerprinting via Inter-Frame Feature Differencing",
+  "source_file": "avatar_fingerprinting\\Micro-Expression-Aware Avatar Fingerprinting via Inter-Frame Feature Differencing.pdf",
+  "markdown_path": "parsed\\avatar_fingerprinting\\Micro-Expression-Aware Avatar Fingerprinting via Inter-Frame Feature Differencing\\document.md",
+  "structured_json_path": "parsed\\avatar_fingerprinting\\Micro-Expression-Aware Avatar Fingerprinting via Inter-Frame Feature Differencing\\document.json",
+  "picture_count": 2,
+  "table_count": 8,
+  "pictures": [
+    {
+      "figure_number": 1,
+      "path": "parsed\\avatar_fingerprinting\\Micro-Expression-Aware Avatar Fingerprinting via Inter-Frame Feature Differencing\\images\\figure_001.png",
+      "caption": "Fig. 1. End-to-end pipeline. Feature extraction: A video clip V composed of T grayscale frames from a generated video pass independently through the F5C backbone (ConvStack → FCC → CCC) to produce per-frame feature maps ft ∈ R128×16×16 . FCC provides global row/column receptive fields, allowing each spatial location to attend across the full face; CCC models inter-regional correlations via a k-NN graph (k=4), capturing coordinated muscle activations. Temporal differencing: Temporal structure is introduced via inter-frame differencing (dt = ft+1 - ft), which suppresses static appearance and retains only motion dynamics. This results in the motion tensor D ∈ R128×16×16×(T-1) . Identity encoder and training: The temporal identity head compresses this tensor D into the embedding ϕ(V ). The model is trained end-to-end using supervised contrastive loss, pulling embeddings from the same driver together while pushing different drivers apart. At inference, the embedding is used to assess whether the video was driven by the claimed identity.",
+      "provenance": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 36.293413338065946,
+            "t": 778.3201427888304,
+            "r": 541.1319523921685,
+            "b": 662.6922528021805,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 2,
+      "path": "parsed\\avatar_fingerprinting\\Micro-Expression-Aware Avatar Fingerprinting via Inter-Frame Feature Differencing\\images\\figure_002.png",
+      "caption": "Fig. 2. Cross-generator generalization for FEAT_DIFF (solid) versus the NVFAIR baseline (dashed). Each panel corresponds to a model trained on a single generator and evaluated on all three generators.",
+      "provenance": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 62.11132051473015,
+            "t": 787.8950712483966,
+            "r": 513.9451085205078,
+            "b": 652.3953498880201,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "table_number": 1,
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 53.80591210968222,
+            "t": 514.5047360838394,
+            "r": 265.2096977610748,
+            "b": 398.2063328142687,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\avatar_fingerprinting\\Micro-Expression-Aware Avatar Fingerprinting via Inter-Frame Feature Differencing\\tables\\table_001\\table.html",
+      "csv_path": "parsed\\avatar_fingerprinting\\Micro-Expression-Aware Avatar Fingerprinting via Inter-Frame Feature Differencing\\tables\\table_001\\table.csv"
+    },
+    {
+      "table_number": 2,
+      "caption": "TABLE III",
+      "provenance": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 86.2119330984026,
+            "t": 734.153176452383,
+            "r": 492.15072344499623,
+            "b": 625.1936580458616,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\avatar_fingerprinting\\Micro-Expression-Aware Avatar Fingerprinting via Inter-Frame Feature Differencing\\tables\\table_002\\table.html",
+      "csv_path": "parsed\\avatar_fingerprinting\\Micro-Expression-Aware Avatar Fingerprinting via Inter-Frame Feature Differencing\\tables\\table_002\\table.csv"
+    },
+    {
+      "table_number": 3,
+      "caption": "TABLE IV",
+      "provenance": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 57.199939361725875,
+            "t": 563.1685437642367,
+            "r": 261.6435699495661,
+            "b": 507.0913675445049,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\avatar_fingerprinting\\Micro-Expression-Aware Avatar Fingerprinting via Inter-Frame Feature Differencing\\tables\\table_003\\table.html",
+      "csv_path": "parsed\\avatar_fingerprinting\\Micro-Expression-Aware Avatar Fingerprinting via Inter-Frame Feature Differencing\\tables\\table_003\\table.csv"
+    },
+    {
+      "table_number": 4,
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 89.29014420313483,
+            "t": 465.4291474892804,
+            "r": 229.60674409505344,
+            "b": 417.0875328190819,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\avatar_fingerprinting\\Micro-Expression-Aware Avatar Fingerprinting via Inter-Frame Feature Differencing\\tables\\table_004\\table.html",
+      "csv_path": "parsed\\avatar_fingerprinting\\Micro-Expression-Aware Avatar Fingerprinting via Inter-Frame Feature Differencing\\tables\\table_004\\table.csv"
+    },
+    {
+      "table_number": 5,
+      "caption": "TABLE VI",
+      "provenance": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 348.38145942677744,
+            "t": 575.278594785133,
+            "r": 488.68057874825496,
+            "b": 526.7276263652448,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\avatar_fingerprinting\\Micro-Expression-Aware Avatar Fingerprinting via Inter-Frame Feature Differencing\\tables\\table_005\\table.html",
+      "csv_path": "parsed\\avatar_fingerprinting\\Micro-Expression-Aware Avatar Fingerprinting via Inter-Frame Feature Differencing\\tables\\table_005\\table.csv"
+    },
+    {
+      "table_number": 6,
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 342.27718936382524,
+            "t": 486.24768591729026,
+            "r": 495.0147327907485,
+            "b": 426.4780295046265,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\avatar_fingerprinting\\Micro-Expression-Aware Avatar Fingerprinting via Inter-Frame Feature Differencing\\tables\\table_006\\table.html",
+      "csv_path": "parsed\\avatar_fingerprinting\\Micro-Expression-Aware Avatar Fingerprinting via Inter-Frame Feature Differencing\\tables\\table_006\\table.csv"
+    },
+    {
+      "table_number": 7,
+      "caption": "TABLE VII CLIP-LENGTH ABLATION (F5C + FEAT_DIFF, SUPCON, 150 EPOCHS, ALL GENERATORS JOINTLY). T=64 IS THE DEFAULT CONFIGURATION.",
+      "provenance": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 92.25689571595672,
+            "t": 561.2709645504623,
+            "r": 227.1999423458432,
+            "b": 500.96326198296987,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\avatar_fingerprinting\\Micro-Expression-Aware Avatar Fingerprinting via Inter-Frame Feature Differencing\\tables\\table_007\\table.html",
+      "csv_path": "parsed\\avatar_fingerprinting\\Micro-Expression-Aware Avatar Fingerprinting via Inter-Frame Feature Differencing\\tables\\table_007\\table.csv"
+    },
+    {
+      "table_number": 8,
+      "caption": "BACKBONE ABLATION: RESNET18 VARIANTS VS. F5C (FEAT_DIFF). ALL CONDITIONS USE SUPCON (τ=0.07), T=64, 150 EPOCHS, AND ARE TRAINED JOINTLY ON ALL GENERATORS.",
+      "provenance": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 64.20751447316624,
+            "t": 437.67990450861333,
+            "r": 254.88029609721139,
+            "b": 362.9363744801863,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\avatar_fingerprinting\\Micro-Expression-Aware Avatar Fingerprinting via Inter-Frame Feature Differencing\\tables\\table_008\\table.html",
+      "csv_path": "parsed\\avatar_fingerprinting\\Micro-Expression-Aware Avatar Fingerprinting via Inter-Frame Feature Differencing\\tables\\table_008\\table.csv"
+    }
+  ]
+}

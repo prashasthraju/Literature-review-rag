@@ -1,0 +1,315 @@
+{
+  "document_id": "avaprintdb",
+  "source_file": "avatar_fingerprinting\\avaprintdb.pdf",
+  "markdown_path": "parsed\\avatar_fingerprinting\\avaprintdb\\document.md",
+  "structured_json_path": "parsed\\avatar_fingerprinting\\avaprintdb\\document.json",
+  "picture_count": 5,
+  "table_count": 9,
+  "pictures": [
+    {
+      "figure_number": 1,
+      "path": "parsed\\avatar_fingerprinting\\avaprintdb\\images\\figure_001.png",
+      "caption": "Figure 1: Visualization of self-reenactment and cross-reenactment examples for each avatar generator and dataset. Left 4 columns correspond to examples for a RAVDESS [21] video, right 4 columns correspond to the examples for a CREMA-D [20] video. Top row shows the frames from the two original videos used as driving videos for the avatars. f indicates the frame number shown from the corresponding video.",
+      "provenance": [
+        {
+          "page_no": 12,
+          "bbox": {
+            "l": 124.94915008544922,
+            "t": 667.5842971801758,
+            "r": 484.3832092285156,
+            "b": 360.4392395019531,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 2,
+      "path": "parsed\\avatar_fingerprinting\\avaprintdb\\images\\figure_002.png",
+      "caption": "Figure 2: Public avatar fingerprinting system based on a Graph Convolutional Network (GCN) model [12]. From an avatar video, first the landmarks are obtained for each of the frames, and using them as input, the GCN obtains a graph embedding for each of the frames. Finally a pooling block generates a final embedding for the video from the individual graph embeddings.",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 125.2225341796875,
+            "t": 666.4753036499023,
+            "r": 484.40557861328125,
+            "b": 568.3985290527344,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 3,
+      "path": "parsed\\avatar_fingerprinting\\avaprintdb\\images\\figure_003.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 118.9283447265625,
+            "t": 487.7576904296875,
+            "r": 490.4494934082031,
+            "b": 389.2798767089844,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 4,
+      "path": "parsed\\avatar_fingerprinting\\avaprintdb\\images\\figure_004.png",
+      "caption": "Figure 4: Graphical representation of the video-to-video scoring process for an enrollmenttest pair of avatar videos. For each video, a set of fixed-length windows is computed. Since the length of the videos can be different, the number of windows for both videos X and Y can also be different. The avatar fingerprinting system generates one embedding z per window. The similarity matrix sx,y between the embeddings from all windows is computed and the final similarity score S(V e , V t ) is obtained by averaging all similarities.",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 109.81381225585938,
+            "t": 666.5913543701172,
+            "r": 501.1209716796875,
+            "b": 466.8211364746094,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 5,
+      "path": "parsed\\avatar_fingerprinting\\avaprintdb\\images\\figure_005.png",
+      "caption": "Figure 5: Intra-dataset intra-generator t-SNE embedding visualizations. All obtained from CREMA-D test avatar videos generated with LivePortrait [23] generator. Left: embeddings obtained with Graph-based system. Right: embeddings obtained with DINOv2 system. Colors indicate the driving identity and marker types indicate the target identity.",
+      "provenance": [
+        {
+          "page_no": 24,
+          "bbox": {
+            "l": 110.71730041503906,
+            "t": 666.1407241821289,
+            "r": 499.7216796875,
+            "b": 442.4493408203125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "table_number": 1,
+      "caption": "Table 1: Summary of the curated source datasets used to generate the avatar videos.",
+      "provenance": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 149.0821075439453,
+            "t": 666.6814956665039,
+            "r": 460.7271728515625,
+            "b": 605.2920379638672,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\avatar_fingerprinting\\avaprintdb\\tables\\table_001\\table.html",
+      "csv_path": "parsed\\avatar_fingerprinting\\avaprintdb\\tables\\table_001\\table.csv"
+    },
+    {
+      "table_number": 2,
+      "caption": "Table 2: Statistics of AVAPrintDB. It includes soft-biometric information about the driving identity in the videos from the evaluation split. The same avatar videos are generated for each of the three avatar generators (GAGAvatar [22], LivePortrait [23], and HunyuanPortrait [24]). \"Self\" correspond to self-reenactments (genuine avatar) and \"cross\" correspond to cross-reenactments (impostor avatar).",
+      "provenance": [
+        {
+          "page_no": 14,
+          "bbox": {
+            "l": 110.36071014404297,
+            "t": 666.640495300293,
+            "r": 499.97515869140625,
+            "b": 590.1478271484375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\avatar_fingerprinting\\avaprintdb\\tables\\table_002\\table.html",
+      "csv_path": "parsed\\avatar_fingerprinting\\avaprintdb\\tables\\table_002\\table.csv"
+    },
+    {
+      "table_number": 3,
+      "caption": "Table 3: Soft-biometrics distribution of evaluation split of AVAPrintDB. It shows soft-biometric information about the driving identity in the evaluation split videos. The same avatar videos are generated for each of the three avatar generators (GAGAvatar [22], LivePortrait [23], and HunyuanPortrait [24]). \"Self\" corresponds to self-reenactments (genuine avatar) and \"cross\" corresponds to cross-reenactments (impostor avatar).",
+      "provenance": [
+        {
+          "page_no": 15,
+          "bbox": {
+            "l": 110.10096740722656,
+            "t": 666.5976409912109,
+            "r": 499.78326416015625,
+            "b": 509.1141357421875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\avatar_fingerprinting\\avaprintdb\\tables\\table_003\\table.html",
+      "csv_path": "parsed\\avatar_fingerprinting\\avaprintdb\\tables\\table_003\\table.csv"
+    },
+    {
+      "table_number": 4,
+      "caption": "Table 4: Number of genuine and impostor pairs provided in our AVAPrintDB benchmark.",
+      "provenance": [
+        {
+          "page_no": 16,
+          "bbox": {
+            "l": 129.72463989257812,
+            "t": 666.7234954833984,
+            "r": 480.2927551269531,
+            "b": 578.5350036621094,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\avatar_fingerprinting\\avaprintdb\\tables\\table_004\\table.html",
+      "csv_path": "parsed\\avatar_fingerprinting\\avaprintdb\\tables\\table_004\\table.csv"
+    },
+    {
+      "table_number": 5,
+      "caption": "Table 5: Intra-dataset and intra-generator scenario. Performance in terms of AUC (%). Best result is highlighted in bold. Results are reported for each avatar generator: GAGA (GAGAvatar [22]), LIVE (LivePortrait [23]) and HUNY (HunyuanPortrait [24]).",
+      "provenance": [
+        {
+          "page_no": 23,
+          "bbox": {
+            "l": 110.2913818359375,
+            "t": 666.9878540039062,
+            "r": 499.930419921875,
+            "b": 627.2852935791016,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\avatar_fingerprinting\\avaprintdb\\tables\\table_005\\table.html",
+      "csv_path": "parsed\\avatar_fingerprinting\\avaprintdb\\tables\\table_005\\table.csv"
+    },
+    {
+      "table_number": 6,
+      "caption": "Table 6: Intra-dataset, cross-generator scenario. Reference experiments (intragenerator) are highlighted in bold. Results are shown in AUC (%) for the reference experiments, and in ∆AUC (percentage points) with respect to the corresponding reference experiment for each cross-generator case. A positive deviation means improvement with respect to the reference experiment.",
+      "provenance": [
+        {
+          "page_no": 25,
+          "bbox": {
+            "l": 110.55332946777344,
+            "t": 666.6260375976562,
+            "r": 500.167236328125,
+            "b": 498.4926452636719,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\avatar_fingerprinting\\avaprintdb\\tables\\table_006\\table.html",
+      "csv_path": "parsed\\avatar_fingerprinting\\avaprintdb\\tables\\table_006\\table.csv"
+    },
+    {
+      "table_number": 7,
+      "caption": "Table 7: Cross-dataset, intra-generator scenario. Reference experiments (intradataset) are highlighted in bold. Results are shown in AUC (%) for the reference experiments, and in ∆AUC (percentage points) with respect to the corresponding reference experiment for each cross-dataset case. A positive deviation means improvement with respect to the reference experiment.",
+      "provenance": [
+        {
+          "page_no": 27,
+          "bbox": {
+            "l": 110.32107543945312,
+            "t": 666.9518585205078,
+            "r": 499.9757080078125,
+            "b": 610.2272644042969,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\avatar_fingerprinting\\avaprintdb\\tables\\table_007\\table.html",
+      "csv_path": "parsed\\avatar_fingerprinting\\avaprintdb\\tables\\table_007\\table.csv"
+    },
+    {
+      "table_number": 8,
+      "caption": "Table 8: Fairness analysis of the avatar fingerprinting models for CREMA-D avatars. Results are shown in AUC (%). Performance is reported for the intra-dataset and intra-generator scenario across demographic subgroups (gender, ethnicity, and age).",
+      "provenance": [
+        {
+          "page_no": 29,
+          "bbox": {
+            "l": 110.37619018554688,
+            "t": 666.9652404785156,
+            "r": 499.9320068359375,
+            "b": 563.8805999755859,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\avatar_fingerprinting\\avaprintdb\\tables\\table_008\\table.html",
+      "csv_path": "parsed\\avatar_fingerprinting\\avaprintdb\\tables\\table_008\\table.csv"
+    },
+    {
+      "table_number": 9,
+      "caption": "Table 9: Fairness analysis of the avatar fingerprinting models for RAVDESS avatars. Results are shown in AUC (%). Performance is reported for the intra-dataset and intra-generator scenario across demographic subgroups (gender, ethnicity, and age).",
+      "provenance": [
+        {
+          "page_no": 30,
+          "bbox": {
+            "l": 110.46220397949219,
+            "t": 666.8569030761719,
+            "r": 499.9384460449219,
+            "b": 587.3020477294922,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\avatar_fingerprinting\\avaprintdb\\tables\\table_009\\table.html",
+      "csv_path": "parsed\\avatar_fingerprinting\\avaprintdb\\tables\\table_009\\table.csv"
+    }
+  ]
+}

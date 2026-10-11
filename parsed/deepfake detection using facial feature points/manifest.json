@@ -1,0 +1,376 @@
+{
+  "document_id": "deepfake detection using facial feature points",
+  "source_file": "deepfake detection using facial feature points.pdf",
+  "markdown_path": "parsed\\deepfake detection using facial feature points\\document.md",
+  "structured_json_path": "parsed\\deepfake detection using facial feature points\\document.json",
+  "picture_count": 10,
+  "table_count": 7,
+  "pictures": [
+    {
+      "figure_number": 1,
+      "path": "parsed\\deepfake detection using facial feature points\\images\\figure_001.png",
+      "caption": "Fig. 1. Jitter frequency of key points in different parts of real and fake faces. There are four broken lines in the figure, with the facial feature points of shaking taken from the eyes, nose, mouth, and outline. The green broken line represents the jitter frequency of the real FFPs, and the red broken line represents the jitter frequency of the fake FFPs.",
+      "provenance": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 95.72056579589844,
+            "t": 639.8863143920898,
+            "r": 390.0143737792969,
+            "b": 399.291015625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 2,
+      "path": "parsed\\deepfake detection using facial feature points\\images\\figure_002.png",
+      "caption": "Fig. 2. General diagram of the FFP-ChT model. The input video frames are processed as a group and passed through BlazeFace for face detection and then through FaceMesh for the extraction of 468 FFPs. The extracted feature points are further calibrated by the FFP Re-Calibration algorithm, which computes a sequence of feature point displacements between frames. The FFP and FFP displacement sequences are separately fed into the ChT for training and the resulting predictions are combined for the final output. Conv, Convolutional layer; Conv2d, Two-Dimensional (2D) Convolutional layer; PReLU, Parametric Rectified Linear Unit.",
+      "provenance": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 47.30568313598633,
+            "t": 641.4532928466797,
+            "r": 438.2796325683594,
+            "b": 527.4806518554688,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 3,
+      "path": "parsed\\deepfake detection using facial feature points\\images\\figure_003.png",
+      "caption": "Fig. 3. Single BlazeBlock is shown on the left, and Double BlazeBlock is shown on the right.",
+      "provenance": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 73.1268539428711,
+            "t": 439.0994873046875,
+            "r": 412.06109619140625,
+            "b": 261.92071533203125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 4,
+      "path": "parsed\\deepfake detection using facial feature points\\images\\figure_004.png",
+      "caption": "Fig. 4. FaceMesh model. It is mainly extracted by backbone, coord_head outputs the prediction result, conf_head outputs the confidence of the result, and finally adds the joint prediction.",
+      "provenance": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 47.52753448486328,
+            "t": 640.1613235473633,
+            "r": 438.59100341796875,
+            "b": 473.77667236328125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 5,
+      "path": "parsed\\deepfake detection using facial feature points\\images\\figure_005.png",
+      "caption": "Fig. 5. FFPs extraction image. The figure on the left is the original video image, the figure in the middle is the drawing of the key parts of face extraction, and the image on the right is the objective display and distribution statistics of 468 FFPs.",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 67.70075225830078,
+            "t": 639.866081237793,
+            "r": 417.8430480957031,
+            "b": 510.8833923339844,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 6,
+      "path": "parsed\\deepfake detection using facial feature points\\images\\figure_006.png",
+      "caption": "Fig. 6. Comparison between before and after calibration.",
+      "provenance": [
+        {
+          "page_no": 9,
+          "bbox": {
+            "l": 124.45054626464844,
+            "t": 640.2830581665039,
+            "r": 361.37872314453125,
+            "b": 511.1207275390625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 7,
+      "path": "parsed\\deepfake detection using facial feature points\\images\\figure_007.png",
+      "caption": "Fig. 7. FFPs and FFP displacements classification model: ChT.",
+      "provenance": [
+        {
+          "page_no": 9,
+          "bbox": {
+            "l": 45.341487884521484,
+            "t": 473.2053527832031,
+            "r": 442.17852783203125,
+            "b": 193.19854736328125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 8,
+      "path": "parsed\\deepfake detection using facial feature points\\images\\figure_008.png",
+      "caption": "Fig. 8. FFPs distribution. (a) The distribution density of FFPs in a frame of facial image. Darker blue squares indicate more FFPs. (b) The result of visualization of FFPs through quantile-quantile chart. The more points are in a straight line, the more normally distributed they are.",
+      "provenance": [
+        {
+          "page_no": 18,
+          "bbox": {
+            "l": 46.57095718383789,
+            "t": 558.5418090820312,
+            "r": 438.62310791015625,
+            "b": 383.9124450683594,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 9,
+      "path": "parsed\\deepfake detection using facial feature points\\images\\figure_009.png",
+      "caption": "Fig. 9. Visual comparison of different numbers of FFPs.",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 99.14942932128906,
+            "t": 640.8049011230469,
+            "r": 386.0383605957031,
+            "b": 432.77081298828125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 10,
+      "path": "parsed\\deepfake detection using facial feature points\\images\\figure_010.png",
+      "caption": "Fig. 10. Experimental results of different FFPs. On the left, we can see the ACC and AUC results of the model with different numbers of FFPs on the DF(c23) dataset, while on the right are the results on the Celeb-DF(v2) dataset. (a) DF(c23). (b) Celeb-DF(v2).",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 46.571044921875,
+            "t": 640.116584777832,
+            "r": 438.95428466796875,
+            "b": 479.9966278076172,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "table_number": 1,
+      "caption": "Table 1. Comparison of Experimental Results of Different Improvement Points of FFP-ChT",
+      "provenance": [
+        {
+          "page_no": 14,
+          "bbox": {
+            "l": 140.64169311523438,
+            "t": 609.5816497802734,
+            "r": 344.9873352050781,
+            "b": 511.1123046875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\deepfake detection using facial feature points\\tables\\table_001\\table.html",
+      "csv_path": "parsed\\deepfake detection using facial feature points\\tables\\table_001\\table.csv"
+    },
+    {
+      "table_number": 2,
+      "caption": "Table 2. A Comparison of the Results with Other Models on the DF(raw) Dataset",
+      "provenance": [
+        {
+          "page_no": 15,
+          "bbox": {
+            "l": 83.57166290283203,
+            "t": 620.228515625,
+            "r": 402.1839599609375,
+            "b": 488.7853698730469,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\deepfake detection using facial feature points\\tables\\table_002\\table.html",
+      "csv_path": "parsed\\deepfake detection using facial feature points\\tables\\table_002\\table.csv"
+    },
+    {
+      "table_number": 3,
+      "caption": "Table 3. A Comparison of the Proposed Method with Other Models on the DF(c23) Dataset",
+      "provenance": [
+        {
+          "page_no": 16,
+          "bbox": {
+            "l": 151.8484344482422,
+            "t": 609.6474838256836,
+            "r": 333.89019775390625,
+            "b": 478.1584167480469,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\deepfake detection using facial feature points\\tables\\table_003\\table.html",
+      "csv_path": "parsed\\deepfake detection using facial feature points\\tables\\table_003\\table.csv"
+    },
+    {
+      "table_number": 4,
+      "caption": "Table 4. A Comparison of the Proposed Method with Other Models on the DF(c40) Dataset",
+      "provenance": [
+        {
+          "page_no": 16,
+          "bbox": {
+            "l": 151.76058959960938,
+            "t": 355.9711608886719,
+            "r": 334.0341491699219,
+            "b": 212.15435791015625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\deepfake detection using facial feature points\\tables\\table_004\\table.html",
+      "csv_path": "parsed\\deepfake detection using facial feature points\\tables\\table_004\\table.csv"
+    },
+    {
+      "table_number": 5,
+      "caption": "Table 5. A Comparison of the Experimental Results with Other Models on the Celeb-DF(v2) Dataset",
+      "provenance": [
+        {
+          "page_no": 17,
+          "bbox": {
+            "l": 170.8673095703125,
+            "t": 598.3778686523438,
+            "r": 315.1761474609375,
+            "b": 454.84283447265625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\deepfake detection using facial feature points\\tables\\table_005\\table.html",
+      "csv_path": "parsed\\deepfake detection using facial feature points\\tables\\table_005\\table.csv"
+    },
+    {
+      "table_number": 6,
+      "caption": "Table 6. Cross-Dataset Experiments",
+      "provenance": [
+        {
+          "page_no": 18,
+          "bbox": {
+            "l": 173.52728271484375,
+            "t": 620.2295532226562,
+            "r": 309.9476013183594,
+            "b": 572.4643402099609,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\deepfake detection using facial feature points\\tables\\table_006\\table.html",
+      "csv_path": "parsed\\deepfake detection using facial feature points\\tables\\table_006\\table.csv"
+    },
+    {
+      "table_number": 7,
+      "caption": "Table 7. Comparison of Parameters",
+      "provenance": [
+        {
+          "page_no": 19,
+          "bbox": {
+            "l": 168.43763732910156,
+            "t": 380.0953369140625,
+            "r": 314.8757629394531,
+            "b": 308.7313232421875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "parsed\\deepfake detection using facial feature points\\tables\\table_007\\table.html",
+      "csv_path": "parsed\\deepfake detection using facial feature points\\tables\\table_007\\table.csv"
+    }
+  ]
+}

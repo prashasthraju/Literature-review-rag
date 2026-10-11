@@ -1,0 +1,9 @@
+﻿Method,LVE↓,FFD↓,MOD ↓
+Motion Clip Length 8 + MIMI,11.01,22.79,2.14
+Motion Clip Length 8 + HuBERT,11.73,24.89,2.25
+Motion Clip Length 25 + MIMI,10.33,19.65,1.99
+Motion Clip Length 25 + HuBERT,10.20,19.00,1.97
+Motion Clip Length 50 + MIMI,10.10,19.16,1.95
+Motion Clip Length 50 + HuBERT,9.78,18.03,1.89
+Motion Clip Length 100 + MIMI,9.97,18.48,1.93
+Motion Clip Length 100 + HuBERT,9.34,18.15,1.81

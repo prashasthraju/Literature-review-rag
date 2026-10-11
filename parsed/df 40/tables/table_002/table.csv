@@ -1,0 +1,41 @@
+﻿Type,ID-Number,Method,Sub-Types,Venue,Real Data Source,Data Format,Data Used,Data Scale,Code Link
+,1,FSGAN [52],Parsing mask,ArXiv 2019,FF++ & CDF,Video,Train & Test,1500+,Hyper-link
+,2,FaceSwap [1],Graphic based,None,FF++ & CDF,Video,Train & Test,1500+,Hyper-link
+,3,SimSwap [9],Disentangle,ICCV 2019,FF++ & CDF,Video,Train & Test,1500+,Hyper-link
+,4,InSwapper [28],Used in Roop [60],None,FF++ & CDF,Video,Train & Test,1500+,Hyper-link
+,5,BlendFace [66],Disentangle,ICCV 2023,FF++ & CDF,Video,Train & Test,1500+,Hyper-link
+Face-swapping (FS),6,UniFace [85],Disentangle,ECCV 2022,FF++ & CDF,Video,Train & Test,1500+,Hyper-link
+,7,MobileSwap [86],Lightweight,AAAI 2022,FF++ & CDF,Video,Train & Test,1500+,Hyper-link
+,8,e4s [46],Disentangle,CVPR 2023,FF++ & CDF,Video,Train & Test,1500+,Hyper-link
+,9,FaceDancer [61],Disentangle,WACV 2023,FF++ & CDF,Video,Train & Test,1500+,Hyper-link
+,10,DeepFaceLab [14],High quality,PR 2023,UADFV [91],Video,Test Only,100,Hyper-link
+,11,FOMM [67],Image Driven,NeurIPS 2019,FF++ & CDF,Video,Train & Test,"1,500+",Hyper-link
+,12,FS_vid2vid [79],Landmark Driven,ArXiv 2019,FF++ & CDF,Video,Train & Test,"1,500+",Hyper-link
+,13,Wav2Lip [55],Audio Driven,MM 2020,FF++ & CDF,Video,Train & Test,"1,500+",Hyper-link
+,14,MRAA [68],Image Driven,CVPR 2021,FF++ & CDF,Video,Train & Test,"1,500+",Hyper-link
+,15,OneShot [80],Image Driven,CVPR 2021,FF++ & CDF,Video,Train & Test,"1,500+",Hyper-link
+,16,PIRender [58],Image Driven,ICCV 2021,FF++ & CDF,Video,Train & Test,"1,500+",Hyper-link
+Face-reenactment (FR),17,TPSMM [93],Image Driven,CVPR 2022,FF++ & CDF,Video,Train & Test,"1,500+",Hyper-link
+,18,LIA [82],Image Driven,ICLR 2022,FF++ & CDF,Video,Train & Test,"1,500+",Hyper-link
+,19,DaGAN [26],Image Driven,CVPR 2022,FF++ & CDF,Video,Train & Test,"1,500+",Hyper-link
+,20,SadTalker [92],Audio Driven,CVPR 2023,FF++ & CDF,Video,Train & Test,"1,500+",Hyper-link
+,21,MCNet [25],Image Driven,ICCV 2023,FF++ & CDF,Video,Train & Test,"1,500+",Hyper-link
+,22,HyperReenact [5],Image Driven,ICCV 2023,FF++ & CDF,Video,Train & Test,"1,500+",Hyper-link
+,23,HeyGen [23],Text Driven,None,VFHQ [84],Video,Test Only,50,Hyper-link
+,24,VQGAN [20],GAN based,CVPR 2021,FF++ & CDF,Image,Train & Test,"48,000+",Hyper-link
+,25,StyleGAN2 [35],GAN based,ArXiv 2019,FF++ & CDF,Image Image,Train & Test,"48,000+",Hyper-link
+,26,StyleGAN3 [33],GAN based,NeurIPS 2021,FF++ & CDF,,Train & Test,"48,000+",Hyper-link
+,27,StyleGAN-XL [63],GAN based,SIGGRAPH 2022,FF++ &CDF,Image,Train & Test,"48,000+",Hyper-link
+,28,SD-2.1 [59],GAN based,CVPR 2022,FF++ & CDF,Image,Train & Test,"48,000+",Hyper-link
+,29,DDPM [24],Latent Diffusion,NeurIPS 2020,FF++ & CDF,Image,Train & Test,"48,000+",Hyper-link
+Entire Face Synthesis (EFS),30,RDDM [45],Latent Diffusion,ArXiv 2023,FF++ & CDF,Image,Train & Test,"48,000+",Hyper-link
+,31,PixArt-α [8],Latent Diffusion,ICLR 2024,FF++ & CDF,Image,Train & Test,"48,000+",Hyper-link
+,32,DiT-XL/2 [54],Latent Diffusion,ICCV 2023,FF++ & CDF,Image,Train & Test,"48,000+",Hyper-link
+,33,SiT-XL/2 [3],Latent Diffusion,ArXiv 2024,FF++ & CDF,Image,Train & Test,"48,000+",Hyper-link
+,34,MidJounery6 [49],Popular Application,None,FFHQ [34],Image,Test Only,"1,000",Hyper-link
+,35,WhichisReal [83],,None,,,Test Only,"1,000",
+,,,GAN based,,FFHQ [34],Image,,,Hyper-link
+Face Editing (FE),36 37,CollabDiff [27] e4e [73],Diffusion based StyleGAN based,CVPR 2023 SIGGRAPH 2021,CelebA [47] FF++ &CDF,Image,Test Only,"48,000+ 48,000+",Hyper-link Hyper-link
+,38,StarGAN [10],StarGAN based,CVPR 2018,CelebA [47],Image Image,Train & Test Test Only,"2,000",Hyper-link
+,39,StarGANv2 [11],StarGAN based,CVPR 2020,CelebA [47],Image,Test Only,"2,000",Hyper-link
+,40,StyleCLIP [53],StyleGAN based,ICCV 2021,CelebA [47],Image,Test Only,"2,000",Hyper-link

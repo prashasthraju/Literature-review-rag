@@ -1,0 +1,17 @@
+﻿Method..,Input type.#tracks..,Input type.#crops..,Per-crop semantic correctness.R@1 ↑..,Per-crop semantic correctness.R@3 ↑..,Per-crop semantic correctness.TMR-Score ↑.M2T.,Per-crop semantic correctness.TMR-Score ↑..M2M,Realism.FID ↓..,Realism.Transition ↓..distance
+Ground truth,-,-,55.0,73.3,0.748,1.000,0.000,1.5
+MotionDiffuse [67],Single,Single,10.9,21.3,0.558,0.546,0.621,1.9
+DiffCollage,Single,Multi,22.6,43.3,0.633,0.612,0.532,4.6
+SINCw/o Lerp,Multi,Multi,23.8,45.9,0.656,0.630,0.554,3.8
+SINC w/ Lerp,′′,′′,24.9,46.7,0.663,0.632,0.552,1.0
+STMC (ours),′′,′′,24.8,46.7,0.660,0.632,0.531,1.5
+MDM [55],Single,Single,9.5,19.7,0.556,0.549,0.666,2.5
+DiffCollage,Single,Multi,24.9,42.3,0.636,0.623,0.600,2.2
+SINCw/o Lerp,Multi,Multi,21.5,41.8,0.629,0.626,0.638,10.2
+SINC w/ Lerp,′′,′′,23.3,43.1,0.634,0.628,0.630,2.8
+STMC (ours),′′,′′,25.1,46.0,0.641,0.633,0.606,2.4
+MDM-SMPL,Single,Single,12.1,23.5,0.573,0.578,0.484,1.8
+DiffCollage,Single,Multi,29.1,49.7,0.675,0.656,0.446,1.2
+SINCw/o Lerp,Multi,Multi,32.3,50.5,0.676,0.667,0.463,4.2
+SINC w/ Lerp,′′,′′,31.8,51.0,0.679,0.668,0.457,1.2
+STMC (ours),′′,′′,30.5,50.9,0.675,0.665,0.459,0.9
