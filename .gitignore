@@ -1,2 +1,5 @@
 paper_avatar/
 .venv/
+parsed/
+parsed_only text/
+qdrant_db/
