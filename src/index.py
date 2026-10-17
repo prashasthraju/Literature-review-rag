@@ -3,9 +3,10 @@ from pathlib import Path
 import json
 import uuid
 
-import numpy as np
 from sentence_transformers import SentenceTransformer
 from qdrant_client import QdrantClient, models
+
+from src.embed_text import passage_for_embedding
 
 CHUNKS_FILE = Path("chunks.jsonl")
 DB_PATH = "./qdrant_db"
@@ -70,7 +71,10 @@ def main():
         total = 0
 
         for batch in read_batches(CHUNKS_FILE, BATCH_SIZE):
-            texts = [item["text"] for item in batch]
+            texts = [
+                passage_for_embedding(item.get("text"), item.get("section_title"))
+                for item in batch
+            ]
 
             vectors = model.encode(
                 texts,
