@@ -21,7 +21,7 @@ else:
     from metrics import evaluate_query, mean_metric
 
 DEFAULT_DATASET = Path("data/evaluation/retrieval_dev.jsonl")
-DEFAULT_DB_PATH = Path("qdrant_db")
+DEFAULT_DB_PATH = Path("qdrant_db_token_chunks")
 DEFAULT_COLLECTION = "research_papers_v1"
 DEFAULT_MODEL = "BAAI/bge-base-en-v1.5"
 

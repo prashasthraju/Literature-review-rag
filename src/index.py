@@ -1,6 +1,7 @@
 
 from pathlib import Path
 import json
+import shutil
 import uuid
 
 from sentence_transformers import SentenceTransformer
@@ -9,7 +10,7 @@ from qdrant_client import QdrantClient, models
 from src.embed_text import passage_for_embedding
 
 CHUNKS_FILE = Path("chunks.jsonl")
-DB_PATH = "./qdrant_db"
+DB_PATH = "./qdrant_db_token_chunks"
 COLLECTION = "research_papers_v1"
 
 MODEL_NAME = "BAAI/bge-base-en-v1.5"
@@ -56,8 +57,20 @@ def main():
         exists = client.collection_exists(COLLECTION)
 
         if exists and REBUILD_COLLECTION:
-            client.delete_collection(COLLECTION)
-            exists = False
+            collection_names = [item.name for item in client.get_collections().collections]
+            if collection_names != [COLLECTION]:
+                raise RuntimeError(
+                    f"Refusing to reset {DB_PATH}; expected only {COLLECTION}, "
+                    f"found {collection_names}."
+                )
+            client.close()
+            database_path = Path(DB_PATH).resolve()
+            if database_path.name != Path(DB_PATH).name:
+                raise RuntimeError(f"Refusing to reset unexpected database path: {database_path}")
+            if database_path.exists():
+                shutil.rmtree(database_path)
+            client = QdrantClient(path=DB_PATH)
+            exists = client.collection_exists(COLLECTION)
 
         if not exists:
             client.create_collection(
@@ -104,6 +117,7 @@ def main():
                     "chunk_index": item["chunk_index"],
                     "text": item["text"],
                     "page_number": item["page_number"],
+                    "page_numbers": item["page_numbers"],
                     "contains_table": item["contains_table"],
                     "contains_image_ref": item["contains_image_ref"],
                 }
@@ -126,8 +140,13 @@ def main():
             print(f"Indexed {total} chunks")
 
         print("\nIndexing complete.")
+        stored_count = client.count(collection_name=COLLECTION, exact=True).count
+        if stored_count != total:
+            raise RuntimeError(
+                f"Indexed {total} chunks but Qdrant contains {stored_count} points."
+            )
         print(f"Collection: {COLLECTION}")
-        print(f"Stored chunks: {total}")
+        print(f"Stored chunks: {stored_count}")
         print(f"Vector dimension: {vector_size}")
         print(f"Database path: {Path(DB_PATH).resolve()}")
 

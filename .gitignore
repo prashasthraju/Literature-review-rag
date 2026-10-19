@@ -3,3 +3,4 @@ paper_avatar/
 parsed/
 parsed_only text/
 qdrant_db/
+qdrant_db_token_chunks/

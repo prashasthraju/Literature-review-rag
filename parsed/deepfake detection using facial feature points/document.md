@@ -1,3 +1,5 @@
+<!-- page-start:1 -->
+
 ## Deepfake Video Detection Using Facial Feature Points and Ch-Transformer
 
 RUI YANG, RUSHI LAN, ZHENRONG DENG, and XIAONAN LUO, The Guangxi Key
@@ -26,6 +28,8 @@ ACM 1551-6865/2024/12-ART49
 
 [https://doi.org/10.1145/3672566](https://doi.org/10.1145/3672566)
 
+<!-- page-break:2 -->
+
 ## ACM Reference format:
 
 Rui Yang, Rushi Lan, Zhenrong Deng, Xiaonan Luo, and Xiyan Sun. 2024. Deepfake Video Detection Using Facial Feature Points and Ch-Transformer. ACM Trans. Multimedia Comput. Commun. Appl. 21, 2, Article 49 (December 2024), 22 pages.
@@ -42,9 +46,11 @@ Given the aforementioned background, DF videos can be utilized to steal the iden
 
 We design a DF detection model FFPs and Class-head-Transformer (FFP-ChT) for the Metaverse, which focuses on identifying inconsistencies between the distribution of FFPs on a face and the jitter displacements in real and fake videos. Our model classifies videos based on the distribution of FFPs and the jitter displacements between those points in each video frame, thereby determining whether the face in the video is real or fake. FFP-ChT consists of three parts, first, a FFPs extraction model is used to extract 468 individual FFPs in each frame of the video. Secondly, the movement displacement of FFPs is calculated using the LK optical flow tracking method. Finally, the ChT is used to jointly predict FFPs and their jitter displacement in each video frame. Experimental results show that our DF detection model is robust and achieves higher Accuracy (ACC) not only on simple videos but also on higher resolution video datasets. The main contributions of our work are as follows:
 
+<!-- page-break:3 -->
+
 Fig. 1. Jitter frequency of key points in different parts of real and fake faces. There are four broken lines in the figure, with the facial feature points of shaking taken from the eyes, nose, mouth, and outline. The green broken line represents the jitter frequency of the real FFPs, and the red broken line represents the jitter frequency of the fake FFPs.
 
-![Image](parsed/deepfake%20detection%20using%20facial%20feature%20points/images/image_000000_b1f31fa6487f95b2ca3f3d0fd23952dcdfc3110368c6ef1387aa8c9fa7d0d58a.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/deepfake%20detection%20using%20facial%20feature%20points/images/image_000000_b1f31fa6487f95b2ca3f3d0fd23952dcdfc3110368c6ef1387aa8c9fa7d0d58a.png)
 
 - (1) We propose a new DF detection model for the Metaverse, FFP-ChT, based on transformer for joint prediction of FFPs and FFP displacements.
 - (2) We engineer a 468 FFPs extraction model that fuses target detection neural network and FFP extraction neural network, focusing on facial features and contours with high shaking rates.
@@ -54,6 +60,8 @@ Fig. 1. Jitter frequency of key points in different parts of real and fake faces
 
 As DF technology continues to evolve, the detection methods for DF videos are becoming increasingly sophisticated. Currently, DF video detection can be broadly categorized into two approaches. The first method involves analyzing individual frames of video to detect any discrepancies between real and fake faces [1, 8, 9, 31]. The second approach involves examining differences in timing characteristics and frame-by-frame variations to classify videos as real or fake.
 
+<!-- page-break:4 -->
+
 ## 2.1 Detection of DF Videos Based on Single-Frame Images
 
 Similar to other AI tasks, the initial detection of fake face videos using single frame images has evolved from traditional methods to deep learning methods. Traditional methods include support vector machines [30], co-occurrence matrices [29], residual domain differences [21], and spectral differences [33] and have progressed to optical response heterogeneity and analysis of spatial domain features in images [37].
@@ -61,6 +69,8 @@ Similar to other AI tasks, the initial detection of fake face videos using singl
 In the deep learning-based models, Jeon et al. introduced the Transferable GAN-images Detection framework, which applied transfer learning to GAN for the first time in generating image detection [14]. Further, Jeon proposed the fine-tuning neural network architecture, Fake Detection Fine-tuning Network, that incorporated a self-attention module to focus on the module and the undersampling layer. This method significantly enhanced the ACC [15]. Chen et al. found that both the luminance and chrominance components play important roles in detecting GAN-generated facial images. Therefore, considering both the luminance and chrominance components in the dual-color spaces can enhance the robustness of the model [5]. Hsu et al. utilized pair learning to detect deep forged images and transformed DenseNet into a two-flow network structure, which inputted paired information to train the common pseudo-feature network. The paired information then connected to the classification layer to detect the authenticity of the input image. It was noted that images generated by different GAN may have unknown image distortion, such as blur, noise, and JPEG compression [13]. Liu et al. found that large texture information is more robust to image distortion and proposed the GramNet model, which focuses on texture information as an essential clue for deep forgery image detection [27]. When new DF generation methods become available, many DF detection models' performance deteriorates. Thus, Khalid et al. proposed One-Class FakeDetect, which uses variational autoencoder to encode inputs as distributions in potential spaces [18]. Hinton et al. proposed a robust architecture composed of multiple capsules to solve the limitations of neural networks on inverse image problems. Capsule networks were applied to deep forgery detection [36]. Dual Spatial Pyramid for Exposing Face Warp Artifacts (DSP-FWA) model of Li et al. was limited by computational resources and production time, as the DF algorithm could only synthesize face images of fixed size and had to be affine distorted to match the face configuration of the source. This distortion can leave noticeable artifacts due to the inconsistent resolution between the distorted facial area and the surrounding environment. And real face videos and fake face videos can be classified by artifact analysis [23].
 
 Liu et al. proposed a new block shuffling framework that consists of intra-block and inter-block transfer learning modules. The former improves the robustness of the network by intra-block transformation and overfits the problem by adversarial learning, while the latter encourages the network to learn local features through interblock shuffling and to model the semantic relevance of local features through refactoring [26]. The model high-frequency proposed by Luo et al. in 2021 improved the detection ACC by designing a multi-scale high-frequency feature extraction module, residual-guided spatial attention module, and cross-modal attention module [28]. Liu et al. proposed the Spatial-Phase Shallow Learning (SPSL) model, which captures upsampled artifacts of face forgery, improving the portability of face forgery detection [25]. Chen et al. proposed a Multi-Scale Patch Similarity Module (MPSM) to measure the similarity between local regional features and form a robust generalized similarity model [7]. They also proposed enhancing the "diversity" of forgery by synthesizing enhanced forgery with a pool of forgery configurations and enhancing the "sensitivity" to forgery by forcing models to predict forgery configurations [6]. Li et al. proposed the face X-ray model, which can classify true and false face videos by capturing the mixed boundary of forged images and the non-mixed boundary of real images. DF detection has typically been described as a classification problem based on cross-entropy loss, which emphasizes class-level differences rather than essential differences between real and fake faces, limiting the model's generalization in the invisible domain [22]. Sun et al. proposed a new face forgery detection framework called Dual Contrast Learning (DCL), which addresses the problem of local content inconsistency by constructing local region pairs in the instance. The issue of local content inconsistency is addressed by constructing local region pairs within the instance [39]. Gu et al. proposed the Hierarchical Contrastive Inconsistency Learning model, which can distinguish real faces from fake faces by deeply contrasting images [12]. In the 2022 IEEE Conference on Computer Vision and Pattern Recognition (CVPR), Shiohara proposed a novel composite training data called Self-Blended Images (SBIs) for detecting deep forgeries. The main idea behind SBIs is to enhance the robustness of the detection model by generating fake samples that are challenging to identify [38]. Chen et al. proposed a privacy-preserving model, Secure DeepFake Detection Network, which can detect DF faces without disclosing any private inputs, thus enhancing the privacy protection of facial data [4].
+
+<!-- page-break:5 -->
 
 ## 2.2 Detection of DF Videos Based on Spatio-Temporal Features of Videos
 
@@ -70,13 +80,15 @@ Compared to DF detection based on image detail features, there have been fewer s
 
 Our proposed DF video detection model FFP-ChT consists of four components as shown in Figure 2. Firstly, the input video is divided into frames, and a set of frames of the video image is fed into the BlazeFace model for face detection. Then, the face detection results are fed into the FaceMesh model to extract 468 FFPs. The extracted FFPs are repositioned by the feature point Re-Calibration algorithm. Finally, the FFPs and the displacement sequences of frame are fed into the ChT designed in this article for classification and prediction. The prediction results of FFPs and the prediction results of FFPs displacement sequences are combined to predict whether the input video is real or fake.
 
+<!-- page-break:6 -->
+
 Fig. 2. General diagram of the FFP-ChT model. The input video frames are processed as a group and passed through BlazeFace for face detection and then through FaceMesh for the extraction of 468 FFPs. The extracted feature points are further calibrated by the FFP Re-Calibration algorithm, which computes a sequence of feature point displacements between frames. The FFP and FFP displacement sequences are separately fed into the ChT for training and the resulting predictions are combined for the final output. Conv, Convolutional layer; Conv2d, Two-Dimensional (2D) Convolutional layer; PReLU, Parametric Rectified Linear Unit.
 
-![Image](parsed/deepfake%20detection%20using%20facial%20feature%20points/images/image_000001_80810b214838f1c8ffe6fd7c4ff2c0ae837e70964bec4fb933295704aaa4082c.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/deepfake%20detection%20using%20facial%20feature%20points/images/image_000001_80810b214838f1c8ffe6fd7c4ff2c0ae837e70964bec4fb933295704aaa4082c.png)
 
 Fig. 3. Single BlazeBlock is shown on the left, and Double BlazeBlock is shown on the right.
 
-![Image](parsed/deepfake%20detection%20using%20facial%20feature%20points/images/image_000002_853a499a4d6f1aeae6814059f534b218203a9e8890141faea3f499b63e85a4bc.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/deepfake%20detection%20using%20facial%20feature%20points/images/image_000002_853a499a4d6f1aeae6814059f534b218203a9e8890141faea3f499b63e85a4bc.png)
 
 ## 3.1 Face Detection and FFPs Extraction
 
@@ -84,9 +96,11 @@ To obtain FFPs with high ACC and relatively small computational cost, the face d
 
 Single BlazeBlock initially splits the input feature map into two branches for processing. The first branch undergoes a Depthwise (DW) convolutional layer with a 5 � 5 convolution kernel, followed by a convolutional layer with a 1 � 1 convolution kernel. The second branch is optional and involves parameter reduction by max pooling. The outputs of the last two branches are then added using an activation function. Double BlazeBlock builds upon the Single BlazeBlock structure by adding a 5 � 5 DW convolutional layer and a 1 � 1 convolutional layer on top of it. The face feature map detected by BlazeFace is fed into the FaceMesh key point extraction model, which was proposed by Google in the MediaPipe library in 2020 [17]. The structure diagram of FaceMesh is depicted in Figure 4.
 
+<!-- page-break:7 -->
+
 Fig. 4. FaceMesh model. It is mainly extracted by backbone, coord\_head outputs the prediction result, conf\_head outputs the confidence of the result, and finally adds the joint prediction.
 
-![Image](parsed/deepfake%20detection%20using%20facial%20feature%20points/images/image_000003_75259486f444608a8734adb660b103f32ab062d8c516f4a7be804029808d1bcc.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/deepfake%20detection%20using%20facial%20feature%20points/images/image_000003_75259486f444608a8734adb660b103f32ab062d8c516f4a7be804029808d1bcc.png)
 
 The backbone of the FaceMesh key point extraction model consists primarily of a TwoDimensional (2D) convolutional layer (Conv2d) and Parametric Rectified Linear Unit (PReLU) activation functions, and a FaceMesh Block structure. The training results are predicted through two heads, with the coord\_head directly outputting the prediction results and with the conf\_head outputting the confidence level. Finally, the two results are combined to produce the final FFPs prediction result. The FaceMesh Block shown on the right of Figure 4. The feature images are passed into the FaceMesh Block structure. If the step size is 2, the MaxPooling layer is adopted; if the step size is not 2, the feature images are expanded by padding, inputted into two 2D convolutional Conv2d layers, and finally outputted by the PReLU activation function.
 
@@ -96,9 +110,11 @@ The BlazeFace model is used to detect the entire face in each frame of the input
 
 To eliminate the influence of jitter noise on the displacement calculation of FFPs, we use the LucasKanade (LK) algorithm to track FFPs [3]. Then re-calibrate FFPs using the LK operation-based face calibration method proposed by Zekun Sun in 2021 [41]. The current frame is defined as %8 . The next frame is defined as %"8,1" . The core of LK algorithm is to track FFPs, which needs to minimize the pixel displacement 3 = »3G� 3~…) of each FFP in %8 and %"8,1" . The feature points of %8 are defined as G8 = »G�~…) , so the prediction of tracking points in %"8,1" is defined as G"8,1" = G8 , 3, where 8 � 480. The displacement vector is represented by
 
+<!-- page-break:8 -->
+
 Fig. 5. FFPs extraction image. The figure on the left is the original video image, the figure in the middle is the drawing of the key parts of face extraction, and the image on the right is the objective display and distribution statistics of 468 FFPs.
 
-![Image](parsed/deepfake%20detection%20using%20facial%20feature%20points/images/image_000004_47813025f30b835b0940c565a4a6a5e52cffd6a1978d234886d47eccb1aa1f36.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/deepfake%20detection%20using%20facial%20feature%20points/images/image_000004_47813025f30b835b0940c565a4a6a5e52cffd6a1978d234886d47eccb1aa1f36.png)
 
 <!-- formula-not-decoded -->
 
@@ -118,19 +134,23 @@ where 8,1 is the Kalman gain for evaluating - &gt;?C 8,1 , which can be obtained
 
 In Equation (4), %8,1 is the variance of - ?A 43 8,1 during LK prediction, �8,1 is the variance of - 34C 8,1 during FFP.
 
+<!-- page-break:9 -->
+
 Fig. 6. Comparison between before and after calibration.
 
-![Image](parsed/deepfake%20detection%20using%20facial%20feature%20points/images/image_000005_503198ae54e43bce2bfd43a00912ce8fc9d6436b6d8b5ccf92f2872eecd2f49c.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/deepfake%20detection%20using%20facial%20feature%20points/images/image_000005_503198ae54e43bce2bfd43a00912ce8fc9d6436b6d8b5ccf92f2872eecd2f49c.png)
 
 Fig. 7. FFPs and FFP displacements classification model: ChT.
 
-![Image](parsed/deepfake%20detection%20using%20facial%20feature%20points/images/image_000006_d6e5e58c40cff366f8c2dcf15ca39d7e09f908bd1686a60e82c619961e437608.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/deepfake%20detection%20using%20facial%20feature%20points/images/image_000006_d6e5e58c40cff366f8c2dcf15ca39d7e09f908bd1686a60e82c619961e437608.png)
 
 As shown in Figure 6, calibrated FFPs mitigate the impact of facial boundary jitter, while a stable optical flow of these points reduces the likelihood of misclassification.
 
 ## 3.3 ChT
 
 To comprehensively comprehend the characteristics of FFPs and their displacement, ChT is devised to train and categorize FFPs and FFP displacements in a set of video frames individually. The designed ChT model is shown in Figure 7.
+
+<!-- page-break:10 -->
 
 A set of video frames are imported from a video. In this study, the block size is fixed at 60 and the facial landmarks of each frame are individually subjected to linear transformation. The classification head I 0 is designed to record the prediction information, and then the blocksize added to the classification head is encoded for position, and the encoding result is input into Transformer encoder. Finally, the classification result is output through the Ch.
 
@@ -162,6 +182,8 @@ where �; = »I 0 ; � � � � � I # ; …. "(� represents the multi-h
 
 <!-- formula-not-decoded -->
 
+<!-- page-break:11 -->
+
 ## Algorithm 1: Facial Feature Points Displacement Classification Algorithm
 
 ```
@@ -190,6 +212,8 @@ As shown in Figure 7, after �; = »I 0 ; � � � � � I # ; … is obta
 
 Each frame contains the displacement of 468 FFPs, and a group of frames' FFP displacements in the video serve as input for the ChT model. In the displacement dataset B8 , &lt;0 represents the set of FFP displacements for # = 60 frames, and&lt;0 = »; 9 � ; 9,1� � � � � ; 9,#�1 …, where 9 is the current frame number, and&lt;0 2 R#�"468�2" . The classification calculation process is similar to FFPs, which is shown in Figure 7. The FFPs displacement classification algorithm is as Algorithm 1.
 
+<!-- page-break:12 -->
+
 3.3.3 Classification of ChT. The FFPs in a video are defined as ! = »; 1� ; 2� ; 3� � � � � ; 8 � � � � � ; = …, the FFP displacements in a video are defined as ( = »B 1� B 2� B 3� � � � � B 8 � � � � � B = …, calculated by designing ChT classification separately. For the FFPs set !, the set of FFPs &lt; = »; 9 � ; 9,1� � � � � ; 9,#�1 … with # = 60 are taken. Each video ! includes multiple&lt; that is defined as ! = f&lt;1� � � � �&lt;8� � � � �&lt;=g and combined all &lt;8 2 ! for prediction by Equation (17)
 
 <!-- formula-not-decoded -->
@@ -212,6 +236,8 @@ The Faceforensics,, (FF,,) dataset [35] consists of 1,000 raw videos downloaded 
 
 Celeb-DF [24] is a recently proposed dataset with high-visual quality. The Celeb-DF dataset comprises of two versions: Celeb-DF(v1) and Celeb-DF(v2). In this experiment, Celeb-DF(v2) version was used. Celeb-DF(v1) contains 158 real videos and 795 fake videos, while Celeb-DF(v2) is a significant expansion over the v1 version, with 5,639 fake videos and 590 real videos based on publicly available YouTube clips from 59 celebrities of various genders, ages, and races. The average length of all videos is about 13 seconds, with a standard frame rate of 30 frames per second; 56.8% of the videos feature male subjects and 43.2% feature female subjects. The age distribution is as follows: 8.5% of the subjects are aged 60 or older, 30.5% are aged 50-60, 26.6% are in their 40s, 28.0% are in their 30s, and 6.4% are under 30. The racial distribution is as follows: 5.1% of the subjects are Asian, 6.8% are African American, and 88.1% are Caucasian. Additionally, the dataset features a wide range of variations in face size (in pixels), orientation, lighting conditions, and backgrounds. The fake face videos were generated by swapping each pair of faces of 59 subjects using an improved DF algorithm. As a result, the overall visual quality of the Celeb-DF dataset is significantly improved compared to the existing datasets.
 
+<!-- page-break:13 -->
+
 ## 4.2 Experimental Environment and EvaluationMetrics
 
 4.2.1 Experimental Environment. The experiments presented in this article are conducted on the Ubuntu 18.04.5 LTS operating system, utilizing a GeForce RTX 2080 Ti graphics processing unit with a graphics memory capacity of 12 GB. The CUDA version 9.2 and PyTorch 1.7.1 framework are utilized. The FF,, dataset is divided into a training set and a validation set using an 8:2 ratio, similar to the basic model. For the CelebDF dataset, the division method provided by the original authors is adopted. Additionally, the parameters used for all datasets are the same. The specific experimental parameters are set as follows: batch size of 1.024, learning rate of 0.001, 400 epochs for training the detection network based on the absolute location of key points, and 300 epochs for training the detection network based on the relative location of FFPs. During training, each video is divided into fixed 60 frame segments as a training sample. The key point information of each frame is mapped to a 128 dimensional vector, and position coding is carried out for each 60 frame training sample with a droprate of 0.1 for the position coding layer. Then, a Learnable embedding vectors (cls\_token) is added, and the data are passed through a Transformer encoder with a dropout layer of droprate = 0.1 for encoding. The specific parameters for the Transformer encoder are set as follows: the encoder had 1 layer, 8 attention heads, 512 dimensions for each attention head, 128 for the last layer normalization, and 2 for the output of the linear transformation layer.
@@ -227,6 +253,8 @@ Before calculating the AUC, we need to draw a ROC curve (receiver operating char
 <!-- formula-not-decoded -->
 
 <!-- formula-not-decoded -->
+
+<!-- page-break:14 -->
 
 Table 1. Comparison of Experimental Results of Different Improvement Points of FFP-ChT
 
@@ -251,6 +279,8 @@ As shown in Table 1, In the FF,,(DF) dataset (hereinafter referred to as DF), ea
 
 The reason for the much higher improved ACC on the Celeb-DF(v2) dataset than on DF is that the portrait videos in the DF dataset are relatively simple, with most of them being portraits with a simple background, so both our model and baseline can achieve good ACC. However, Celeb-DF is a dataset of high visual quality, based on publicly available YouTube video clips, and is much The data for "LRNet" and "SBIs" are results obtained using their respective open-source models in the experimental environment described in this article, while data for other models are cited from their original articles. Bold and italic values represent the best and second-best results, respectively. PPG, Photoplethysmography; STDT, Spatiotemporal Dropout Transformer.
 
+<!-- page-break:15 -->
+
 Table 2. A Comparison of the Results with Other Models on the DF(raw) Dataset
 
 | Models         | ACC   | AUC   |
@@ -274,6 +304,8 @@ As facial video anti-counterfeiting technology advances, many experts and schola
 4.4.1 FF,,(DF) Dataset. Table 2 presents a comparison of the results with other models on the DF(raw) dataset. The DF(raw) dataset is uncompressed and the original version of the dataset. As shown in the Table 2, compared with recent DF detection models, our model achieves good detection results on DF(raw). When compared with the classical DF detection model "X-Ray" proposed by Microsoft Research Asia in CVPR 2020, our model achieves an increase of 0.8 percentage points in the AUC evaluation index and an increase of 0.1 percentage points compared with the "SBIs" ACC model proposed by Shiohara et al. in CVPR2022. The "FTDN" model was included in WACV2023, and our model achieves a 0.1 percentage point increase in ACC and AUC on the DF(raw) dataset.
 
 To validate the detection performance of the model on compressed videos, experiments were conducted on the compressed version of the DF(c23). As shown in Table 3, Our model achieves the highest performance compared to recent models in terms of the ACC and AUC evaluation index. The FTDN model, also based on facial region displacement trajectory for DF detection, was published in WACV2023, and our model outperforms it by 0.45 percentage points in terms of ACC.
+
+<!-- page-break:16 -->
 
 Table 3. A Comparison of the Proposed Method with Other Models on the DF(c23) Dataset
 
@@ -310,6 +342,8 @@ The data for "LRNet" and "SBIs" are results obtained using their respective open
 
 To verify the detection performance of the model on highly compressed video, experiments were carried out on DF(c40) compressed version. As shown in Table 4, compared to the network model FTDN in 2023, our model achieves approximately a 10-percentage-point higher ACC, demonstrating the robustness of the model in detecting forged facial videos at high compression rates.
 
+<!-- page-break:17 -->
+
 Table 5. A Comparison of the Experimental Results with Other Models on the Celeb-DF(v2) Dataset
 
 | Models               |   AUC |
@@ -335,6 +369,8 @@ In the Table 5, our model obtains the highest AUC value in the Celeb-DF(v2) data
 
 According to Table 6, training on Celeb-DF(v2) and testing on DF yields higher performance, while training on DF and testing on Celeb-DF(v2) results in lower performance. This is because the Celeb-DF(v2) dataset is more complex than the DF dataset. It is noteworthy that DF achieves an AUC of 89.7 when tested on Celeb-DF(v2), whereas training and testing on Celeb-DF(v2) itself yield an AUC of 82.2. It can be concluded that training the model on a more complex dataset leads to higher performance when tested on a simpler dataset.
 
+<!-- page-break:18 -->
+
 Table 6. Cross-Dataset Experiments
 
 | Training dataset   |   ACC |   AUC |
@@ -344,7 +380,7 @@ Table 6. Cross-Dataset Experiments
 
 Fig. 8. FFPs distribution. (a) The distribution density of FFPs in a frame of facial image. Darker blue squares indicate more FFPs. (b) The result of visualization of FFPs through quantile-quantile chart. The more points are in a straight line, the more normally distributed they are.
 
-![Image](parsed/deepfake%20detection%20using%20facial%20feature%20points/images/image_000007_a0fda2459b0cca7f96d74045c625dfc6be4c628b82b98c12fca76e2edab979e5.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/deepfake%20detection%20using%20facial%20feature%20points/images/image_000007_a0fda2459b0cca7f96d74045c625dfc6be4c628b82b98c12fca76e2edab979e5.png)
 
 ## 4.5 Model Analysis
 
@@ -360,9 +396,11 @@ where � 2 »0� 8…. %&gt;8=CB = f68� 118� 168� 218� 268� 318� 3
 
 On the x-axis, we have the expected overall distribution quantile. On the y-axis, we have got the quantile of the sample empirical distribution. We conducted a normality test, but instead of testing the mean and variance graphically, we transformed the expected distribution into a standard normal distribution and tested whether the sample distribution falls on a line with a mean intercept and a standard deviation slope. As shown in the Figure 8, the 468 FFPs fall on a straight line, indicating that each frame face satisfies a normal distribution. We calculated the mean and variance of the FFPs using ' and f 2 , respectively. The random data generated by
 
+<!-- page-break:19 -->
+
 Fig. 9. Visual comparison of different numbers of FFPs.
 
-![Image](parsed/deepfake%20detection%20using%20facial%20feature%20points/images/image_000008_b2e345fe47f11903ca0654334a6e540d821cc66de7355a8c5a611e4cddc8deea.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/deepfake%20detection%20using%20facial%20feature%20points/images/image_000008_b2e345fe47f11903ca0654334a6e540d821cc66de7355a8c5a611e4cddc8deea.png)
 
 Table 7. Comparison of Parameters
 
@@ -381,9 +419,11 @@ The experimental results for the DF(c23) dataset and the Celeb-DF(v2) dataset we
 
 To demonstrate the lightweight nature of the designed ChT classifier, we compared its parameter count with that of other backbone networks, as shown in Table 7, The designed classifier has fewer parameters.
 
+<!-- page-break:20 -->
+
 Fig. 10. Experimental results of different FFPs. On the left, we can see the ACC and AUC results of the model with different numbers of FFPs on the DF(c23) dataset, while on the right are the results on the Celeb-DF(v2) dataset. (a) DF(c23). (b) Celeb-DF(v2).
 
-![Image](parsed/deepfake%20detection%20using%20facial%20feature%20points/images/image_000009_3ea42db98c4b8aa351c0091415a1784714dc01605c9beb726970fb275fab38dd.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/deepfake%20detection%20using%20facial%20feature%20points/images/image_000009_3ea42db98c4b8aa351c0091415a1784714dc01605c9beb726970fb275fab38dd.png)
 
 ## 5 Conclusion
 
@@ -399,6 +439,8 @@ In this article, to improve face privacy protection in the virtual world, we pre
 - [6] Liang Chen, Yong Zhang, Yibing Song, Lingqiao Liu, and Jue Wang. 2022. Self-supervised learning of adversarial example: Towards good generalizations for deepfake detection. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 18710-18719.
 - [7] Shen Chen, Taiping Yao, Yang Chen, Shouhong Ding, Jilin Li, and Rongrong Ji. 2021b. Local relation learning for face forgery detection. In Proceedings of the AAAI Conference on Artificial Intelligence, Vol. 35. 1081-1088.
 - [8] François Chollet. 2017. Xception: Deep learning with depthwise separable convolutions. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition. 1251-1258.
+
+<!-- page-break:21 -->
 
 - [9] Umur Aybars Ciftci, Ilke Demir, and Lijun Yin. 2020. How do the hearts of deep fakes beat? Deep fake source detection via interpreting residuals with biological signals. In Proceedings of the IEEE International Joint Conference on Biometrics (IJCB '20). IEEE, 1-10.
 - [10] Hongchang Gao, Jian Pei, and Heng Huang. 2019. Progan: Network embedding via proximity generative adversarial network. In Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining. 1308-1316.
@@ -423,6 +465,8 @@ In this article, to improve face privacy protection in the virtual world, we pre
 - [29] Scott McCloskey and Michael Albright. 2018. Detecting GAN-generated imagery using color cues. arXiv:1812.08247. Retrieved from https://arxiv.org/abs/1812.08247
 - [30] Lakshmanan Nataraj, Tajuddin Manhar Mohammed, Shivkumar Chandrasekaran, Arjuna Flenner, Jawadul H. Bappy, Amit K. Roy-Chowdhury, and B. S. Manjunath. 2019. Detecting GAN generated fake images using co-occurrence matrices. arXiv:1903.06836. Retrieved from https://arxiv.org/abs/1903.06836
 - [31] Huy H. Nguyen, Junichi Yamagishi, and Isao Echizen. 2019. Capsule-forensics: Using capsule networks to detect forged images and videos. In Proceedings of the IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP '19). IEEE, 2307-2311.
+
+<!-- page-break:22 -->
 
 - [32] Yuval Nirkin, Yosi Keller, and Tal Hassner. 2019. FSGAN: Subject agnostic face swapping and reenactment. In Proceedings of the IEEE/CVF International Conference on Computer Vision. 7184-7193.
 - [33] EhsanNowroozi and YassineMekdad. 2023. Detecting high-qualityGAN-generated face images using neural networks. In Big Data Analytics and Intelligent Systems for Cyber Threat Intelligence. River Publishers, 235-252.

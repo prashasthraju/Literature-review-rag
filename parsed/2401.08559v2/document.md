@@ -1,8 +1,10 @@
+<!-- page-start:1 -->
+
 ## Multi-Track Timeline Control for Text-Driven 3D Human Motion Generation
 
 Figure 1. Multi-track timeline control: We introduce a new problem setting for text-driven motion synthesis, where the input consists of parallel tracks allowing simultaneous actions, as well as continuous temporal intervals enabling sequential actions. A long and complex motion can be generated (top) given the structured input of multiple simple textual descriptions, each corresponding to a temporal interval (bottom).
 
-![Image](parsed/2401.08559v2/images/image_000000_6fdeeb66f8c1af9d7d70f8338d016c727a6897148251593c7d2f5b155c06d0bc.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/2401.08559v2/images/image_000000_6fdeeb66f8c1af9d7d70f8338d016c727a6897148251593c7d2f5b155c06d0bc.png)
 
 ## Abstract
 
@@ -16,9 +18,11 @@ Motivated by applications in video games, entertainment, and virtual avatar crea
 
 While these methods are a promising first step towards faster and more accessible animation interfaces, they lack the precise control that is crucial for many animators. Consider the input prompt (see Fig. 2d): "A human walks in a circle clockwise, then sits, simultaneously raising their right hand towards the end of the walk, the hand raising halts midway through the sitting action." Due to a lack of representative training data, prior work struggles with such complex text prompts [40, 55]. Namely, the prompt includes temporal composition [4] where multiple actions are performed in sequence (e.g., walking then sitting), along with spatial composition [5] where several actions are performed simultaneously with differing body parts (e.g., walking while raising hand). Furthermore, such lengthy prompts quickly become unwieldy for the user and, despite their detailed descriptions, are still ambiguous with respect to the timing and duration of the constituent actions.
 
+<!-- page-break:2 -->
+
 Figure 2. Text-driven motion synthesis tasks: Our framework generalizes (a) traditional text-to-motion synthesis given one text and one duration, (b) temporal composition given a sequence of texts for non-overlapping intervals, and (c) spatial composition given a set of texts for a single interval. (d) Multi-track timeline control uses a set of texts for arbitrary intervals, allowing fine-grained control over the timings of several complex actions.
 
-![Image](parsed/2401.08559v2/images/image_000001_040acbf36a2a521af3189f975fbdd5ea0b8a70bbdf5ba9e0bef75599315ae47b.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/2401.08559v2/images/image_000001_040acbf36a2a521af3189f975fbdd5ea0b8a70bbdf5ba9e0bef75599315ae47b.png)
 
 To improve controllability, we propose the new problem of multi-track timeline control for text-driven 3D human motion synthesis. In this task, the user provides a structured and intuitive timeline as input (Fig. 1), which contains several (potentially overlapping) temporal intervals. Each interval corresponds to a precise textual description of a motion. As shown in Fig. 2d, the complex example prompt discussed earlier becomes simple to specify within the timeline, and allows animators to control the timing of each action. Such a timeline interface is already common in animation and video editing software, and is analogous to control interfaces that have recently emerged from the text-to-image community [66], e.g., image generation from a segmentation mask.
 
@@ -39,6 +43,8 @@ The performance of STMC on timeline control for text-driven motion synthesis is 
 Human motion synthesis. A large body of work in both vision and graphics has been dedicated to generating 3D human motions [73]. This generation process can be unconditional [38, 58] or conditioned on actions [10, 19, 39], music [34, 52, 54, 59], speech [3, 72], goals [32, 53, 62], previous motion [14, 17, 46, 64] (i.e., future motion prediction), scenes/objects [23, 33, 60, 61], and text [1, 2, 12, 18, 21, 31, 55, 67]. Technical approaches vary from early statistical models [8, 17] to modern generative models like VAEs [22, 39, 40], GANs [6, 13, 51, 63], normalizing flows [24, 59], and diffusion [12, 31, 32, 62, 70]. Our work is most related to recent text-conditioned diffusion models [55, 67], however we solve a new problem where the model is conditioned on a timeline containing several text inputs instead of a single prompt.
 
 Motion composition. Due to the lack of training data, a particular challenge for action and text-conditioned motion generation is to synthesize compositional motions. Several works [4, 43, 68] focus on generating motions from a sequence of text prompts and durations, i.e., temporal compositions. TEACH [4] autoregressively generates one motion (per text prompt) at a time, conditioning the next motion in the sequence with the previous one. EMS [43] proposes a two-stage approach, by first generating each action separately and then merging them through a subsequent network. Diffusion models EDGE [56] and PriorMDM [50] ensure consistency between adjacent motions by enforcing temporal constraints at transitions. Our approach to temporal composition is based on DiffCollage [68], which stitches motions (or images) together throughout the denoising process via score arithmetic at overlapping transitions.
+
+<!-- page-break:3 -->
 
 Other work generates motions from a set of texts to be executed at the same time, i.e., spatial (body-part) composition. SINC [5] labels ground truth motion capture (mocap) sequences with corresponding body parts by prompting GPT-3 [9]. These labels are used to create a synthetic dataset of motions stitched together from mocap sequences with compatible body parts, thereby improving performance of VAE-based 3D motion generation methods [40] for spatial composition. MotionDiffuse [67] proposes a noise interpolation method to control different body part motions separately. Our approach, STMC, takes inspiration from SINC [5] by using body part labels to stitch motions together during test-time denoising. Overall, our problem of timeline-conditioned generation generalizes temporal and spatial composition, and STMC must tackle both issues simultaneously, unlike most prior work.
 
@@ -82,6 +88,8 @@ with x0 and C sampled from a dataset of motion-text pairs, step t sampled unifor
 
 STMC operates only at test time, enabling an off-the-shelf, pretrained denoising model to generate motion conditioned on a
 
+<!-- page-break:4 -->
+
 ̂
 
 ̂
@@ -90,7 +98,7 @@ STMC operates only at test time, enabling an off-the-shelf, pretrained denoising
 
 Figure 3. Overview of STMC: Before denoising, the multi-track timeline is first (a) partitioned into relevant body parts per text (using LLM-based labeling [5]) to create body part timelines, which are then (b) extended to overlap, leading to the transition intervals used for temporal stitching per body part with DiffCollage [68]. (c) At each denoising step, motions for each prompt are denoised independently before being combined based on the body-part timelines. The composite motion is re-noised by sampling xt-1 fromN(µt(xt,ˆx0),Σt) (as in Eq. (2)) before being passed to the next step.
 
-![Image](parsed/2401.08559v2/images/image_000002_1c9606eefff8a170ddcbe4fbcad46d8ae47a6cc7fc087244896548ec6803ff0f.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/2401.08559v2/images/image_000002_1c9606eefff8a170ddcbe4fbcad46d8ae47a6cc7fc087244896548ec6803ff0f.png)
 
 multi-track timeline. At every denoising step, our method takes as input the current noisy motion xt encapsulating the entire timeline and outputs a corresponding clean motion ˆx0. As shown in Fig. 3c, STMC uses the denoising model to independently predict a clean motion crop corresponding to each of the input text prompts. These predictions are stitched together spatially using body part annotations for each text prompt (Fig. 3a), and stitched in time to ensure the clean motion smoothly spans the entire timeline (Fig. 3b). This final composite motion becomes the output of the current step ˆx0, which is used to sample xt-1 with Eq. (2) and continue the denoising process. To enable body part stitching, STMC assumes the denoiser operates on explicit poses [55, 67], rather than in a latent space [12].
 
@@ -112,6 +120,8 @@ Temporal stitching. Because the motion crops are denoised independently, simple 
 
 ̂
 
+<!-- page-break:5 -->
+
 expanded time interval [aj-l,bj+l], where l is the desired overlap length between adjacent motion crops (e.g., fixed to 0.25 sec). Concretely, for the temporal transition between prompts j and k, we have ˆxaj-l:bj+l 0 and ˆxak-l:bk+l 0 after denoising. We then unconditionally denoise a small (0.5 sec) crop of motion centered on the overlap between j and k to obtain ˆxuncond 0 . The final predicted motion spanning intervals j and k is computed as ˆx0 = ˆxaj-l:bj+l 0 +ˆxak-l:bk+l 0 - ˆxuncond 0 , as depicted in Fig. 3c. This equation derives from a factor graph representation of the problem, as detailed in DiffCollage [68].
 
 ## 3.4. SMPL Support for Motion Diffusion Model
@@ -132,6 +142,8 @@ The main reasons for restricting the evaluation to three prompts are (i) to keep
 
 Given the novelty of the task, identifying relevant metrics to evaluate different methods is crucial. Instead of relying on a single metric, we disentangle the evaluation of semantic correctness (how faithful individual motion crops are to the textual descriptions) from that of realism (e.g., temporal smoothness). Semantic metrics. Firstly, we evaluate the alignment between the generated motion and the text description within the specified intervals on the timeline, which we term "per-crop semantic correctness". To assess this, we utilize the recent text-to-motion retrieval model TMR [41]. Similar to how CLIP [44] functions for images and texts, TMR provides a joint embedding space that can be used to determine the similarity between a text and motion. Using TMR, we encode each atomic text prompt and corresponding motion from our MTT dataset to obtain ground truth text and motion embeddings, respectively. Each generated motion crop is also embedded and the TMR-Score, a measure of cosine similarity ranging from 0 to 1, is calculated between the generated motion embedding and the ground truth. We report both motion-to-text similarity by comparing against the ground truth text embedding (TMR-Score M2T) and motion-to-motion similarity against the ground truth motion embedding (TMRScore M2M). Such embedding similarity measures are akin to BERT-Score [69] for text-text, CLIP-Score [25] for image-text, and more recently TEMOS-Score [4] for motion-motion similarity. Since TMR is trained contrastively, its retrieval performance is better than TEMOS [40] which only trains with positive pairs, leading to our decision to instead use TMR-Score. Moreover, its embedding space is optimized with cosine similarity, making the values potentially more calibrated across samples.
 
+<!-- page-break:6 -->
+
 Ideally, the TMR-Score M2T between a generated motion crop and the corresponding input text prompt should surpass those of other texts. Hence, we also measure motion-to-text retrieval metrics (as in [20]) including the frequency of the correct text prompt being in the top-1 (R@1) and top-3 (R@3) retrieved texts from the entire set of atomic texts.
 
 Realismmetrics. Secondly, we evaluate the realism of the generated motions, which includes transitioning smoothly between actions. While the Frechet Inception Distance (FID) between generated and ground truth motion in a learned feature space (e.g., TMR) is a common metric for quality, the embedding space of TMR is not trained on motions that are longer than 10 sec, and may therefore be unreliable for longer motions. Hence, we follow DiffCollage [68] and compute the FID+ to evaluate transitions. The FID+ metric measures FID based on 5 random 5-second motion crops from each timeline-conditioned motion generation. Following TEACH [4], we also measure the transition distance as the Euclidean distance (in cm) between the poses in two consecutive frames around the transition time. We choose to compute this distance in the local coordinate system of the body to more effectively capture transitions for individual body parts, rather than being dominated by global motion. This metric is sensitive to abrupt pose changes, and a motion should not have high transition distance to remain realistic.
@@ -149,6 +161,8 @@ As shown for each denoiser in Tab. 1, this approach is ineffective for both sema
 DiffCollage [68] baseline. Instead of converting the multi-track timeline into a single prompt, one can collapse it into a single track timeline containing a series of consecutive text prompts, i.e., transform the problem to be one of temporal composition. DiffCollage can then be used to temporally compose the sequence of actions. For example, the timeline in Fig. 2d would be split into ["walking in a circle," "walking in a circle while raising the right hand," "sitting down while raising the right hand," "sitting down"]. Note that, unlike the single-text baseline, this splitting preserves the timings (#crops) in the timeline.
 
 While the DiffCollage baseline generally produces smooth transitions and reasonable FID scores, the semantic accuracy is consistently worse than STMC. This is due to the complex spatial compositions within the prompts after collapsing the timeline into a single track, which models trained on HumanML3D struggle with. In contrast, STMC uses body-part stitching throughout denoising to compose actions from simpler prompts. SINC [5] baseline. Rather than performing body-part stitching iteratively at every denoising step, an alternative approach is to stitch body motions together only once after all crops have finished the entire denoising process. This is most similar to SINC and forms the basis for two baselines that accept the full multi-track timeline as input, similar to STMC.
+
+<!-- page-break:7 -->
 
 Table 1. Quantitative baseline comparison: Our method STMC is compared to several strong baselines when using three different denoising models. The single-text and DiffCollage baselines struggle to handle complex compositional prompts that results from collapsing the timeline down to a single track. The SINC baselines produce reasonable semantic accuracy by denoising prompts independently as in STMC, but cause abrupt or unnatural transitions with higher transition distance (underlined) or FID.
 
@@ -173,7 +187,7 @@ Table 1. Quantitative baseline comparison: Our method STMC is compared to severa
 
 Figure 4. Perception study results: Our STMC method is preferred over baselines by human raters for both motion realism and semantic accuracy. (Left) Comparison against the strong SINC with Lerp baseline. (Right) Comparison against the DiffCollage baseline. MDM [55] is used as the denoiser in these experiments.
 
-![Image](parsed/2401.08559v2/images/image_000003_ed8655a27d1cbd3937d7904cf64f83d172edcdfce334661eafa077a516660591.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/2401.08559v2/images/image_000003_ed8655a27d1cbd3937d7904cf64f83d172edcdfce334661eafa077a516660591.png)
 
 SINC w/o Lerp concatenates body part motions at the end of denoising without considering temporal transitions. As a result, transitions tend to be abrupt as evidenced by high transition distances in Tab. 1 and occasional "teleporting" limbs in qualitative results. To mitigate this, SINC w/ Lerp employs linear interpolation (lerp) at transitions for smoother results, similar to the approach in TEACH [4]. Though this leads to smoothness at transitions, FID scores tend to be slightly higher than STMC. The cause is obvious qualitatively, where the generated motion often appears mechanical and unnatural, sometimes resulting in foot sliding. Despite issues with motion quality, these SINC baselines effectively capture the semantics of each motion crop since crops are denoised independently.
 
@@ -185,9 +199,11 @@ While the performance of STMC is promising, the semantic metrics for ground trut
 
 We perform two separate user studies to compare STMC to SINC with Lerp and DiffCollage when using MDM. Fig. 4 shows results of both studies, measuring human preference for motion realism and semantic accuracy. On the left, STMC is preferred or similar to SINC 66% of the time for realism and 62% of the time for semantic accuracy, with 4.2 raters judging each video on average after filtering bad responses. Compared to DiffCollage on the right, our method is preferred or similar 68% of the time for realism and 70% for semantic accuracy, with 2.8 raters judging each video after filtering. This demonstrates that STMC improves the motion in ways that are discernible by humans but may not be fully captured in quantitative metrics.
 
+<!-- page-break:8 -->
+
 Figure 5. Qualitative results: We visualize the results of STMC with MDM-SMPL on several input timelines and color the bodies depending on their location in the timeline. We see that STMC is capable of generating realistic motions, which capture the semantics of the given text prompts with the desired timing and duration. In (a) and (c), STMC generates motions that precisely follow the instructions, controlling a single arm while still performing another action. The accurate timing of intervals is demonstrated in (b) where the arms are still up in the air when transitioning from "walking" to "jumping", which is difficult to achieve with alternative methods. In (c) and (d), we observe that STMC is capable of generating compositions that were not present in the ground truth data, such as "walking backwards while eating" or "walking while playing violin".
 
-![Image](parsed/2401.08559v2/images/image_000004_3052646aa6ce2cb593cbc687578a6337c8e67007bcfe29d8780f377017d49182.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/2401.08559v2/images/image_000004_3052646aa6ce2cb593cbc687578a6337c8e67007bcfe29d8780f377017d49182.png)
 
 ## 4.5. Qualitative Results
 
@@ -204,6 +220,8 @@ In this work, we proposed the new problem of multi-track timeline control for te
 Acknowledgements. This work was granted access to the HPC resources of IDRIS under the allocation 2023-AD011012129R3 made by GENCI. GV acknowledges the ANR project CorVis ANR-21-CE23-0003-01. The authors would like to thank Nicolas Dufour for the interesting discussions on diffusion models.
 
 [MJB Disclosure: https://files.is.tue.mpg.de/black/ CoI\_CVPR\_2024.txt](https://files.is.tue.mpg.de/black/CoI_CVPR_2024.txt)
+
+<!-- page-break:9 -->
 
 ## References
 
@@ -238,6 +256,8 @@ Acknowledgements. This work was granted access to the HPC resources of IDRIS und
 - [29] Daniel Holden, Jun Saito, and Taku Komura. A deep learning framework for character motion synthesis and editing. ACM Transactions on Graphics (TOG), 2016. 1, 12
 - [30] Siyuan Huang, ZanWang, Puhao Li, Baoxiong Jia, Tengyu Liu, Yixin Zhu, Wei Liang, and Song-Chun Zhu. Diffusion-based generation, optimization, and planning in 3d scenes. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2023. 3
 
+<!-- page-break:10 -->
+
 - [31] Peng Jin, Yang Wu, Yanbo Fan, Zhongqian Sun, Yang Wei, and Li Yuan. Act as you wish: Fine-grained control of motion diffusion model with hierarchical semantic graphs. In Neural Information Processing Systems (NeurIPS), 2023. 2
 - [32] Korrawe Karunratanakul, Konpat Preechakul, Supasorn Suwajanakorn, and Siyu Tang. Gmd: Controllable human motion synthesis via guided diffusionmodels. In International Conference on Computer Vision (ICCV), 2023. 2, 3
 - [33] Nilesh Kulkarni, Davis Rempe, Kyle Genova, Abhijit Kundu, Justin Johnson, David Fouhey, and Leonidas Guibas. NIFTY: Neural object interaction fields for guided human motion synthesis. arXiv:2307.07511, 2023. 2
@@ -268,6 +288,8 @@ Acknowledgements. This work was granted access to the HPC resources of IDRIS und
 - [58] Raquel Urtasun, David J. Fleet, and Neil D. Lawrence. Modeling human locomotion with topologically constrained latent variable models. In HumanMotion - Understanding, Modeling, Capture and Animation, 2007. 2
 - [59] Guillermo Valle-P´erez, Gustav Eje Henter, Jonas Beskow, Andr´e Holzapfel, Pierre-Yves Oudeyer, and Simon Alexanderson. Transflower: probabilistic autoregressive dance generation with multimodal attention. ACMTransactions onGraphics (TOG), 2021. 2
 - [60] JiashunWang, Huazhe Xu, Jingwei Xu, Sifei Liu, and Xiaolong Wang. Synthesizing long-term 3D human motion and interaction in 3d scenes. In Computer Vision and Pattern Recognition (CVPR), 2021. 2
+
+<!-- page-break:11 -->
 
 - [61] Zan Wang, Yixin Chen, Tengyu Liu, Yixin Zhu, Wei Liang, and Siyuan Huang. HUMANISE: Language-conditioned human motion generation in 3d scenes. In Neural Information Processing Systems (NeurIPS), 2022. 2
 - [62] Yiming Xie, Varun Jampani, Lei Zhong, Deqing Sun, and Huaizu Jiang. Omnicontrol: Control any joint at any time for human motion generation. arXiv:2310.08580, 2023. 1, 2, 3
@@ -310,17 +332,19 @@ Full list of texts. As mentioned in Sec. 4.1 of the main paper, to create the MT
 
 *https://mathis.petrovich.fr/stmc
 
+<!-- page-break:12 -->
+
 ## Supmat filling holes
 
 ## Resolving unassigned timeframes
 
-![Image](parsed/2401.08559v2/images/image_000005_ef36d8581c7f43cd5d5c777ccc2f378f4294bb3cd4020b0082815ade414abb84.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/2401.08559v2/images/image_000005_ef36d8581c7f43cd5d5c777ccc2f378f4294bb3cd4020b0082815ade414abb84.png)
 
 ## SINC heuristic
 
 Figure A.1. Additional details of STMC: To create the final body parts timeline, we need to "fill the holes" by assigning a text to all locations of the body parts timeline (left). This is done by first splitting the timelines such that there is no intersection with other intervals, and then applying the SINC heuristic for each cut (right). Finally, we regroup the intervals by removing the cuts to obtain full body part timelines.
 
-![Image](parsed/2401.08559v2/images/image_000006_705b3ca697c2d1faa99ad987b6cdd5474428b59262ddf140a4e20548d41f12b7.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/2401.08559v2/images/image_000006_705b3ca697c2d1faa99ad987b6cdd5474428b59262ddf140a4e20548d41f12b7.png)
 
 ```
 54 hop to the right # legs # spine 55 play golf # legs # left arm # right arm # head # spine 56 jumping jacks # legs # left arm # right arm # spine 57 touches back of head with right hand # right arm # head 58 touches back of head with left hand # left arm # head 59 wipe with the left hand # left arm 60 wipe with the right hand # right arm
@@ -340,9 +364,11 @@ Pose representation. As presented in Sec. 3.4 of the main paper, we propose a mo
 17 jogs backwards # legs 18 perform a squat # legs # spine 19 sit down # legs # spine 20 low kick with the right foot # legs 21 low kick with the left foot # legs 22 high kick with the right foot # legs 23 high kick with the left foot # legs 24 applause # left arm # right arm 25 play the guitar # left arm # right arm 26 play the violin # left arm # right arm 27 raise both arms in the air # left arm # right arm 28 raise the right arm # right arm 29 raise the left arm # left arm 30 wave with the right hand # right arm 31 wave with the left hand # left arm 32 wave with both hands # left arm # right arm 33 talk on phone with left hand # left arm # head 34 talk on phone with right hand # right arm # head 35 point with his right hand # right arm 36 point with his left hand # left arm 37 drink with the left arm # left arm # head 38 drink with the right arm # right arm # head 39 eat something with the left arm # left arm # head 40 eat something with the right arm # right arm # head 41 look right # head 42 look left # head 43 dodge a hit to his head # head # spine 44 throw something with left hand # left arm 45 throw something with right hand # right arm 46 pick something with the left hand # left arm # legs # spine 47 pick something with the right hand # right arm # legs # spine 48 bow # spine # head 49 punch with the left hand # left arm 50 punch with the right hand # right arm 51 jump forward # legs # spine 52 jump backward # legs # spine 53 hop to the left # legs # spine
 ```
 
+<!-- page-break:13 -->
+
 Figure A.2. Example timelines from MTT dataset: We display several generated timelines, along with the automatically generated body part timelines. Although each timeline contains only three prompts, the generated timelines are diverse and specify complicated motions.
 
-![Image](parsed/2401.08559v2/images/image_000007_dbc09a5d7a4d2331cbb4ea25e459148936dbe22a2d444cc6e52a832ba5be3a22.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/2401.08559v2/images/image_000007_dbc09a5d7a4d2331cbb4ea25e459148936dbe22a2d444cc6e52a832ba5be3a22.png)
 
 a coordinate system local to the body. To make θ local to the body, we remove the Z rotation from the SMPL global orientation. This representation enables us to directly extract the SMPL pose parameters, eliminating the need for optimizationbased methods typically used to generate a mesh, as in previous work [7, 74].
 
@@ -372,5 +398,7 @@ Table A.1. Influence of the overlap size: We report the performance of STMC (wit
 |                1.25 |                                    28.9 |                                    48.6 |                                               0.668 |                                               0.660 |             0.458 |                                 0.9 |
 
 Evaluation of individual sub-motions. We experiment with generating a motion for each text independently (I), and compare to the crops from STMC generations (S). The per-crop FID realism metric is close between S/I: 0.579/0.582 for MDM, 0.451/0.504 for MotionDiffuse, which suggests that the synthesis quality has not deteriorated with STMC.
+
+<!-- page-break:14 -->
 
 On the other hand, the semantic correctness results are: (S/I) @R1 25.3/36.9, @R3 45.7/67.3, M2T: 0.639/0.709 T2M: 0.631/0.673. (I) performs better for the retrieval metrics than (S). This is expected since (I) follows only a single text prompt (as opposed to multiple prompts simultaneously in STMC) and there is no need to generate transitions (as in STMC). To give an example of how this may affect semantic metrics for STMC, if we generate "raise the right hand" and "raise the left hand" at the same time, the retrieval metric may end up retrieving "raise both hands", instead of one of the two hands. In the MTT dataset, there is a probability of 2/3 for a text to have an overlap with another text, therefore, this case happens often.

@@ -1,3 +1,5 @@
+<!-- page-start:1 -->
+
 ## SadTalker: Learning Realistic 3D Motion Coefficients for Stylized Audio-Driven Single Image Talking Face Animation
 
 Wenxuan Zhang*, 1 Xiaodong Cun*, 2 XuanWang 3 Yong Zhang 2 Xi Shen 2
@@ -14,7 +16,7 @@ Fei Wang † , 1
 
 Figure 1. The proposed SadTalker produces diverse, realistic, synchronized talking videos from an input audio and a single reference image.
 
-![Image](parsed/audio_speech_driven/sadtalker/images/image_000000_deaba98b3a42dcf1e0e6421eadfa317138136b7c6e9be4b6b4563c070a49a667.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/audio_speech_driven/sadtalker/images/image_000000_deaba98b3a42dcf1e0e6421eadfa317138136b7c6e9be4b6b4563c070a49a667.png)
 
 ## Abstract
 
@@ -23,6 +25,8 @@ Generating talking head videos through a face image and a piece of speech audio 
 * Equal Contribution
 
 † Corresponding Author
+
+<!-- page-break:2 -->
 
 ## 1. Introduction
 
@@ -45,9 +49,11 @@ Audio-driven Single Image Talking Face Generation. Early works [3, 30, 31] mainl
 
 Audio-driven Video Portrait. Our task is also related to visual dubbing, which aims to edit a portrait video through audio. Different from audio-driven single image talking face generation, this task is typically required to be trained and edited on the specific video. Following previous work of deep video portrait [19], these methods utilize 3DMM information for face reconstruction and animation. AudioDVP [45], NVP [38], AD-NeRF [11] learn to reenact the expression to edit the mouth shape. Beyond lip movement, i.e., the head motions [23, 48], emotional talking face [18] also get attention. The 3DMM-based method plays an important role in these tasks since it is practical to fit the 3DMM parameters from a video clip. Although these methods achieve satisfactory results in personalized video, their method can not be applied to arbitrary photos and in the wild audio.
 
+<!-- page-break:3 -->
+
 Figure 2. Main pipeline. Our method uses the coefficients of 3DMM as intermediate motion representation. To this end, we first generate realistic 3D motion coefficients (facial expression β, head pose ρ) from audio, then these coefficients are used to implicitly modulate the 3D-aware face render for final video generation.
 
-![Image](parsed/audio_speech_driven/sadtalker/images/image_000001_f0127f59d1f7548f0d6754d0ed32032107dfca29660fca7fd73bf9a4bf9d2ebd.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/audio_speech_driven/sadtalker/images/image_000001_f0127f59d1f7548f0d6754d0ed32032107dfca29660fca7fd73bf9a4bf9d2ebd.png)
 
 ## Video-Driven Single Image Talking Face Generation.
 
@@ -71,9 +77,11 @@ As introduced above, the 3D motion coefficients contain both head pose and expre
 
 ExpNet Learning a generic model which produces accurate expression coefficients from audio is extremely hard for two reasons: 1) audio-to-expression is not a one-to-one mapping task for different identities. 2) there are some audioirrelevant motions in the expression coefficients and it will influence the prediction's accuracy. Our ExpNet is designed to reduce these uncertainties. As for the identity issue, we connect the expression motion to the specific person via the first frame's expression coefficients β0. To reduce the motion weight of other facial components in natural talking, we use the lip motion only coefficients as the coefficient target through the pre-trained network of Wav2Lip [30] and deep 3D reconstruction [5]. Then, other minor facial motions (e.g., eye blink) can be leveraged via the additional landmark loss on the rendered images.
 
+<!-- page-break:4 -->
+
 Mapping Test
 
-![Image](parsed/audio_speech_driven/sadtalker/images/image_000002_5bc328ef2e86510ffd4992b71fd1848ee3f9bc579adc3efc75b1ac8955ba7bcf.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/audio_speech_driven/sadtalker/images/image_000002_5bc328ef2e86510ffd4992b71fd1848ee3f9bc579adc3efc75b1ac8955ba7bcf.png)
 
 ℒ����
 
@@ -89,7 +97,7 @@ As for the loss function, we first use Ldistill to evaluate the differences betw
 
 Figure 4. The pipeline of the proposed PoseVAE. We learn the residual of the input head pose ρ0 via a conditional VAE structure. Given the conditions: first frame ρ0, style identity Zstyle and the audio clip a{1,...,t}, our method learns a distribution of the residual head pose ∆ρ{1,...,t} = ρ{1,...,t} - ρ0. After training, we can generate the stylized results through the pose decoder and the conditions (cond.) only.
 
-![Image](parsed/audio_speech_driven/sadtalker/images/image_000003_884a2ecfcede4e12892744751df0e5ad660149712336cedf4266dc000907a5c7.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/audio_speech_driven/sadtalker/images/image_000003_884a2ecfcede4e12892744751df0e5ad660149712336cedf4266dc000907a5c7.png)
 
 PoseVAE As shown in Figure 4, a VAE [21] based model is designed to learn the realistic and identity-aware stylized head movement ρ ∈ R6 of the real talking video. In training, the pose VAE is trained on fixed n frames using an encoderdecoder-based structure. Both the encoder and decoder are two-layer MLPs, where the inputs contain a sequential tframe head poses and we embed it to a Gaussian distribution. In the decoder, the network is learned to generate the t-frame poses from the sampled distribution. Instead of generating the pose directly, our PoseVAE learns the residual of the condition pose ρ0 of the first frame, which enables our method to generate longer, stable, and continuous head motion in testing under the condition of the first frame. Besides, according to CVAE [6], we add the corresponding audio feature a{1,...,t} and style identity Zstyle as conditions for rhythm awareness and identity style. The KL-divergence LKL is used to measure the distribution of the generated motions. The mean square loss LMSE and adversarial loss LGAN are used to ensure the generated quality. We provide more details about the loss function in the supplementary materials.
 
@@ -97,9 +105,11 @@ PoseVAE As shown in Figure 4, a VAE [21] based model is designed to learn the re
 
 After generating the realistic 3D motion coefficients, we render the final video through a well-designed 3D-aware image animator. We get inspiration from the recent image animation method face-vid2vid [42] because it implicitly learns the 3D information from a single image. However, a real video is required as the motions driving signal in their method. Our face render makes it drivable through 3DMM coefficients. As shown in Figure 5, we propose mappingNet to learn the relationship between the explicit 3DMMmotion coefficients (head pose and expression) and the implicit unsupervised 3D keypoints. Our mappingNet is built via several 1D convolutional layers. We use the temporal coefficients from a time window for smoothing as PIRenderer [33]. Differently, we find the face alignment motion coefficients in PIRenderer will hugely influence the motion naturalness of audio-driven video generation and provide an experiment in Sec. 4.4. We only use the coefficients of expression and head pose.
 
+<!-- page-break:5 -->
+
 Fig.5 Render
 
-![Image](parsed/audio_speech_driven/sadtalker/images/image_000004_9962c12ca042a059b31ca74be06e42d5d7bcccf97730a22734d60dd207d759b2.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/audio_speech_driven/sadtalker/images/image_000004_9962c12ca042a059b31ca74be06e42d5d7bcccf97730a22734d60dd207d759b2.png)
 
 Figure 5. The proposed FaceRender and comparison with facevid2vid [42]. Given source image Is and driving image Id, facevid2vid generates the motions in a unsupervised 3D keypoint spaces of Xc, Xs and Xd. Then, the image can be generated via the appearance A0 and the keypoints. Since we do not have driving image, we use the explicit disentangled 3DMM coefficients as proxy and map it to the unsupervised 3D keypoints space.
 
@@ -121,6 +131,8 @@ We compare several state-of-the-art methods for the talking head video generatio
 
 1 This method needs to extract the phoneme from audio, which only works on the specific language.
 
+<!-- page-break:6 -->
+
 Table 1. Comparison with the state-of-the-art method on HDTF dataset. We evaluate Wav2Lip [30] and PC-AVS [51] in the one-shot settings.
 
 | Method           | Eye Blink    |   Lip Synchronization - LSE-C↑ |   Lip Synchronization - LSE-D↓ | Learned Head Motion - Diversity↑   | Learned Head Motion - Beat Align↑   |   Video Quality - FID↓ |   Video Quality - CPBD↑ |   Video Quality - CSIM↑ |
@@ -137,11 +149,13 @@ PC-AVS** is evaluated using the fixed reference pose and fails in some samples.
 
 Figure 6. We compare our method with several state-of-the-art methods for single image audio-driven talking head generation. Our method produces much higher quality results in terms of lip synchronization, identity preservation, head motion and image quality. We give the target image above for both lip shape and identity reference. Please refer our supplementary video for better comparison.
 
-![Image](parsed/audio_speech_driven/sadtalker/images/image_000005_b025f787efe84846d792f92ad9e9a8a56b46aed2fc232216bb176371f810c060.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/audio_speech_driven/sadtalker/images/image_000005_b025f787efe84846d792f92ad9e9a8a56b46aed2fc232216bb176371f810c060.png)
 
 and also shows comparable performance with other fully talking-head generation methods in terms of the lip synchronization metrics. We argue that these lip synchronization metrics are too sensitive to the audio where the unnatural lip movement may get a better score. However, our method achieves a similar score to the real videos, which demonstrates our advantages. We also illustrate the visual results of different methods in Figure 6. Here, we give the lip reference to visualize the lip synchronization of our method. From the figure, our method has a very similar visual quality to the Joint learn Pose and Exp coefficients original target video and with different head poses as we expected. Compared with other methods, Wav2Lip [30] produces blur half-face. PC-AVS [51] and Audio2Head [39] are struggling for identity preservation. Audio2Head can only generate the front talking face. Besides, MakeItTalk [52] and Audio2Head [39] generate the distorted face video due to 2D warping. We give the video comparison in the supp. to show more clear comparisons.
 
-![Image](parsed/audio_speech_driven/sadtalker/images/image_000006_781789b89f06e145ebd08f634af9f45883a622d4fb5f6ef2a7300ba40fd922ea.png)
+<!-- page-break:7 -->
+
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/audio_speech_driven/sadtalker/images/image_000006_781789b89f06e145ebd08f634af9f45883a622d4fb5f6ef2a7300ba40fd922ea.png)
 
 Figure 7. We compare our method with a baseline method which learn all the coefficients from a single network without any condition (from Speech2Gesture [10]). Our method shows clear head movements, identity preservation and diverse expressions.
 
@@ -188,11 +202,13 @@ synchronization metric drops a lot when using the real coefficients.
 
 Figure 8. The ablation of ExpNet. We choose four frames from the generated video as comparison. Our method largely reduces the uncertainty of audio to expression generation. The reference β0 is used to provide the identity information while the lip only coefficients generate better lip synchronization. Notice that, the target image is provided as the identity and lip motion reference.
 
-![Image](parsed/audio_speech_driven/sadtalker/images/image_000007_03377ee6ef07527be3a5070faffc11a4c51314deb4f3c81e2e47bc01e8487ab1.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/audio_speech_driven/sadtalker/images/image_000007_03377ee6ef07527be3a5070faffc11a4c51314deb4f3c81e2e47bc01e8487ab1.png)
 
 metrics. Since there are no disentangled methods before, we consider a baseline (Speech2Gesture [10], which is an audio to keypoint generation network) to learn the head pose and expression coefficients jointly. As shown in Table 3 and Figure 7, learning all the motion coefficients altogether is hard to generate truth-worthy talking head videos. We then consider the variants of the proposed ExpNet, both the initial expression β0, lip reading loss Lread and the necessity of liponly coefficients are critical. The visual comparison is shown in Figure 8, where our method w/o the initial expression β0 shows huge identity changes as expected. Also, if we use the real coefficients to replace the lip-only coefficients we use, the performance drops a lot in lip synchronization.
 
 Ablation of PoseVAE We evaluate the proposed PoseVAE in terms of motion diversities and audio beat alignments. As shown in Table. 4, the baseline Speech2Gesture [10] also performs worse in pose evaluation. As for our variants, since Method Diversity↑ Beat Align↑
+
+<!-- page-break:8 -->
 
 Speech2Gesture [10]
 
@@ -240,7 +256,7 @@ PoseVAE. Each component or conditional contribute largely to
 
 generate realistic head motions.
 
-![Image](parsed/audio_speech_driven/sadtalker/images/image_000008_f6fb63e062bdfcc1047f13e76683d789ed6ab3ec5858346e7a538c986312da90.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/audio_speech_driven/sadtalker/images/image_000008_f6fb63e062bdfcc1047f13e76683d789ed6ab3ec5858346e7a538c986312da90.png)
 
 Ours
 
@@ -256,7 +272,7 @@ Ablation of Face Render We conduct the ablation study on the proposed face rende
 
 Figure 10. Limitation. Our method may show some teeth artifacts in the lip region in some examples, it can be improved via the face restoration network, i.e., GFPGAN [43].
 
-![Image](parsed/audio_speech_driven/sadtalker/images/image_000009_5c27fad676b474beacf63e92942632b11e675594401b3cbe21c309f2b9a879e8.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/audio_speech_driven/sadtalker/images/image_000009_5c27fad676b474beacf63e92942632b11e675594401b3cbe21c309f2b9a879e8.png)
 
 ## 4.5. Limitation
 
@@ -265,6 +281,8 @@ Although our method generates realistic video from a single image and audio, the
 ## 5. Conclusion
 
 In this paper, we present a new system for stylized audiodriven talking head video generation. We use the motion coefficients from 3DMM as an intermediate representation and learn the relationships. To generate realistic 3D coefficients from audio, we propose ExpNet and PoseVAE for realistic expressions and diverse head poses. To model the relationships between 3DMM motion coefficients and the real video, we propose a novel 3D-aware face render inspired by the image animation method [42]. The experiments demonstrate the superiority of our entire framework. Since we predict the realistic 3D facial coefficients, our method can also be used in other modalities directly, i.e., personalized 2D visual dubbing [45], 2D Cartoon animation [52], 3D face animation [8, 46] and NeRF-based 4D talking-head generation [15].
+
+<!-- page-break:9 -->
 
 Ethical Considerations We consider the misuse of the proposed method since it can generate very realistic video from a single face image. Both visible and invisible video watermarks will be inserted into the produced video for generated content identification similar to Dall-E [32] and Imagen [34]. We also hope our method can provide new research samples in the area of forgery detection.
 
@@ -303,6 +321,8 @@ Ethical Considerations We consider the misuse of the proposed method since it ca
 - [31] Prajwal K R, Rudrabha Mukhopadhyay, Jerin Philip, Abhishek Jha, Vinay Namboodiri, and C V Jawahar. Towards automatic face-to-face translation. In ACMMM, 2019. 2
 - [32] Aditya Ramesh, Prafulla Dhariwal, Alex Nichol, Casey Chu, and Mark Chen. Hierarchical text-conditional image generation with clip latents. arXiv preprint arXiv:2204.06125, 2022. 9
 
+<!-- page-break:10 -->
+
 - [33] Yurui Ren, Ge Li, Yuanqi Chen, Thomas H Li, and Shan Liu. Pirenderer: Controllable portrait image generation via semantic neural rendering. In ICCV, 2021. 2, 3, 5, 8, 11, 14
 - [34] Chitwan Saharia, William Chan, Saurabh Saxena, Lala Li, Jay Whang, Emily Denton, Seyed Kamyar Seyed Ghasemipour, Burcu Karagol Ayan, S Sara Mahdavi, Rapha Gontijo Lopes, et al. Photorealistic text-to-image diffusion models with deep language understanding. arXiv preprint arXiv:2205.11487, 2022. 9
 - [35] Maximilian Seitzer. pytorch-fid: FID Score for PyTorch. https://github.com/mseitzer/pytorch-fid, August 2020. Version 0.2.1. 5
@@ -323,6 +343,8 @@ Ethical Considerations We consider the misuse of the proposed method since it ca
 - [50] Jian Zhao and Hui Zhang. Thin-plate spline motion model for image animation. In CVPR, 2022. 3
 - [51] Hang Zhou, Yasheng Sun, Wayne Wu, Chen Change Loy, Xiaogang Wang, and Ziwei Liu. Pose-controllable talking face generation by implicitly modularized audio-visual representation. In CVPR, 2021. 2, 3, 5, 6, 7, 12
 - [52] Yang Zhou, Xintong Han, Eli Shechtman, Jose Echevarria, Evangelos Kalogerakis, and Dingzeyu Li. Makelttalk: speaker-aware talking-head animation. ACM Transactions on Graphics (TOG), 2020. 2, 3, 5, 6, 7, 8, 12
+
+<!-- page-break:11 -->
 
 ## A. Additional Experiments
 
@@ -362,6 +384,8 @@ FaceRender As discussed in the main paper of Fig. 5, our face render is inspired
 ## B.3. Loss Function Details
 
 ExpNet As described in the main paper, we use the expression coefficients which are generated from the pre-trained wav2lip [30] and then perform 3D face capture [5] as guidance (lip-only expression coefficients for short). Basically, we calculate Ldistill through the Mean-Squared loss between lip-only expression coefficients and the generated expression coefficients in training. Formally, a T-frames Ldistill can be written as:
+
+<!-- page-break:12 -->
 
 Table A6. Comparison with the state-of-the-art method on HDTF dataset [49] with cross-identity setting. Wav2Lip* achieves the best video quality since it only animates the lip region while other regions are the same as the original frame. In cross-identity setting, PC-AVS** is evaluated using the reference pose from the driving video and fails in some samples.
 
@@ -405,9 +429,11 @@ Where Ew t is the width of the eye area in frame t, Eh t is the width of the eye
 
 where Z blink t is the eye blinking control signal the of t-th frame which is generated uniformly and randomly. To eliminate the effects of Leye on other facial expression, we also constrain the minimal modification in the other landmarks.
 
+<!-- page-break:13 -->
+
 Figure B11. The architectures of the networks in our model. Here, '3×3-s1,1-p1-Conv-32' means a convolutional layer with the kernel size 3×3, the stride size (1,1), padding size (1,1) and the output channel is 32.
 
-![Image](parsed/audio_speech_driven/sadtalker/images/image_000010_08861162cb99959686cd16751e9f65518aa815ea8e8f443149167ca1a47734d3.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/audio_speech_driven/sadtalker/images/image_000010_08861162cb99959686cd16751e9f65518aa815ea8e8f443149167ca1a47734d3.png)
 
 Thus,
 
@@ -417,9 +443,11 @@ where λeye is set to 200, P i′ t is the landmarks predicted by the lip-only e
 
 Besides, we use pretrained lip-reading models proposed in [24] to calculate lip reading loss Lread inspired by [9]. We use the pretrained video-based lip-reading model where the input is a sequence (5 frames in our case) of the cropped interesting region around the mouth (as shown in Fig B13) and the target is a series of the character sequence. So we employ a differentiable 3D face render [5] in ExpNet to render the images through the generated expression coefficients, then, we crop the mouth area of the rendered images using the bounding box of the mouth landmarks, obtaining the logit of the character sequences Cp. As for the supervision, we generate the logit of the character sequences Cgt from the ground truth audio using the audio-driven lip-reading model. Thus, our goal is to minimize the difference between Cp and Cgt. In other words,
 
+<!-- page-break:14 -->
+
 Figure B13. Example of the cropped interesting region in the 3D rendered face sequences to calculate the lip-reading loss.
 
-![Image](parsed/audio_speech_driven/sadtalker/images/image_000011_98fdbf9176d194bddb41fd97ecfd4a22fe39a4d58a671cde238688e1b85c581a.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/audio_speech_driven/sadtalker/images/image_000011_98fdbf9176d194bddb41fd97ecfd4a22fe39a4d58a671cde238688e1b85c581a.png)
 
 <!-- formula-not-decoded -->
 

@@ -1,3 +1,5 @@
+<!-- page-start:1 -->
+
 ## DF40: Toward Next-Generation Deepfake Detection
 
 Zhiyuan Yan 1 , Taiping Yao 2† , Shen Chen 2 , Yandan Zhao 2 , Xinghe Fu 2 , Junwei Zhu 2 , Donghao Luo 2 , Chengjie Wang 2 , Shouhong Ding 2 , Yunsheng Wu 2 , Li Yuan 1†
@@ -18,9 +20,11 @@ We are currently in 2024, an explosive era of Artificial Intelligence Generated 
 
 † Corresponding Author
 
+<!-- page-break:2 -->
+
 Figure 1: Overview of our DF40 dataset. DF40 shows advantages in data diversity, synthesis quality, and deepfake realism. Note all the above figures are deepfake, which does not exist in the real world.
 
-![Image](parsed/df%2040/images/image_000000_d338838b3ea0b20bb32142aff5c5e2ce1942778f0a4ddbff47ea8137ab5f557e.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000000_d338838b3ea0b20bb32142aff5c5e2ce1942778f0a4ddbff47ea8137ab5f557e.png)
 
 Amidst this AIGC revolution, the ease of generating deepfakes 1 has become a "double-edged sword." Unfortunately, deepfake is often misused for manipulating one person's identity (face-swapping) or controlling facial expressions and movements in a portrait (face-reenactment). It can be particularly harmful as it may lead to severe digital crimes and undermine social trust. Therefore, there is an urgent need to develop a reliable system for detecting deepfakes.
 
@@ -31,6 +35,8 @@ Therefore, we realize that a diverse and comprehensive dataset is the true key t
 1 Deepfake is a term derived from "deep" (the use of deep nets) and "fake" (does not exist). Our scope mainly focuses on face deepfakes but shows the promising in detecting other non-face deepfakes such as arts.
 
 2 Blending the altered (deepfake-generated) face into an existing background image.
+
+<!-- page-break:3 -->
 
 Table 1: Comparison of existing/previous deepfake datasets. DF40 surpasses any other dataset in diversity, scale, and modeling. Deepfake data in DF40 is created by 40 deepfake techniques, including 10 FS methods, 13 FR methods, 12 EFS methods, and 5 FE methods.
 
@@ -65,6 +71,8 @@ Based on previous survey [50], deepfake techniques can be typically classified i
 ## 2.2 Existing Deepfake Datasets.
 
 Most earlier public deepfake datasets published before 2021 [37; 91; 17; 42; 62; 13] generate deepfakes using only the face-swapping technique that involves a blending process. Also, these datasets contain only single or no more than 4 specific manipulation approaches. Notably, DFDC [16] implements 7 deepfake approaches and extends the data scale to the million-level. After that, ForgeryNet [22] applies 15 methods to create forgery data with a million-level data scale. However, with the advent of AIGCs such as diffusion-based generators, producing realistic content has become increasingly popular and widely seen on social media. Consequently, whether a detector trained on older forgery methods can generalize to today's SoTA deepfakes is uncertain. In response, many recent works [32; 69] have begun to focus on current generative models. A very recent i) Note-1: The nine "test only" data is utilized as the unknown domain data, simulating the domain shift of real people distributions. ii) Note-2: For HeyGen and DeepFaceLab, these two SoTA deepfakes are widely used and highly realistic. However, since they belong to one-to-one type [50], their implementation requires significantly more time and resources. Thus, we only create 50 and 100 for each.
+
+<!-- page-break:4 -->
 
 Table 2: Involved/Implemented deepfake methods of the proposed DF40 dataset. We use the following 40 distinct methods to create deepfake videos and images for evaluation.
 
@@ -119,6 +127,8 @@ Research Scope and Summary of DF40. In this work, our scope specifically focuses
 
 Original Data Collection and Deepfake Data Generation. (1) Real Data: We consider two mainstream and popular deepfake datasets: FF++ [62] (c23 version) and CDF [42] as our original data. The rationale behind this selection is that most previous research [40; 65; 90] follows the evaluation protocol of training on FF++ and testing on CDF. By utilizing these datasets for training and evaluation, we can adhere to previous works and verify if their conclusions and methods still hold in the context of our new dataset. We also provide real data from other existing datasets (e.g., CelebA [47]) to facilitate the unknown domain evaluations (see Tab. 2 for details). We show more details of these original face datasets in the Appendix. (2) Fake Data: To guarantee the diversity of deepfake approaches in the proposed DF40, we introduce and implement 40 distinct deepfake techniques, which are listed in Tab. 2. A detailed description of each deepfake method is provided in the Appendix. Formally, we denote xt(it, at, bt) as the target subject to be manipulated, which possesses attributes (i: person identity, a: identity-agnostic content, b:
 
+<!-- page-break:5 -->
+
 Table 3: Same data domain, different forgery types (Protocol-1): Cross-forgery evaluation of different models on the FF domain. FS (FF) denotes all FS data within the FF domain, with FR (FF), FS (CDF), etc, being similar. The results of the within-forgery evaluations are in gray (as the validation set only).
 
 | Training Set   | Model                                                         | Testing Set (FF) - FS (FF)          | Testing Set (FF) - FR (FF)                | Testing Set (FF) - EFS (FF)               | Testing Set (FF) - Avg. (FF)        |
@@ -146,7 +156,7 @@ We use fsw, fre, fsy, fed to represent FS, FR, EFS, and FE, respectively. Fig. 1
 
 Figure 2: The general fake data generation pipeline of the proposed DF40 dataset.
 
-![Image](parsed/df%2040/images/image_000001_2e0cb62d8e398c741bf58c617c2b73b46218b12587670905e5304d0854cf5ea4.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000001_2e0cb62d8e398c741bf58c617c2b73b46218b12587670905e5304d0854cf5ea4.png)
 
 erative model G using the real data from FF++ and CDF, and then obtain a face-synthesis model fsy. Then, we can synthesize new synthesis faces from noise n. The general generation process is in Fig. 14(c); (iv) Face Editing (FE): From Fig. 14(d), FE on xt(it, at, bt) has its external attributes bt altered, such as facial hair and age, controlled by conditional source cb, to obtain ˜xt(it, at, ˜bs).
 
@@ -155,6 +165,8 @@ erative model G using the real data from FF++ and CDF, and then obtain a face-sy
 ## 4.1 Experimental Setup
 
 All pre-processing and training codebases in this work adhere to DeepfakeBench [90] to align the standardized settings. The details of dataset configuration, algorithm implementation, and full training can be seen in the Appendix. For detection selection, we choose the classical baseline Xception [12] with four SoTA detectors (SRM [48], SPSL [44], RECCE [6], RFM [75]) that use Xception as the backbone. In this manner, we aim to revisit the extra improvement over the baseline under our setting. We also consider the blending-based detector that uses the blending image (BI) for training, which creates pseudo-fakes by image blending, without using the actual deepfake data. We use SBI [65] to implement the blending-based detector. Note that the original SBI paper only uses BI for training, so we do not re-train it using our DF40 in evaluations.
+
+<!-- page-break:6 -->
 
 Table 5: Different forgery types, different data domains (Protocol-3): toward real-world open-set evaluation of different models on the unknown domain. FS (FF) denotes all FS data within the FF domain, with FR (FF) and EFS (FF) being similar. Here, we use ❶ to mark the FS method, ❷ for the FR, ❸ for the EFS, and ❹ for the FE.
 
@@ -180,7 +192,7 @@ Table 5: Different forgery types, different data domains (Protocol-3): toward re
 
 Figure 3: One-Verse-All (OvA) evaluation (Protocol-4): Training the baseline (i.e., Xception) on one fake and testing it on other remaining fakes. We show the cross-forgery evaluations on both the FF++ domain and CDF domain. We also show the performance "drop" from the FF++ to the CDF. Blue donates all FS methods, Green for FR, and Yellow for EFS. In each heatmap, more "red" indicates higher values; "White" means 0.5 AUC (by chance), and "blue" indicates values below 0.5.
 
-![Image](parsed/df%2040/images/image_000002_dc81d39a72c7408ec9752c0dc52a18de434e70298fee2503923caf02904164bf.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000002_dc81d39a72c7408ec9752c0dc52a18de434e70298fee2503923caf02904164bf.png)
 
 ## 4.2 Evaluations, Findings, and Analysis
 
@@ -188,9 +200,11 @@ In this work, we conduct evaluations under four standard protocols: Cross-forger
 
 Finding-1: Asymmetric performance drop among different forgery types (fake regions matter). From Tab. 3, we observe that the performance drop between FS and FR is moderate but more significant between these two and EFS. Specifically, model training on FS yields higher results (around 0.8) on EFS, while training on EFS only achieves about 0.6 on FS. To understand the underlying reason for this finding, we provide the following detailed explanations: One possible explanation is that FS can exhibit both localized and global forgeries, while EFS is restricted to global forgeries, making EFS less diverse in scope compared to FS. As a result, training a model on EFS might not be sufficient to capture the localized fake artifacts present in FS. For example, some localized FS (such as DeepFakes of FF++ [62]) only contain fake artifacts within the facial region, but a model trained on EFS might be biased to "expect" artifacts across the entire image, including the background, resulting in a lower result on FS. To verify our claim, we consider using t-SNE for visualizing the latent distribution of 'real', 'whole-fake', and 'face-fake'. The t-SNE (Fig. 4) results show that a well-trained EFS detection model can easily distinguish the whole-fake from real images. However, the localized version, including face-fake and mouth-fake, appears much more similar to real images, making it more challenging to detect compared to the whole-fake. This experiment qualitatively verifies the significance of the fake region in detection.
 
+<!-- page-break:7 -->
+
 Figure 4: t-SNE visualization for real, whole-fake, face-fake, and mouth-fake images. The results show that a well-trained EFS detector (Xception) can effectively distinguish between whole-fake and real images, but struggles to identify fakes with only face or mouth manipulation. This observation highlights the significant influence of the manipulated region on detection performance.
 
-![Image](parsed/df%2040/images/image_000003_4027a8fe9e56f54b874193eb3fc7fb7e91d3c913d3c3ca69c2a71cbf7d709a54.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000003_4027a8fe9e56f54b874193eb3fc7fb7e91d3c913d3c3ca69c2a71cbf7d709a54.png)
 
 Finding-2: Existing well-designed (SoTA) detectors may not have obvious advantages over the baseline. In our experiments, SRM, SPSL, RECCE, and RFM, all state-of-the-art deepfake detectors using Xception as their backbone, achieve results similar to the simple baseline Xception. This implies that these SoTA models might only learn sub-optimal forgery features and lack clear advantages over the baseline, although these SoTAs show higher results on previous datasets, e.g., DFDC. In other words, although these well-designed SoTA detectors achieve higher scores than the Xception (baseline) when testing on CDF [42], they cannot maintain a consistent advantage over the baseline when testing on other forgeries. This highlights the remaining generalization issue.
 
@@ -202,23 +216,27 @@ To intuitively convey our conclusions, we draw a causal graph to illustrate the 
 
 Figure 5: Causal graph.
 
-![Image](parsed/df%2040/images/image_000004_e52b8bfd2a770e42bd1e9af287d33a9aa0f6c5e58a2e29461dac16a09201fd85.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000004_e52b8bfd2a770e42bd1e9af287d33a9aa0f6c5e58a2e29461dac16a09201fd85.png)
 
 R = f(g(D), k(D, F), h(F)). Fig. 6(a) supports this point, showing increased overlap between real and fake logits as domains and methods change incrementally. Also, crossing domains can result in "wrong confidence" for real predictions and vice versa.
 
 Finding-5: FR forgeries may share transferable patterns for detecting other FR instances. Most FR forgery methods demonstrate high AUC within the heatmap, even across data domains. However, Wav2Lip, an audio-driven reenactment forgery that only modifies the mouth region, is an exception.
 
+<!-- page-break:8 -->
+
 ## (a). Xception
 
 Figure 7: t-SNE Visualizations for three models: Xception, CLIP-base, and CLIP-large.
 
-![Image](parsed/df%2040/images/image_000005_e9fa986a84674183660278358aa5c549463dae63b3a4af4be0c0fb0f654201e0.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000005_e9fa986a84674183660278358aa5c549463dae63b3a4af4be0c0fb0f654201e0.png)
 
 Its artifacts are more localized compared to other FRs that generate all content, making it different. Note that Finding-5 does not mean that collecting (many) FR methods is without value. Specifically, even though these FR methods may share some transferable patterns to detect other FR methods, the fake similarity between FR and other types (like EFS) can also vary greatly depending on the specific FR method used (see Fig. 3).
 
 Finding-6: SBI could be viewed as an "anomaly detection" model. SBI [65] (a blending-based detection) could be considered an "anomaly detection" model, which might utilize the real features for classifying fakes. Results in Fig. 6(a) show that when forgery samples appear significantly different from real samples, SBI classifies them as anomalies (forgery samples), likely because the pseudo-fake samples generated by SBI closely resemble their original real counterparts. In other words, SBI creates more realistic fake samples that are more similar to the real, encouraging the detection model to learn a more robust real representation than the baseline.
 
 Finding-7: CLIP-large shows the potential to generalize to some non-face deepfakes when trained only on face data. In additional to evaluate on the face deepfakes, we also evaluate non-face-domain deepfakes (natural image synthesis) using the widely-used GenImag edataset to determine if models trained on face-domain data can transfer to non-face-domain detection. In Tab. 19, surprisingly, CLIP-large achieves a 0.746 AUC on previously unseen non-face deepfakes, while Xception only reaches a 0.535 AUC, near chance levels. This highlights that CLIP-large might learn some transferable (EFS) forgery features that are not related to the face content.
+
+<!-- page-break:9 -->
 
 Table 6: Comparison of different models/baselines used for pre-training. FS (CDF) denotes all FS data within the CDF domain. DF40 (FF) is the combination of FS (FF), FR (FF), and EFS (FF).
 
@@ -240,7 +258,7 @@ CFDA (ECCV'24) achieves significant advantages over other models in previous dat
 
 Figure 8: Evaluation of existing detectors on previous datasets and our DF40.
 
-![Image](parsed/df%2040/images/image_000006_c6603f5289d87cd6eefde0123f6774faa20d982604d55c0070ec1bcade76cf65.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000006_c6603f5289d87cd6eefde0123f6774faa20d982604d55c0070ec1bcade76cf65.png)
 
 ## 4.3 Discussion &amp;Further Analysis
 
@@ -252,6 +270,8 @@ Exploration of Frequency Artifacts in Different Types of Deepfakes. Here, we exp
 
 [3 https://github.com/facefusion/facefusion/blob/master/facefusion/processors/ modules/face\_enhancer.py](https://github.com/facefusion/facefusion/blob/master/facefusion/processors/modules/face_enhancer.py)
 
+<!-- page-break:10 -->
+
 Table 8: Ablation study regarding the impact of super-resolution to the fake images. We use selfreconstruction images (SRI) as the fake and apply GFPGAN [81] to perform the super-resolution.
 
 | Test / Train           |   FS - FSGAN |   FS - BlendFace |   FR - LIA |   FR - Wav2Lip |   EFS - DiT |   EFS - DDIM |   FE - e4e |
@@ -261,7 +281,7 @@ Table 8: Ablation study regarding the impact of super-resolution to the fake ima
 
 Figure 9: Frequency analysis on selected fake data within the proposed DF40.
 
-![Image](parsed/df%2040/images/image_000007_0c035abe3d7602d862a1c4c620ae8efc64a58b80152e52d25bbb8b5405c546ae.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000007_0c035abe3d7602d862a1c4c620ae8efc64a58b80152e52d25bbb8b5405c546ae.png)
 
 AModel Bias Toward the Resolution Gap Between Real and Fake. In our previous experiments (see Tab. 5), we observe anti-intuitive phenomena: models training on FR achieve very low AUC (much lower than 0.5) on StyleCLIP. After investigating the underlying reason, we found that the unaligned resolution between the real and fake classes introduces a model bias, that is, higher resolution, higher probability to be real. Specifically, we observe that the training real data (FF++) obviously contains more high-frequency components (higher resolution) compared to the training fake data (FR). This noticeable resolution gap between real and fake data could be inevitably captured by the model [56], leading the model to potentially adopt a trivial solution: "Low resolution implies fake." In contrast, during testing, the fake data (StyleCLIP) contains significantly more high-frequency components (higher resolution) than the testing real data used for testing. We provide a frequency visualization as evidence to validate this claim (see our Appendix). This bias leads the model to make an inconsistent decision, resulting in the anomaly in AUC.
 
@@ -275,6 +295,8 @@ AModel Bias Toward the Resolution Gap Between Real and Fake. In our previous exp
 ## 5 Conclusions, Board Impacts, and Limitations
 
 (1) Conclusions: We have developed DF40, a highly diverse and groundbreaking benchmark, comprising 40 distinct deepfake techniques to support the detection. Leveraging DF40, we conducted over 2,000+ evaluations using 8 representative detectors under 4 standard evaluation protocols, creating 7 new findings and 4 open questions for future works. We hope the proposed DF40 could revolutionize the whole field for the next generation. (2) Board Impacts: DF40 offers high-quality and realistic deepfake techniques, facilitating the detection of today's real-world deepfakes. Also, our benchmark assists in safeguarding societal trust and promoting the responsible use of such technology. (3) Limitations: One limitation is the lack of comprehensive analysis for video-level detectors. Actually, we provide evaluations using video models, e.g., I3D [7] in the Appendix. However, we have not delved deeply into discussing and analyzing certain issues, e.g., assessing and visualizing whether video models can effectively capture both temporal and spatial artifacts. In future work, we plan to broaden our benchmark's scope and address these concerns in detail.
+
+<!-- page-break:11 -->
 
 ## Acknowledgments and Disclosure of Funding
 
@@ -298,6 +320,8 @@ We would like to express our profound gratitude to all the individuals (all coll
 - [12] François Chollet. Xception: Deep learning with depthwise separable convolutions. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, pages 1251-1258, 2017.
 - [13] Hao Dang, Feng Liu, Joel Stehouwer, Xiaoming Liu, and Anil K Jain. On the detection of digital face manipulation. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, 2020.
 
+<!-- page-break:12 -->
+
 - [14] [DeepFaceLab. https://github.com/iperov/DeepFaceLab.](https://github.com/iperov/DeepFaceLab)
 - [15] [DeepFakes. www.github.com/deepfakes/faceswap Accessed 2021-04-24.](www.github.com/deepfakes/faceswap)
 - [16] Deepfake detection challenge. https://www.kaggle.com/c/deepfake-detection-challenge Accessed 2021-04-24.
@@ -320,6 +344,8 @@ We would like to express our profound gratitude to all the individuals (all coll
 - [33] Tero Karras, Miika Aittala, Samuli Laine, Erik Härkönen, Janne Hellsten, Jaakko Lehtinen, and Timo Aila. Alias-free generative adversarial networks. Advances in neural information processing systems, 34:852-863, 2021.
 - [34] Tero Karras, Samuli Laine, and Timo Aila. A style-based generator architecture for generative adversarial networks. In Proceedings of the IEEE/CVF conference on computer vision and pattern recognition, pages 4401-4410, 2019.
 
+<!-- page-break:13 -->
+
 - [35] Tero Karras, Samuli Laine, Miika Aittala, Janne Hellsten, Jaakko Lehtinen, and Timo Aila. Analyzing and improving the image quality of stylegan. In Proceedings of the IEEE/CVF conference on computer vision and pattern recognition, pages 8110-8119, 2020.
 - [36] Hasam Khalid, Shahroz Tariq, Minha Kim, and Simon S Woo. Fakeavceleb: A novel audio-video multimodal deepfake dataset. arXiv preprint arXiv:2108.05080, 2021.
 - [37] Pavel Korshunov and Sébastien Marcel. Deepfakes: a new threat to face recognition? assessment and detection. arXiv preprint arXiv:1812.08685, 2018.
@@ -340,6 +366,8 @@ We would like to express our profound gratitude to all the individuals (all coll
 - [52] Yuval Nirkin, Yosi Keller, and Tal Hassner. Fsgan: Subject agnostic face swapping and reenactment. In Proceedings of the IEEE/CVF international conference on computer vision, pages 7184-7193, 2019.
 - [53] Or Patashnik, Zongze Wu, Eli Shechtman, Daniel Cohen-Or, and Dani Lischinski. Styleclip: Text-driven manipulation of stylegan imagery. In Proceedings of the IEEE/CVF international conference on computer vision, pages 2085-2094, 2021.
 - [54] William Peebles and Saining Xie. Scalable diffusion models with transformers. In Proceedings of the IEEE/CVF International Conference on Computer Vision, pages 4195-4205, 2023.
+
+<!-- page-break:14 -->
 
 - [55] KR Prajwal, Rudrabha Mukhopadhyay, Vinay P Namboodiri, and CV Jawahar. A lip sync expert is all you need for speech to lip generation in the wild. In Proceedings of the 28th ACM international conference on multimedia, pages 484-492, 2020.
 - [56] Yuyang Qian, Guojun Yin, Lu Sheng, Zixuan Chen, and Jing Shao. Thinking in frequency: Face forgery detection by mining frequency-aware clues. In European Conference Computer Vision, pages 86-103. Springer, 2020.
@@ -362,6 +390,8 @@ We would like to express our profound gratitude to all the individuals (all coll
 - [73] Omer Tov, Yuval Alaluf, Yotam Nitzan, Or Patashnik, and Daniel Cohen-Or. Designing an encoder for stylegan image manipulation. ACM Transactions on Graphics (TOG), 40(4):1-14, 2021.
 - [74] Loc Trinh and Yan Liu. An examination of fairness of ai models for deepfake detection. arXiv preprint arXiv:2105.00558, 2021.
 
+<!-- page-break:15 -->
+
 - [75] Chengrui Wang and Weihong Deng. Representative forgery mining for fake face detection. In Proceedings of the IEEE/CVF conference on computer vision and pattern recognition, pages 14923-14932, 2021.
 - [76] Chengrui Wang and Weihong Deng. Representative forgery mining for fake face detection. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, 2021.
 - [77] Sheng-Yu Wang, Oliver Wang, Richard Zhang, Andrew Owens, and Alexei A Efros. Cnn-generated images are surprisingly easy to spot... for now. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, pages 8695-8704, 2020.
@@ -381,6 +411,8 @@ We would like to express our profound gratitude to all the individuals (all coll
 - [91] Xin Yang, Yuezun Li, and Siwei Lyu. Exposing deep fakes using inconsistent head poses. In IEEE International Conference on Acoustics, Speech and Signal Processing, pages 8261-8265. IEEE, 2019.
 - [92] Wenxuan Zhang, Xiaodong Cun, Xuan Wang, Yong Zhang, Xi Shen, Yu Guo, Ying Shan, and Fei Wang. Sadtalker: Learning realistic 3d motion coefficients for stylized audio-driven single image talking face animation. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, pages 8652-8661, 2023.
 - [93] Jian Zhao and Hui Zhang. Thin-plate spline motion model for image animation. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, pages 3657-3666, 2022.
+
+<!-- page-break:16 -->
 
 - [94] Tianfei Zhou, Wenguan Wang, Zhiyuan Liang, and Jianbing Shen. Face forensics in the wild. In Proceedings of the IEEE/CVF conference on computer vision and pattern recognition, pages 5778-5788, 2021.
 - [95] Mingjian Zhu, Hanting Chen, Qiangyu Yan, Xudong Huang, Guanyu Lin, Wei Li, Zhijun Tu, Hailin Hu, Jie Hu, and Yunhe Wang. Genimage: A million-scale benchmark for detecting ai-generated image. Advances in Neural Information Processing Systems, 36, 2024.
@@ -408,6 +440,8 @@ We would like to express our profound gratitude to all the individuals (all coll
 19. (e) Did you discuss whether the data you are using/curating contains personally identifiable information or offensive content? [Yes] All real people in our work are directly cited from the previous/existing research works.
 5. If you used crowdsourcing or conducted research with human subjects...
 21. (a) Did you include the full text of instructions given to participants and screenshots, if applicable? [No]
+
+<!-- page-break:17 -->
 
 - (b) Did you describe any potential participant risks, with links to Institutional Review Board (IRB) approvals, if applicable? [No]
 - (c) Did you include the estimated hourly wage paid to participants and the total amount spent on participant compensation? [No]
@@ -451,6 +485,8 @@ Based on previous survey [50], deepfake techniques can be typically classified i
 
 (1) Face-swapping: This paper classifies the face-swapping technique into two domains: DF-family and FS-family. (i) DF-family involves creating a mask around the facial region (some even include the neck [46]) and blending the generated deepfake face back into the background image using that mask. Most existing and famous face forgery datasets, such as FF-DF [62], Celeb-DF [42] and DFDC [16], belong to this line. (ii) FS-family methods represent another significant category in face-swapping deepfake generation. These methods typically involve the use of an identity-background encoder. It disentangles a face image's identity and background information during encoding. Notably, these methods directly generate all content, even the background. Much recent face-swapping research works [85; 9] and popular software (e.g., Roop [60]) are within this line.
 
+<!-- page-break:18 -->
+
 (2) Face-reenactment: Generally, this technique can be used to modify source faces, imitating the actions or expressions of another face. Differing from face-swapping, face-reenactment techniques are rarely considered in existing datasets. Two commonly used reenactment-based forgeries are Face2Face [72] and NeuralTextures [71]. These two forgeries are implemented in the FF++ dataset. Face2Face employs pairs of original and target faces, using key facial points to generate varied expressions, while NeuralTexture uses rendered images from a 3D face model to migrate expressions. Although these forgeries achieve more realistic visual synthetic results compared to their faceswapping counterparts in FF++, Due to the amazingly rapid development of the AIGC technologies (e.g., Digital Human), these relatively old-fashioned methods cannot represent the modern' SoTA reenactment methods. Our DF40 implements 13 face-reenactment methods in total, including the classical animation [67; 68], SoTA's audio-based driven methods [92; 55], image-based driven methods [82; 26; 5]. We also include the well-known best face generation technique, HeyGen, in our dataset for evaluation.
 
 (3) Entire Face Synthesis: This technique can be generally treated as "Face AIGC." With the rapid development of AIGCs, this technique has achieved remarkably notable improvement. The two widely used technologies to generate synthesis faces are GAN (e.g., StarGAN [10]) and Diffusion models (e.g., StableDiffusion [59]).
@@ -469,383 +505,393 @@ We used a total of 40 distinct deepfake generation/synthesis methods (see Tab. 2
 
 4. InSwapper [28] InSwapper is another SOTA method for single-frame face swapping that is also utilized in Roop [60]. Similar to SimSwap, it has not been widely applied to existing academic
 
-![Image](parsed/df%2040/images/image_000008_1c9760fb13dd3079cc7d38f39f2aa13dbdea290b02d3da454aa66c828a5ef9bc.png)
+<!-- page-break:19 -->
 
-![Image](parsed/df%2040/images/image_000009_5de2bd5c1b16d6fb0d230ae0d1c21d7ed11bc21c17d872af2089c83580e9b199.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000008_1c9760fb13dd3079cc7d38f39f2aa13dbdea290b02d3da454aa66c828a5ef9bc.png)
+
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000009_5de2bd5c1b16d6fb0d230ae0d1c21d7ed11bc21c17d872af2089c83580e9b199.png)
 
 FF++ (real data)
 
-![Image](parsed/df%2040/images/image_000010_1b9fe14f7d4fb873d46aabf7a36e84c6f2c7bca5328e7fc7c35dd2125c5cb0f9.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000010_1b9fe14f7d4fb873d46aabf7a36e84c6f2c7bca5328e7fc7c35dd2125c5cb0f9.png)
 
 0
 
-![Image](parsed/df%2040/images/image_000011_7e2f97746a5df93895e60ad40a3f2b646f8850636d0aa4e90aef346600920d6b.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000011_7e2f97746a5df93895e60ad40a3f2b646f8850636d0aa4e90aef346600920d6b.png)
 
-![Image](parsed/df%2040/images/image_000012_772e666bdc89a948252d92c62a8a635b75a02d1b96f75a4fad6e3ac4bcf85be3.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000012_772e666bdc89a948252d92c62a8a635b75a02d1b96f75a4fad6e3ac4bcf85be3.png)
 
-![Image](parsed/df%2040/images/image_000013_4ee44f9bd616d39dbc7f1691e266c53ce95c660cd87f10b57fd3458ac1b71dc9.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000013_4ee44f9bd616d39dbc7f1691e266c53ce95c660cd87f10b57fd3458ac1b71dc9.png)
 
-![Image](parsed/df%2040/images/image_000014_886156d395cc2fece7b56d00ffa50a8546da956575dfbfc6e8f147b2ef6c0d8a.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000014_886156d395cc2fece7b56d00ffa50a8546da956575dfbfc6e8f147b2ef6c0d8a.png)
 
 D
 
 UniFace
 
-![Image](parsed/df%2040/images/image_000015_b2f88fc37b09d36905a0043ec08ca95140bdf4210be242f009941333bff93b66.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000015_b2f88fc37b09d36905a0043ec08ca95140bdf4210be242f009941333bff93b66.png)
 
-![Image](parsed/df%2040/images/image_000016_038d5f251975c71cd3cb2d1344e18bc3e41eb957eaf144b9dcf433803e8ad011.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000016_038d5f251975c71cd3cb2d1344e18bc3e41eb957eaf144b9dcf433803e8ad011.png)
 
-![Image](parsed/df%2040/images/image_000017_9df5475656273135e73e5cee70062773305096077c2d1af2bf441a8d299c02ce.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000017_9df5475656273135e73e5cee70062773305096077c2d1af2bf441a8d299c02ce.png)
 
 SimSwap
 
-![Image](parsed/df%2040/images/image_000018_17bee2c35cfd3891aab4516bc1d08aa4f191c802ee0508376edbcf0add020c99.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000018_17bee2c35cfd3891aab4516bc1d08aa4f191c802ee0508376edbcf0add020c99.png)
 
 MobileSwap
 
-![Image](parsed/df%2040/images/image_000019_dcb8c8fe6aceb09dc247ce8127de9295ba1814bb363f588ecbc92350b114c36f.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000019_dcb8c8fe6aceb09dc247ce8127de9295ba1814bb363f588ecbc92350b114c36f.png)
 
 InSwap
 
-![Image](parsed/df%2040/images/image_000020_0c2ca042bc9679718077293fd6daca0530d673ad2f4d1b48cd05a0ec190824b0.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000020_0c2ca042bc9679718077293fd6daca0530d673ad2f4d1b48cd05a0ec190824b0.png)
 
 FSGAN
 
-![Image](parsed/df%2040/images/image_000021_479a44b2b607e0943dca5781e38832761dab7915b16cff1a757a88e9b52477d6.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000021_479a44b2b607e0943dca5781e38832761dab7915b16cff1a757a88e9b52477d6.png)
 
 FaceDancer
 
-![Image](parsed/df%2040/images/image_000022_da96e7204033cd35c9a1f2b89751bcedcdf48f5507c36c86edb4338b5e46ce94.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000022_da96e7204033cd35c9a1f2b89751bcedcdf48f5507c36c86edb4338b5e46ce94.png)
 
 BlendFace
 
-![Image](parsed/df%2040/images/image_000023_0922c5e027123258c2d9ff6d6a8670d15987e4b772d5d885d0a6a816ea863b4b.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000023_0922c5e027123258c2d9ff6d6a8670d15987e4b772d5d885d0a6a816ea863b4b.png)
 
 e4s
 
-![Image](parsed/df%2040/images/image_000024_ac5c159deb374abf2cd37fa90a7820879a2d5f6578a56ea254fba425fd158ad8.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000024_ac5c159deb374abf2cd37fa90a7820879a2d5f6578a56ea254fba425fd158ad8.png)
 
 FaceSwap
 
-![Image](parsed/df%2040/images/image_000025_a1fb864813ade70845bb486ce537528f13b32fc2c4ee75a4b1a18aaf9a374e5d.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000025_a1fb864813ade70845bb486ce537528f13b32fc2c4ee75a4b1a18aaf9a374e5d.png)
 
-![Image](parsed/df%2040/images/image_000026_42fd78044b64acc4a2301d783b334759e4e342f9de3754bb8507f0170e4ce53c.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000026_42fd78044b64acc4a2301d783b334759e4e342f9de3754bb8507f0170e4ce53c.png)
 
-![Image](parsed/df%2040/images/image_000027_4f154fb66dc166f126ef90b073c602d01fdb11537f98ea492168c10c4ca618ee.png)
-
-0
-
-![Image](parsed/df%2040/images/image_000028_9668a3200dd362f4b7cb9c44d13063d00137efc2f151344a66c5446f386a2e27.png)
-
-![Image](parsed/df%2040/images/image_000029_ec5517bea01fa98943c1b182981f14968fd703bbc2455181678727cc749feb9e.png)
-
-![Image](parsed/df%2040/images/image_000030_30fdcfc40db93d4d3d5017e87f4cd3aee69d0d5034cc3e65a679c2a2d1209c88.png)
-
-![Image](parsed/df%2040/images/image_000031_1614c555e9b66df6b903243099f56f8c67eebaa7f2a1ff97a30fb82c2ad05e19.png)
-
-![Image](parsed/df%2040/images/image_000032_dbd2ff0912f010d66830ad78e7c09559fcd5fcd9dee184b03f54b569b9847436.png)
-
-![Image](parsed/df%2040/images/image_000033_60bdc5f20557c876c4b94db25002821c4694070b041218ebd4ff63658115a58d.png)
-
-![Image](parsed/df%2040/images/image_000034_012fbf2d50be6a6f834d9ef7f77b37598c5b0ea91d0a1db15614bed8235bc7c6.png)
-
-![Image](parsed/df%2040/images/image_000035_5a4cde3d5fc5e913447c78399722390f85f6d1fd52d04648a43537668b78209f.png)
-
-![Image](parsed/df%2040/images/image_000036_dd56cd273d961d9679bfa864e11862c52b963f6c81364e3cdb79060c5aa3f459.png)
-
-![Image](parsed/df%2040/images/image_000037_ecbf60080fd3efd71650349587c53904a2f83c5ceac4646c30efd12851a8b9d5.png)
-
-![Image](parsed/df%2040/images/image_000038_cbda6e37ef3840db4310e6e955a1111c968ef8f3404e224b6c4272854649ae28.png)
-
-![Image](parsed/df%2040/images/image_000039_043778ad2cf97ef896c29ddba8ddba066203d21c878251712a51cbe01b6c7429.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000027_4f154fb66dc166f126ef90b073c602d01fdb11537f98ea492168c10c4ca618ee.png)
 
 0
 
-![Image](parsed/df%2040/images/image_000040_fe52fbeaae5276454fe5d809357cb6210ac901635577a951ccf034b6caea9414.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000028_9668a3200dd362f4b7cb9c44d13063d00137efc2f151344a66c5446f386a2e27.png)
 
-![Image](parsed/df%2040/images/image_000041_409cb26dbf81c4b8cd16d1e6c1e913c85085cf7b4221c1c11a84252958ccbbb2.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000029_ec5517bea01fa98943c1b182981f14968fd703bbc2455181678727cc749feb9e.png)
+
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000030_30fdcfc40db93d4d3d5017e87f4cd3aee69d0d5034cc3e65a679c2a2d1209c88.png)
+
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000031_1614c555e9b66df6b903243099f56f8c67eebaa7f2a1ff97a30fb82c2ad05e19.png)
+
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000032_dbd2ff0912f010d66830ad78e7c09559fcd5fcd9dee184b03f54b569b9847436.png)
+
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000033_60bdc5f20557c876c4b94db25002821c4694070b041218ebd4ff63658115a58d.png)
+
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000034_012fbf2d50be6a6f834d9ef7f77b37598c5b0ea91d0a1db15614bed8235bc7c6.png)
+
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000035_5a4cde3d5fc5e913447c78399722390f85f6d1fd52d04648a43537668b78209f.png)
+
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000036_dd56cd273d961d9679bfa864e11862c52b963f6c81364e3cdb79060c5aa3f459.png)
+
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000037_ecbf60080fd3efd71650349587c53904a2f83c5ceac4646c30efd12851a8b9d5.png)
+
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000038_cbda6e37ef3840db4310e6e955a1111c968ef8f3404e224b6c4272854649ae28.png)
+
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000039_043778ad2cf97ef896c29ddba8ddba066203d21c878251712a51cbe01b6c7429.png)
 
 0
 
-![Image](parsed/df%2040/images/image_000042_cf4eccdfc9a4c062b5a73191b843250f21211a69e34f04e9de603e65544f20f4.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000040_fe52fbeaae5276454fe5d809357cb6210ac901635577a951ccf034b6caea9414.png)
 
-![Image](parsed/df%2040/images/image_000043_dc248ea9ba80a99439a5dc300d84e61f18a41cdddba17ae46e9857592c3c00c8.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000041_409cb26dbf81c4b8cd16d1e6c1e913c85085cf7b4221c1c11a84252958ccbbb2.png)
+
+0
+
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000042_cf4eccdfc9a4c062b5a73191b843250f21211a69e34f04e9de603e65544f20f4.png)
+
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000043_dc248ea9ba80a99439a5dc300d84e61f18a41cdddba17ae46e9857592c3c00c8.png)
 
 B
 
-![Image](parsed/df%2040/images/image_000044_a830a43c78895938990a0f8b74f9692b0fbc5263f1fae1ad18650d429eb1c0e7.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000044_a830a43c78895938990a0f8b74f9692b0fbc5263f1fae1ad18650d429eb1c0e7.png)
 
 D
 
-![Image](parsed/df%2040/images/image_000045_29ddc1b2238f4b15fb80b47f6260fee681853b1eed5747d2dbb8be9fa9a215da.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000045_29ddc1b2238f4b15fb80b47f6260fee681853b1eed5747d2dbb8be9fa9a215da.png)
 
 D
 
-![Image](parsed/df%2040/images/image_000046_a34a34ec08ae78d26396a49515aa05cfc8e9a7b37bca9e004da43ba958bbe5d6.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000046_a34a34ec08ae78d26396a49515aa05cfc8e9a7b37bca9e004da43ba958bbe5d6.png)
 
 D
 
-![Image](parsed/df%2040/images/image_000047_8b9c5c721bdcc32d81b1f67f109bbf72ec096b70e09645f712d728a54e9f0573.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000047_8b9c5c721bdcc32d81b1f67f109bbf72ec096b70e09645f712d728a54e9f0573.png)
 
-![Image](parsed/df%2040/images/image_000048_508aac4e9c3daba28749fe8c861524e2a189d27eb1c96bd0194d89d64408a5ef.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000048_508aac4e9c3daba28749fe8c861524e2a189d27eb1c96bd0194d89d64408a5ef.png)
 
-![Image](parsed/df%2040/images/image_000049_76ad6fc391ff53025b43602b62483196e19d337718a294479e0b86079f0233bf.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000049_76ad6fc391ff53025b43602b62483196e19d337718a294479e0b86079f0233bf.png)
 
-![Image](parsed/df%2040/images/image_000050_d2e0d8ac6745ab23d4f9eeefa6c86e67caeb17569b6ea7295a6e359fe6b65588.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000050_d2e0d8ac6745ab23d4f9eeefa6c86e67caeb17569b6ea7295a6e359fe6b65588.png)
 
-![Image](parsed/df%2040/images/image_000051_f34da622ecbd842254d23b352bd2a0d4c0f01dc7496723ceae32a3725d57da97.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000051_f34da622ecbd842254d23b352bd2a0d4c0f01dc7496723ceae32a3725d57da97.png)
 
-![Image](parsed/df%2040/images/image_000052_7156f51bcc05198898d29c7cf8e07a0c1d9d8e9f374a3cbfb654b6fe999740a1.png)
-
-D
-
-![Image](parsed/df%2040/images/image_000053_abc611a809bc43cf8633a85e0babbb37281d49188c4651379c5eda73fb4c41c3.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000052_7156f51bcc05198898d29c7cf8e07a0c1d9d8e9f374a3cbfb654b6fe999740a1.png)
 
 D
 
-![Image](parsed/df%2040/images/image_000054_acc3b73e16559ce20866db41eeb2c293da2b96013c6f5a392dbb695056bd4988.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000053_abc611a809bc43cf8633a85e0babbb37281d49188c4651379c5eda73fb4c41c3.png)
 
 D
 
-![Image](parsed/df%2040/images/image_000055_743a9cb6eb3b188c3e20ddc64314f70d8530c1d838d7a0b2df3347ab949f7042.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000054_acc3b73e16559ce20866db41eeb2c293da2b96013c6f5a392dbb695056bd4988.png)
 
 D
 
-![Image](parsed/df%2040/images/image_000056_bfb5b8ea44b2dd23a2b64b4ea1e6a91b1d063e8587cd28fda4cc22f8b5bedc59.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000055_743a9cb6eb3b188c3e20ddc64314f70d8530c1d838d7a0b2df3347ab949f7042.png)
 
-![Image](parsed/df%2040/images/image_000057_1fec7b80734076ce16888a8e869de7f802863cf72eb839de10d3e0ae933e71a7.png)
+D
+
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000056_bfb5b8ea44b2dd23a2b64b4ea1e6a91b1d063e8587cd28fda4cc22f8b5bedc59.png)
+
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000057_1fec7b80734076ce16888a8e869de7f802863cf72eb839de10d3e0ae933e71a7.png)
 
 ID
 
-![Image](parsed/df%2040/images/image_000058_d927344e5707b8864d3328eab626e5877d982a43653c78f08d8badca4f66f391.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000058_d927344e5707b8864d3328eab626e5877d982a43653c78f08d8badca4f66f391.png)
 
-![Image](parsed/df%2040/images/image_000059_f60917288516886a6e458298901b54229ac2f221a31507542906aef1e7bd7460.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000059_f60917288516886a6e458298901b54229ac2f221a31507542906aef1e7bd7460.png)
 
-![Image](parsed/df%2040/images/image_000060_4c596d6cb71648b8c781784f7384041e9032063ccad6a1528467626f70faafbf.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000060_4c596d6cb71648b8c781784f7384041e9032063ccad6a1528467626f70faafbf.png)
 
-![Image](parsed/df%2040/images/image_000061_14df4cd1c79f61722531205372762b8a478a41df890bfc2a8ac1484992d6c007.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000061_14df4cd1c79f61722531205372762b8a478a41df890bfc2a8ac1484992d6c007.png)
 
 Figure 10: Illustration of visual examples for all FS (face-swapping) generated data on the FF domain.
 
-![Image](parsed/df%2040/images/image_000062_df35da9a18c13002bc5342edf39adc50fe7abd974e726d16a90dd1794acfa84c.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000062_df35da9a18c13002bc5342edf39adc50fe7abd974e726d16a90dd1794acfa84c.png)
 
 deepfake datasets, but many applications in the real world due to its convenience and effectiveness. InSwapper can achieve good single-frame face swap results, but it performs average in terms of
 
-![Image](parsed/df%2040/images/image_000063_8ac2c1541f8ffc8e193b7d0f999bcbab299ccbe1288a4712bc70527dc1afb251.png)
+<!-- page-break:20 -->
 
-![Image](parsed/df%2040/images/image_000064_8503b149b8dbf9c77d20d85cc289511b7bfc74d995fa081ca685e7caebd652b2.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000063_8ac2c1541f8ffc8e193b7d0f999bcbab299ccbe1288a4712bc70527dc1afb251.png)
+
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000064_8503b149b8dbf9c77d20d85cc289511b7bfc74d995fa081ca685e7caebd652b2.png)
 
 FF++ (real data)
 
-![Image](parsed/df%2040/images/image_000065_6858e33700bd27c67a81403dab6f34893ff758291db128d944db477afe5deff6.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000065_6858e33700bd27c67a81403dab6f34893ff758291db128d944db477afe5deff6.png)
 
 0
 
-![Image](parsed/df%2040/images/image_000066_8c2fe40d8ff4143d1fd304bc364714c54ac45648a7e18b9cdd45394d84941c43.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000066_8c2fe40d8ff4143d1fd304bc364714c54ac45648a7e18b9cdd45394d84941c43.png)
 
 D
 
-![Image](parsed/df%2040/images/image_000067_07a6c1c63b4f566f07a4218e1c8d655a5870f10adf90dbc72aa285b89bf6d5bf.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000067_07a6c1c63b4f566f07a4218e1c8d655a5870f10adf90dbc72aa285b89bf6d5bf.png)
 
-![Image](parsed/df%2040/images/image_000068_348889f43fb4678e2a0cd605b8eaba37656525a039ce98e78998eb42db2e4130.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000068_348889f43fb4678e2a0cd605b8eaba37656525a039ce98e78998eb42db2e4130.png)
 
-![Image](parsed/df%2040/images/image_000069_062e25005e8e0fc802490bcc499f12bbaf5d45009144eae7da7e9afabf7512ac.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000069_062e25005e8e0fc802490bcc499f12bbaf5d45009144eae7da7e9afabf7512ac.png)
 
 D
 
 周
 
-![Image](parsed/df%2040/images/image_000070_8f2396c7f4ac1ae05a37f61ff5af3dae9498d544a9fd7bf5c7c8f43d640a0390.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000070_8f2396c7f4ac1ae05a37f61ff5af3dae9498d544a9fd7bf5c7c8f43d640a0390.png)
 
 H
 
-![Image](parsed/df%2040/images/image_000071_38cd320677be559832353add310830961e068b9fb36bee9842a48dbbb28f531c.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000071_38cd320677be559832353add310830961e068b9fb36bee9842a48dbbb28f531c.png)
 
 Pirender
 
-![Image](parsed/df%2040/images/image_000072_81cd163059e3bea6871ecc68671837d2ab4fa374e2765cb7dc836f5c2428d42d.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000072_81cd163059e3bea6871ecc68671837d2ab4fa374e2765cb7dc836f5c2428d42d.png)
 
 OneShot
 
-![Image](parsed/df%2040/images/image_000073_bd7712e0b2ac74ac5a2af8e1e2184c4173efb0d44190a4ce9c380cfe6fa329fc.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000073_bd7712e0b2ac74ac5a2af8e1e2184c4173efb0d44190a4ce9c380cfe6fa329fc.png)
 
 HyperReenact
 
-![Image](parsed/df%2040/images/image_000074_826af53ea5941082b5d21d4cb3c0c93fdd33e4b29d126caf096257770678d0dd.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000074_826af53ea5941082b5d21d4cb3c0c93fdd33e4b29d126caf096257770678d0dd.png)
 
 FOMM
 
-![Image](parsed/df%2040/images/image_000075_ee67b0b9083f6b0d57ca18729fdfd9062107582bdd9702e2674438706711680a.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000075_ee67b0b9083f6b0d57ca18729fdfd9062107582bdd9702e2674438706711680a.png)
 
-![Image](parsed/df%2040/images/image_000076_08734467dd0cbac39af053b2a3807388c34cddce3ec9ea313e3c7eb6d2634f20.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000076_08734467dd0cbac39af053b2a3807388c34cddce3ec9ea313e3c7eb6d2634f20.png)
 
 FS\_vid2vid
 
-![Image](parsed/df%2040/images/image_000077_d945ab097672e152f1c04f5a19b549781adeabcadc97c5e5badbb1e5845d7431.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000077_d945ab097672e152f1c04f5a19b549781adeabcadc97c5e5badbb1e5845d7431.png)
 
 MRAA
 
-![Image](parsed/df%2040/images/image_000078_00528f3fd037c9cc533199f7560ad7c7ddb7f917e9a5887c92755a14fd7de70a.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000078_00528f3fd037c9cc533199f7560ad7c7ddb7f917e9a5887c92755a14fd7de70a.png)
 
-![Image](parsed/df%2040/images/image_000079_6fa4fef70c36d1108b91c488fa8aceb26cde92de75ec6be3b211837386516b56.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000079_6fa4fef70c36d1108b91c488fa8aceb26cde92de75ec6be3b211837386516b56.png)
 
 0
 
-![Image](parsed/df%2040/images/image_000080_d8c3f355db2f73238a4a1078ba8bc7d31d0e8a15fbef323140391150967eb6ed.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000080_d8c3f355db2f73238a4a1078ba8bc7d31d0e8a15fbef323140391150967eb6ed.png)
 
 LO
 
-![Image](parsed/df%2040/images/image_000081_c79eea7a631f9d6c7f8d982464a9a4b349987148fca07c3e70e9e2adf6c68dd4.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000081_c79eea7a631f9d6c7f8d982464a9a4b349987148fca07c3e70e9e2adf6c68dd4.png)
 
-![Image](parsed/df%2040/images/image_000082_87a2a90055e72ecc799b995126d3449a705698c0224f571219a39f23f8eea150.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000082_87a2a90055e72ecc799b995126d3449a705698c0224f571219a39f23f8eea150.png)
 
 香
 
-![Image](parsed/df%2040/images/image_000083_59019d3a069516c70bbeab72149ff74ef733994168c474fa15646de10691b961.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000083_59019d3a069516c70bbeab72149ff74ef733994168c474fa15646de10691b961.png)
 
 D
 
-![Image](parsed/df%2040/images/image_000084_db29f76c71fc9cddc552b54d671314f555fc6ee25704d16b630116eb69ddb761.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000084_db29f76c71fc9cddc552b54d671314f555fc6ee25704d16b630116eb69ddb761.png)
 
 D
 
-![Image](parsed/df%2040/images/image_000085_975f7fcd7482bda62dba0040a91436872372b2119486d654ef3db27ea2560858.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000085_975f7fcd7482bda62dba0040a91436872372b2119486d654ef3db27ea2560858.png)
 
-![Image](parsed/df%2040/images/image_000086_b1dcae339492fc71e0e725979050c99cce5a3a2376da818764624a4ffcdc3798.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000086_b1dcae339492fc71e0e725979050c99cce5a3a2376da818764624a4ffcdc3798.png)
 
 C
 
-![Image](parsed/df%2040/images/image_000087_8a6d9fb4f0228465cc7c244c58bfcd7653131587a761a181d99c30a0bfb1b4aa.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000087_8a6d9fb4f0228465cc7c244c58bfcd7653131587a761a181d99c30a0bfb1b4aa.png)
 
-![Image](parsed/df%2040/images/image_000088_16153089537b7cbb49e65c4267bbea4222f139175cb8a006a4cb202e86ad9ceb.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000088_16153089537b7cbb49e65c4267bbea4222f139175cb8a006a4cb202e86ad9ceb.png)
 
 国
 
-![Image](parsed/df%2040/images/image_000089_4a8c7a00da27f08a18c3262bc384a75f5ef3bb615a286c4ec392f5578ed5a169.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000089_4a8c7a00da27f08a18c3262bc384a75f5ef3bb615a286c4ec392f5578ed5a169.png)
 
 O
 
 香
 
-![Image](parsed/df%2040/images/image_000090_03cb8fb67dcac9cb48a1f9bae81fb0cf1a0808559772de84dd61432bb7e18614.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000090_03cb8fb67dcac9cb48a1f9bae81fb0cf1a0808559772de84dd61432bb7e18614.png)
 
 C
 
-![Image](parsed/df%2040/images/image_000091_9b3dec2b5682beffd1152672b1173166d26edcaa6a8a8a33280218f5883eab1d.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000091_9b3dec2b5682beffd1152672b1173166d26edcaa6a8a8a33280218f5883eab1d.png)
 
-![Image](parsed/df%2040/images/image_000092_eb9d0b4cd49e8d7c09d6330c0d41db37d219eb7f94bedf42fb19c00f423748d1.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000092_eb9d0b4cd49e8d7c09d6330c0d41db37d219eb7f94bedf42fb19c00f423748d1.png)
 
-![Image](parsed/df%2040/images/image_000093_da9707321c2a79744f590057c3d97b74df262ac5bfdcb6ffc834f35791702017.png)
-
-D
-
-![Image](parsed/df%2040/images/image_000094_610e842b0b4a6dfd19c2fa4c9af5b48d818a522f2952533b3a9ac04be1f2636d.png)
-
-![Image](parsed/df%2040/images/image_000095_b67e27503a3a862017634de48f5e2254a8f7b2796c0064150b6a2648fcf94b0e.png)
-
-![Image](parsed/df%2040/images/image_000096_c1bdb732a74373a3e3afd9dddccc822b7c477f6871c556c4d448ab69614ea5ce.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000093_da9707321c2a79744f590057c3d97b74df262ac5bfdcb6ffc834f35791702017.png)
 
 D
 
-![Image](parsed/df%2040/images/image_000097_4e43c98b5f3e3ff34a86d6668e9a17720cfd1017ce5a96fced9d80e32a91ef3e.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000094_610e842b0b4a6dfd19c2fa4c9af5b48d818a522f2952533b3a9ac04be1f2636d.png)
 
-![Image](parsed/df%2040/images/image_000098_51ab9e20d01d35cb9adea0e5bc905374d1bb85b5fc561ac5ea9d3240f4f57da4.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000095_b67e27503a3a862017634de48f5e2254a8f7b2796c0064150b6a2648fcf94b0e.png)
 
-![Image](parsed/df%2040/images/image_000099_b0a1e1347d200dabc94c013fd4f281e10a67177ac95aae1b8e7e756af671340c.png)
-
-![Image](parsed/df%2040/images/image_000100_9718e448556782fd2b34141f636d57e9c62b7ef0914ef8d52f7fe3eafeab0ad3.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000096_c1bdb732a74373a3e3afd9dddccc822b7c477f6871c556c4d448ab69614ea5ce.png)
 
 D
 
-![Image](parsed/df%2040/images/image_000101_c0b477bb5af9e86083a33dd38225bf1a24dcbb94f43ab6045637e217956519cb.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000097_4e43c98b5f3e3ff34a86d6668e9a17720cfd1017ce5a96fced9d80e32a91ef3e.png)
+
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000098_51ab9e20d01d35cb9adea0e5bc905374d1bb85b5fc561ac5ea9d3240f4f57da4.png)
+
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000099_b0a1e1347d200dabc94c013fd4f281e10a67177ac95aae1b8e7e756af671340c.png)
+
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000100_9718e448556782fd2b34141f636d57e9c62b7ef0914ef8d52f7fe3eafeab0ad3.png)
 
 D
 
-![Image](parsed/df%2040/images/image_000102_effce4452a965d5840d3913ee2e880c114ba6bae6295b5219dba999e0b401720.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000101_c0b477bb5af9e86083a33dd38225bf1a24dcbb94f43ab6045637e217956519cb.png)
+
+D
+
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000102_effce4452a965d5840d3913ee2e880c114ba6bae6295b5219dba999e0b401720.png)
 
 D
 
 TPSM
 
-![Image](parsed/df%2040/images/image_000103_de0d4222cfb23fbe77c5ec3cfa6ce356dc76c2f230e34360a3683c9e1930144b.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000103_de0d4222cfb23fbe77c5ec3cfa6ce356dc76c2f230e34360a3683c9e1930144b.png)
 
 MCNet
 
-![Image](parsed/df%2040/images/image_000104_6918684acd9a989605e8d5ddc0d1085f301d5ad8e0b5d853fd76d487d85032f1.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000104_6918684acd9a989605e8d5ddc0d1085f301d5ad8e0b5d853fd76d487d85032f1.png)
 
 Lia
 
-![Image](parsed/df%2040/images/image_000105_0143823ffd9cf1b868dad1b2a2290145a9349247baaaa9d8e1c8021c11d8b307.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000105_0143823ffd9cf1b868dad1b2a2290145a9349247baaaa9d8e1c8021c11d8b307.png)
 
 DaGAN
 
-![Image](parsed/df%2040/images/image_000106_b913036cc3e7b31a64ca10e25cff0473a09b0030bc31d586f983797941a4393c.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000106_b913036cc3e7b31a64ca10e25cff0473a09b0030bc31d586f983797941a4393c.png)
 
-![Image](parsed/df%2040/images/image_000107_02a393a0b4887871bf0358fb262d198581a11a92c5f974f4e3ea9ce18ff1a502.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000107_02a393a0b4887871bf0358fb262d198581a11a92c5f974f4e3ea9ce18ff1a502.png)
 
-![Image](parsed/df%2040/images/image_000108_84cf7676f0e1df0c8504faf61c4eef88e59d9d904031849960dc0e89881f01e1.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000108_84cf7676f0e1df0c8504faf61c4eef88e59d9d904031849960dc0e89881f01e1.png)
 
-![Image](parsed/df%2040/images/image_000109_ff84b47a070c1712f89c98e4a52c843fa26fabe31a356658aa5ffd511db76002.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000109_ff84b47a070c1712f89c98e4a52c843fa26fabe31a356658aa5ffd511db76002.png)
 
-![Image](parsed/df%2040/images/image_000110_f151acd83d475448eb7978c1627ec5b8fe09682102bfda2237463a2fc27c8b40.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000110_f151acd83d475448eb7978c1627ec5b8fe09682102bfda2237463a2fc27c8b40.png)
 
 0
 
-![Image](parsed/df%2040/images/image_000111_74fa831cc803ad8c6c0ecb5d285a3631c64762656a072ffd6c356594ce33ddfc.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000111_74fa831cc803ad8c6c0ecb5d285a3631c64762656a072ffd6c356594ce33ddfc.png)
 
-![Image](parsed/df%2040/images/image_000112_dc1643aaaee732e14674bd60527b6141b5d85fe57a2ee72d00cc5e243270b3e3.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000112_dc1643aaaee732e14674bd60527b6141b5d85fe57a2ee72d00cc5e243270b3e3.png)
 
-![Image](parsed/df%2040/images/image_000113_2136ff84875835b6a25d20e9771d48775aa639da95be7e2c4433da9087fe88fa.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000113_2136ff84875835b6a25d20e9771d48775aa639da95be7e2c4433da9087fe88fa.png)
 
-![Image](parsed/df%2040/images/image_000114_ea62160dd7fe7871e27b268925ada49bc3dd53a0a3c6a893fd9e32c8bf13e4d8.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000114_ea62160dd7fe7871e27b268925ada49bc3dd53a0a3c6a893fd9e32c8bf13e4d8.png)
 
-![Image](parsed/df%2040/images/image_000115_efa2b81104155d1f9a4a6c6e5a506a10e960876555e564256fbb576372123421.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000115_efa2b81104155d1f9a4a6c6e5a506a10e960876555e564256fbb576372123421.png)
 
 D
 
 店
 
-![Image](parsed/df%2040/images/image_000116_6a07d59bcc6fb933b86b933f3f534ff8e1c8c107ca551f550f25f51afbc744f4.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000116_6a07d59bcc6fb933b86b933f3f534ff8e1c8c107ca551f550f25f51afbc744f4.png)
 
 D
 
-![Image](parsed/df%2040/images/image_000117_27c386c4a168f4c61cec688afeeb2ba00e6c438f11888451adacf3e5744746d9.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000117_27c386c4a168f4c61cec688afeeb2ba00e6c438f11888451adacf3e5744746d9.png)
 
-![Image](parsed/df%2040/images/image_000118_af8595db4bc89a209b5554c177704d31ccaae533a6a0aff578919e14d2e9a89b.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000118_af8595db4bc89a209b5554c177704d31ccaae533a6a0aff578919e14d2e9a89b.png)
 
 店
 
-![Image](parsed/df%2040/images/image_000119_61a89a10482ebb7f93d16a9b8a471391f2c6dc12ab24263c15e59aececf70d49.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000119_61a89a10482ebb7f93d16a9b8a471391f2c6dc12ab24263c15e59aececf70d49.png)
 
 D
 
-![Image](parsed/df%2040/images/image_000120_7241975a65f8fb3929bab07470f90c8e90c80798023acf286f2ede378495c70d.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000120_7241975a65f8fb3929bab07470f90c8e90c80798023acf286f2ede378495c70d.png)
 
 D
 
-![Image](parsed/df%2040/images/image_000121_a995d5dbf1fea997b54344081cb2b7d92762e980c06c31916519621249f5f4f8.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000121_a995d5dbf1fea997b54344081cb2b7d92762e980c06c31916519621249f5f4f8.png)
 
 Figure 11: Illustration of visual examples for all FR (face-reenactment) generated data on the FF domain.
 
-![Image](parsed/df%2040/images/image_000122_88d5764150eb431e61d3b06b5d104e6439697b9c913fedebdd8838f162196b9f.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000122_88d5764150eb431e61d3b06b5d104e6439697b9c913fedebdd8838f162196b9f.png)
 
 frame-to-frame consistency. InSwapper uses advanced deep learning techniques, including GANs and attention mechanisms, to generate realistic face swaps. Its main focus is on preserving the identity of the target face while seamlessly blending the source face's features. We use the popular code repository from https://github.com/haofanwang/inswapper/ for implementation.
 
+<!-- page-break:21 -->
+
 VQGAN
 
-![Image](parsed/df%2040/images/image_000123_5c8f02726e6a551464348db4c56d4643c05c95ecc1c2f14a515b636b1559d0db.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000123_5c8f02726e6a551464348db4c56d4643c05c95ecc1c2f14a515b636b1559d0db.png)
 
 Figure 12: Illustration of visual examples for all EFS (entire face synthesis) generated data on the FF domain.
 
 5. BlendFace [66] BlendFace is the latest SOTA face-swapping method that was published in ICCV 2023. It has a good performance in single-frame face swapping, but the continuous frames in the video tend to jitter noticeably. BlendFace employs advanced deep learning techniques, such as GANs, to generate high-quality face swaps. It also focuses on maintaining the target face's identity while blending the source face's features seamlessly. The main challenge faced by BlendFace is to achieve a stable and consistent face swap across video frames, which remains an area for future research. We use the official code from https://github.com/mapooon/BlendFace/ for implementation.
 
+<!-- page-break:22 -->
+
 DeepFaceLab (FS)
 
-![Image](parsed/df%2040/images/image_000124_4e0717453cfc7c2d6c63b0a48f092aa1ad2c427e2784b2522200d1315fbca8bb.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000124_4e0717453cfc7c2d6c63b0a48f092aa1ad2c427e2784b2522200d1315fbca8bb.png)
 
 Figure 13: Illustration of visual examples for all unknown forgery data, including all types like FS, FR, EFS, and FE, simulating the real-world SoTA deepfakes.
 
 6. UniFace [85] UniFace is another recent face-swapping technique that was published in ECCV 2022. It leverages disentangled representations to transfer identity and attributes, utilizing Feature Disentanglement to separate identity and attribute embeddings unsupervised. It employs Attribute Transfer and Identity Transfer modules, powered by learned Feature Displacement Fields, to granularly manipulate attributes and model adaptive identity fusion, respectively, with an emphasis on maintaining consistency in reenactment and attribute preservation in swapping. The model is designed to handle challenging conditions like occlusions, extreme lighting, and large poses without reliance on pre-estimated structures. The main drawback of this method is the visible rectangular frame around the swapped face, which affects the overall quality and realism of the face swap. Improving the blending and transition between the source and target faces remains a challenge for UniFace. We use the official code from https://github.com/xc-csc101/UniFace/ for implementation.
+
+<!-- page-break:23 -->
 
 7. MobileFaceSwap [86] MobileFaceSwap reduces the computational load of the model and realizes real-time face swapping on mobile devices. It introduces a new idea of integrating IDs into the network. MobileFaceSwap employs lightweight deep learning architectures, such as MobileNet, to achieve real-time performance on resource-constrained devices. The method focuses on maintaining the quality of the face swap while reducing the computational complexity, making it suitable for mobile applications and other scenarios where computational resources are limited. We use the official code from https://github.com/Seanseattle/MobileFaceSwap/ for implementation.
 
@@ -859,6 +905,8 @@ Figure 13: Illustration of visual examples for all unknown forgery data, includi
 
 12. FS\_Vid2vid [79] FS\_Vid2vid is another popular and classical synthesis method proposed by NVIDIA. It can generate unseen domain videos. However, when the test domain is significantly different from the training domain or the keypoint estimation is inaccurate, the effect is poor. FS\_Vid2vid employs advanced deep learning techniques, such as GANs and attention mechanisms, to generate high-quality face swaps across different domains. The main challenge faced by this method is to achieve stable and consistent face swaps when dealing with significant domain differences or inaccurate keypoint estimation. Improving the robustness and generalizability of FS\_Vid2vid remains an area for future research. We use the official code from https://github.com/NVlabs/few-shot-vid2vid/ for implementation.
 
+<!-- page-break:24 -->
+
 13. Wav2Lip [55] Recently, audio-based facial reenactment techniques along with lip-syncing have been proposed by researchers. In lip-sync, the source person controls the mouth movement, and in face reenactment, facial features are manipulated in the target video. One of the most recent audio-driven facial reenactment methods is Wav2Lip, which aims to lip-sync the video with respect to any desired speech signal by reenacting the face. Wav2Lip has been widely used in various applications, including video editing, virtual reality, and digital content creation. Its ability to produce visually appealing and realistic lip-sync animations has made it a popular choice for both research and practical applications. We used this facial reenactment method because of the efficiency of its synthesis process for generating lip-synced video. We use the official code from https://github.com/Rudrabha/Wav2Lip/ for implementation. Also, the audio and text data to be used for driving is randomly sampled from LRS3 [2].
 
 14. MRAA [68] MRAA is also a highly classic image animation method, but there seems to be no existing deepfake dataset applied to this dataset so far. It identifies object parts, tracks them in driving videos, and estimates motion using principal axes within regions, leading to more stable and semantically meaningful representations. It also models non-object motion with an affine transformation to decouple foreground from background and disentangle shape and pose in the region space for improved animation fidelity. The framework is self-supervised, label-free, and optimized by reconstruction losses. MRAA has the potential to improve the overall quality and realism of image animations in various applications. We use the official code from https: //github.com/snap-research/articulated-animation/ for implementation.
@@ -868,6 +916,8 @@ Figure 13: Illustration of visual examples for all unknown forgery data, includi
 16. PIRender [58] PIender is a neural rendering system for generating controllable portrait images by manipulating the motion of existing faces through intuitive and semantically meaningful parameters. It leverages 3D Morphable Models (3DMM) parameters for facial control, enabling precise adjustments to expressions and poses. Unlike many existing techniques that offer limited or indirect editing capabilities, PInder provides direct, fine-grained control for intuitive image editing, allowing realistic modifications to facial aspects like posture and expressions without the need for specialized software skills. Additionally, it's extended to address the audio-driven facial reenactment, synthesizing coherent videos from a single reference image and audio stream, showcasing the potential for intuitive controls in portrait manipulation and synthesis. We use the official code from https://github.com/RenYurui/PIRender/ for implementation.
 
 17. TPSM [93] TPSM (or called TPSMM) presents a thin-plate spline motion model for image animation, an unsupervised method aimed at addressing the challenge of animating objects with large pose discrepancies between source and driving images. It introduces a new framework, starting with thin-plate splines to estimate more flexible optical flow, enabling smoother warping of feature maps from source to drive image domain. Multi-resolution occlusion masks are employed to enhance feature fusion to improve occluded region restoration. Additionally, dedicated auxiliary losses are designed to ensure a clear division of labor among network modules, promoting high-quality image generation. The method is demonstrated to animate various objects, including faces, bodies, and animations, showing improved performance on benchmarks and highlighting its potential for handling unseen manipulations. We use the official code from https://github.com/yoyo-nb/ Thin-Plate-Spline-Motion-Model/ for implementation.
+
+<!-- page-break:25 -->
 
 18. LIA [82] LIA is a recent SoTA face reenactment that was published in ICLR 2022, which edits the Latent code by learning linear changes in the Latent space, i.e., learning a set of orthogonal Motion directions. This method aims to create more realistic face reenactments and animations by editing the Latent code directly. LIA is evaluated on real-world videos, demonstrating the capability to animate still images without bias, eliminating the need for structure. This approach has the potential to improve the overall quality and realism of face swaps and animations in various applications. We use the official code from https://github.com/wyhsirius/LIA/ for implementation.
 
@@ -879,6 +929,8 @@ Figure 13: Illustration of visual examples for all unknown forgery data, includi
 
 22. HyperReenact [5] HyperReenact is another recent SoTA reenactment method that was published in ICCV 2023. It is a one-shot neural face reenactment method capable of synthesizing realistic talking head sequences of a source individual driven by a target's facial pose, including 3D head orientation and expression. HyperReenact is designed to handle both self and cross-subject reenactment scenarios, requiring only a single source image. It excels in minimizing visual artifacts, even when there are drastic differences in head pose between the source and target images or when conducting cross-subject reenactment. By leveraging the photorealism and disentangled properties of a pre-trained StyleGAN2 model, HyperReenact first inverts real images into the latent space before refining and retargeting them. The method is compared favorably with several state-of-the-art reenactment techniques, showcasing its proficiency in generating artifact-free details around facial areas such as the mouth and eyes, even under extreme head poses. Additionally, the paper includes extensive quantitative and qualitative evaluations, demonstrating HyperReenact's efficiency and effectiveness across various metrics and benchmark tests. We use the official code from https://github.com/StelaBou/HyperReenact/ for implementation.
 
+<!-- page-break:26 -->
+
 23. HeyGen [23] HeyGen is an AI-powered video creation platform that simplifies the process of making professional-quality videos. With its user-friendly interface and advanced features, HeyGen has become a popular choice for users looking to create high-quality, engaging content without the need for extensive editing skills and time investment. One of the standout features of HeyGen is its AI-powered text-to-speech functionality, which allows users to effortlessly convert written text into natural-sounding speech. This feature enables users to create engaging voiceovers for their videos without the need for professional voice actors or expensive recording equipment. In addition to its text-to-speech capabilities, HeyGen also offers customizable avatars that can be used to represent speakers in the videos. These avatars can be tailored to match the desired appearance and style of the user, adding a personal touch to the video content. Furthermore, HeyGen's automated professional video editor streamlines the video creation process by intelligently combining video clips, images, text, and audio to produce polished and visually appealing videos. This feature saves users significant time and effort typically required for manual video editing. HeyGen's combination of AI-powered features and user-friendly interface makes it an ideal solution for users looking to create professional-quality videos with minimal effort. Its versatility and efficiency have made it popular for various applications, including content creation, digital marketing, e-learning, and social media promotion. We use the software from its official website https://www.heygen.com/ for creating fake videos.
 
 24. VQGAN [20] VQGAN is a classical entire image synthesis method, which introduces a method that enhances transformers' capability to synthesize high-resolution images, overcoming their traditional inefficiency for long sequences typical of pixel-dense data. The approach enables efficient modeling and synthesis of high-resolution images by integrating CNN inductive bias for local interactions with transformers' expressiveness. It involves two stages: initially employing CNNs to learn a rich vocabulary of image components, followed by transformers arranging these components within high-resolution images. This method is adaptable to conditional synthesis tasks, allowing both non-spatial information, like object categories, and spatial data, such as segmentation, to guide image generation. Notably, it presents the first instance of transformers generating semantically-guided megapixel images and attains state-of-the-art performance among autoregressive models for classconditional ImageNet synthesis. We use the official code from https://github.com/CompVis/ taming-transformers/ for implementation.
@@ -886,6 +938,8 @@ Figure 13: Illustration of visual examples for all unknown forgery data, includi
 25. StyleGAN2 [35] StyleGAN2 is an improved version of StyleGAN proposed by NVIDIA, enhancing the image quality and reducing the artifacts in the generated images. The authors propose architectural and training modifications to the StyleGAN, focusing on normalizing the generator's mapping network, progressively growing, and introducing regularization for improved conditioning between latent codes and images. Their approach enhances image quality, reduces artifacts, and increases the generator's invertibility while preserving its expressiveness. By improving upon the original StyleGAN, StyleGAN2 can generate more realistic and high-quality human face images with specific attributes. We use the official code from https://github.com/NVlabs/stylegan2/ for implementation.
 
 26. StyleGAN3 [33] StyleGAN3 is an improved version of StyleGAN2 and StyleGAN proposed by NVIDIA, enhancing the image quality and reducing the artifacts in the generated images. StyleGAN3 addresses the issue of StyleGAN's performance degradation when dealing with unstructured datasets like ImageNet, typically designed for controllable synthesis. The authors find the limitation lies not in the training strategy but rather in the model's inherent design. They leverage the Projected GAN framework to apply powerful priors and a progressive growth strategy, training StyleGAN3 on ImageNet. The outcome, StyleGAN3, achieves a new state-of-the-art large-scale synthesis, generating 1024-resolution images for the first time. It demonstrates inversion and editing beyond portraits or specific classes, showcasing broad applicability. We use the official code from https: //github.com/NVlabs/stylegan3/ for implementation.
+
+<!-- page-break:27 -->
 
 27. StyleGAN-XL [63] StyleGAN-XL is another version of the original StyleGAN that has been improved. It tackles the scalability of StyleGAN to datasets, particularly ImageNet's vastness and diversity, where it traditionally struggled. The authors refute the notion of StyleGAN's design being unsuitable for diversity and instead blame the training methodology. Introducing Projected GAN and progressive training, they successfully scale StyleGAN3 to ImageNet, birthing StyleGAN-XL, a new state-of-the-art in large-scale synthesis at 10242. StyleGAN-XL's flexibility inverts and edits images outside narrow domains, validating its robustness. We use the official code from https://github.com/autonomousvision/stylegan-xl/ for implementation.
 
@@ -899,6 +953,8 @@ Figure 13: Illustration of visual examples for all unknown forgery data, includi
 
 32. DiT [54] DiT is a very popular architecture for realistic image synthesis recently. The work presents a novel class of diffusion models that leverage transformer architectures, termed Diffusion Transformers (DiTs), for image synthesis tasks. These models replace the traditionally used U-Net backbone with transformers operating on latent image patches, demonstrating improved scalability and performance. The study analyzes the scalability of DiTs based on their forward pass complexity, measured in Gflops, revealing that models with higher computational capacity yield consistently lower FID scores, indicative of better image quality. Notably, the largest variants of DiTs, named DiT-XL/2, have surpassed previous diffusion models' performance on class-conditional ImageNet benchmarks at resolutions of 512x512 and 256x256, achieving a SoTA FID score of 2.27 at the latter resolution. The success of DiTs suggests a promising avenue for further scaling and potential integration into text-to-image synthesis pipelines, capitalizing on transformers' strong capabilities in generative modeling. We use the official code from https://github.com/facebookresearch/DiT/ for implementation. We adopt the DiT-XL/2 version for generation in our benchmark.
 
+<!-- page-break:28 -->
+
 33. SiT [3] SiT is another very popular architecture for realistic image synthesis recently. The paper introduces Scalable Interpolant Transformers (SiT), a novel family of generative models that build upon Diffusion Transformers (DiTs), focusing on enhancing diffusion-based image synthesis. SiT employs an interpolant framework, enabling more flexible distribution connections and facilitating a modular exploration of design elements in generative models such as learning dynamics, objectives, interpolant choices, and sampling strategies. By meticulously integrating these components, SiT outperforms DiT models across various sizes on the conditional ImageNet 256x256 benchmark, utilizing the same backbone architecture, parameter count, and computational complexity (GFLOPs). SiT's adaptability in tuning diffusion coefficients independently from the learning process further pushes its performance, achieving an FID-50K score of 2.06. This work underscores the potential of transformer-based architectures in advancing generative models and paves the way for future developments in scalable and efficient image generation. We use the official code from https: //github.com/willisma/SiT/ for implementation.
 
 34. MidJourney [49] MidJourney is a really popular application, software, and image synthesis method that focuses on generating highly realistic content. Midjourney is a generative artificial intelligence program and service created and hosted by the San Francisco-based independent research lab Midjourney, Inc. Midjourney generates images from natural language descriptions, called prompts, similar to OpenAI's DALL-E and Stability AI's Stable Diffusion. By generating intermediate representations, MidJourney can be used for various applications, such as creative content generation. Its ability to produce realistic synthesis images makes it a popular choice for both research and practical applications. We use the software from its official website https://www.midjourney. com/home/ for creating fake images. We adopt the latest version, MidJourney-6, for all generations.
@@ -906,6 +962,8 @@ Figure 13: Illustration of visual examples for all unknown forgery data, includi
 35. WhichFaceIsReal [83] WhichFaceIsReal (or calledWhichisReal) is a really popular software to create high realistic GAN-generated images and has been widely used in many academic research such as [77]. This software has been developed by Jevin West and Carl Bergstrom at the University of Washington as part of the Calling Bullshit project. All images are either computer-generated from thispersondoesnotexist.com using the StyleGAN software or real photographs from the FFHQ dataset of Creative Commons and public domain images. We use the software from its official website https://www.whichfaceisreal.com/ for creating fake images. We create 2,000 fake images using this software in our benchmark to simulate the real-world realistic GAN-generated face content.
 
 36. Collaborative-Diffusion [27] Collaborative-Diffusion (or called CollabDiff) is a very recent face editing method that was published in CVPR 2023. The proposed framework is designed for multi-modal face generation and editing. Unlike traditional diffusion models that primarily operate under single-modality control, this approach enables the simultaneous utilization of various modalities-such as text descriptions and facial masks-to guide the creation and modification of facial images. By leveraging pre-trained uni-modal diffusion models in conjunction, the system synthesizes high-quality, coherent images that adhere to the specified conditions without necessitating additional training. The implementation relies on Latent Diffusion Models (LDM) balanced for quality and efficiency, working within an autoencoder's latent space to manage computational demands. A Variational Autoencoder (VAE) is trained on the CelebA-HQ dataset to handle the transformation between image and latent representations. This collaborative synthesis method opens new avenues for creative expression in face manipulation tasks by empowering users to define age, facial features, or other attributes through a mix of textual and visual directives. We use the official code from https://github.com/ziqihuangg/Collaborative-Diffusion/ for implementation.
+
+<!-- page-break:29 -->
 
 37. e4e [73] e4e, similar to pspNet, aims to improve the accuracy of projecting real images into the StyleGAN latent space. It mainly focuses on real-image editing using StyleGAN inversion, introducing an encoder architecture, referred to as e4e, tailored for effective editing post-inversion. The authors delve into the latent space characteristics of StyleGAN, revealing a tradeoff between distortion (reconstruction fidelity) and editability, as well as between distortion and perceptual quality. They outline design principles for encoders to balance these tradeoffs, enabling inversions that are conducive to meaningful manipulation while maintaining visual authenticity. Extensive qualitative and quantitative evaluations, along with a user study, demonstrate that the proposed inversion method followed by common editing techniques produces high-quality edits on real images from various challenging domains like cars and horses, with minimal loss in reconstruction accuracy. The paper further supplements these findings with detailed implementation specifics and additional experimental results in an appendix. We use the official code from https://github.com/omertov/ encoder4editing/ for implementation.
 
@@ -919,23 +977,25 @@ Figure 13: Illustration of visual examples for all unknown forgery data, includi
 
 To guarantee the diversity of deepfake approaches in the proposed DF40, we introduce and implement 40 distinct deepfake techniques, which are listed in Tab. 2. A detailed description of each deepfake method is provided in the Appendix. They are selected according to perspectives of modeling types, conditional sources, forgery effects, and functions. Formally, we denote xt(it, at, bt) as the target subject to be manipulated, which possesses attributes (i: person identity, a: identity-agnostic content, b: external attributes) that can uniquely determine itself, while the source xs(is, as, bs) is regarded
 
+<!-- page-break:30 -->
+
 ## (a) Face-Swapping (FS)
 
-![Image](parsed/df%2040/images/image_000125_10460251d8adbf3d496bf78601c307eed6073beaa691c29837b29987f7e13742.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000125_10460251d8adbf3d496bf78601c307eed6073beaa691c29837b29987f7e13742.png)
 
 ## (c) Entire Face Synthesis (EFS)
 
-![Image](parsed/df%2040/images/image_000126_a4470178f454d9e16209d2109632012f2dd3701f05b436463c62a502316b2d4b.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000126_a4470178f454d9e16209d2109632012f2dd3701f05b436463c62a502316b2d4b.png)
 
 ## (b) Face-Reenactment (FR)
 
-![Image](parsed/df%2040/images/image_000127_397ef67f26dbc597efc2031d45ac78997eaecc86063b571e5c1450bece105c9c.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000127_397ef67f26dbc597efc2031d45ac78997eaecc86063b571e5c1450bece105c9c.png)
 
 ## (d) Face Editing (FE)
 
 Figure 14: The general fake data generation pipeline of the proposed DF40 dataset.
 
-![Image](parsed/df%2040/images/image_000128_95f5817b3604e4e449e1f76843acda63d351f50762da8663e19f71dd0583eb52.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000128_95f5817b3604e4e449e1f76843acda63d351f50762da8663e19f71dd0583eb52.png)
 
 as the conditional media (c), driving the target to change either identity or attributes or even both. We use fsw, fre, fsy, fed to represent four types of deepfakes in our work: FS, FR, EFS, and FE, respectively. Fig. 1 provides some visual examples for each category in DF40, and Fig. 14 generally illustrates them from the method perspective. (i) FS Approach: From Fig. 14(a), FS aims to replace the content of xt with that of xs preserving the identity is. Formally, ˜xt(˜is, at, bt) only swaps identity i from the source xs to the target xt, and the identity-agnostic content a are preserved. The swapping process can be expressed as:
 
@@ -958,6 +1018,8 @@ where˜· means that the element is manipulated by forgery algorithms.
 ## A.2.4 Rationale of Fine-tuning EFSMethods
 
 Why did we fine-tune the generative model of EFS? The primary motivation is to create an aligned data domain and fake methods for evaluation. We have two main reasons for pursuing this: (1)
+
+<!-- page-break:31 -->
 
 ## Algorithm 1 FS Method
 
@@ -988,6 +1050,8 @@ How did we fine-tune the generative model of EFS? Please note the fine-tuning de
 In this study, we utilize several existing datasets to generate synthetic data for research purposes. The face data in these datasets mainly come from existing academic datasets, as shown in Table 2. In the following, we will introduce the leading institutions, dataset links, and official copyright issues for each dataset:
 
 FF++ Dataset [62] The FaceForensics++ (FF++) dataset is designed for the detection and analysis of manipulated facial images and videos, specifically focusing on deepfake techniques. It contains over 1000 original videos and their manipulated versions generated using four different manipulation methods, namely Deepfakes [15], Face2Face [72], FaceSwap [21], and NeuralTextures [71]. The dataset is widely used for developing and benchmarking deepfake detection algorithms. Note some research works treat FaceShifter as another forgery method of the FF++, such as [19]. However, here we only consider the four mentioned methods that are included in the original FF++ paper [62]. Also, there are three versions of FF++ in terms of compression level, i.e., raw, lightly compressed (c23), and heavily compressed (c40). The FF++ dataset is led by the University of Munich in Germany. The dataset can be accessed through the following
+
+<!-- page-break:32 -->
 
 ## Algorithm 3 EFS Method
 
@@ -1021,6 +1085,8 @@ CelebA Dataset [47] The CelebA dataset is a large-scale face attributes dataset 
 
 FFHQDataset [34] The Flickr-Faces-HQ (FFHQ) dataset is a high-quality dataset of human faces designed for training generative adversarial networks (GANs) and other machine-learning models to generate realistic human faces. It contains 70,000 high-resolution images (1024x1024 pixels) of diverse human faces collected from Flickr and annotated with age, gender, and ethnicity information. The dataset has been used in various applications, such as style-based GANs, super-resolution, and facial attribute manipulation. The FFHQ dataset is led by NVIDIA. The dataset can be accessed through the following link: https://github.com/NVlabs/ffhq-dataset. The real human data sources for this dataset come from Flickr: https://www.flickr.com/. The copyright information for this dataset is not explicitly mentioned.
 
+<!-- page-break:33 -->
+
 VFHQDataset [84] The Varied Faces-HQ (VFHQ) dataset is a high-quality dataset of diverse human faces designed for training and evaluating generative models, such as GANs, in generating realistic and diverse human faces. It consists of 28,000 high-resolution images (1024x1024 pixels) collected from the internet, with a focus on diversity in terms of age, gender, ethnicity, and facial expressions. The dataset is widely used for developing and benchmarking generative models and face-related applications. The VFHQ dataset is led by the Shenzhen Institutes of Advanced Technology, the Chinese Academy of Sciences, and the ARC Lab of Tencent PCG. The dataset can be accessed through the following link: https://liangbinxie.github.io/projects/vfhq/. The copyright information can be found at https://liangbinxie.github.io/projects/vfhq/license.txt. The real human data sources for this dataset are not explicitly mentioned.
 
 ## A.3 Introduction of the Used DetectionModels
@@ -1032,6 +1098,8 @@ Detector Implementation Here, we describe the general idea of the 7 detection al
 - 3) SPSL[44]: SPSL is a frequency-based detector that combines spatial image and phase spectrum to capture the up-sampling artifacts of face forgery, improving the transferability (generalization ability) for face forgery detection. The paper provides a theoretical analysis of the validity of utilizing the phase spectrum and highlights the importance of local texture information over high-level semantic information for face forgery detection. This detector utilizes the Xception backbone[12] for feature extraction. The code for this detector is not publicly available, so we use the implementation version in DeepfakeBench [90]. This model uses Xception as the backbone for extracting features from the given image.
 - 4) SRM[48]: SRM is also a frequency-based detector that extracts high-frequency noise features and fuses two different representations from RGB and frequency domains to improve the generalization ability for face forgery detection. This detector utilizes the Xception backbone[12] for feature extraction, and its code is not publicly available, so we use the implementation version in DeepfakeBench [90]. The code for this detector is not publicly available, so we use the implementation version in DeepfakeBench [90]. This model uses Xception as the backbone for extracting features from the given image.
 - 5) SBI [65]: introduces a novel approach for deepfake detection using self-blended images (SBIs), which are synthetically created by blending pseudo source and target images derived from single pristine images. This technique reproduces common forgery artifacts like blending boundaries and statistical inconsistencies, thereby generating more generalized and less recognizable fake samples. Unlike conventional methods that often overfit to specific manipulation artifacts seen during training, SBIs encourage classifiers to learn broader, more robust representations that generalize better to unseen manipulations and scenes. Extensive experimentation demonstrates the
+
+<!-- page-break:34 -->
 
 Table 9: The results of our experiments are generated using the following settings.
 
@@ -1051,6 +1119,8 @@ efficacy of the proposed method, particularly in closing the domain gap between 
 Training Details. In the training module, we utilize the Adam optimization algorithm with a learning rate of 0.0002, except for CLIP. The batch size is set to 32 for both training and testing. For CLIP, we use the pre-trained weights from the default CLIP from OpenAI. For other detectors, we initialize the pre-trained weights from ImageNet. We summarize all the configurations used in our experiments (see Tab. 9). All experiments are conducted in a standardized environment using the NVIDIA V100 GPU to ensure fair and consistent evaluation. More software library dependencies can be seen on our website.
 
 Evaluation Metrics. Regarding evaluation, we compute the frame-level Area Under the Curve (AUC) as our primary evaluation metric. We report video-level AUC for the video detector (i.e., I3D). Note we can only perform training and testing I3D on FS and FR due to EFS and FE do not have video-format data. Furthermore, unlike DeepfakeBench, which does not involve using the validation set, we use the validation set to select the best-performing models and apply this checkpoint to detect all other testing data.
+
+<!-- page-break:35 -->
 
 Table 10: Summary of the datasets used for deepfake detection. The table provides information on the number of real and fake videos, the total number of videos, whether rights have been cleared, the number of agreeing subjects, the total number of subjects, the number of synthesis methods, and the number of perturbations.
 
@@ -1074,6 +1144,8 @@ Regarding video methods, it is worth noting that the I3D model does not implemen
 External Testing Datasets Our benchmark currently incorporates a collection of 4 widely recognized and extensively used datasets in the realm of deepfake forensics: FaceForensics++ (FF++/FF) [62], CelebDF-v2 (CDF-v2/CDF) [42], FaceShifter (Fsh) [39], and DeeperForensics-1.0 (DF-1.0) [30]. The detailed descriptions of each dataset are presented in Tab. 10.
 
 Specifically, FF++ [62] is a large-scale database comprising over 1.8 million forged images from 1000 pristine videos. Forged images are generated by four face manipulation algorithms using the same set of pristine videos, i.e., DeepFakes (FF-DF) [15], Face2Face (FF-F2F) [72], FaceSwap (FF-FS) [21], and NeuralTexture (FF-NT) [71]. Note that there are three versions of FF++ in terms of compression level, i.e., raw, lightly compressed (c23), and heavily compressed (c40). Following previous works [90], we adopt the c23 version for our experiments. CDF is another popular faceswapping dataset that includes 5,639 synthetic videos and 890 real videos downloaded from YouTube. In our experiments, 518 testing videos are used for evaluation. Fsh and DF-1.0 generate high-fidelity face-swapping videos based on real videos from FF++.
+
+<!-- page-break:36 -->
 
 In addition to these face forgery detection datasets, we also consider evaluating models trained on our DF40 into other non-face domain datasets (see results in Tab. 19 of the manuscript). Here, we select the recent representative dataset GenImage [95]. This dataset comprises over a million pairs of images, including both AI-synthesized fake images and genuine collected images, covering diverse content categories. It leverages SoTA generative techniques, including both diffusion models and GANs.
 
@@ -1101,6 +1173,8 @@ In summary, the table reveals the varying effectiveness of detection methods acr
 
 (2) Among the face-swapping deepfake detection methods, UniFace, BlendFace, and MobileSwap show relatively high AUC values when detecting FSGAN deepfakes. This suggests that these methods are more effective at detecting FSGAN-generated deepfakes compared to other face-swapping deepfakes.
 
+<!-- page-break:37 -->
+
 (3) The Wav2Lip detection method, which belongs to the face-reenactment category, exhibits high AUC values when detecting SimSwap deepfakes, indicating its effectiveness in detecting this specific face-swapping deepfake. However, its performance is inconsistent across other face-swapping deepfakes, with lower AUC values for detecting FaceSwap and e4s deepfakes.
 
 (4) The detection methods trained on DF40 (FF) generally show a decline in performance when tested on face editing deepfakes, as indicated by lower AUC values in the last few rows of the table. This suggests that face-editing deepfakes are more challenging to detect, possibly due to their subtler manipulations and greater diversity in editing techniques.
@@ -1122,6 +1196,8 @@ In summary, the table reveals the varying effectiveness of detection methods acr
 (5) The AUC values tend to be lower when detection methods are tested on deepfakes from different data domains (FF and CDF). This underlines the importance of incorporating cross-data-domain evaluations in the development and assessment of deepfake detection methods. It also highlights the need to improve the generalization capabilities of these methods to handle diverse deepfake techniques and data domains effectively.
 
 In summary, the table reveals the varying effectiveness of detection methods across different deepfake types and data domains when trained on DF40 (FF) and tested on EFS (FF). It emphasizes the need for more robust detection methods that can generalize well across diverse deepfake techniques and data sources, as well as the importance of cross-data-domain evaluations in assessing detection performance.
+
+<!-- page-break:38 -->
 
 Table 11: Part of quantitative results of OvA (Protocol-4): Testing on FS (FF) and Training on DF40 (FF). FS (FF) denotes all FS data within the FF domain, and DF40 (FF) denotes the combination results of FS (FF), FR (FF), and EFS (FF).
 
@@ -1195,6 +1271,8 @@ Table 12: Part of quantitative results of OvA (Protocol-4): Testing on FR (FF) a
 | VQGAN         |   0.580 |  0.699 |          0.747 |  0.625 |        0.661 |   0.656 | 0.679 |     0.623 |  0.702 |     0.695 |      0.691 |       0.523 |
 | RDDM          |   0.520 |  0.467 |          0.562 |  0.524 |        0.441 |   0.556 | 0.572 |     0.555 |  0.451 |     0.407 |      0.404 |       0.500 |
 
+<!-- page-break:39 -->
+
 Table 13: Part of quantitative results of OvA (Protocol-4): Testing on EFS (FF) and Training on DF40 (FF). EFS (FF) denotes all EFS data within the FF domain, and DF40 (FF) denotes the combination results of FS (FF), FR (FF), and EFS (FF).
 
 |               |   StyleGAN2 |   StyleGAN3 |   StyleGAN-XL |   ddim |   DiT |   Pixart |   SiT |   SD2.1 |   VQGAN |   RDDM |
@@ -1266,6 +1344,8 @@ Table 14: Part of quantitative results of OvA (Protocol-4): Testing on FS (CDF) 
 | SD2.1         |     0.546 |       0.522 |        0.478 |      0.363 | 0.616 |        0.593 |   0.488 |    0.482 |     0.454 |
 | VQGAN         |     0.557 |       0.731 |        0.525 |      0.391 | 0.587 |        0.472 |   0.498 |    0.582 |     0.489 |
 | RDDM          |     0.482 |       0.547 |        0.527 |      0.579 | 0.410 |        0.496 |   0.525 |    0.496 |     0.484 |
+
+<!-- page-break:40 -->
 
 Table 15: Part of quantitative results of OvA (Protocol-4): Testing on FR (CDF) and Training on DF40 (FF). FR (FF) denotes all FR data within the FF domain, and DF40 (FF) denotes the combination results of FS (CDF), FR (CDF), and EFS (CDF).
 
@@ -1339,6 +1419,8 @@ Table 16: Part of quantitative results of OvA (Protocol-4): Testing on EFS (CDF)
 | VQGAN         |       0.254 |       0.257 |         0.434 |  0.578 | 0.531 |    0.408 | 0.520 |   0.522 |   0.999 |  0.999 |
 | RDDM          |       0.354 |       0.345 |         0.429 |  0.589 | 0.558 |    0.546 | 0.542 |   0.787 |   0.693 |  0.999 |
 
+<!-- page-break:41 -->
+
 Table 17: Ablation study regarding the impact of the fake region.
 
 | Whole         | Face          | Mouth         | Nose          | Eye           |
@@ -1386,11 +1468,13 @@ Table 19: Evaluation of training CLIP-large on different variants of the propose
 |         | EFS (FF)           |               0.912 |                  0.992 |                 0.906 |                      0.591 |                 0.729 |                  0.72 |                0.956 |                  0.713 |                0.815 |
 |         | DF40 (FF)          |               0.911 |                  0.967 |                 0.736 |                      0.571 |                 0.630 |                 0.614 |                0.882 |                  0.660 |                0.746 |
 
+<!-- page-break:42 -->
+
 ## CLIP-base
 
 Figure 15: Logits and confidence analysis for comparing CLIP-base and CLIP-large. We show that CLIP-large can learn more robust real-people features, thereby generalizing well in unseen forgeries.
 
-![Image](parsed/df%2040/images/image_000129_f0f1016d74dea17e5dac246402e8b4d3992313343e0f02c21dcec016093b36d7.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000129_f0f1016d74dea17e5dac246402e8b4d3992313343e0f02c21dcec016093b36d7.png)
 
 This highlights the need for more research into training methods to help models generalize better across different deepfake techniques and domains.
 
@@ -1402,9 +1486,11 @@ We also evaluate the model trained on DF40 to detect previous deepfake datasets.
 
 t-SNE visualization: Through t-SNE visualizations, we observe that the distribution of real images (blue points) for CLIP-large is significantly more compact than CLIP-base, where the points are more loosely scattered. This tight clustering among the blue points for CLIP-large indicates that it can more effectively capture the finer details and specific characteristics of different real images. Additionally, CLIP-large demonstrates a superior ability to learn the distinct features of various datasets. When performing dataset classification, we notice that the decision boundaries between different real domains and between real and fake domains can be orthogonal. This orthogonality is achieved without the need for explicitly adding a loss to align these boundaries, as suggested in the literature [70]. This implies that CLIP-large inherently distinguishes between domain-specific and domain-agnostic features, potentially due to insufficient real data, which makes it challenging to learn truly common features. Instead of attempting to decouple these features explicitly, CLIP-large identifies which features are domain-independent more efficiently.
 
+<!-- page-break:43 -->
+
 Figure 16: t-SNE visualizations for comparing CLIP-base and CLIP-large. We show that CLIP-large can learn more robust real-people features, thereby generalizing well in unseen forgeries.
 
-![Image](parsed/df%2040/images/image_000130_288e1f5150e33dceb22e063b32c35581ca25912d072864a147234f183a73443c.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000130_288e1f5150e33dceb22e063b32c35581ca25912d072864a147234f183a73443c.png)
 
 Logits Distribution Analysis: The logits distributions provide further insights into the superior performance of CLIP-large. The logits for real images learned by CLIP-large are more concentrated and "tall and narrow," whereas those for CLIP-base are more "short and wide." This indicates that CLIP-large has a better grasp of the characteristics of real images, which enhances its ability to detect fakes. As evidenced by the reduced overlap between the real and fake logits distributions, CLIP-large's deep understanding of real images translates into a clearer differentiation between real and fake, improving detection accuracy. This suggests that better comprehending real images directly contributes to an improved understanding and detection of fake images.
 
@@ -1416,15 +1502,17 @@ In our previous experimental results summarized in Tab. 5 (protocol-3), we obser
 
 Result explanation: A very low prediction logits of the fake class make the 0.006 AUC possible: Conceptually, AUC can be formulated as AUC = P(Pp &gt; Pn), where Pp and Pn represent the probabilities of positive (fake, labeled as 1) and negative (real, labeled as 0) samples, respectively. In our case, the AUC of 0.006 can be attributed to the model assigning very low logits (e.g., 10-7) to the fake class compared to the real class (e.g., 10-2), as evidenced by the logit distribution in Fig. 17. According to the AUC formulation, when Pp (logits for fake samples) is predominantly lower than Pn (logits for real samples), the AUC approaches 0. Intuitively, this result indicates that the model perceives the fake test samples (in this case, StyleCLIP) as more likely to be real than the actual real samples. As a result, the ROC curve lies close to the x-axis, leading to an AUC of 0.006.
 
+<!-- page-break:44 -->
+
 Xception, Train on FR (FF), Test on StyleCLIP
 
 Figure 17: t-SNE visualization and logits analysis for analyzing the model, which is trained on FR (FF) and tested on StyleCLIP, achieving only about 0.2 AUC. See the text for our analysis and more details.
 
-![Image](parsed/df%2040/images/image_000131_7bed5e2912b1a7ff0718ae95bca6dc9d1a8751b02278e1271b6342aa761c232b.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000131_7bed5e2912b1a7ff0718ae95bca6dc9d1a8751b02278e1271b6342aa761c232b.png)
 
 Figure 18: Frequency visualizations (std) of both the training and testing phases, for real and fake, respectively.
 
-![Image](parsed/df%2040/images/image_000132_1bd5c9b4c82fff21de70615cb7401d3d1763906f31b71b0382e77691029ae11e.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000132_1bd5c9b4c82fff21de70615cb7401d3d1763906f31b71b0382e77691029ae11e.png)
 
 Underlying reason: Unaligned resolution between the real and fake classes introduces a model bias: To understand the underlying reason behind it, we provide further analysis from the resolution perspective. Specifically, we observe that the training real data (FF++) obviously contains more highfrequency components (higher resolution) compared to the training fake data (FR). This noticeable resolution gap between real and fake data could be inevitably captured by the model [56], leading the model to potentially adopt a trivial solution: "Low resolution implies fake." In contrast, during testing, the fake data (StyleCLIP) contains significantly more high-frequency components (higher resolution) than the testing real data used for testing. We provide a frequency visualization as evidence to validate this claim. As shown in Fig. 18, the testing fake (StyleCLIP) contains much more high-frequency details than the testing real. This bias leads the model to make an inconsistent decision, resulting in the anomaly in AUC. In our case, intuitively, since the biased model "observes" StyleCLIP carrying more high-frequency details with higher resolution than the real, the model then "thinks" StyleCLIP is more real than the actual real, eventually resulting in the 0.006 AUC.
 
@@ -1434,19 +1522,23 @@ Here, we would like to provide a deeper analysis comparing a video method (I3D) 
 
 Specifically, we obtain the prediction logits for each testing image from both models and apply the softmax function to obtain the confidence scores (ranging from 0 to 1). The visualization results of the confidence distribution for Xception and I3D can be seen in Fig. 19. As illustrated, we observe that I3D exhibits less uncertainty when making decisions for detection, while Xception shows higher uncertainty. This may suggest that there is limited discriminative information for Xception to perform detection based on a single frame. In contrast, the temporal information (many frames within a video) provides more informative clues for I3D's detection. This could be attributed to the fact that most (advanced) FS and FR methods cannot ensure perfect consistency at the temporal level, but they can maintain high realism at the image level, making detection more challenging for image-based detectors.
 
+<!-- page-break:45 -->
+
 Figure 19: Confidence distribution comparison between Xception (image model) and I3D (video model). We show that I3D has less uncertainty in making real/fake classification decisions, while Xception has higher uncertainty.
 
-![Image](parsed/df%2040/images/image_000133_04c92fce94dcc6b64454bf42d2cf14d407b9a231a51cce6d5bc7931a0d5d9280.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000133_04c92fce94dcc6b64454bf42d2cf14d407b9a231a51cce6d5bc7931a0d5d9280.png)
 
 Figure 20: t-SNE visualization for illustrating the detection results of CLIP-large on the MidJourney dataset. We show that (fake) people of different races and genders can group into different clusters, highlighting that CLIP-large has already learned rich information about the real people's attributions.
 
-![Image](parsed/df%2040/images/image_000134_b4a09c235ffd04aa8f798e97c5646330c601145b2894767fa17b9ff61f43b4a3.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000134_b4a09c235ffd04aa8f798e97c5646330c601145b2894767fa17b9ff61f43b4a3.png)
 
 ## A.5.7 Visualizations of the Real People Features.
 
 Here, we explore which types of people tend to cluster in the MJ dataset and show the reasons behind this clustering. In Fig. 7 of our main paper (the result of CLIP large on MidJourney), we indeed notice that different clusters of fake images tend to form distinct groups rather than grouping together. This is an interesting observation, and we provide further exploration and analysis of this phenomenon:
 
 First, we create fake generated data for MidJourney using different demographic compositions. We select people from different races and genders, including four races (white, black, east Asian, and south Asian) for both males and females, resulting in eight types in total. Second, we label all eight types with different labels. Along with the real label (real data is randomly selected from FFHQ), we have nine labels in total. We use t-SNE for visualization. Results in Fig. 20 show that the clusters in t-SNE correspond to different attributes/demographics. We observe that people with different races and genders are implicitly separated by the CLIP-large model. This indicates that CLIP-large contains rich real-world information from its large-scale pre-training, making CLIP-large able to have accurate representations of races and genders. In contrast, Results in Fig. 7 (the result of Xception on MidJourney) shows that Xception cannot separate people of different races or genders. This suggests that Xception might only learn forgery-specific low-level signals without the ability to learn semantic facial attributes.
+
+<!-- page-break:46 -->
 
 ## A.5.8 Artifacts of Deepfake Forgeries in Frequency
 
@@ -1462,9 +1554,13 @@ Std Analysis: The standard deviation heatmaps reveal additional artifacts. For e
 
 We host our DF40 dataset on GitHub (https://github.com/YZY-stack/DF40). Our project page is https://yzy-stack.github.io/homepage\_for\_df40/. All the codes, datasets, and checkpoints are released at the above links. Our dataset with documentation and associated codes (for reproduction of our experimental results) is maintained under the Creative Commons NonCommercial license (CC BY-NC). More details can be seen in https://creativecommons.org/licenses/ by-nc/4.0/).
 
+<!-- page-break:47 -->
+
 Figure 21: Std of the frequency analysis for visualizing different deepfake methods from the frequency domain.
 
-![Image](parsed/df%2040/images/image_000135_fcc1dfdc9e9f8fdd70c5f87d200811490319ac7cabaedbfce50576647c1f65e4.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/df%2040/images/image_000135_fcc1dfdc9e9f8fdd70c5f87d200811490319ac7cabaedbfce50576647c1f65e4.png)
+
+<!-- page-break:48 -->
 
 ## A.6.2 Controlled Access:
 

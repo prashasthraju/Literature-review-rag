@@ -1,3 +1,5 @@
+<!-- page-start:1 -->
+
 ## Is It Really You? Exploring Biometric Verification Scenarios in Photorealistic Talking-Head Avatar Videos
 
 Laura Pedrouzo-Rodriguez, Pedro Delgado-DeRobles, Luis F. Gomez, Ruben Tolosana, Ruben Vera-Rodriguez, Aythami Morales, Julian Fierrez Biometrics and Data Pattern Analytics Lab, Universidad Autonoma de Madrid, Spain
@@ -16,7 +18,7 @@ In recent years, there has been a surge in novel methods for generating photorea
 
 Figure 1. Avatar impostor attack scenario: An impostor steals a target identity's avatar and pretends to be that identity in a virtual meeting. The visual appearance and voice of the impostor's avatar is exactly the same as the target's. The behavioral biometrics, such as facial gestures, however, are driven by the impostor.
 
-![Image](parsed/avatar%20imposter%20attack%20scenario/images/image_000000_bbae4abe2a576b89f32acf17e69d0f350b1dffdc4228a1bf26659bb737d1ae93.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/avatar%20imposter%20attack%20scenario/images/image_000000_bbae4abe2a576b89f32acf17e69d0f350b1dffdc4228a1bf26659bb737d1ae93.png)
 
 These photorealistic talking-head avatars are becoming popular in virtual meetings, gaming, and metaverse platforms. A good example of this popularity was the virtual reality interview 4 between Mark Zuckerberg and Lex Fridman in his podcast, which had nearly 3 million views. Although these avatars allow for immersive communication, they also pose critical security risks to society, as depicted in Fig. 1. An impostor can steal the avatar of an identity and impersonate him or her in real time [30].
 
@@ -27,6 +29,8 @@ A recent example of such identity theft was a video scam in early 2024 5 , in wh
 [4 https://www.youtube.com/watch?v=MVYrJJNdrEg](https://www.youtube.com/watch?v=MVYrJJNdrEg)
 
 [5 https : / / edition . cnn . com / 2024 / 02 / 04 / asia / deepfake-cfo-scam-hong-kong-intl-hnk](https://edition.cnn.com/2024/02/04/asia/deepfake-cfo-scam-hong-kong-intl-hnk)
+
+<!-- page-break:2 -->
 
 It is important to note that the above scenario is different from DeepFake detection [31, 32, 33], in which the main task consists in simply predicting if a video is real or fake, not whether the person driving the avatar is, in fact, the owner of the avatar. The problem is also different (but related) to presentation attack detection (PAD) in biometrics [17, 18]. Considering the differences, we can exploit methods and consolidated knowledge from both fields (DeepFakes and biometric PAD).
 
@@ -61,9 +65,11 @@ To provide a solid understanding of our research, we first define the terminolog
 - Genuine Comparison: Comparing a reference video from a genuine avatar against another test video generated using the same genuine avatar. A biometric verification system should consider the latter as authorized, indicating that both videos correspond to the same real identity.
 - Impostor Comparison: Comparing a reference video from a genuine avatar against another test video generated using an impostor avatar that has the same appearance (target identity) as the reference genuine avatar video. A biometric verification system should consider the latter as unauthorized, indicating that its identity is not the same as the reference's.
 
+<!-- page-break:3 -->
+
 Figure 2. Avatar generation and the proposed evaluation protocol. (Left): An avatar video is generated using a target image (leftmost column) as the appearance for the identity, plus a driving video (top row) to generate the facial motion in the avatar. (Right): For the evaluation of our proposed biometric system in avatar scenarios, we generate all genuine and impostor comparisons for each target identity i, using all videos from i and some videos from impostor identities, respectively.
 
-![Image](parsed/avatar%20imposter%20attack%20scenario/images/image_000001_930a74447e5438d8ca11c443466d2db0ffc30de471fdf8e2cd1112d2eb49ad0b.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/avatar%20imposter%20attack%20scenario/images/image_000001_930a74447e5438d8ca11c443466d2db0ffc30de471fdf8e2cd1112d2eb49ad0b.png)
 
 ## 3. Datasets
 
@@ -89,13 +95,15 @@ To generate our avatar dataset, we employ the stateof-the-art avatar generation 
 
 [8 https://github.com/xg-chu/GAGAvatar](https://github.com/xg-chu/GAGAvatar)
 
+<!-- page-break:4 -->
+
 Figure 3. Proposed biometric verification system: For each frame t in a video, a graph G(t) is built. All the T graphs from the video are passed to the 3-layer GCN, obtaining one graph embedding h(t) G per frame t. Finally, those T graph embeddings are passed to the attention pooling module, resulting in a single embedding e per video, with e ∈ Rd(L) , d(L) being the output dimension of the last GCN layer, L.
 
-![Image](parsed/avatar%20imposter%20attack%20scenario/images/image_000002_af30c7067fcd9871f5f6ff69e5a85f4b0367e9f37dcbc5825d03c65b0b77c1b6.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/avatar%20imposter%20attack%20scenario/images/image_000002_af30c7067fcd9871f5f6ff69e5a85f4b0367e9f37dcbc5825d03c65b0b77c1b6.png)
 
 Figure 4. Landmarks extracted for each video frame: (a) shows all MediaPipe [20] landmarks. (b) shows the 109 selected landmarks connected via Delaunay triangulation [9]. (c) The normalization of landmarks is done subtracting the nose tip landmark position and scaling with intercanthal distance d over the frames.
 
-![Image](parsed/avatar%20imposter%20attack%20scenario/images/image_000003_8a8a787784f2e4cdeb01c4547693744bc143672b8903a6120dcc6f89e52b6378.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/avatar%20imposter%20attack%20scenario/images/image_000003_8a8a787784f2e4cdeb01c4547693744bc143672b8903a6120dcc6f89e52b6378.png)
 
 For each identity in the CREMA-D and RAVDESS datasets, we first select a single, high-quality target image to represent that identity's reference appearance. Whenever possible, we select a frontal face with neutral expression, such as in Fig. 2, "Target Images". Next, we generate genuine avatar videos using said identity's target image and all of his or her real videos as driving videos. This approach allows us to obtain new avatar videos in which the avatar's appearance corresponds to the target identity and the avatar's facial movements are genuinely made by him or her. This scenario would correspond to the typical use of the avatar by its owner in a virtual meeting.
 
@@ -118,6 +126,8 @@ We then normalize the facial landmarks using a framebased approach. In particula
 A Graph Neural Network (GNN) is a neural architecture designed to process data represented as a graph G = (V, E), where V is the set of nodes and E the set of edges [24]. Each node v ∈ V is associated with an initial feature vector xv ∈ Rd (i.e., the 3D coordinate of a landmark, with d = 3) and, through a series of messages passing layers L, the GNN updates the features of each node h(l) v aggregating information from its neighbors, i.e., nodes connected to it by an edge.
 
 [9 https : / / ai . google . dev / edge / mediapipe / solutions/vision/face\_landmarker](https://ai.google.dev/edge/mediapipe/solutions/vision/face_landmarker)
+
+<!-- page-break:5 -->
 
 By stacking L layers, the representation of each node h(L) v incorporates information from nodes up to L hops away, captures both the local and global graph structure. The final node embeddings can then be pooled (i.e., averaged or summed) to produce a graph-level embedding, hG.
 
@@ -150,6 +160,8 @@ The model is implemented in PyTorch, using PyTorch Geometric for the GCN layers.
 ## 5.2. Biometric System: Evaluation
 
 For the final evaluation of the biometric system, we create verification pairs from Dtest by generating all possible genuine and impostor comparisons for all identities in Dtest, as can be seen in Fig. 2 (right).
+
+<!-- page-break:6 -->
 
 For a given identity i in Dtest, we use a neutral high quality image (target image), fromwhich we generate a original avatar. We use all original videos from identity i to generate N genuine avatar video clips, which simulate the real usage of avatar i. From all those genuine avatar clips, we take one as reference clip, and we build all the N - 1 genuine comparisons with the remaining genuine avatar clips. We gather all other identities in Dtest, and we generate M impostor avatar clips using the impostor videos and the target avatar. We then use the same reference genuine avatar clip to compare with the M impostor avatar clips, obtaining M impostor comparisons.
 
@@ -185,9 +197,11 @@ In the case of training with CREMA-D Dtrain and evaluating on RAVDESS Dtest, Fig
 
 In this experiment, we evaluate whether increasing training data diversity improves verification performance. Specifically, we train our biometric system on the avatar datasets generated from combining both CREMA-D and RAVDESS identities. We hypothesize that by exposing the model to a broader variety of identities, expressions, emotions, and speaking styles, it would help it learn more generalizable facial motion-based representations.
 
+<!-- page-break:7 -->
+
 Figure 5. Experimental results using our proposed biometric system. (Left) ROC curves obtained when we train our model with avatar clips based on RAVDESS data. (Center) ROC curves when we train our model with avatar clips based on CREMA-D data. (Right) ROC curves when we train our model with avatar clips based on RAVDESS and CREMA-D data combined.
 
-![Image](parsed/avatar%20imposter%20attack%20scenario/images/image_000004_594e169d524b45bc216b667cad66aca48de0e05de6f5b24ae455a039c0c2bd33.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/avatar%20imposter%20attack%20scenario/images/image_000004_594e169d524b45bc216b667cad66aca48de0e05de6f5b24ae455a039c0c2bd33.png)
 
 For evaluation, we use the standard Dtest splits of each dataset separately, ensuring no identity overlap with the training data. As can be seen in Fig. 5 (right), we can observe an improvement in AUC compared to their respective intra-dataset results, for both CREMA-D (from 82.58% to 83.31% AUC) and RAVDESS (from 69.92% to 74.66% AUC) datasets. If evaluated in their corresponding real test datasets, Fig. 5 (right, labeled "RAVDESS Reals" and "CREMA-D Reals"), the AUC obtained is very similar, which supports the hypothesis that our system works similarly for avatar videos or real videos.
 
@@ -209,7 +223,9 @@ Our experiments show that facial motion-based biometric verification is feasible
 
 Our dataset generation (using avatars of impostors that perfectly match the appearance of the victim) forces the verification model to focus exclusively on behavioral facial motion rather than static facial structure. If we had simply used the original real videos, the model could trivially rely on differences in facial geometry to verify identities. Such structural cues would be useless in a real attack scenario, where a stolen avatar would exactly replicate the victim's face. By constructing impostor avatars, we ensure that the model is trained on the realistic and challenging problem of detecting who is driving the avatar's movements.
 
-![Image](parsed/avatar%20imposter%20attack%20scenario/images/image_000005_9b90c97e80433511b5e0d679f2b661d54abcf3429f6e7489cc8482b67ab59ae1.png)
+<!-- page-break:8 -->
+
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/avatar%20imposter%20attack%20scenario/images/image_000005_9b90c97e80433511b5e0d679f2b661d54abcf3429f6e7489cc8482b67ab59ae1.png)
 
 Frame
 
@@ -230,6 +246,8 @@ In addition to the system code, we have also released a public standard benchmar
 ## Acknowledgements
 
 This study has received funding from INTER-ACTION (PID2021-126521OBI00 MICINN/FEDER), HumanCAIC (TED2021-131787B-I00 MICINN), C´atedra ENIA UAMVERIDAS en IA Responsable (NextGenerationEU PRTR TSI-100927-2023-2), and PowerAI+ (SI4/PJI/2024-00062 Comunidad de Madrid and UAM).
+
+<!-- page-break:9 -->
 
 ## References
 

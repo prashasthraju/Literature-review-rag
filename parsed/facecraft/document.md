@@ -1,3 +1,5 @@
+<!-- page-start:1 -->
+
 ## FaceCraft4D: Animated 3D Facial Avatar Generation from a Single Image
 
 Fei Yin 1,2 , Mallikarjun B R 2 , Chun-Han Yao 2 , Rafał Mantiuk 1† , Varun Jampani 2† , 1 University of Cambridge, 2 Stability AI
@@ -18,9 +20,11 @@ The goal of this work is to create a 4D facial avatar from just a single image. 
 
 Figure 1. Given a single image input, our method is capable of generating 4D avatars, producing photorealistic textures and consistent expressions across multiple views. Our approach also demonstrates robust performance on challenging inputs, including cartoon characters or old photographs.
 
-![Image](parsed/facecraft/images/image_000000_9b0c263224f8e766ee66852bbb94cdbaa3055219405c8461bebf63375e15707d.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/facecraft/images/image_000000_9b0c263224f8e766ee66852bbb94cdbaa3055219405c8461bebf63375e15707d.png)
 
 Existing single-image avatar generation methods come with many shortcomings, which we summarize in Tab. 1. The works that rely on a single image of novel identity at test time, typically utilize large-scale, unstructured 2D images [1] and videos [7, 40] during training to account for multiview and temporal aspects. Due to the practical challenges in collecting multiview full-head animation datasets, most single-image methods, including recent work [36], cannot reconstruct a complete 360-degree view of the head. While some approaches can generate full views [1, 41], they typically lack the ability to model facial expressions. Among methods that can animate, some methods rely solely on 2D representation [40], which makes these methods multi-view inconsistent by design. To overcome the above limitation, some methods rely on a hybrid representation that combines 2D and 3D [7, 34]. However, such methods cannot handle extreme camera angles, as they rely on 2D components for high-resolution synthesis. In contrast, we aim to build our model that has pure 3D representation, and, therefore, is multiview-consistent by design.
+
+<!-- page-break:2 -->
 
 Table 1. Comparison of methods for avatar generation and animation. The first two methods focus on general object generation, while the remaining methods are specifically designed for avatar applications.
 
@@ -57,9 +61,11 @@ Recently, the rise of text-to-image models has spurred the development of novel 
 
 Head animation. Head animation techniques can be broadly categorized into 2D-based and 3D-aware approaches, distinguished by their utilization of explicit camera models for rendering. Recent methods [8, 13, 30, 44] have predominantly adopted warping-based strategies, applying deformation fields to intermediate appearance features to capture facial motion characteristics. While effective for frontal and moderate poses, these approaches struggle to maintain shape consistency during large pose variations due to their inherent lack of 3Dmodeling.
 
+<!-- page-break:3 -->
+
 Figure 2. Overview of FaceCraft4D: Our approach begins with estimating the shape of a single input image using a shape Prior. This shape guides the synthesis of personalized multiview images, providing 360◦ views and varied expressions, with support from both 2D image and video priors. Since the synthesized data often exhibit inconsistency across views, we propose COIN optimization for robust 4D optimization. By fitting the model to the multiview data, we achieve our final 4D avatar. All faces in this manuscript come from the public FFHQ dataset [15].
 
-![Image](parsed/facecraft/images/image_000001_47bb4e7620938977db958a2ffd9874ac7c9a9b7fea4accc89b59f9e0a50b99a7.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/facecraft/images/image_000001_47bb4e7620938977db958a2ffd9874ac7c9a9b7fea4accc89b59f9e0a50b99a7.png)
 
 To enable free-viewpoint rendering with stronger 3D consistency guarantees, researchers integrated explicit 3D representations into the head synthesis pipeline. Early approaches [17, 42] relied on 3D morphable models for representing head shape and texture. Subsequent works [5, 14, 22, 43, 46] leveraged more sophisticated representations such as Neural Radiance Fields (NeRFs) [25] to better capture complex structures like hair and accessories. Recent advances like GAGAvatar [4], which employs 3D Gaussian splatting [16], have demonstrated impressive performance in both rendering quality and speed. However, these methods are typically limited in their ability to generate full 360degree views. Our approach enables true 360-degree view synthesis while maintaining real-time rendering capabilities and achieving superior animation quality.
 
@@ -73,11 +79,13 @@ The overall pipeline, shown in Fig. 2, consists of two stages: personalized mult
 
 The initialization is crucial for 3D generation. A good initialization should follow the approximate shape of the head shown in the input image, IR. For that, we use the prior provided by a 3D-aware generator, PanoHead [1, 41], which was trained on a large 360◦ head dataset. We obtain a coarse 3D reconstruction for a given input image IR through GAN inversion. Specifically, we first optimize the latent code z within the generator's domain by minimizing a combination of pixel-wise L2 loss and image-level LPIPS loss [48]. Subsequently, following [31], we keep the optimized latent code z fixed while fine-tuning the 3D generator's parameters. During this fine-tuning stage, we maintain the same loss functions used in the latent optimization phase to ensure the rendered views closely match the input image. This process gives us an initial 3D head representation, though one that cannot be animated. The optimized generator is then used to synthesize a set of approximate multiview images {Ii} and their corresponding depth maps {Di} , where i is the view index.
 
-![Image](parsed/facecraft/images/image_000002_b95bc1664f2c21254a23ea7c02955a17f1b2f605b636a2b70a6c1f52333bffaa.png)
+<!-- page-break:4 -->
+
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/facecraft/images/image_000002_b95bc1664f2c21254a23ea7c02955a17f1b2f605b636a2b70a6c1f52333bffaa.png)
 
 Figure 3. Image Prior: We introduce a cross-view mutual attention mechanism and epipolar constraints to enhance consistency in generated novel views. Our approach aligns reference and target images, maintaining visual coherence across viewpoints.
 
-![Image](parsed/facecraft/images/image_000003_ed1144d61733c2cab59258378441a2a0a054d51402dbb074f3165ee2b7978217.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/facecraft/images/image_000003_ed1144d61733c2cab59258378441a2a0a054d51402dbb074f3165ee2b7978217.png)
 
 +
 
@@ -99,9 +107,11 @@ Warping-based control generation. The consistency across the views is further en
 
 With the aforementioned guidance and epipolar constraints, we can ensure coherence across the entire view space and generate high-fidelity view-consistent images {I ∗ i } for further reconstruction.
 
+<!-- page-break:5 -->
+
 Figure 5. COIN-Training: To address shape and color inconsistencies between the views, we train two 3D representations: a view-consistent base model (GaussianAvatar) and an MLP, encoding inconsistencies between the views. The MLP with inconsistencies lets us robustly reconstruct the high-quality 3D base model.
 
-![Image](parsed/facecraft/images/image_000004_559e2e69821ce175fb69dcd9ffbad010dc576ad70160c25cb505e4bcd7b5b255.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/facecraft/images/image_000004_559e2e69821ce175fb69dcd9ffbad010dc576ad70160c25cb505e4bcd7b5b255.png)
 
 ## 3.3. Video Prior
 
@@ -121,9 +131,11 @@ We choose GaussianAvatar as our consistent representation because it lets us ani
 
 where eview ∈ Rd is a learnable view-specific embedding that encodes view-representation, c represents the initial Gaussian color attributes from the GaussianAvatar, eg is a position embedding for each Gaussian, accounting for location-specific color variation ranges (e.g., eyes vs. mouth regions), and θ is a vector of the trainable parameters. The final view-dependent color is computed as the sum of the base GaussianAvatar color and the offset: c∗ = c+coffset. The MLP consists of only two layers to maintain computational efficiency and preserve the real-time rendering capabilities of the Gaussian-based representation.
 
+<!-- page-break:6 -->
+
 Figure 6. Qualitative comparison on static 3D head generation from a single image.
 
-![Image](parsed/facecraft/images/image_000005_38f5c209acddd87f95ada2ea9bdb599ffa2a000152349757b7ad8ca3220926d7.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/facecraft/images/image_000005_38f5c209acddd87f95ada2ea9bdb599ffa2a000152349757b7ad8ca3220926d7.png)
 
 During training, we render two types of images: I C i from the consistent component alone, and I IC i from the combination of both components. To ensure accurate reconstruction of high-frequency details, we supervise I IC i using pixel-wise losses:
 
@@ -147,9 +159,11 @@ Implementation details. During the multiview generation stage, we use PanoHead [
 
 Evaluation metrics. In the absence of ground truth data, we use commonly adopted non-reference metrics to evaluate the rendered images in terms of image quality and identity similarity. For overall image quality, we use the FID [12] score. To assess multi-view consistency, we employ the CLIP-I [28] score. For identity preservation, we calculate ID scores by measuring the cosine distance of face recognition features [6] between the novel views and the reference images.
 
+<!-- page-break:7 -->
+
 Figure 7. Qualitative comparison on animation of different views.
 
-![Image](parsed/facecraft/images/image_000006_12458ce2ddf31f1471be7d63d14b4127951c4c49fd7106067dfb0c1a0bb1dafb.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/facecraft/images/image_000006_12458ce2ddf31f1471be7d63d14b4127951c4c49fd7106067dfb0c1a0bb1dafb.png)
 
 Table 2. Quantitative comparison on static 3D head generation.
 
@@ -184,53 +198,55 @@ Qualitative results. As shown in Fig. 7, our method preserves expressions with g
 
 Quantitative results. We test our data on unseen views (especially 60◦ -180◦ ), to highlight each method's performance under varying viewing angles, as handling extreme rotations is often challenging. The results are presented in Tab. 3. Our method outperforms all baselines, demonstrating robustness across varied views. The performance Figure 8. Ablation of multiview image generation modules.
 
+<!-- page-break:8 -->
+
 Input Warped Image w/o Warping w/o MA
 
-![Image](parsed/facecraft/images/image_000007_47a5f9a89b96630256fe7b2b4a7892630a86afc5328e04eeacc19d8e438753de.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/facecraft/images/image_000007_47a5f9a89b96630256fe7b2b4a7892630a86afc5328e04eeacc19d8e438753de.png)
 
-![Image](parsed/facecraft/images/image_000008_f1d9dc2c532d9c9c7da919c13f3379547760e66176b4d4717efec4def103a0fc.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/facecraft/images/image_000008_f1d9dc2c532d9c9c7da919c13f3379547760e66176b4d4717efec4def103a0fc.png)
 
-![Image](parsed/facecraft/images/image_000009_cf798a93826d9480864956cafa18c297a5a15973b823a7ac4ccde732f3233114.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/facecraft/images/image_000009_cf798a93826d9480864956cafa18c297a5a15973b823a7ac4ccde732f3233114.png)
 
-![Image](parsed/facecraft/images/image_000010_fb251f1d99dd0991dc12e58bf5b4744cf569c51b29742585e1e4a6b1a7854eb9.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/facecraft/images/image_000010_fb251f1d99dd0991dc12e58bf5b4744cf569c51b29742585e1e4a6b1a7854eb9.png)
 
 Full
 
-![Image](parsed/facecraft/images/image_000011_9ce573e3f1bb84db9a622b98985ea6d41e91a7591a77758c53bcc91505b6d998.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/facecraft/images/image_000011_9ce573e3f1bb84db9a622b98985ea6d41e91a7591a77758c53bcc91505b6d998.png)
 
 Input
 
-![Image](parsed/facecraft/images/image_000012_36f0e1b69148711a9077d9579567fb40edae26a5074da77121b208fa3f389be6.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/facecraft/images/image_000012_36f0e1b69148711a9077d9579567fb40edae26a5074da77121b208fa3f389be6.png)
 
 w/o Video Prior
 
-![Image](parsed/facecraft/images/image_000013_ee1f2a79cf418d30e29fee4fb5c1ce865520a9e6cbb3c5656bd23a20427928a2.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/facecraft/images/image_000013_ee1f2a79cf418d30e29fee4fb5c1ce865520a9e6cbb3c5656bd23a20427928a2.png)
 
 w/o COIN
 
-![Image](parsed/facecraft/images/image_000014_e59182454d697d76b9ed65a76b9a42bb9d7cd662d97a93cbb3969994f4c79201.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/facecraft/images/image_000014_e59182454d697d76b9ed65a76b9a42bb9d7cd662d97a93cbb3969994f4c79201.png)
 
-![Image](parsed/facecraft/images/image_000015_ed84b1777c05ad25f237c08b7899cc3fc99961685f46abe460604e48fe3610be.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/facecraft/images/image_000015_ed84b1777c05ad25f237c08b7899cc3fc99961685f46abe460604e48fe3610be.png)
 
 Input Novel View
 
-![Image](parsed/facecraft/images/image_000016_11e3b45f723b1c4f4db452869d2bc20a2e2154c6a3cbba8e1dbd60db63a7b729.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/facecraft/images/image_000016_11e3b45f723b1c4f4db452869d2bc20a2e2154c6a3cbba8e1dbd60db63a7b729.png)
 
 Figure 9. Ablation of animation modules.
 
-![Image](parsed/facecraft/images/image_000017_93a6b931fefeec82d8f4dcb8f1d269e572e2386b327364d756d5bd345914fd59.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/facecraft/images/image_000017_93a6b931fefeec82d8f4dcb8f1d269e572e2386b327364d756d5bd345914fd59.png)
 
-![Image](parsed/facecraft/images/image_000018_876d423ef6c1e7fa28029457fdb4e65faeec7d757396923ecfb3d1af6c97cf4a.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/facecraft/images/image_000018_876d423ef6c1e7fa28029457fdb4e65faeec7d757396923ecfb3d1af6c97cf4a.png)
 
-![Image](parsed/facecraft/images/image_000019_0e7af06a198401f13a25d8689d2adfe084e06439f36608af3f4651f1a1acb819.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/facecraft/images/image_000019_0e7af06a198401f13a25d8689d2adfe084e06439f36608af3f4651f1a1acb819.png)
 
 Full
 
-![Image](parsed/facecraft/images/image_000020_7fde4a5b02ae02c70d378e507bd2360eed4740e7431e3f745143b31d9ca12b1d.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/facecraft/images/image_000020_7fde4a5b02ae02c70d378e507bd2360eed4740e7431e3f745143b31d9ca12b1d.png)
 
 Input Novel View Input Novel View
 
-![Image](parsed/facecraft/images/image_000021_7f2add3ffaf85c2a9bea039c3c4902592d3c5cedfd6dc2da83a0ba1de8fab43b.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/facecraft/images/image_000021_7f2add3ffaf85c2a9bea039c3c4902592d3c5cedfd6dc2da83a0ba1de8fab43b.png)
 
 Figure 10. More results with diverse inputs.
 
@@ -274,6 +290,8 @@ Diverse inputs. To validate robustness, we conduct experiments on diverse inputs
 ## 5. Conclusions
 
 In this paper, we present a novel method for generating high-quality 4D portraits from a single image. By leveraging multiple priors including 3D-GAN for shape initialization, image prior for texture enhancement, and video prior for animation, our method can generate animated avatars with detailed textures, excellent consistency, and plausible rendition of views missing in the input. The proposed depth-guided warping ensures cross-view consistency during the generation process, while our COINtraining strategy enables high-quality 4D reconstruction from potentially inconsistent multi-view data. Extensive experiments demonstrate that our method outperforms existing approaches in terms of shape accuracy, texture quality, and identity preservation across different viewpoints and expressions. Our framework makes high-quality 4D portrait generation more accessible by removing the requirement for multi-view data capture, paving the way for broader applications.
+
+<!-- page-break:9 -->
 
 ## References
 
@@ -319,6 +337,8 @@ rium. Advances in neural information processing systems, 30, 2017. 6
 - [37] Kartik Teotia, Mallikarjun B R, Xingang Pan, Hyeongwoo Kim, Pablo Garrido, Mohamed Elgharib, and Christian Theobalt. Hq3davatar: High-quality implicit 3d head avatar. ACM Transactions on Graphics, 43(3):1-24, 2024. 1, 2
 - [38] Vikram Voleti, Chun-Han Yao, Mark Boss, Adam Letts, David Pankratz, Dmitry Tochilkin, Christian Laforte, Robin
 
+<!-- page-break:10 -->
+
 Rombach, and Varun Jampani. Sv3d: Novel multi-view synthesis and 3d generation from a single image using latent video diffusion. arXiv preprint arXiv:2403.12008, 2024. 2, 7, 1
 
 - [39] Kaisiyuan Wang, Qianyi Wu, Linsen Song, Zhuoqian Yang, Wayne Wu, Chen Qian, Ran He, Yu Qiao, and Chen Change Loy. Mead: A large-scale audio-visual dataset for emotional talking-face generation. In European Conference on Computer Vision, pages 700-717. Springer, 2020. 1
@@ -332,6 +352,8 @@ Rombach, and Varun Jampani. Sv3d: Novel multi-view synthesis and 3d generation f
 - [47] Bowen Zhang, Yiji Cheng, Jiaolong Yang, Chunyu Wang, Feng Zhao, Yansong Tang, Dong Chen, and Baining Guo. Gaussiancube: Structuring gaussian splatting using optimal transport for 3d generative modeling. arXiv preprint arXiv:2403.19655, 2024. 7
 - [48] Richard Zhang, Phillip Isola, Alexei AEfros, Eli Shechtman, and Oliver Wang. The unreasonable effectiveness of deep features as a perceptual metric. In CVPR, 2018. 3
 - [49] Yufeng Zheng, Wang Yifan, Gordon Wetzstein, Michael J Black, and Otmar Hilliges. Pointavatar: Deformable point-based head avatars from videos. In Proceedings of the IEEE/CVF conference on computer vision and pattern recognition, pages 21057-21067, 2023. 2
+
+<!-- page-break:11 -->
 
 ## FaceCraft4D: Animated 3D Facial Avatar Generation from a Single Image
 
@@ -382,14 +404,18 @@ We utilize the 2023 version of FLAME [21], which includes revised eye regions. A
 
 For FLAME tracking, we use the tracking code from [27]. The optimization process includes per-frame parameters (translation, joint poses, and expression) and shared
 
+<!-- page-break:12 -->
+
 Figure 11. Qualitative comparison with controllable 3D GANs.
 
-![Image](parsed/facecraft/images/image_000022_7ce51c3b4254accaa5aeae42d9687bbe7c4be1f3f07d9ce11ab6f33ecbbd41c7.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/facecraft/images/image_000022_7ce51c3b4254accaa5aeae42d9687bbe7c4be1f3f07d9ce11ab6f33ecbbd41c7.png)
 
 Figure 12. Qualitative comparison on static 3D head generation from a single image on MEAD (1). Red box indicates the input image.
 
-![Image](parsed/facecraft/images/image_000023_76b9da5d38561d70eeea46f5b209808fd7026084f5582a11c2ddb9aabf2bdd3c.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/facecraft/images/image_000023_76b9da5d38561d70eeea46f5b209808fd7026084f5582a11c2ddb9aabf2bdd3c.png)
+
+<!-- page-break:13 -->
 
 Figure 13. Qualitative comparison on static 3D head generation from a single image on MEAD (2). Red box indicates the input image.
 
-![Image](parsed/facecraft/images/image_000024_90ce3e6618a44362cc38c84ea8655e9289529c8f0a2997bfacb66c6763206a54.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/facecraft/images/image_000024_90ce3e6618a44362cc38c84ea8655e9289529c8f0a2997bfacb66c6763206a54.png)

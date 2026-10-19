@@ -1,3 +1,5 @@
+<!-- page-start:1 -->
+
 ## AniPortrait: Audio-Driven Synthesis of Photorealistic Portrait Animation
 
 Huawei Wei*, Zejun Yang*, and Zhisheng Wang
@@ -18,13 +20,17 @@ Building upon the advancements of diffusion models, we introduce AniPortrait, a 
 
 1 *Equal contribution.
 
+<!-- page-break:2 -->
+
 Our experimental results show the superiority of AniPortrait in creating animations with impressive facial naturalness, varied poses, and excellent visual quality. By employing 3D facial representations as intermediate features, we gain the flexibility to modify these representations as required. This adaptability greatly enhances the applicability of our framework in domains like facial motion editing and facial reenactment.
 
-![Image](parsed/text_driven_generation/anipotrait/images/image_000000_a47b04520cc8300f587b5e5a3d2dce9917fcfdd8a935c24e87f765bb4472f019.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/text_driven_generation/anipotrait/images/image_000000_a47b04520cc8300f587b5e5a3d2dce9917fcfdd8a935c24e87f765bb4472f019.png)
 
 Target Pose Images
 
 Fig. 1. Overview of the proposed method. Our framework is divided into two stages. Firstly, we extract the 3D facial mesh and head pose from the audio, and subsequently project these two elements into 2D keypoints. In the second stage, we utilize a diffusion model to transform the 2D keypoints into a portrait video. These two stages are trained concurrently within our framework.
+
+<!-- page-break:3 -->
 
 ## 2 Method
 
@@ -46,6 +52,8 @@ Given a reference portrait image, denoted as Iref , and a sequence of facial lan
 
 The design of Lmk2Video's network structure draws inspiration from AnimateAnyone. We utilize SD1.5 as the backbone, incorporating a temporal motion module that effectively converts multi-frame noise inputs into a sequence of video frames. Concurrently, a ReferenceNet, mirroring the structure of SD1.5, is employed to extract appearance information from the reference image and integrate it into the backbone. This strategic design ensures the face ID remains consistent throughout the output video. Difference from AnimateAnyone, we enhance the complexity of the PoseGuider's design. The original version merely incorporates a few convolution layers, after which the landmark features merge with the latents at the backbone's input layer. We discover that this rudimentary design falls short in capturing the intricate movements of the lips. Consequently, we adopt ControlNet's[15] multi-scale strategy, incorporating landmark features of corresponding scales into different blocks of the backbone. Despite these enhancements, we successfully keep the parameter count relatively low.
 
+<!-- page-break:4 -->
+
 We also introduce an additional improvement: the inclusion of the reference image's landmark as an extra input. The PoseGuider's cross-attention module facilitates interaction between the reference landmarks and each frame's target landmarks. This process provides the network with additional cues to comprehend the correlation between facial landmarks and appearance, thereby assisting in the generation of portrait animations with more precise motion.
 
 ## 3 Experiments
@@ -60,9 +68,11 @@ In the Lmk2Video process, we implement a two-step training approach. During the 
 
 As depicted in Figure 2, our method generates a series of animations that are striking in both quality and realism. We utilize an intermediate 3D representation, which can be edited to manipulate the final output. For instance, we can extract landmarks from a source and alter its ID, thereby enabling us to create a face reenactment effect.
 
+<!-- page-break:5 -->
+
 Fig. 2. Results of our method.
 
-![Image](parsed/text_driven_generation/anipotrait/images/image_000001_2b2583946bcba43e1757de9b6496a9ca9dc544e112f3b36b9a16105148caa7e0.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/text_driven_generation/anipotrait/images/image_000001_2b2583946bcba43e1757de9b6496a9ca9dc544e112f3b36b9a16105148caa7e0.png)
 
 ## 4 Conclusion and Future Work
 
@@ -71,6 +81,8 @@ This research presents a diffusion model-based framework for portrait animation.
 ## References
 
 1. Baevski, A., Zhou, Y., Mohamed, A., Auli, M.: wav2vec 2.0: A framework for self-supervised learning of speech representations. Advances in neural information processing systems 33, 12449-12460 (2020)
+
+<!-- page-break:6 -->
 
 2. Dhariwal, P., Nichol, A.: Diffusion models beat gans on image synthesis. Advances in neural information processing systems 34, 8780-8794 (2021)
 3. Guan, J., Zhang, Z., Zhou, H., Hu, T., Wang, K., He, D., Feng, H., Liu, J., Ding, E., Liu, Z., et al.: Stylesync: High-fidelity generalized and personalized lip sync in style-based generator. In: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. pp. 1505-1515 (2023)
@@ -88,6 +100,8 @@ This research presents a diffusion model-based framework for portrait animation.
 15. Zhang, L., Rao, A., Agrawala, M.: Adding conditional control to text-to-image diffusion models. In: Proceedings of the IEEE/CVF International Conference on Computer Vision. pp. 3836-3847 (2023)
 16. Zhang, W., Cun, X., Wang, X., Zhang, Y., Shen, X., Guo, Y., Shan, Y., Wang, F.: Sadtalker: Learning realistic 3d motion coefficients for stylized audio-driven single image talking face animation. In: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. pp. 8652-8661 (2023)
 17. Zhang, Z., Hu, Z., Deng, W., Fan, C., Lv, T., Ding, Y.: Dinet: Deformation inpainting network for realistic face visually dubbing on high resolution video. In: Proceedings of the AAAI Conference on Artificial Intelligence. vol. 37, pp. 35433551 (2023)
+
+<!-- page-break:7 -->
 
 18. Zhang, Z., Li, L., Ding, Y., Fan, C.: Flow-guided one-shot talking face generation with a high-resolution audio-visual dataset. In: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. pp. 3661-3670 (2021)
 19. Zhu, H., Wu, W., Zhu, W., Jiang, L., Tang, S., Zhang, L., Liu, Z., Loy, C.C.: Celebv-hq: A large-scale video facial attributes dataset. In: European conference on computer vision. pp. 650-667. Springer (2022)

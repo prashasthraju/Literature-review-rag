@@ -1,3 +1,5 @@
+<!-- page-start:1 -->
+
 ## ARTalk: Speech-Driven 3D Head Animation via Autoregressive Model
 
 XUANGENG CHU, The University of Tokyo, Japan NABARUN GOSWAMI, The University of Tokyo, Japan ZITENG CUI, The University of Tokyo, Japan HANQINWANG, The University of Tokyo, Japan TATSUYA HARADA, The University of Tokyo , RIKEN AIP, Japan
@@ -30,11 +32,13 @@ ACM ISBN 979-8-4007-2137-3/2025/12
 
 Fig. 1. We present ARTalk, a framework for speech-driven 3D facial motion generation. Our method learns a mapping from speech to a multi-scale motion code, enabling the real-time generation of realistic and diverse animation sequences.
 
-![Image](parsed/audio_speech_driven/artalk/images/image_000000_c6a6b267f4a134ff2aaec6ce0cd00ea09bd6aae8a083e95e72390d1420d62d5f.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/audio_speech_driven/artalk/images/image_000000_c6a6b267f4a134ff2aaec6ce0cd00ea09bd6aae8a083e95e72390d1420d62d5f.png)
 
 and natural correlation between the speech and facial expressions, speech-driven 3D facial animation has emerged as a key component for shaping lifelike virtual characters. Therefore, advancements in this field are essential for promoting the application of digital humans in various scenarios such as education and entertainment.
 
 Speech-driven 3D head motion generation aims to synthesize natural and temporally synchronized facial expressions, particularly lip movements, along with realistic head motions directly from speech input. Recent years have witnessed significant advancements in speech-driven motion generation. Autoregressive models, for instance, have been explored to predict deformation offsets on 3D meshes [Nocentini et al. 2024; Richard et al. 2021; Sung-Bin et al. 2024; Xing et al. 2023]. However, the inherent complexity of representing facial motion through mesh deformations in 3D space often struggles to fully capture the intricate and non-linear mappings between speech and the resulting nuanced facial expressions. This limitation frequently leads to over-smoothed non-lip regions and a lack of fine-grained realism. More recently, diffusion models [Ho et al. 2020; Stan et al. 2023; Sun et al. 2024; Tevet et al. 2023] have demonstrated compelling generative capabilities, including in the domain of speech-driven motion. For example, FaceDiffuser [Stan et al. 2023] leverages diffusion processes to generate motion directly on 3D meshes, while DiffPoseTalk [Sun et al. 2024] utilizes diffusion on the parametric FLAME model [Li et al. 2017] blendshapes to produce natural facial expressions and head movements. Despite their impressive results in generating high-fidelity motions, these diffusion-based approaches typically suffer from high computational costs, hindering their applicability in real-time and low-latency scenarios. In parallel, multi-scale autoregressive models [Tian et al. 2024] have achieved notable success in image generation tasks, offering a balance between generation speed and output quality. However, these architectures are primarily designed for processing single, multi-scale static samples rather than sequential temporal data, making their direct application to the temporal dynamics inherent in speech-to-motion generation challenging.
+
+<!-- page-break:2 -->
 
 To overcome the limitations of existing methods and achieve high-quality, natural, and fast speech-driven motion generation, we propose a novel approach based on temporal windows and multiscale autoregression. Our method segments the speech input into consecutive temporal windows for motion generation, a windowwise processing strategy crucial for achieving low-latency motion synthesis. Within each temporal window, we further employ a multiscale encoding and generation strategy to capture facial expressions and head movements with rich details. For instance, for a 4-second temporal window containing 100 motion frames, we encode it into a set of multi-scale representations with varying temporal resolutions, such as encodings with lengths of [1, 5, 25, 50, 100], and adopt a similar multi-scale decoding process during generation. This design allows the model to simultaneously capture global temporal context and fine-grained details of each motion frame, resulting in more expressive motions. To minimize encoding errors and ensure temporal coherence of the generated motions, we extend a VQ codec to encode multi-scale motion codes across two consecutive temporal windows, thereby effectively modeling and transferring temporal dependencies between windows. Additionally, we design a novel autoregressive generator that can autoregressively predict the multiscale motion codes for the current temporal window conditioned on the speech features of the current window and the previously generated motion sequence. This conditional generation mechanism enables our model to achieve high-quality multi-scale motion generation within each temporal window while maintaining smooth transitions and temporal consistency across windows. Furthermore, we integrate a Transformer-based style encoder to extract style representations from example motion clips. This allows our model to generate stylized motions with unique individual characteristics and helps to disentangle the complex many-to-many mapping between speech and motion. Through these innovations, our method can generate personalized and high-fidelity lip movements, facial expressions, and head motions, demonstrating significant potential for various speech-driven downstream applications.
 
@@ -68,9 +72,11 @@ Research on audio-driven 3D motion generation has been an area of interest for d
 
 Autoregressive (AR) methods model the temporal sequence of facial motion in a step-by-step manner. These methods typically leverage pre-trained speech model features [Baevski et al. 2020; Défossez et al. 2024; Hsu et al. 2021] as speech representations, which are subsequently mapped to 3D deformable model parameters or 3D meshes via neural networks. For example, FaceFormer [Fan et al. 2022] autoregressively predicts the continuous facial motion parameters while MeshTalk [Richard et al. 2021] learns a prior over categorical expression tokens. CodeTalker [Xing et al. 2023] and
 
-![Image](parsed/audio_speech_driven/artalk/images/image_000001_0c11a34d9ac13f58afb9abf1938c81b98daad6ef148927c5c3fa21c654accbad.png)
+<!-- page-break:3 -->
 
-![Image](parsed/audio_speech_driven/artalk/images/image_000002_cc74e1cee6df412f9593dbcc41e4571044071f4369018cf165ad78a6c8e222d8.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/audio_speech_driven/artalk/images/image_000001_0c11a34d9ac13f58afb9abf1938c81b98daad6ef148927c5c3fa21c654accbad.png)
+
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/audio_speech_driven/artalk/images/image_000002_cc74e1cee6df412f9593dbcc41e4571044071f4369018cf165ad78a6c8e222d8.png)
 
 ## (a) Temporal Multi-scale Encoder / Decoder
 
@@ -89,6 +95,8 @@ In this paper, we leverage FLAME [Li et al. 2017] as our motion representation a
 We provide an overview of our method in Figure 2. We adopt the widely used 3DMM [Li et al. 2017] as the facial representation and leverage a multi-scale VQ autoencoder model to train and obtain a multi-scale motion codebook along with its corresponding encoderdecoder, enabling a discrete representation of the motion space. Subsequently, we train a multi-scale autoregressive model to map speech information to the discrete motion space.
 
 In the following subsections, Section 3.1 details the problem definition and the 3DMM representation, Section 3.2 explains the multiscale motion VQ autoencoder model, Section 3.3 introduces the multi-scale autoregressive model.
+
+<!-- page-break:4 -->
 
 ## 3.1 Preliminaries
 
@@ -150,9 +158,11 @@ Two-level autoregression. Within each window𝑇 , the codes are generated scale
 
 where z (&lt;𝑙 ) 𝑇 denotes codes at all coarser scales. Inside each scale 𝑙 , tokens are predicted in parallel (blockwise) while attending causally to previously generated scales and the previous window.
 
+<!-- page-break:5 -->
+
 Fig. 3. Comparison of efficiency and performance across different methods.
 
-![Image](parsed/audio_speech_driven/artalk/images/image_000003_c4f0644dc5bb5b408b8b68a7b1c884a43cf9dbbdc38b9dd90652fe7b8817ef5c.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/audio_speech_driven/artalk/images/image_000003_c4f0644dc5bb5b408b8b68a7b1c884a43cf9dbbdc38b9dd90652fe7b8817ef5c.png)
 
 Training and inference. During training, ground-truth codes {z (𝑙 )(gt) 𝑇 } supervise the model via cross-entropy:
 
@@ -200,9 +210,11 @@ All training was conducted on one NVIDIA Tesla A100 GPU, requiring a total of ap
 
 Based on previous studies [Fan et al. 2022; Nocentini et al. 2024; Richard et al. 2021; Sun et al. 2024; Xing et al. 2023], we adopted two quantitative metrics, the lip vertex error (LVE) [Richard et al. 2021] and the upper face dynamic deviation (FDD) [Xing et al. 2023], to evaluate the generated facial motions. LVE calculates the maximum L2 error of all lip vertices for each frame, evaluating the largest deviation between predicted and ground truth lip positions. FDD calculates the standard deviation of the motion of each upper facial vertex over time between predictions and ground truth, evaluating the consistency of upper facial motion, which is closely related to speaking styles. Additionally, we use a similar metric as Sun et al. [2024], mouth opening distance (MOD), to more accurately assess the stylistic similarity of mouth opening movements. MOD measures the average difference in mouth opening region between predictions and ground truth. Compared to LVE, MOD focuses more on the similarity of mouth opening styles and is less sensitive to temporal lip synchronization. For the partitioning of the lip area and upper face, we used the mask partitioning officially provided by FLAME [Li et al. 2017]. The lip region contains 254 points, while the upper face, including eye region and forehead, contains 884 points.
 
+<!-- page-break:6 -->
+
 Fig. 4. Qualitative comparison with existing methods (all head poses fixed). The first four rows are from the TFHP dataset, and the last two rows are from the VOCASET dataset. Our method shows better alignment with the ground truth in expression style, mouth dynamics, and lip synchronization. Additional results are available in the supplementary materials and demo videos.
 
-![Image](parsed/audio_speech_driven/artalk/images/image_000004_7723683d36cc4ca479a800a82c9cffd49ea39f67352df238480319a2f5baadcc.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/audio_speech_driven/artalk/images/image_000004_7723683d36cc4ca479a800a82c9cffd49ea39f67352df238480319a2f5baadcc.png)
 
 We present the quantitative comparison on TFHP dataset [Sun et al. 2024] in Table 2. The baseline methods FaceFormer [Fan et al. 2022], CodeTalker [Xing et al. 2023], SelfTalk [Peng et al. 2023a], and FaceDiffuser [Stan et al. 2023] are mesh-based approaches and cannot generalize to arbitrary styles or new meshes. To ensure a fair comparison, we retrained these methods on meshes generated from the TFHP dataset. For MultiTalk [Sung-Bin et al. 2024], which is trained on FLAME meshes and supports language-based stylization, we used its English style for evaluation. ScanTalk [Nocentini et al.
 
@@ -211,6 +223,8 @@ We present the quantitative comparison on TFHP dataset [Sun et al. 2024] in Tabl
 For DiffPoseTalk [Sun et al. 2024], we used pre-trained weights on the TFHP dataset (including head pose) for evaluation. The results in the Table 2 show that our method achieving significant improvements in lip synchronization accuracy (LVE) and style alignment (FFD and MOD), indicating that our method not only achieves precise lip synchronization but also effectively captures personalized speaking styles.
 
 To demonstrate the generalizability of our method, we evaluated it on the VOCASET dataset [Cudeiro et al. 2019]. The results are presented in Table 3. Notably, for some baseline methods [Fan et al. 2022; Nocentini et al. 2024; Peng et al. 2023a; Stan et al. 2023; Xing et al. 2023], we used their pre-trained weights on VOCASET, whereas our method was not trained or fine-tuned on this dataset. Despite this, our method achieved highly competitive performance and outperformed most baseline methods specifically trained on this dataset. For MultiTalk [Sung-Bin et al. 2024] and DiffPoseTalk [Sun et al. 2024] which designed with style generalization capabilities, we directly testing it on the VOCASET dataset without fine-tuning. The results indicate that our method surpasses them in terms of generalization ability, further verifying the robustness of our method in handling unseen styles and data.
+
+<!-- page-break:7 -->
 
 Table 4. User study results. The percentages represent the proportion of users who preferred the our method over the baseline in each category. The values in brackets represent the 95% confidence interval, indicating that we are 95% confident that the true value of the performance metric lies within this range. Among them, Sync represents lip synchronization, Style represents the consistency of style, N-Exp and N-Pose represent the facial expression naturalness and head pose naturalness respectively.
 
@@ -239,7 +253,7 @@ Given that head movements can significantly influence users' evaluation of lip s
 
 Fig. 5. Qualitative results of head pose. When certain words are stressed or when accents occur, the model produces nodding motions similar to human behavior.
 
-![Image](parsed/audio_speech_driven/artalk/images/image_000005_bbe596043abe6ac339f9714e31dbe5335e9cd58b3d58c59afcbe0a92d93d0731.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/audio_speech_driven/artalk/images/image_000005_bbe596043abe6ac339f9714e31dbe5335e9cd58b3d58c59afcbe0a92d93d0731.png)
 
 As presented in Table 4, our method significantly outperformed the baseline methods in lip synchronization, style consistency and facial expression realism. Furthermore, our method achieved superior head pose naturalness compared to DiffPoseTalk [Sun et al. 2024], demonstrating its comprehensive advantages.
 
@@ -250,6 +264,8 @@ Multi-Scale Autoregression. To validate the importance of multiscale autoregress
 Temporal Encoder and Temporal Autoregression. To assess the necessity of temporal encoding and autoregression across time windows, we replaced our proposed temporal encoder and autoregressive model with a standard multi-scale encoder and a singlewindow multi-scale autoregressive model, respectively. As shown in Table 5, the absence of temporal modeling in VQ autoencoder or autoregressive both result in degraded generation quality. Additionally, we also observed temporal discontinuities in the motion sequences, further emphasizing the critical role of our temporal design in achieving smooth and coherent outputs.
 
 Speaker Style Embedding. We also evaluated the effect of removing the speaker style feature, which serves as the starting condition for the autoregressive process. Without this feature, the complexity of the many-to-many mapping between speech and motion increases significantly, and the generated motions lack personalized style. As reflected in Table 5, the removal of style features causes a substantial decline in generation quality, highlighting their importance in achieving stylistic and expressive outputs.
+
+<!-- page-break:8 -->
 
 Table 5. Ablation results on TFHP dataset.
 
@@ -274,7 +290,7 @@ In this paper, we introduced ARTalk, a novel framework for generating 3D facial 
 
 Fig. 6. We reconstruct the avatar using GAGAvatar [Chu and Harada 2024] and drive it with our ARTalk model, enabling speech-driven dynamic avatar generation.
 
-![Image](parsed/audio_speech_driven/artalk/images/image_000006_712751e38d4b7658a1af91ea1c2b935b1675fd92ea45ac0f99dc5f0a66890531.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/audio_speech_driven/artalk/images/image_000006_712751e38d4b7658a1af91ea1c2b935b1675fd92ea45ac0f99dc5f0a66890531.png)
 
 Limitations and future work. While ARTalk demonstrates strong performance in lip synchronization and expressions, a key limitation is that head movements are driven by speech prosody, not semantic context. This prevents the model from generating culturally-specific or meaningful gestures like nodding or shaking the head to indicate affirmation. Additionally, our use of a single style embedding can be challenging for speech with dramatic emotional shifts, which is also a common problem with existing methods. For example, when a speaker suddenly shifts from calm to excited, a single embedding may struggle to accurately capture this transition.
 
@@ -287,6 +303,8 @@ Given that our method can generate highly realistic talking head sequences, ther
 ## Acknowledgments
 
 This work was partially supported by JST Moonshot R&amp;D Grant Number JPMJPS2011, CREST Grant Number JPMJCR2015 and Basic Research Grant (Super AI) of Institute for AI and Beyond of the University of Tokyo. In addition, this work was also partially supported by JST SPRING, Grant Number JPMJSP2108.
+
+<!-- page-break:9 -->
 
 ## References
 
@@ -337,6 +355,8 @@ This work was partially supported by JST Moonshot R&amp;D Grant Number JPMJPS201
 - Yuyu Xu, Andrew W Feng, Stacy Marsella, and Ari Shapiro. 2013. A practical and configurable lip sync method for games. In Proceedings of Motion on Games. 131-140.
 - Karren D Yang, Anurag Ranjan, Jen-Hao Rick Chang, Raviteja Vemulapalli, and Oncel Tuzel. 2024. Probabilistic Speech-Driven 3D Facial Motion Synthesis: New Benchmarks Methods and Applications. In Proceedings of the IEEE/CVF Conference on
 
+<!-- page-break:10 -->
+
 Computer Vision and Pattern Recognition. 27294-27303.
 
 - Zhenhui Ye, Tianyun Zhong, Yi Ren, Jiaqi Yang, Weichuang Li, Jiawei Huang, Ziyue Jiang, Jinzheng He, Rongjie Huang, Jinglin Liu, et al. 2024. Real3D-Portrait: One-shot Realistic 3D Talking Portrait Synthesis. arXiv preprint arXiv:2401.08503 (2024).
@@ -347,6 +367,8 @@ Computer Vision and Pattern Recognition. 27294-27303.
 - Lingting Zhu, Xian Liu, Xuanyu Liu, Rui Qian, Ziwei Liu, and Lequan Yu. 2023. Taming Diffusion Models for Audio-Driven Co-Speech Gesture Generation. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 10544-10553.
 - Yixiang Zhuang, Baoping Cheng, Yao Cheng, Yuntao Jin, Renshuai Liu, Chengyang Li, Xuan Cheng, Jing Liao, and Juncong Lin. 2024. Learn2Talk: 3D Talking Face Learns from 2D Talking Face. IEEE Transactions on Visualization and Computer Graphics (2024), 1-13. https://doi.org/10.1109/TVCG.2024.3476275
 - Wojciech Zielonka, Timo Bolkart, and Justus Thies. 2022. Towards Metrical Reconstruction of Human Faces. In European Conference on Computer Vision. 20311-20322.
+
+<!-- page-break:11 -->
 
 ## 6 Reproducibility
 
@@ -404,6 +426,8 @@ The FLAME model represents the head shape as follows:
 where ¯ 𝑇 represents the template head avatar mesh, 𝐵𝑆 ( ˆ 𝛽; 𝑆) is the shape blend-shape function to account for identity-related shape variation, 𝐵𝑃 ( ˆ 𝜃 ; 𝑃) models jaw and neck pose to correct deformations that cannot be fully explained by linear blend skinning, and the expression blend-shapes 𝐵𝐸( ˆ 𝜓; 𝐸) capture facial expressions such as eye closure and smiling.
 
 1 FLAME\_masks.pkl downloaded from http://s2017.siggraph.org.
+
+<!-- page-break:12 -->
 
 Table 8. VQ Autoencoder performance on TFHP dataset.
 
@@ -478,9 +502,11 @@ To address this, we experiment with Mimi [Défossez et al. 2024], an audio encod
 
 The overall performance of the model is inherently influenced by the VQ autoencoder, which serves as the upper bound for the final model's performance. Here in Table 8, we present the performance of VQ autoencoder trained with different clip lengths. We did not observe a significant impact of clip length on the performance of the VQ autoencoder. For the autoregressive generation results under different segment length settings, please refer to the Table 5 in the main paper.
 
+<!-- page-break:13 -->
+
 Fig. 7. The interface of our user study. Users evaluate each video based on three criteria: lip synchronization, expression naturalness, and style consistency. The first two are judged by comparing method A and B, while style consistency is assessed with reference to the ground truth. One of the videos (A or B) is generated by our method, and the other by a baseline method, with their order randomized.
 
-![Image](parsed/audio_speech_driven/artalk/images/image_000007_1daffb7e0f0693488c1fb01191a8f68909e9961ee5e0aa36c325e10877664f4e.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/audio_speech_driven/artalk/images/image_000007_1daffb7e0f0693488c1fb01191a8f68909e9961ee5e0aa36c325e10877664f4e.png)
 
 ## 9 User Study Details
 

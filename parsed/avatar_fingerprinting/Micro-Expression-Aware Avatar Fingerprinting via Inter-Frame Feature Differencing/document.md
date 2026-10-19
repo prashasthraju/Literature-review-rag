@@ -1,3 +1,5 @@
+<!-- page-start:1 -->
+
 2026 International Conference on Automatic Face and Gesture Recognition (FG)
 
 ## Micro-Expression-Aware Avatar Fingerprinting via Inter-Frame Feature Differencing
@@ -32,6 +34,8 @@ Avatar impersonation presents a forensic challenge that is fundamentally differe
 
 Sub-landmark facial dynamics likely carry identity information that is too fine-grained to be reliably captured by landmark-based pipelines and too easily suppressed by generic appearance-oriented encoders. We therefore introduce a preprocessing-free avatar fingerprinting framework that combines a micro-expression-aware F5C backbone with inter-frame feature differencing. The backbone preserves coordinated fine-scale facial micro-expression directly from raw frames, whereas differencing removes temporally stable target appearance and retains only temporal variation. This combination is central to our approach: the backbone produces motion-sensitive features, and the differencing step transforms them into an appearance-agnostic representation of driving identity.
 
+<!-- page-break:2 -->
+
 Our contributions are as follows:
 
 - 1) We propose a preprocessing-free, end-to-end avatar fingerprinting framework that combines a microexpression-aware F5C backbone with inter-frame feature differencing.
@@ -65,6 +69,8 @@ This view is further supported by later work that removes appearance altogether.
 ## III. PROPOSED METHOD
 
 Let V d t denote a synthetic video produced by animating target identity IDt with driving identity IDd, where t and d index the target and driver respectively. The visual appearance of V d t is entirely determined by IDt, while the facial motion dynamics are induced by IDd. We seek an embedding ϕ :
+
+<!-- page-break:3 -->
 
 V →RD , where D is the embedding dimension, such that videos sharing the same driver remain close regardless of target appearance, and videos with different drivers are wellseparated even when rendered onto the same target face:
 
@@ -106,11 +112,13 @@ Supervised contrastive learning. Supervised contrastive learning [28] is a natur
 
 <!-- formula-not-decoded -->
 
+<!-- page-break:4 -->
+
 Frame-wise
 
 Fig. 1. End-to-end pipeline. Feature extraction: A video clip V composed of T grayscale frames from a generated video pass independently through the F5C backbone (ConvStack → FCC → CCC) to produce per-frame feature maps ft ∈ R128×16×16 . FCC provides global row/column receptive fields, allowing each spatial location to attend across the full face; CCC models inter-regional correlations via a k-NN graph (k=4), capturing coordinated muscle activations. Temporal differencing: Temporal structure is introduced via inter-frame differencing (dt = ft+1 - ft), which suppresses static appearance and retains only motion dynamics. This results in the motion tensor D ∈ R128×16×16×(T-1) . Identity encoder and training: The temporal identity head compresses this tensor D into the embedding ϕ(V ). The model is trained end-to-end using supervised contrastive loss, pulling embeddings from the same driver together while pushing different drivers apart. At inference, the embedding is used to assess whether the video was driven by the claimed identity.
 
-![Image](parsed/avatar_fingerprinting/Micro-Expression-Aware%20Avatar%20Fingerprinting%20via%20Inter-Frame%20Feature%20Differencing/images/image_000000_35a659626b82b7bf8c88a681faabfa6a2813fc0ed41af77a250a730de6739590.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/avatar_fingerprinting/Micro-Expression-Aware%20Avatar%20Fingerprinting%20via%20Inter-Frame%20Feature%20Differencing/images/image_000000_35a659626b82b7bf8c88a681faabfa6a2813fc0ed41af77a250a730de6739590.png)
 
 TABLE I IMPLEMENTATION DETAILS. ALL COMPONENTS ARE TRAINED JOINTLY
 
@@ -141,6 +149,8 @@ We follow the AUC computation and identity-disjoint data split defined in Prashn
 Main evaluation (Table III). The model is trained on videos from all three generators jointly and evaluated on the combined test set, measuring overall fingerprinting performance.
 
 Cross-generator evaluation (Tables IV and V). To assess generalization, we train three separate models, each using videos from only one generator (Face-vid2vid, TPS, or LIA). Each model is then evaluated on all three generators independently, yielding a 3×3 matrix where rows indicate training generator and columns indicate test generator. Diagonal entries reflect in-domain performance; off-diagonal entries measure cross-generator transfer.
+
+<!-- page-break:5 -->
 
 ## C. Experimental Conditions
 
@@ -191,6 +201,8 @@ Table II compares our approach with prior avatar fingerprinting systems from a d
 Table III reports performance on the full NVFAIR benchmark across all three generators. Our proposed FEAT\_DIFF model achieves an overall AUC of 0.877, outperforming the landmark-based NVFAIR baseline (0.853) by +0.024. At the per-generator level, FEAT\_DIFF is essentially on par with the baseline on Face-vid2vid (0.869 vs. 0.870), while improving substantially on LIA (+0.042) and TPS (+0.030). These gains are obtained without any external landmark extraction or preprocessing.
 
 PIXEL\_DIFF also performs competitively, reaching 0.861 overall AUC. This shows that differencing itself is a strong design principle. However, FEAT\_DIFF consistently outperforms PIXEL\_DIFF, indicating that applying differencing in the learned feature space yields more discriminative motion representations than applying it directly in pixel space.
+
+<!-- page-break:6 -->
 
 TABLE II
 
@@ -264,9 +276,11 @@ The comparison between FEAT\_DIFF and PIXEL\_DIFF shows that differencing is the
 
 3) Backbone Ablation: To test whether the gains arise from differencing alone or from the motion sensitivity of the encoder, we replace F5C with ResNet18 and re-evaluate the same four conditions under matched training settings. Table VIII shows that the best ResNet18 variant remains far below F5C despite using substantially more parameters
 
+<!-- page-break:7 -->
+
 Fig. 2. Cross-generator generalization for FEAT\_DIFF (solid) versus the NVFAIR baseline (dashed). Each panel corresponds to a model trained on a single generator and evaluated on all three generators.
 
-![Image](parsed/avatar_fingerprinting/Micro-Expression-Aware%20Avatar%20Fingerprinting%20via%20Inter-Frame%20Feature%20Differencing/images/image_000001_32942874db388bee32585a3362b56d0a16be3437694416197f607c6f1356a772.png)
+![Image](file:///C:/Users/prash/OneDrive/Desktop/atten/ragalu/parsed/avatar_fingerprinting/Micro-Expression-Aware%20Avatar%20Fingerprinting%20via%20Inter-Frame%20Feature%20Differencing/images/image_000001_32942874db388bee32585a3362b56d0a16be3437694416197f607c6f1356a772.png)
 
 TABLE VII CLIP-LENGTH ABLATION (F5C + FEAT\_DIFF, SUPCON, 150 EPOCHS, ALL GENERATORS JOINTLY). T=64 IS THE DEFAULT CONFIGURATION.
 
@@ -300,6 +314,8 @@ Our evaluation is currently limited to NVFAIR, which covers three pre-diffusion 
 ## VI. CONCLUSION
 
 We presented a preprocessing-free avatar fingerprinting framework that combines a micro-expression-aware F5C backbone with inter-frame feature differencing, suppressing target appearance by construction while retaining driverspecific micro-motion. On NVFAIR, our 0.53M-parameter model achieves 0.877 overall AUC, matches or exceeds the landmark-based baseline on most cross-generator pairs, and requires no external landmark tracking. Controlled ablations establish the key design principles: temporal differencing is the dominant source of identity signal, raw appearance features are actively detrimental, and feature-space differencing requires a backbone explicitly sensitive to fine-grained facial micro-motion. These findings position inter-frame feature differencing as a simple but principled mechanism for appearance-agnostic driver verification, pointing avatar fingerprinting beyond fixed geometric pipelines toward more robust verification under diverse talking-head generation systems.
+
+<!-- page-break:8 -->
 
 ## REFERENCES
 
