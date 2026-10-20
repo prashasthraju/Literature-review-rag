@@ -1,0 +1,6 @@
+﻿,Hyper-parameter,Value
+I2PModel (87M),ViT Branch - Patch Size ViT Branch - Patch Emb Channel ViT Branch - Attention Blocks ViT Branch - MLP Layers per Block ViT Branch - Attention Block Channel VGG Branch - Conv2D Layers VGG Branch - Conv2D Channels Final Conv2D Layers Output Feature Map Size,3 1024 6 2 1024 10 256 4 256 × 256 × 32 × 3
+Motion Adapter (5.7M),Patch Size Patch Emb Channels Norm Type Self-Attention Block MLP Layers per Block Attention Heads Drop Path Rate Discrimnator Dropout Rate,"4 [32, 64, 160, 256] LayerNorm 4 2 [1, 2, 5, 8] 0.1 0.25"
+Volume Renderer (0.004M),MLP Layers MLP Channels,2 64
+HTB-SRModel (50M),Torso Branch - TAE - Conv2D/3D Layers Torso Branch - MFE - Conv3D Layers Torso Branch - DBD - Conv2D Layers BG Branch - KNN number of neightbors BG Branch - Appearance Encoder Conv2D layers Head-Torso-BG Fusing Conv2D Layers Conv2D/3D Kernel,3 + 6 13 9 1 3 6 3
+A2MModel (10M),Encoder WavNet Layers Decoder WavNet Layers Encoder/Decoder Conv1D Kernel Encoder/Decoder Conv1D Channel Size Latent Size Prior Flow Layers Prior Flow Conv1D Kernel Prior Flow Conv1D Channel Size,8 4 5 192 16 4 3 64

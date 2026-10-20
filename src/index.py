@@ -7,13 +7,9 @@ import uuid
 from sentence_transformers import SentenceTransformer
 from qdrant_client import QdrantClient, models
 
-from src.embed_text import passage_for_embedding
+from src.embed_text import passage_for_record
+from src.retrieval import CHUNKS_FILE, COLLECTION, DB_PATH, MODEL_NAME
 
-CHUNKS_FILE = Path("chunks.jsonl")
-DB_PATH = "./qdrant_db_token_chunks"
-COLLECTION = "research_papers_v1"
-
-MODEL_NAME = "BAAI/bge-base-en-v1.5"
 BATCH_SIZE = 32
 
 # This script rebuilds the collection on every full indexing run.
@@ -41,7 +37,7 @@ def read_batches(path, batch_size):
 def main():
     if not CHUNKS_FILE.exists():
         raise FileNotFoundError(
-            "chunks.jsonl not found. Run chunk_documents.py first."
+            "chunks.jsonl not found. Run `python -m src.ingestion.chunker` first."
         )
 
     print(f"Loading embedding model: {MODEL_NAME}")
@@ -51,7 +47,7 @@ def main():
 
     # Persistent local database. Close it before opening another
     # client on the same path.
-    client = QdrantClient(path=DB_PATH)
+    client = QdrantClient(path=str(DB_PATH))
 
     try:
         exists = client.collection_exists(COLLECTION)
@@ -69,7 +65,7 @@ def main():
                 raise RuntimeError(f"Refusing to reset unexpected database path: {database_path}")
             if database_path.exists():
                 shutil.rmtree(database_path)
-            client = QdrantClient(path=DB_PATH)
+            client = QdrantClient(path=str(DB_PATH))
             exists = client.collection_exists(COLLECTION)
 
         if not exists:
@@ -84,10 +80,7 @@ def main():
         total = 0
 
         for batch in read_batches(CHUNKS_FILE, BATCH_SIZE):
-            texts = [
-                passage_for_embedding(item.get("text"), item.get("section_title"))
-                for item in batch
-            ]
+            texts = [passage_for_record(item) for item in batch]
 
             vectors = model.encode(
                 texts,
@@ -111,6 +104,7 @@ def main():
                 payload = {
                     "chunk_id": item["chunk_id"],
                     "document_id": item["document_id"],
+                    "document_title": item.get("document_title"),
                     "source_file": item["source_file"],
                     "section_path": item["section_path"],
                     "section_title": item["section_title"],

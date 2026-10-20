@@ -1,6 +1,6 @@
 import argparse
 from collections import defaultdict, deque
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 import hashlib
 import json
 import re
@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.embed_text import passage_for_embedding
+from src.embed_text import IMAGE_RE, clean_passage, passage_for_embedding
 
 PARSED_DIR = Path("parsed")
 OUTPUT_FILE = Path("chunks.jsonl")
@@ -19,25 +19,47 @@ MAX_TOKENS = 480
 OVERLAP_BLOCKS = 1
 PAGE_MARKER_RE = re.compile(r"<!-- page-(start|break):(\d+) -->")
 CAPTION_RE = re.compile(r"^\s*(?:table|tab\.|figure|fig\.)\s*(?:\d+|[ivxlcdm]+)\b", re.IGNORECASE)
+# Reference lists and acknowledgements are dense with other papers' titles and
+# method names, so they outrank the papers' own content for many queries.
+BOILERPLATE_SECTION_RE = re.compile(
+    r"^(?:\d+\.?\s*)?(?:references|bibliography|acknowledge?ments?\b.*|acm reference format:?)$",
+    re.IGNORECASE,
+)
+# Chunks with less real text than this (e.g. a lone figure reference) are dropped.
+MIN_CONTENT_CHARS = 40
 
 
-def token_count(text, section_title, tokenizer):
-    passage = passage_for_embedding(text, section_title)
-    return len(tokenizer.encode(passage, add_special_tokens=True))
+class TokenBudget:
+    """Counts tokens of a chunk exactly as it will be embedded, header included."""
+
+    def __init__(self, tokenizer, section_title, document_title, max_tokens):
+        self.tokenizer = tokenizer
+        self.section_title = section_title
+        self.document_title = document_title
+        self.max_tokens = max_tokens
+
+    def count(self, text):
+        passage = passage_for_embedding(text, self.section_title, self.document_title)
+        return len(self.tokenizer.encode(passage, add_special_tokens=True))
+
+    def fits(self, text):
+        return self.count(text) <= self.max_tokens
 
 
-def split_by_tokens(text, tokenizer, section_title, max_tokens):
-    prefix_tokens = token_count("", section_title, tokenizer)
-    content_budget = max(1, max_tokens - prefix_tokens)
-    token_ids = tokenizer.encode(text, add_special_tokens=False)
+def split_by_tokens(text, budget, reserved_text=""):
+    """Split text so that reserved_text + each piece fits the budget."""
+    content_budget = max(1, budget.max_tokens - budget.count(reserved_text))
+    # Slice the original string at token offsets; decoding the uncased BGE
+    # tokens would lowercase and strip accents from the stored text.
+    offsets = budget.tokenizer(
+        text, add_special_tokens=False, return_offsets_mapping=True
+    )["offset_mapping"]
     pieces = []
 
-    for offset in range(0, len(token_ids), content_budget):
-        piece = tokenizer.decode(
-            token_ids[offset:offset + content_budget],
-            skip_special_tokens=True,
-            clean_up_tokenization_spaces=True,
-        ).strip()
+    for start in range(0, len(offsets), content_budget):
+        end_index = start + content_budget
+        end = offsets[end_index][0] if end_index < len(offsets) else len(text)
+        piece = text[offsets[start][0]:end].strip()
         if piece:
             pieces.append(piece)
 
@@ -73,88 +95,61 @@ def table_parts(block):
     return caption, header, rows
 
 
-def render_table_fields(caption, fields, section_title):
-    label = f"Table: {caption}" if caption else "Table evidence"
-    return f"{label}\n" + "; ".join(
-        f"{header}: {value}" for header, value in fields if header or value
-    )
-
-
-def split_table_row(caption, headers, row, tokenizer, section_title, max_tokens):
-    fields = [
+def row_fields(headers, row):
+    return [
         (headers[index] if index < len(headers) and headers[index] else f"Column {index + 1}", value)
         for index, value in enumerate(row)
         if value
     ]
-    if not fields:
-        return []
 
-    key_field = fields[0]
-    current_fields = []
+
+def render_fields(fields):
+    return "; ".join(f"{header}: {value}" for header, value in fields if header or value)
+
+
+def split_table(caption, headers, rows, budget):
+    """Pack rendered table rows into as few chunks as fit, caption once per chunk.
+
+    Emitting one chunk per row repeated the caption in every chunk, so a single
+    large table could fill the whole top-k for any query matching its caption.
+    """
+    label = f"Table: {caption}" if caption else "Table evidence"
     parts = []
+    current = []
 
-    def render(fields_to_render):
-        return render_table_fields(caption, [key_field] + fields_to_render, section_title)
+    def flush():
+        if current:
+            parts.append("\n".join([label] + current))
+            current.clear()
 
-    for field in fields[1:]:
-        candidate = render(current_fields + [field])
-        if current_fields and token_count(candidate, section_title, tokenizer) > max_tokens:
-            parts.append(render(current_fields))
-            current_fields = []
-            candidate = render([field])
-
-        if token_count(candidate, section_title, tokenizer) <= max_tokens:
-            current_fields.append(field)
+    for row in rows:
+        fields = row_fields(headers, row)
+        if not fields:
             continue
+        line = render_fields(fields)
+        if not budget.fits(f"{label}\n{line}"):
+            # A single row too wide for one chunk: repeat its key field on each piece.
+            flush()
+            key = render_fields(fields[:1])
+            reserved = f"{label}\n{key}; "
+            for piece in split_by_tokens(render_fields(fields[1:]) or key, budget, reserved):
+                parts.append(reserved + piece)
+            continue
+        if current and not budget.fits("\n".join([label] + current + [line])):
+            flush()
+        current.append(line)
 
-        prefix = render([])
-        available_tokens = max_tokens - token_count(prefix, section_title, tokenizer)
-        value_parts = split_by_tokens(
-            field[1],
-            tokenizer,
-            section_title,
-            max(1, available_tokens),
-        )
-        for value_part in value_parts:
-            parts.append(render([(field[0], value_part)]))
-
-    if current_fields or not parts:
-        parts.append(render(current_fields))
-
-    key_only = render([])
-    if token_count(key_only, section_title, tokenizer) > max_tokens:
-        prefix = f"Table: {caption}\n{key_field[0]}: " if caption else f"Table evidence\n{key_field[0]}: "
-        available_tokens = max_tokens - token_count(prefix, section_title, tokenizer)
-        values = split_by_tokens(
-            key_field[1], tokenizer, section_title, max(1, available_tokens)
-        )
-        parts = [
-            render_table_fields(caption, [(key_field[0], value)], section_title)
-            for value in values
-        ] + parts
-
-    return parts
+    flush()
+    return parts or [f"{label}\n{'; '.join(headers)}"]
 
 
-def split_large_block(block, tokenizer, section_title, max_tokens):
+def split_large_block(block, budget):
     table = table_parts(block)
     if table:
         caption, header, rows = table
-        compact_rows = []
-        for row in rows:
-            compact_rows.extend(
-                split_table_row(
-                    caption,
-                    header,
-                    row,
-                    tokenizer,
-                    section_title,
-                    max_tokens,
-                )
-            )
-        return compact_rows or [render_table_fields(caption, list(zip(header, header)), section_title)]
+        return split_table(caption, header, rows, budget)
 
-    if token_count(block, section_title, tokenizer) <= max_tokens:
+    if budget.fits(block):
         return [block]
 
     sentences = re.split(r"(?<=[.!?])\s+", block)
@@ -162,17 +157,15 @@ def split_large_block(block, tokenizer, section_title, max_tokens):
     current = ""
 
     for sentence in sentences:
-        if token_count(sentence, section_title, tokenizer) > max_tokens:
+        if not budget.fits(sentence):
             if current:
                 parts.append(current)
                 current = ""
-            parts.extend(
-                split_by_tokens(sentence, tokenizer, section_title, max_tokens)
-            )
+            parts.extend(split_by_tokens(sentence, budget))
             continue
 
         candidate = f"{current} {sentence}".strip()
-        if current and token_count(candidate, section_title, tokenizer) > max_tokens:
+        if current and not budget.fits(candidate):
             parts.append(current)
             current = sentence
         else:
@@ -184,10 +177,13 @@ def split_large_block(block, tokenizer, section_title, max_tokens):
 
 
 def parse_sections(markdown):
+    """Return (document_title, sections); the title is the first heading."""
     sections = []
     heading_stack = []
     blocks = []
     page_number = 1
+    document_title = None
+    skip_section = False
     marker_block = "__DOCLING_PAGE_MARKER__"
     markdown = PAGE_MARKER_RE.sub(
         lambda match: f"\n\n{marker_block}:{match.group(1)}:{match.group(2)}\n\n",
@@ -195,12 +191,12 @@ def parse_sections(markdown):
     )
 
     def flush():
-        if blocks:
+        if blocks and not skip_section:
             sections.append({
                 "section_path": heading_stack.copy() or ["Document"],
                 "blocks": blocks.copy(),
             })
-            blocks.clear()
+        blocks.clear()
 
     for block in re.split(r"\n\s*\n", markdown):
         block = block.strip()
@@ -212,11 +208,9 @@ def parse_sections(markdown):
             block,
         )
         if marker_match:
-            if marker_match.group(1) == "start":
-                page_number = int(marker_match.group(2))
-            else:
-                flush()
-                page_number = int(marker_match.group(2))
+            # Page breaks do not end a section: paragraphs continue across
+            # pages, and each block keeps its own page for provenance.
+            page_number = int(marker_match.group(2))
             continue
 
         match = re.match(r"^(#{1,6})\s+(.+)$", block)
@@ -224,6 +218,8 @@ def parse_sections(markdown):
             flush()
             level = len(match.group(1))
             title = match.group(2).strip()
+            document_title = document_title or title
+            skip_section = bool(BOILERPLATE_SECTION_RE.match(title))
             heading_stack[:] = heading_stack[:level - 1]
             heading_stack.append(title)
             continue
@@ -237,7 +233,12 @@ def parse_sections(markdown):
         blocks.append((block, page_number))
 
     flush()
-    return sections
+    return document_title, sections
+
+
+def has_content(text):
+    content = clean_passage(text).replace("[figure]", " ")
+    return len(re.sub(r"[^A-Za-z0-9]", "", content)) >= MIN_CONTENT_CHARS
 
 
 def load_existing_ids(path):
@@ -271,20 +272,18 @@ def chunk_document(
     chunks = []
     chunk_index = 0
     existing_ids = existing_ids if existing_ids is not None else defaultdict(deque)
+    document_title, sections = parse_sections(markdown)
+    document_title = document_title or document_id
 
-    for section in parse_sections(markdown):
+    for section in sections:
         section_path = section["section_path"]
         section_title = section_path[-1]
+        budget = TokenBudget(tokenizer, section_title, document_title, max_tokens)
         blocks = []
         for block, page_number in section["blocks"]:
             blocks.extend(
                 (part, page_number)
-                for part in split_large_block(
-                    block,
-                    tokenizer,
-                    section_title,
-                    max_tokens,
-                )
+                for part in split_large_block(block, budget)
             )
 
         current = []
@@ -292,7 +291,7 @@ def chunk_document(
         def emit(items):
             nonlocal chunk_index
             text = "\n\n".join(block for block, _page in items).strip()
-            if not text:
+            if not text or not has_content(text):
                 return
 
             chunk_index += 1
@@ -308,6 +307,7 @@ def chunk_document(
             chunks.append({
                 "chunk_id": chunk_id,
                 "document_id": document_id,
+                "document_title": document_title,
                 "source_file": source_file,
                 "section_path": section_path,
                 "section_title": section_title,
@@ -319,19 +319,17 @@ def chunk_document(
                     re.search(r"(?m)^\s*\|.*\|", text)
                     or re.search(r"(?im)^\s*Table:", text)
                 ),
-                "contains_image_ref": bool(re.search(r"!\[[^\]]*\]\([^)]+\)", text)),
+                "contains_image_ref": bool(IMAGE_RE.search(text)),
             })
 
         for block in blocks:
             candidate = "\n\n".join([text for text, _page in current] + [block[0]])
-            if current and token_count(candidate, section_title, tokenizer) > max_tokens:
+            if current and not budget.fits(candidate):
                 emit(current)
                 current = current[-OVERLAP_BLOCKS:]
-                while current and token_count(
-                    "\n\n".join([text for text, _page in current] + [block[0]]),
-                    section_title,
-                    tokenizer,
-                ) > max_tokens:
+                while current and not budget.fits(
+                    "\n\n".join([text for text, _page in current] + [block[0]])
+                ):
                     current.pop(0)
             current.append(block)
 
@@ -339,6 +337,17 @@ def chunk_document(
             emit(current)
 
     return chunks
+
+
+def markdown_path_for(manifest, manifest_path):
+    # Manifests written on Windows store backslash paths; the Markdown always
+    # sits next to its manifest, so fall back to that location.
+    recorded = Path(PureWindowsPath(manifest["markdown_path"]).as_posix())
+    if not recorded.is_absolute():
+        recorded = Path.cwd() / recorded
+    if recorded.is_file():
+        return recorded
+    return manifest_path.parent / "document.md"
 
 
 def main():
@@ -352,7 +361,7 @@ def main():
     if args.max_tokens <= 0 or args.max_tokens > 512:
         parser.error("--max-tokens must be between 1 and 512")
 
-    manifests = list(args.parsed_dir.rglob("manifest.json"))
+    manifests = sorted(args.parsed_dir.rglob("manifest.json"))
     if not manifests:
         raise RuntimeError(f"No manifests found under {args.parsed_dir}.")
 
@@ -370,9 +379,7 @@ def main():
         for manifest_path in manifests:
             try:
                 manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-                markdown_path = Path(manifest["markdown_path"])
-                if not markdown_path.is_absolute():
-                    markdown_path = Path.cwd() / markdown_path
+                markdown_path = markdown_path_for(manifest, manifest_path)
                 if not markdown_path.is_file():
                     raise FileNotFoundError(str(markdown_path))
 
@@ -380,18 +387,19 @@ def main():
                 chunks = chunk_document(
                     markdown,
                     manifest["document_id"],
-                    manifest["source_file"],
+                    PureWindowsPath(manifest["source_file"]).as_posix(),
                     tokenizer,
                     max_tokens=args.max_tokens,
                     existing_ids=existing_ids,
                 )
 
                 for chunk in chunks:
-                    actual_tokens = token_count(
-                        chunk["text"],
-                        chunk["section_title"],
+                    actual_tokens = TokenBudget(
                         tokenizer,
-                    )
+                        chunk["section_title"],
+                        chunk["document_title"],
+                        args.max_tokens,
+                    ).count(chunk["text"])
                     max_chunk_tokens = max(max_chunk_tokens, actual_tokens)
                     if actual_tokens > args.max_tokens:
                         oversized_chunks.append((chunk["chunk_id"], actual_tokens))
@@ -409,7 +417,7 @@ def main():
     )
     print(f"\nTotal chunks: {total}")
     print(f"Failed documents: {len(failures)}")
-    print(f"Maximum chunk tokens (including section title): {max_chunk_tokens}")
+    print(f"Maximum chunk tokens (including title and section header): {max_chunk_tokens}")
     print(f"Chunks above token budget: {len(oversized_chunks)}")
     if oversized_chunks:
         print(f"Oversized examples: {oversized_chunks[:5]}")

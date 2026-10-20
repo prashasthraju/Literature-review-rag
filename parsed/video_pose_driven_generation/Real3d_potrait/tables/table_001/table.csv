@@ -1,0 +1,5 @@
+﻿Methods,Same-Identity Reenactment.L1 ↓,Same-Identity Reenactment.PSNR ↑,Same-Identity Reenactment.SSIM ↑,Same-Identity Reenactment.LPIPS ↓,Same-Identity Reenactment.FID ↓,Same-Identity Reenactment.CSIM ↑,Same-Identity Reenactment.AED ↓,Same-Identity Reenactment.APD ↓,Same-Identity Reenactment.AKD ↓,Cross-Identity Reenactment.CSIM ↑,Cross-Identity Reenactment.FID ↓,Cross-Identity Reenactment.AED ↓,Cross-Identity Reenactment.APD ↓
+Face-vid2vid,0.078,16.47,0.779,0.184,42.96,0.808,0.116,0.023,3.176,0.726,45.18,0.144,0.029
+OTAvatar,0.106,13.17,0.672,0.232,65.37,0.568,0.170,0.040,5.891,0.544,64.28,0.195,0.046
+HiDe-NeRF,0.084,15.92,0.752,0.189,50.04,0.753,0.129,0.021,3.531,0.699,53.28,0.161,0.025
+Ours (VD),0.067,18.95,0.801,0.171,37.50,0.821,0.111,0.018,2.829,0.758,42.37,0.138,0.022

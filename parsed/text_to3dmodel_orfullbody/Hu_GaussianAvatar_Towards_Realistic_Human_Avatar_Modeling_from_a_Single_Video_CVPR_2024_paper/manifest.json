@@ -1,0 +1,246 @@
+{
+  "document_id": "Hu_GaussianAvatar_Towards_Realistic_Human_Avatar_Modeling_from_a_Single_Video_CVPR_2024_paper",
+  "source_file": "text_to3dmodel_orfullbody/Hu_GaussianAvatar_Towards_Realistic_Human_Avatar_Modeling_from_a_Single_Video_CVPR_2024_paper.pdf",
+  "markdown_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/Hu_GaussianAvatar_Towards_Realistic_Human_Avatar_Modeling_from_a_Single_Video_CVPR_2024_paper/document.md",
+  "structured_json_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/Hu_GaussianAvatar_Towards_Realistic_Human_Avatar_Modeling_from_a_Single_Video_CVPR_2024_paper/document.json",
+  "picture_count": 8,
+  "table_count": 3,
+  "pictures": [
+    {
+      "figure_number": 1,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/Hu_GaussianAvatar_Towards_Realistic_Human_Avatar_Modeling_from_a_Single_Video_CVPR_2024_paper/images/figure_001.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 66.412841796875,
+            "t": 787.5977358818054,
+            "r": 109.66989135742188,
+            "b": 757.8934326171875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 2,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/Hu_GaussianAvatar_Towards_Realistic_Human_Avatar_Modeling_from_a_Single_Video_CVPR_2024_paper/images/figure_002.png",
+      "caption": "Figure 1. We propose GaussianAvatar, which learns animatable 3D Gaussians to represent detailed human avatars from a single video. Our method maintains a 3D consistent appearance even when animated by out-of-distribution motions.",
+      "provenance": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 64.33470153808594,
+            "t": 504.63519287109375,
+            "r": 519.3905029296875,
+            "b": 327.19781494140625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 3,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/Hu_GaussianAvatar_Towards_Realistic_Human_Avatar_Modeling_from_a_Single_Video_CVPR_2024_paper/images/figure_003.png",
+      "caption": "Figure 2. Overview of GaussianAvatar. Given a fitted SMPL or SMPL-X model on the current frame, we sample the points on its surface and record their positions on a UV positional map I, which is then passed to a pose encoder to obtain the pose feature. An optimizable feature tensor is pixel-aligned with the pose feature and learned to capture the coarse appearance of humans. Then the two aligned feature tensors are input into the Gaussian parameter decoder, which predicts each point's offset ∆ˆx, color ˆc, and scale ˆ s. These predictions, along with the fixed rotations q and opacity α, collectively constitute the animatable 3D Gaussians in canonical space.",
+      "provenance": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 53.16636276245117,
+            "t": 717.4893798828125,
+            "r": 540.5999755859375,
+            "b": 585.3441467285156,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 4,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/Hu_GaussianAvatar_Towards_Realistic_Human_Avatar_Modeling_from_a_Single_Video_CVPR_2024_paper/images/figure_004.png",
+      "caption": "Figure 3. Effect of iostropy of 3D Gaussians. (a) Input image, (b)(d) front and back views trained with isotropic 3D Gaussians, (c)(e) front and back views trained with anisotropic 3D Gaussians.",
+      "provenance": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 311.54364013671875,
+            "t": 506.7364196777344,
+            "r": 542.8597412109375,
+            "b": 385.9728698730469,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 5,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/Hu_GaussianAvatar_Towards_Realistic_Human_Avatar_Modeling_from_a_Single_Video_CVPR_2024_paper/images/figure_005.png",
+      "caption": "Figure 4. Motion optimization results. (a)(d) Original image, (b)(e) our optimized SMPL, (c)(f) ROMP [44] estimates.",
+      "provenance": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 53.339698791503906,
+            "t": 383.68438720703125,
+            "r": 282.5240173339844,
+            "b": 250.861572265625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 6,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/Hu_GaussianAvatar_Towards_Realistic_Human_Avatar_Modeling_from_a_Single_Video_CVPR_2024_paper/images/figure_006.png",
+      "caption": "Figure 5. Qualitative ablation studies. (a) Ground truth, (b) baseline + Opt. + Dyn., (c) baseline + Opt., (d) baseline.",
+      "provenance": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 311.1501770019531,
+            "t": 589.7466125488281,
+            "r": 539.9507446289062,
+            "b": 401.5128173828125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 7,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/Hu_GaussianAvatar_Towards_Realistic_Human_Avatar_Modeling_from_a_Single_Video_CVPR_2024_paper/images/figure_007.png",
+      "caption": "Figure 6. Qualitative comparison of novel view synthesis. We compare the novel view synthesis quality on the People-Snapshot dataset (first row), NeuMan dataset (second row), and DynVideo dataset (last two rows).",
+      "provenance": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 53.091365814208984,
+            "t": 714.5848236083984,
+            "r": 536.0265502929688,
+            "b": 209.4412841796875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 8,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/Hu_GaussianAvatar_Towards_Realistic_Human_Avatar_Modeling_from_a_Single_Video_CVPR_2024_paper/images/figure_008.png",
+      "caption": "Figure 7. Animation results on out-of-distribution motions. We compare the animation results on the People-Snapshot dataset (first row), NeuMan dataset (second row), and DynVideo dataset (last row).",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 57.065555572509766,
+            "t": 714.0421829223633,
+            "r": 539.3557739257812,
+            "b": 443.3523254394531,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "table_number": 1,
+      "caption": "Table 1. Quantitative evaluation on the People-Snapshot [1] dataset. Opt. denotes the motion optimization and Dyn. refers to dynamic appearance modeling.",
+      "provenance": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 51.527095794677734,
+            "t": 720.4768218994141,
+            "r": 543.4615478515625,
+            "b": 634.7959594726562,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/Hu_GaussianAvatar_Towards_Realistic_Human_Avatar_Modeling_from_a_Single_Video_CVPR_2024_paper/tables/table_001/table.html",
+      "csv_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/Hu_GaussianAvatar_Towards_Realistic_Human_Avatar_Modeling_from_a_Single_Video_CVPR_2024_paper/tables/table_001/table.csv"
+    },
+    {
+      "table_number": 2,
+      "caption": "Table 2. Quantitative evaluation on NeuMan [16] dataset.",
+      "provenance": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 57.81760787963867,
+            "t": 590.2057189941406,
+            "r": 256.38897705078125,
+            "b": 521.0697937011719,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/Hu_GaussianAvatar_Towards_Realistic_Human_Avatar_Modeling_from_a_Single_Video_CVPR_2024_paper/tables/table_002/table.html",
+      "csv_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/Hu_GaussianAvatar_Towards_Realistic_Human_Avatar_Modeling_from_a_Single_Video_CVPR_2024_paper/tables/table_002/table.csv"
+    },
+    {
+      "table_number": 3,
+      "caption": "Table 3. Quantitative evaluation on DynVideo dataset.",
+      "provenance": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 57.70499801635742,
+            "t": 487.3920593261719,
+            "r": 256.3460388183594,
+            "b": 418.4792175292969,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/Hu_GaussianAvatar_Towards_Realistic_Human_Avatar_Modeling_from_a_Single_Video_CVPR_2024_paper/tables/table_003/table.html",
+      "csv_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/Hu_GaussianAvatar_Towards_Realistic_Human_Avatar_Modeling_from_a_Single_Video_CVPR_2024_paper/tables/table_003/table.csv"
+    }
+  ]
+}

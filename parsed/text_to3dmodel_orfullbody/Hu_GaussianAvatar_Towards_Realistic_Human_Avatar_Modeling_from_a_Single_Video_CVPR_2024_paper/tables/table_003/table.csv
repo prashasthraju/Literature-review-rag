@@ -1,0 +1,6 @@
+﻿Method,PSNR ↑,SSIM ↑
+HumanNeRF [49],24.39,0.9349
+InstantAvatar [15],20.31,0.9183
+Baseline,23.55,0.9340
+Baseline + Opt.,26.16,0.9522
+Baseline + Opt. + Dyn.,28.58,0.9616

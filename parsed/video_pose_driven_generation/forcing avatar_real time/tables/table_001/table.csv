@@ -1,0 +1,5 @@
+﻿Method,Interaction.User Input,Interaction.Latency ↓,Reactiveness.rPCC-Exp ↓,Reactiveness.rPCC-Pose ↓,Motion Richness.SID ↑,Motion Richness.Var ↑,Visual Quality.FID ↓,Visual Quality.FVD ↓,Visual Quality.CSIM ↑,Lip Synchronization.LSE-D ↓,Lip Synchronization.LSE-C ↑
+FLOAT [28],✗,2.4s,0.054,0.182,2.785,2.778,81.297,438.817,0.845,8.135,6.361
+INFP∗ [70],✓,3.4s,0.035,0.064,2.343,1.638,24.551,159.000,0.867,8.027,6.536
+Ours,✓,0.5s,0.003,0.036,2.442,1.734,24.328,170.874,0.833,8.060,6.723
+GT,N/A,N/A,0.000,0.000,3.972,1.658,N/A,N/A,0.796,7.790,6.940

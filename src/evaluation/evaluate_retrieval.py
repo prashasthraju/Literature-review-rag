@@ -4,35 +4,24 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-from qdrant_client import QdrantClient
-from sentence_transformers import CrossEncoder, SentenceTransformer
-
 ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.embed_text import query_for_embedding
-from src.lexical import BM25Index, reciprocal_rank_fusion
-from src.reranking import rerank_candidates
-
-if __package__:
-    from .metrics import evaluate_query, mean_metric
-else:
-    from metrics import evaluate_query, mean_metric
+from src.evaluation.evidence import EvidenceResolver, evaluate_evidence
+from src.evaluation.metrics import evaluate_query, mean_metric
+from src.retrieval import (
+    CANDIDATE_K,
+    COLLECTION,
+    DB_PATH,
+    MODEL_NAME,
+    RETRIEVERS,
+    Retriever,
+    load_chunks,
+)
 
 DEFAULT_DATASET = Path("data/evaluation/retrieval_dev.jsonl")
-DEFAULT_DB_PATH = Path("qdrant_db_token_chunks")
-DEFAULT_COLLECTION = "research_papers_v1"
-DEFAULT_MODEL = "BAAI/bge-base-en-v1.5"
-
-
-def read_jsonl(path):
-    rows = []
-    with path.open(encoding="utf-8") as dataset_file:
-        for line in dataset_file:
-            if line.strip():
-                rows.append(json.loads(line))
-    return rows
+DATASET_VERSION = "1.1.0"
 
 
 def read_dataset(path):
@@ -44,28 +33,40 @@ def read_dataset(path):
             example = json.loads(line)
             if "query_id" not in example or "question" not in example:
                 raise ValueError(f"Missing query_id or question at {path}:{line_number}")
-            if "relevant_chunk_ids" not in example:
-                raise ValueError(f"Missing relevant_chunk_ids at {path}:{line_number}")
+            if "evidence" not in example and "relevant_chunk_ids" not in example:
+                raise ValueError(f"Missing evidence or relevant_chunk_ids at {path}:{line_number}")
             examples.append(example)
     if not examples:
         raise ValueError(f"No evaluation examples found in {path}")
     return examples
 
 
+def summarize(rows):
+    names = rows[0].keys()
+    return {name: mean_metric(rows, name) for name in names}
+
+
 def main():
-    parser = argparse.ArgumentParser(description="Evaluate dense retrieval against chunk-level judgments.")
+    parser = argparse.ArgumentParser(description="Evaluate retrieval against evidence-level relevance judgments.")
     parser.add_argument("--dataset", type=Path, default=DEFAULT_DATASET)
-    parser.add_argument("--db-path", type=Path, default=DEFAULT_DB_PATH)
-    parser.add_argument("--collection", default=DEFAULT_COLLECTION)
-    parser.add_argument("--model", default=DEFAULT_MODEL)
+    parser.add_argument("--chunks", type=Path, default=ROOT / "chunks.jsonl")
+    parser.add_argument("--db-path", type=Path, default=DB_PATH)
+    parser.add_argument("--collection", default=COLLECTION)
+    parser.add_argument("--model", default=MODEL_NAME)
     parser.add_argument("--top-k", type=int, default=5)
     parser.add_argument(
         "--retriever",
-        choices=("dense", "bm25", "hybrid"),
+        choices=RETRIEVERS,
         default="hybrid",
-        help="dense = Qdrant embeddings, bm25 = lexical, hybrid = RRF of both",
+        help="dense = embeddings, bm25 = lexical, hybrid = RRF of both",
     )
-    parser.add_argument("--candidate-k", type=int, default=20)
+    parser.add_argument(
+        "--dense-backend",
+        choices=("qdrant", "memory"),
+        default="qdrant",
+        help="memory encodes --chunks on the fly, to score a chunking without rebuilding Qdrant",
+    )
+    parser.add_argument("--candidate-k", type=int, default=CANDIDATE_K)
     parser.add_argument(
         "--reranker-model",
         help="Optional sentence-transformers cross-encoder used to rerank the candidate pool",
@@ -77,147 +78,122 @@ def main():
         parser.error("--top-k must be positive")
 
     examples = read_dataset(args.dataset)
-    chunks_path = ROOT / "chunks.jsonl"
-    chunk_records = read_jsonl(chunks_path) if chunks_path.exists() else []
-    chunk_by_id = {item["chunk_id"]: item for item in chunk_records if item.get("chunk_id")}
-    bm25 = None
-    if args.retriever in {"bm25", "hybrid"}:
-        if not chunk_records:
-            raise RuntimeError("chunks.jsonl is required for bm25/hybrid retrieval")
-        bm25 = BM25Index(
-            (item["chunk_id"], item.get("text", ""))
-            for item in chunk_records
-        )
+    records = load_chunks(args.chunks)
+    resolver = EvidenceResolver(records)
+    chunk_ids = {record["chunk_id"] for record in records}
 
-    model = None
-    reranker = None
-    client = None
-    if args.retriever in {"dense", "hybrid"}:
-        print(f"Loading embedding model: {args.model}")
-        model = SentenceTransformer(args.model)
-        client = QdrantClient(path=str(args.db_path))
-    if args.reranker_model:
-        print(f"Loading reranker: {args.reranker_model}")
-        reranker = CrossEncoder(args.reranker_model)
+    unresolved = [
+        (example["query_id"], unit["anchor"])
+        for example in examples
+        for unit in example.get("evidence", [])
+        if unit["grade"] > 0 and not resolver.resolve_unit(unit)
+    ]
+    if unresolved:
+        print(f"WARNING: {len(unresolved)} evidence anchors match no chunk in {args.chunks}:")
+        for query_id, anchor in unresolved:
+            print(f"  {query_id}: {anchor}")
+
+    # Legacy chunk-ID labels are only meaningful for the chunking they were made on.
+    legacy_labels_valid = all(
+        chunk_id in chunk_ids
+        for example in examples
+        for chunk_id in example.get("relevant_chunk_ids", {})
+    )
+
+    print(f"Loading {args.retriever} retriever ({args.dense_backend} dense index)")
+    retriever = Retriever(
+        records,
+        mode=args.retriever,
+        model_name=args.model,
+        reranker_model=args.reranker_model,
+        candidate_k=args.candidate_k,
+        dense_backend=args.dense_backend,
+        db_path=args.db_path,
+        collection=args.collection,
+    )
 
     query_results = []
-    candidate_k = max(args.top_k, args.candidate_k)
-
     try:
-        if client is not None and not client.collection_exists(args.collection):
-            raise RuntimeError(f"Qdrant collection not found: {args.collection}")
-
         for example in examples:
-            dense_ids = []
-            dense_points = {}
-            if client is not None:
-                vector = model.encode(
-                    query_for_embedding(example["question"]),
-                    normalize_embeddings=True,
-                ).tolist()
-                points = client.query_points(
-                    collection_name=args.collection,
-                    query=vector,
-                    limit=candidate_k,
-                    with_payload=True,
-                ).points
-                for point in points:
-                    if not point.payload:
-                        continue
-                    chunk_id = point.payload.get("chunk_id")
-                    if not chunk_id:
-                        continue
-                    dense_ids.append(chunk_id)
-                    dense_points[chunk_id] = point
+            hits = retriever.search(example["question"], top_k=args.top_k)
+            ranked_ids = [hit["chunk_id"] for hit in hits]
+            units = resolver.resolve(example)
+            metrics = evaluate_evidence(units, ranked_ids, args.top_k)
+            legacy = example.get("relevant_chunk_ids", {})
+            legacy_metrics = (
+                evaluate_query(legacy, ranked_ids, args.top_k) if legacy_labels_valid and legacy else None
+            )
 
-            lexical_ids = []
-            lexical_scores = {}
-            if bm25 is not None:
-                lexical_hits = bm25.search(example["question"], limit=candidate_k)
-                lexical_ids = [chunk_id for chunk_id, _score in lexical_hits]
-                lexical_scores = dict(lexical_hits)
-
-            if args.retriever == "dense":
-                candidate_ids = dense_ids[:candidate_k]
-            elif args.retriever == "bm25":
-                candidate_ids = lexical_ids[:candidate_k]
-            else:
-                candidate_ids = reciprocal_rank_fusion(
-                    dense_ids,
-                    lexical_ids,
-                    limit=candidate_k,
-                )
-
-            reranker_scores = {}
-            if reranker is not None:
-                ranked_candidates = rerank_candidates(
-                    reranker,
-                    example["question"],
-                    candidate_ids,
-                    chunk_by_id,
-                    args.top_k,
-                )
-                ranked_ids = [chunk_id for chunk_id, _score in ranked_candidates]
-                reranker_scores = dict(ranked_candidates)
-            else:
-                ranked_ids = candidate_ids[: args.top_k]
-
-            relevance = example["relevant_chunk_ids"]
-            metrics = evaluate_query(relevance, ranked_ids, args.top_k)
             results = []
-            for rank, chunk_id in enumerate(ranked_ids, start=1):
-                point = dense_points.get(chunk_id)
-                payload = (point.payload if point else None) or chunk_by_id.get(chunk_id) or {}
-                score = reranker_scores.get(chunk_id)
-                if score is None and point is not None:
-                    score = point.score
-                elif score is None and chunk_id in lexical_scores:
-                    score = lexical_scores[chunk_id]
+            for rank, hit in enumerate(hits, start=1):
+                record = hit["record"]
                 results.append({
                     "rank": rank,
-                    "chunk_id": chunk_id,
-                    "relevance": relevance.get(chunk_id, 0),
-                    "score": score,
-                    "document_id": payload.get("document_id"),
-                    "source_file": payload.get("source_file"),
-                    "section_title": payload.get("section_title"),
-                    "text": payload.get("text", ""),
+                    "chunk_id": hit["chunk_id"],
+                    "supports_evidence": [
+                        index for index, (_grade, ids) in enumerate(units) if hit["chunk_id"] in ids
+                    ],
+                    "relevance": max(
+                        (grade for grade, ids in units if hit["chunk_id"] in ids), default=0
+                    ),
+                    "score": hit["score"],
+                    "dense_score": hit["dense_score"],
+                    "bm25_score": hit["bm25_score"],
+                    "rerank_score": hit["rerank_score"],
+                    "document_id": record.get("document_id"),
+                    "source_file": record.get("source_file"),
+                    "section_title": record.get("section_title"),
+                    "page_numbers": record.get("page_numbers"),
+                    "text": record.get("text", ""),
                 })
             query_results.append({
                 "query_id": example["query_id"],
                 "question": example["question"],
                 "category": example.get("category", "unspecified"),
                 "metrics": metrics,
-                "relevant_chunk_ids": relevance,
+                "legacy_chunk_metrics": legacy_metrics,
+                "evidence": example.get("evidence", []),
                 "results": results,
             })
     finally:
-        if client is not None:
-            client.close()
+        retriever.close()
 
-    metric_names = query_results[0]["metrics"].keys()
-    summary = {name: mean_metric([item["metrics"] for item in query_results], name) for name in metric_names}
+    summary = summarize([item["metrics"] for item in query_results])
+    legacy_summary = (
+        summarize([item["legacy_chunk_metrics"] for item in query_results if item["legacy_chunk_metrics"]])
+        if legacy_labels_valid
+        else None
+    )
     report = {
         "created_at": datetime.now(timezone.utc).isoformat(),
-        "dataset": str(args.dataset),
-        "dataset_version": "1.0.0",
+        "dataset": args.dataset.as_posix(),
+        "dataset_version": DATASET_VERSION,
+        "chunks": args.chunks.as_posix(),
+        "chunk_count": len(records),
         "retriever": args.retriever,
+        "dense_backend": args.dense_backend,
         "reranker_model": args.reranker_model,
         "collection": args.collection,
         "embedding_model": args.model,
         "top_k": args.top_k,
-        "candidate_k": candidate_k,
+        "candidate_k": max(args.top_k, args.candidate_k),
         "query_count": len(query_results),
+        "evidence_unit_count": sum(len(resolver.resolve(example)) for example in examples),
+        "unresolved_evidence": [{"query_id": qid, "anchor": anchor} for qid, anchor in unresolved],
         "summary": summary,
+        "legacy_chunk_label_summary": legacy_summary,
         "queries": query_results,
     }
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"Evaluated queries: {len(query_results)}")
+    print(f"Evaluated queries: {len(query_results)} ({report['evidence_unit_count']} evidence units)")
     for name, value in summary.items():
         rendered = "n/a" if value is None else f"{value:.4f}"
         print(f"{name}: {rendered}")
+    if legacy_summary:
+        rendered = ", ".join(f"{name} {value:.4f}" for name, value in legacy_summary.items())
+        print(f"legacy chunk-ID labels: {rendered}")
     print(f"Report: {args.output.resolve()}")
 
 

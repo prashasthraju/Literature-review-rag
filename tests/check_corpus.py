@@ -1,5 +1,5 @@
 
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 import json
 from collections import Counter
 
@@ -20,7 +20,7 @@ for manifest_path in manifests:
             manifest_path.read_text(encoding="utf-8")
         )
         parsed_names.add(
-            Path(data["source_file"]).stem.lower()
+            PureWindowsPath(data["source_file"]).stem.lower()
         )
     except Exception as exc:
         print("Bad manifest:", manifest_path, exc)

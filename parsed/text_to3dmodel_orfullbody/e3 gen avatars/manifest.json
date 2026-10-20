@@ -1,0 +1,203 @@
+{
+  "document_id": "e3 gen avatars",
+  "source_file": "text_to3dmodel_orfullbody/e3 gen avatars.pdf",
+  "markdown_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/e3 gen avatars/document.md",
+  "structured_json_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/e3 gen avatars/document.json",
+  "picture_count": 7,
+  "table_count": 2,
+  "pictures": [
+    {
+      "figure_number": 1,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/e3 gen avatars/images/figure_001.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 53.62489318847656,
+            "t": 557.9287567138672,
+            "r": 558.2833251953125,
+            "b": 292.4138488769531,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 2,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/e3 gen avatars/images/figure_002.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 315.8469543457031,
+            "t": 733.5450096130371,
+            "r": 336.482666015625,
+            "b": 717.8368835449219,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 3,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/e3 gen avatars/images/figure_003.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 54.04570388793945,
+            "t": 707.8881149291992,
+            "r": 558.1488647460938,
+            "b": 535.8865966796875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 4,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/e3 gen avatars/images/figure_004.png",
+      "caption": "Figure 3: We demonstrate the effectiveness of our method in achieving precise and robust control over facial expressions and gestures. Our approach enables clear and distinct control over each individual finger, ensuring their visibility and accurate positioning. Additionally, our method exhibits strong robustness when faced with novel poses, producing reasonable and plausible results for facial expressions.",
+      "provenance": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 54.882347106933594,
+            "t": 708.6764450073242,
+            "r": 557.688232421875,
+            "b": 468.5692138671875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 5,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/e3 gen avatars/images/figure_005.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 59.0739631652832,
+            "t": 707.819465637207,
+            "r": 293.10430908203125,
+            "b": 461.4517822265625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 6,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/e3 gen avatars/images/figure_006.png",
+      "caption": "Forward Skinning KNN",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 55.75338363647461,
+            "t": 329.7156982421875,
+            "r": 167.05596923828125,
+            "b": 220.50372314453125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 7,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/e3 gen avatars/images/figure_007.png",
+      "caption": "Figure 6: Our method enables local editing and attribute transfer. In row one, we demonstrate the capability to modify only the nose of the avatar. The shared structure of UV featuers plane allows us to transfer attributes between different subjects, as showcased in row two.",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 358.4612731933594,
+            "t": 309.2132263183594,
+            "r": 557.6062622070312,
+            "b": 195.72882080078125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "table_number": 1,
+      "caption": "Table 1: Quantitative comparison on the THUman2.0 [58] dataset, and the ∗ results are adopted from GETAvatar [61].",
+      "provenance": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 330.7005310058594,
+            "t": 364.1333312988281,
+            "r": 544.24658203125,
+            "b": 275.99041748046875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/e3 gen avatars/tables/table_001/table.html",
+      "csv_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/e3 gen avatars/tables/table_001/table.csv"
+    },
+    {
+      "table_number": 2,
+      "caption": "Table 2: Ablation study on the initialization of Gaussian primitives and the utilization of UV features.",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 319.2501525878906,
+            "t": 675.2356491088867,
+            "r": 556.6023559570312,
+            "b": 620.5883483886719,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/e3 gen avatars/tables/table_002/table.html",
+      "csv_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/e3 gen avatars/tables/table_002/table.csv"
+    }
+  ]
+}

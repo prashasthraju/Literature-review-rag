@@ -1,0 +1,4 @@
+﻿Methods.Methods,Attribute Accuracy.Pants-color,Attribute Accuracy.Sleeve-length,R-Precision.ViT-B/32,R-Precision.ViT-L/14
+w/o codebook,0.55,1.00,77.71,82.65
+w/o segmentation,0.45,0.30,76.64,81.66
+origin,0.80,1.00,78.52,83.30

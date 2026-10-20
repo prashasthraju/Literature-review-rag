@@ -1,0 +1,4 @@
+﻿Method.w/ mu,Method.DPO,Reactiveness.rPCC-Exp ↓,Reactiveness.rPCC-Pose ↓,Motion Richness.SID ↑,Motion Richness.Var ↑,Visual Quality.FID ↓,Visual Quality.FVD ↓,Visual Quality.CSIM ↑,Lip Synchronization.LSE-D ↓,Lip Synchronization.LSE-C ↑
+✗,✗,0.052,0.175,2.165,1.586,28.746,185.593,0.818,8.260,6.423
+✓,✗,0.042,0.146,2.236,1.408,25.600,175.322,0.854,8.160,6.803
+✓,✓,0.003,0.036,2.442,1.734,24.328,170.874,0.833,8.060,6.723

@@ -1,0 +1,4 @@
+﻿Method,One-shot?,3D-Aware?,Natural Torso?,Switchable BG?,Driving Resource
+"Face-vid2vid (Wang et al., 2021) HiDe-NeRF (Li et al., 2023a) OTAvatar (Ma et al., 2023)",� � �,� � �,� � �,� N/A N/A,video video video
+"MakeItTalk (Zhou et al., 2020) PC-AVS (Zhou et al., 2021) RAD-NeRF (Tang et al., 2022)",� � �,� � �,� � �,� � �,audio audio audio
+Real3D-Portrait (ours),�,�,�,�,audio/video

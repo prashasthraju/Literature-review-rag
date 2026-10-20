@@ -1,0 +1,249 @@
+{
+  "document_id": "motion_diffuse",
+  "source_file": "text_to3dmodel_orfullbody/motion_diffuse.pdf",
+  "markdown_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/motion_diffuse/document.md",
+  "structured_json_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/motion_diffuse/document.json",
+  "picture_count": 5,
+  "table_count": 6,
+  "pictures": [
+    {
+      "figure_number": 1,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/motion_diffuse/images/figure_001.png",
+      "caption": "Fig. 1 MotionDiffuse is a diffusion model-based text-driven motion generation method that features 1) Probabilistic Mapping 2) Realistic Synthesis that results in highly diverse motions with high-fidelity shown in a)-d), and 3) Multi-Level Manipulation that empowers comprehensive motion generation such as that in c) where multiple body parts are involved and d) where time-varied prompts are given.",
+      "provenance": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 56.12851526992593,
+            "t": 729.6949958285696,
+            "r": 521.7536046593173,
+            "b": 559.837252951144,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 2,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/motion_diffuse/images/figure_002.png",
+      "caption": "Fig. 2 Overall Pipeline of the proposed MotionDiffuse. The colors of the arrows indicate different stages: blue for training, red for inference, and black for both training and inference.",
+      "provenance": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 43.729551990125,
+            "t": 749.4118410438483,
+            "r": 533.1016800885296,
+            "b": 488.3519947119054,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 3,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/motion_diffuse/images/figure_003.png",
+      "caption": "Fig. 3 Architecture of our Linear Self-attention.",
+      "provenance": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 45.33852648336935,
+            "t": 742.0021722774551,
+            "r": 280.2843808681821,
+            "b": 567.0101438776953,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 4,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/motion_diffuse/images/figure_004.png",
+      "caption": "Fig. 4 Qualitative results on the HumanML3D dataset. We compare our method with Guo et al. (2022) and visualize two examples for each given prompt. MotionDiffuse is able to achieve both accuracy and diversity.",
+      "provenance": [
+        {
+          "page_no": 11,
+          "bbox": {
+            "l": 51.05198692298735,
+            "t": 735.4732249242279,
+            "r": 510.17259719992,
+            "b": 518.2400573589116,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 5,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/motion_diffuse/images/figure_005.png",
+      "caption": "Fig. 5 Qualitative results on the BABEL dataset. MotionDiffuse is able to generate dynamic sequences according to complicated prompt that involves multiple body parts or actions.",
+      "provenance": [
+        {
+          "page_no": 13,
+          "bbox": {
+            "l": 48.00913320572104,
+            "t": 742.4116189018847,
+            "r": 528.3166673051462,
+            "b": 511.7038020005758,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "table_number": 1,
+      "caption": "Table 1 Quantitative results on the HumanML3D test set. All methods use the real motion length from the ground truth. '→' means results are better if the metric is closer to the real motions. We run all the evaluation 20 times and ± indicates the 95% confidence interval. The best results are in bold.",
+      "provenance": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 41.21144686159991,
+            "t": 716.2787876482531,
+            "r": 535.6638104985384,
+            "b": 623.6875834648513,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/motion_diffuse/tables/table_001/table.html",
+      "csv_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/motion_diffuse/tables/table_001/table.csv"
+    },
+    {
+      "table_number": 2,
+      "caption": "Table 2 Quantitative results on the KIT-ML test set. All methods use the real motion length from the ground truth.",
+      "provenance": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 41.04191809486542,
+            "t": 594.2974416001562,
+            "r": 535.7420234780535,
+            "b": 502.3991400472682,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/motion_diffuse/tables/table_002/table.html",
+      "csv_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/motion_diffuse/tables/table_002/table.csv"
+    },
+    {
+      "table_number": 3,
+      "caption": "Table 3 Ablation of the pretrained CLIP and the efficient attention technique. All results are reported on the KIT-ML test set.",
+      "provenance": [
+        {
+          "page_no": 10,
+          "bbox": {
+            "l": 297.4619141143184,
+            "t": 447.74804702903765,
+            "r": 535.2197095197639,
+            "b": 384.7300052307564,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/motion_diffuse/tables/table_003/table.html",
+      "csv_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/motion_diffuse/tables/table_003/table.csv"
+    },
+    {
+      "table_number": 4,
+      "caption": "Table 4 Ablation of the latent dimension and the number of transformer layers. All results are reported on the KIT-ML test set.",
+      "provenance": [
+        {
+          "page_no": 11,
+          "bbox": {
+            "l": 42.43458386412242,
+            "t": 423.2875894288269,
+            "r": 279.6205763990159,
+            "b": 310.58814219495173,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/motion_diffuse/tables/table_004/table.html",
+      "csv_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/motion_diffuse/tables/table_004/table.csv"
+    },
+    {
+      "table_number": 5,
+      "caption": "Table 5 Quantitative results for Action-conditioned Motion Generation. As for UESTC dataset, we report FID on the test split. MM: MultiModality.",
+      "provenance": [
+        {
+          "page_no": 12,
+          "bbox": {
+            "l": 48.273258224180076,
+            "t": 725.1539250340768,
+            "r": 528.6268978996533,
+            "b": 651.9700819665179,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/motion_diffuse/tables/table_005/table.html",
+      "csv_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/motion_diffuse/tables/table_005/table.csv"
+    },
+    {
+      "table_number": 6,
+      "caption": "Table 6 Ablation of the latent dimension and the number of transformer layers. All results are reported on the HumanAct12 dataset.",
+      "provenance": [
+        {
+          "page_no": 12,
+          "bbox": {
+            "l": 77.16429007106498,
+            "t": 249.12754460858048,
+            "r": 244.98260508625617,
+            "b": 145.98922606262056,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/motion_diffuse/tables/table_006/table.html",
+      "csv_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/motion_diffuse/tables/table_006/table.csv"
+    }
+  ]
+}

@@ -1,0 +1,565 @@
+{
+  "document_id": "Real3d_potrait",
+  "source_file": "video_pose_driven_generation/Real3d_potrait.pdf",
+  "markdown_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/document.md",
+  "structured_json_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/document.json",
+  "picture_count": 19,
+  "table_count": 7,
+  "pictures": [
+    {
+      "figure_number": 1,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/images/figure_001.png",
+      "caption": "Pretraining Figure 1: The inference pipeline of Real3D-Portrait. With one source image as input and a video/audio as driving condition, it synthesizes 3D talking avatars with a realistic torso and background.",
+      "provenance": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 109.96510314941406,
+            "t": 722.4580917358398,
+            "r": 501.7273254394531,
+            "b": 613.63525390625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 2,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/images/figure_002.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 106.84657287597656,
+            "t": 429.82867431640625,
+            "r": 504.9808044433594,
+            "b": 312.9013977050781,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 3,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/images/figure_003.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 580.2225341796875,
+            "t": 692.8332061767578,
+            "r": 611.9395751953125,
+            "b": 650.62744140625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 4,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/images/figure_004.png",
+      "caption": "Figure 2: The network structure of I2P model, motion adapter, and HTB-SR model.",
+      "provenance": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 108.94222259521484,
+            "t": 727.5209655761719,
+            "r": 504.38836669921875,
+            "b": 553.3010101318359,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 5,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/images/figure_005.png",
+      "caption": "Figure 3: The process of training the motion adapter and fine-tuning the I2P model in Sec.3.2.",
+      "provenance": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 107.75090026855469,
+            "t": 728.5132789611816,
+            "r": 503.19000244140625,
+            "b": 598.7414855957031,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 6,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/images/figure_006.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 15,
+          "bbox": {
+            "l": 115.81957244873047,
+            "t": 792.0,
+            "r": 495.4480895996094,
+            "b": 746.8976936340332,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 7,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/images/figure_007.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 15,
+          "bbox": {
+            "l": 127.09915161132812,
+            "t": 573.3700561523438,
+            "r": 475.9775390625,
+            "b": 423.1409606933594,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 8,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/images/figure_008.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 16,
+          "bbox": {
+            "l": 107.99036407470703,
+            "t": 707.2157211303711,
+            "r": 502.8674621582031,
+            "b": 529.3592834472656,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 9,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/images/figure_009.png",
+      "caption": "Figure 7: The training process of HTB-SR model in Sec. 3.3.",
+      "provenance": [
+        {
+          "page_no": 16,
+          "bbox": {
+            "l": 109.11720275878906,
+            "t": 467.7344970703125,
+            "r": 501.8814392089844,
+            "b": 350.3297424316406,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 10,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/images/figure_010.png",
+      "caption": "Figure 8: The network structure of A2M model. Dotted lines denote the processes that are only executed during the training phase in Sec. 3.4.",
+      "provenance": [
+        {
+          "page_no": 18,
+          "bbox": {
+            "l": 146.56455993652344,
+            "t": 707.7902603149414,
+            "r": 463.12835693359375,
+            "b": 587.7977752685547,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 11,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/images/figure_011.png",
+      "caption": "Pose 2",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 136.74119567871094,
+            "t": 708.0579147338867,
+            "r": 499.0084228515625,
+            "b": 562.2008819580078,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 12,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/images/figure_012.png",
+      "caption": "Source Image",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 112.08013916015625,
+            "t": 456.55181884765625,
+            "r": 348.3192138671875,
+            "b": 298.10760498046875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 13,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/images/figure_013.png",
+      "caption": "volume Rendered Image",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 365.72174072265625,
+            "t": 456.8903503417969,
+            "r": 408.3119812011719,
+            "b": 394.4027404785156,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 14,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/images/figure_014.png",
+      "caption": "volume Rendered Depth",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 358.5195617675781,
+            "t": 378.67877197265625,
+            "r": 410.32122802734375,
+            "b": 312.4754638671875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 15,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/images/figure_015.png",
+      "caption": "Rendered Image after SR",
+      "provenance": [
+        {
+          "page_no": 20,
+          "bbox": {
+            "l": 420.35076904296875,
+            "t": 455.4395446777344,
+            "r": 500.07611083984375,
+            "b": 297.8265380859375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 16,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/images/figure_016.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 21,
+          "bbox": {
+            "l": 110.7452392578125,
+            "t": 707.5048294067383,
+            "r": 498.7637023925781,
+            "b": 537.7052307128906,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 17,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/images/figure_017.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 21,
+          "bbox": {
+            "l": 110.48489379882812,
+            "t": 432.89654541015625,
+            "r": 502.4299621582031,
+            "b": 376.10272216796875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 18,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/images/figure_018.png",
+      "caption": "Figure 13: Demonstration that our generic audio-to-motion model could generate accurate lip motion.",
+      "provenance": [
+        {
+          "page_no": 21,
+          "bbox": {
+            "l": 108.90601348876953,
+            "t": 282.6193542480469,
+            "r": 502.29718017578125,
+            "b": 171.6572265625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 19,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/images/figure_019.png",
+      "caption": "Figure 15: Comparison between with or without alpha-blending-style head-torso-background fusion as introduced in Eq. 5. We use the rectangle to point out the artifacts caused by not using the alpha-blending fusion and use the rectangle with dotted to show that using alpha-blending fusion could address these problems.",
+      "provenance": [
+        {
+          "page_no": 22,
+          "bbox": {
+            "l": 109.29520416259766,
+            "t": 561.4519958496094,
+            "r": 501.7422790527344,
+            "b": 438.5671081542969,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "table_number": 1,
+      "caption": "Table 1: Same/Cross-identity reenactment results of video-driven methods. Best scores are in bold.",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 109.01145935058594,
+            "t": 722.2253112792969,
+            "r": 508.70574951171875,
+            "b": 662.2835388183594,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/tables/table_001/table.html",
+      "csv_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/tables/table_001/table.csv"
+    },
+    {
+      "table_number": 2,
+      "caption": "Table 2: Results of audio-driven methods.",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 298.563720703125,
+            "t": 423.755859375,
+            "r": 496.59478759765625,
+            "b": 370.6907043457031,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/tables/table_002/table.html",
+      "csv_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/tables/table_002/table.csv"
+    },
+    {
+      "table_number": 3,
+      "caption": "Table 3: MOS score of different methods. The error bars are 95% confidence interval.",
+      "provenance": [
+        {
+          "page_no": 9,
+          "bbox": {
+            "l": 108.82443237304688,
+            "t": 721.9712829589844,
+            "r": 505.5721740722656,
+            "b": 674.3569793701172,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/tables/table_003/table.html",
+      "csv_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/tables/table_003/table.csv"
+    },
+    {
+      "table_number": 4,
+      "caption": "Table 4: Ablation studies.",
+      "provenance": [
+        {
+          "page_no": 9,
+          "bbox": {
+            "l": 306.1497802734375,
+            "t": 545.7921447753906,
+            "r": 506.846923828125,
+            "b": 431.13616943359375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/tables/table_004/table.html",
+      "csv_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/tables/table_004/table.csv"
+    },
+    {
+      "table_number": 5,
+      "caption": "Table 5: The illustration of properties of different talking face generation methods.",
+      "provenance": [
+        {
+          "page_no": 14,
+          "bbox": {
+            "l": 107.02010345458984,
+            "t": 690.0220718383789,
+            "r": 516.584228515625,
+            "b": 573.6120300292969,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/tables/table_005/table.html",
+      "csv_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/tables/table_005/table.csv"
+    },
+    {
+      "table_number": 6,
+      "caption": "Table 6: Model Configuration",
+      "provenance": [
+        {
+          "page_no": 18,
+          "bbox": {
+            "l": 109.43885040283203,
+            "t": 429.3002624511719,
+            "r": 502.4403991699219,
+            "b": 76.6839599609375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/tables/table_006/table.html",
+      "csv_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/tables/table_006/table.csv"
+    },
+    {
+      "table_number": 7,
+      "caption": "Table 7: Additional comparison with 2D VD baselines.",
+      "provenance": [
+        {
+          "page_no": 22,
+          "bbox": {
+            "l": 166.2813262939453,
+            "t": 118.45867919921875,
+            "r": 445.5086364746094,
+            "b": 61.22381591796875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/tables/table_007/table.html",
+      "csv_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/Real3d_potrait/tables/table_007/table.csv"
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "document_id": "TEXT2AVATAR",
+  "source_file": "text_to3dmodel_orfullbody/TEXT2AVATAR.pdf",
+  "markdown_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/TEXT2AVATAR/document.md",
+  "structured_json_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/TEXT2AVATAR/document.json",
+  "picture_count": 4,
+  "table_count": 2,
+  "pictures": [
+    {
+      "figure_number": 1,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/TEXT2AVATAR/images/figure_001.png",
+      "caption": "Fig. 1. Framework of Text2Avatar.",
+      "provenance": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 56.385276794433594,
+            "t": 717.225830078125,
+            "r": 559.284423828125,
+            "b": 569.2283630371094,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 2,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/TEXT2AVATAR/images/figure_002.png",
+      "caption": "Fig. 2. Multi-Modal Encoder.",
+      "provenance": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 56.00981903076172,
+            "t": 543.0580596923828,
+            "r": 297.96002197265625,
+            "b": 454.9450988769531,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 3,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/TEXT2AVATAR/images/figure_003.png",
+      "caption": "Fig. 3. Generation results from coupled textual prompts.",
+      "provenance": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 60.66305923461914,
+            "t": 603.1556243896484,
+            "r": 290.6100158691406,
+            "b": 453.482177734375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 4,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/TEXT2AVATAR/images/figure_004.png",
+      "caption": "Fig. 4. Comparison between baselines and Text2Avatar.",
+      "provenance": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 59.60787582397461,
+            "t": 719.4186935424805,
+            "r": 292.8196716308594,
+            "b": 466.0518798828125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "table_number": 1,
+      "caption": "Table 1. Comparison of different baselines w.r.t. attribute accuracy and R-Precision.",
+      "provenance": [
+        {
+          "page_no": 3,
+          "bbox": {
+            "l": 64.58202362060547,
+            "t": 700.3478469848633,
+            "r": 548.5554809570312,
+            "b": 621.5907287597656,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/TEXT2AVATAR/tables/table_001/table.html",
+      "csv_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/TEXT2AVATAR/tables/table_001/table.csv"
+    },
+    {
+      "table_number": 2,
+      "caption": "Table 2. Ablation study result.w/o stands for without.",
+      "provenance": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 314.34161376953125,
+            "t": 594.6556701660156,
+            "r": 564.9794921875,
+            "b": 533.0381469726562,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/TEXT2AVATAR/tables/table_002/table.html",
+      "csv_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/text_to3dmodel_orfullbody/TEXT2AVATAR/tables/table_002/table.csv"
+    }
+  ]
+}

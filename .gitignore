@@ -4,3 +4,6 @@ parsed/
 parsed_only text/
 qdrant_db/
 qdrant_db_token_chunks/
+__pycache__/
+*.pyc
+.pytest_cache/

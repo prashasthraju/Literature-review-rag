@@ -1,0 +1,480 @@
+{
+  "document_id": "forcing avatar_real time",
+  "source_file": "video_pose_driven_generation/forcing avatar_real time.pdf",
+  "markdown_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/forcing avatar_real time/document.md",
+  "structured_json_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/forcing avatar_real time/document.json",
+  "picture_count": 16,
+  "table_count": 6,
+  "pictures": [
+    {
+      "figure_number": 1,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/forcing avatar_real time/images/figure_001.png",
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 57.75165557861328,
+            "t": 555.607666015625,
+            "r": 552.8303833007812,
+            "b": 364.625732421875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 2,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/forcing avatar_real time/images/figure_002.png",
+      "caption": "Figure 2. Overall architecture of Avatar Forcing. We encode the use motion and audio, as well as avatar audio into a unified condition by Dual Motion Encoder. Causal Motion Generator infer the motion latent block of the avatar, which are then decoded into an avatar video.",
+      "provenance": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 58.978904724121094,
+            "t": 725.9381256103516,
+            "r": 552.017333984375,
+            "b": 619.607177734375,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 3,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/forcing avatar_real time/images/figure_003.png",
+      "caption": "Figure 3. Architecture of vθ. The look-ahead causal attention mask enables a smooth transition across the blocks.",
+      "provenance": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 57.642539978027344,
+            "t": 581.203369140625,
+            "r": 301.3008117675781,
+            "b": 497.4295349121094,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 4,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/forcing avatar_real time/images/figure_004.png",
+      "caption": "Figure 4. Architectural comparison between bidirectional and causal structure. (a) Bidirectional DiT used in INFP [70] requires access to the entire temporal window for motion generation. (b) Our blockwise causal DFoT predicts the next block without using future context and supports KV caching.",
+      "provenance": [
+        {
+          "page_no": 4,
+          "bbox": {
+            "l": 316.2185974121094,
+            "t": 580.7184906005859,
+            "r": 553.1431884765625,
+            "b": 475.8511047363281,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 5,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/forcing avatar_real time/images/figure_005.png",
+      "caption": "Figure 5. Variance visualization of the L2-norm of 3DMM expressions [16] for the speaker and listener on ViCo [68] dataset. Higher variance indicates higher expressiveness.",
+      "provenance": [
+        {
+          "page_no": 5,
+          "bbox": {
+            "l": 318.117919921875,
+            "t": 721.9395141601562,
+            "r": 550.5741577148438,
+            "b": 628.309814453125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 6,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/forcing avatar_real time/images/figure_006.png",
+      "caption": "Table 1. Quantitative comparison results on RealTalk [17]. Best results highlighted in bold. ∗ denotes the reproduced version that is publicly unavailable. We also report the results from a non-interactive talking head model [28], shown in gray, for reference.",
+      "provenance": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 63.102142333984375,
+            "t": 697.7714309692383,
+            "r": 551.2461547851562,
+            "b": 550.7898254394531,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 7,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/forcing avatar_real time/images/figure_007.png",
+      "caption": "Figure 6. Qualitative comparison of interactive head avatar generation models on the RealTalk [17] dataset. Our model generates more reactive (red arrow) and expressive (red box) avatar motion compared to INFP*. We provide the videos in supplementary materials.",
+      "provenance": [
+        {
+          "page_no": 7,
+          "bbox": {
+            "l": 62.79804611206055,
+            "t": 729.0764045715332,
+            "r": 547.4146728515625,
+            "b": 358.9165954589844,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 8,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/forcing avatar_real time/images/figure_008.png",
+      "caption": "Figure 7. Ablation study on the user motion. Without mu, the avatar remains static even when the user smiles. With mu, our model reacts by smiling after the user (red arrow) and shifting to a focused expression when the user begins speaking (green box).",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 323.28668212890625,
+            "t": 728.0325317382812,
+            "r": 551.3338623046875,
+            "b": 545.9828643798828,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 9,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/forcing avatar_real time/images/figure_009.png",
+      "caption": "Figure 8. Ablation study on preference optimization. Model fine-tuned with DPO produces more expressive motion (red box) and reactive (red arrow) compared to model without DPO.",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 322.36456298828125,
+            "t": 485.6249694824219,
+            "r": 551.3494873046875,
+            "b": 304.286376953125,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 10,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/forcing avatar_real time/images/figure_010.png",
+      "caption": "Figure 9. Overview of Motion Latent Encoder. It encodes an image into a latent vector that has explicit identity-motion decomposition.",
+      "provenance": [
+        {
+          "page_no": 12,
+          "bbox": {
+            "l": 317.3030090332031,
+            "t": 646.1987609863281,
+            "r": 550.611328125,
+            "b": 523.5840148925781,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 11,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/forcing avatar_real time/images/figure_011.png",
+      "caption": "Figure 10. Detailed architecture for Motion Generator in vθ.",
+      "provenance": [
+        {
+          "page_no": 12,
+          "bbox": {
+            "l": 318.611328125,
+            "t": 474.8736877441406,
+            "r": 545.7472534179688,
+            "b": 247.92535400390625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 12,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/forcing avatar_real time/images/figure_012.png",
+      "caption": "Figure 11. Comparison of autoregressive diffusion and diffusion forcing. Autoregressive diffusion suffers from motion drift (red arrow) over the long horizon, whereas diffusion forcing maintains stable motion generation over the long horizon.",
+      "provenance": [
+        {
+          "page_no": 15,
+          "bbox": {
+            "l": 61.34444808959961,
+            "t": 712.2144393920898,
+            "r": 553.4172973632812,
+            "b": 600.5785675048828,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 13,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/forcing avatar_real time/images/figure_013.png",
+      "caption": "Figure 12. AttentionMaskComparison. (Left) framewise causal mask; (Middle) blockwise causal mask; (Right) blockwise causal look-ahead mask (Ours).",
+      "provenance": [
+        {
+          "page_no": 15,
+          "bbox": {
+            "l": 62.27064514160156,
+            "t": 454.1253662109375,
+            "r": 292.9716796875,
+            "b": 357.805419921875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 14,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/forcing avatar_real time/images/figure_014.png",
+      "caption": "Figure 13. Human evaluation interface. (Left) Instructions for human evaluation; (Middle) A reference sheet for consistent evaluation; (Right) Test and answer sheet.",
+      "provenance": [
+        {
+          "page_no": 17,
+          "bbox": {
+            "l": 63.94458770751953,
+            "t": 677.4285049438477,
+            "r": 553.1132202148438,
+            "b": 530.0864562988281,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 15,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/forcing avatar_real time/images/figure_015.png",
+      "caption": "Figure 14. Qualitative comparison on talking head avatar generation.",
+      "provenance": [
+        {
+          "page_no": 17,
+          "bbox": {
+            "l": 67.05164337158203,
+            "t": 400.4108581542969,
+            "r": 550.754150390625,
+            "b": 146.49822998046875,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "figure_number": 16,
+      "path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/forcing avatar_real time/images/figure_016.png",
+      "caption": "Figure 15. Qualitative comparison on listening head avatar generation.",
+      "provenance": [
+        {
+          "page_no": 18,
+          "bbox": {
+            "l": 64.45086669921875,
+            "t": 558.3869934082031,
+            "r": 551.1403198242188,
+            "b": 265.765625,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "table_number": 1,
+      "caption": "",
+      "provenance": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 64.18982696533203,
+            "t": 697.2466506958008,
+            "r": 551.5878295898438,
+            "b": 620.2122192382812,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/forcing avatar_real time/tables/table_001/table.html",
+      "csv_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/forcing avatar_real time/tables/table_001/table.csv"
+    },
+    {
+      "table_number": 2,
+      "caption": "Table 3. Comparison with talking head generation models on the HDTF [67] dataset. Second-best results are underlined.",
+      "provenance": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 63.59317398071289,
+            "t": 514.6190490722656,
+            "r": 301.6241455078125,
+            "b": 419.3490295410156,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/forcing avatar_real time/tables/table_002/table.html",
+      "csv_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/forcing avatar_real time/tables/table_002/table.csv"
+    },
+    {
+      "table_number": 3,
+      "caption": "Table 4. Comparison with listening head generation models on the ViCo [68] dataset. † denotes results inherited from DIM [55].",
+      "provenance": [
+        {
+          "page_no": 6,
+          "bbox": {
+            "l": 314.1268615722656,
+            "t": 514.5173950195312,
+            "r": 549.320068359375,
+            "b": 418.2737121582031,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/forcing avatar_real time/tables/table_003/table.html",
+      "csv_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/forcing avatar_real time/tables/table_003/table.csv"
+    },
+    {
+      "table_number": 4,
+      "caption": "Table 5. Ablation study on user motion and preference optimization. \"w/ mu\" indicates whether the user motion latent mu is provided as input to the model during both training and inference.",
+      "provenance": [
+        {
+          "page_no": 8,
+          "bbox": {
+            "l": 63.634185791015625,
+            "t": 691.1414794921875,
+            "r": 293.0586853027344,
+            "b": 623.0569610595703,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/forcing avatar_real time/tables/table_004/table.html",
+      "csv_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/forcing avatar_real time/tables/table_004/table.csv"
+    },
+    {
+      "table_number": 5,
+      "caption": "Table 6. Ablation study with additional metrics on user motion and preference optimization. \"w/ mu\" indicates whether the user motion latent mu is provided as input to the model during both training and inference.",
+      "provenance": [
+        {
+          "page_no": 15,
+          "bbox": {
+            "l": 82.8232650756836,
+            "t": 541.5991363525391,
+            "r": 530.5513305664062,
+            "b": 469.3587951660156,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/forcing avatar_real time/tables/table_005/table.html",
+      "csv_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/forcing avatar_real time/tables/table_005/table.csv"
+    },
+    {
+      "table_number": 6,
+      "caption": "Table 7. Ablation studies on motion block sizes on RealTalk.",
+      "provenance": [
+        {
+          "page_no": 15,
+          "bbox": {
+            "l": 317.9728088378906,
+            "t": 443.538330078125,
+            "r": 550.084228515625,
+            "b": 401.6149597167969,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "html_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/forcing avatar_real time/tables/table_006/table.html",
+      "csv_path": "/home/hp/btp_avatar/Literature-review-rag/parsed/video_pose_driven_generation/forcing avatar_real time/tables/table_006/table.csv"
+    }
+  ]
+}

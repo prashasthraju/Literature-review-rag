@@ -1,0 +1,6 @@
+﻿Method,Visual Quality.FID ↓,Visual Quality.FVD ↓,Visual Quality.CSIM ↑,Lip Synchronization.LSE-D ↓,Lip Synchronization.LSE-C ↑
+SadTalker [66],64.744,342.996,0.697,8.046,7.171
+Hallo3 [10],32.794,184.341,0.865,8.498,7.487
+FLOAT [28],25.110,167.463,0.881,7.553,8.006
+INFP* [70],27.155,187.977,0.840,7.810,7.325
+Ours,20.332,149.798,0.870,7.700,7.560

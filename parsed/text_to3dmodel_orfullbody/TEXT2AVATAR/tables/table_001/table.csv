@@ -1,0 +1,5 @@
+﻿Methods.Methods,Attribute Accuracy.Gender,Attribute Accuracy.Sleeve-length,Attribute Accuracy.Top-color,Attribute Accuracy.Top-type,Attribute Accuracy.Pants-length,Attribute Accuracy.Pants-color,Attribute Accuracy.Pants-type,R-Precision.ViT-B/32,R-Precision.ViT-L/14
+DreamFusion,1.00,-,-,-,-,-,-,74.71,79.64
+3DFuse,1.00,0.30,0.65,0.20,0.55,0.40,0.15,77.83,82.76
+AvatarCLIP,1.00,-,0.60,-,-,0.40,-,76.66,81.15
+Text2Avatar,1.00,1.00,0.80,0.55,0.85,0.90,0.60,78.52,83.30

@@ -1,0 +1,6 @@
+﻿Method,male-3-casual.PSNR↑,male-3-casual.SSIM↑,male-3-casual.LPIPS↓,male-4-casual.PSNR↑,male-4-casual.SSIM↑,male-4-casual.LPIPS↓,female-3-casual.PSNR↑,female-3-casual.SSIM↑,female-3-casual.LPIPS↓,female-4-casual.PSNR↑,female-4-casual.SSIM↑,female-4-casual.LPIPS↓
+HumanNeRF [49],26.90,0.9605,0.0181,25.50,0.9397,0.0357,24.46,0.9516,0.0269,27.07,0.9615,0.0152
+InstantAvatar [15],29.53,0.9716,0.0155,27.67,0.9626,0.0307,27.66,0.9709,0.0210,29.11,0.9683,0.0167
+Baseline,27.71,0.9713,0.0218,25.09,0.9614,0.0306,24.80,0.9609,0.0310,26.16,0.9610,0.0227
+Baseline + Opt.,30.98,0.9791,0.0143,28.77,0.9753,0.0230,29.59,0.9768,0.0220,30.83,0.9768,0.0145
+Baseline + Opt. + Dyn.,30.98,0.9790,0.0145,28.78,0.9755,0.0228,29.55,0.9762,0.0225,30.84,0.9771,0.0140

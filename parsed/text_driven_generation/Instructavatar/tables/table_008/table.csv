@@ -1,0 +1,4 @@
+﻿Dataset,Task,Video Audio,(Speech),Instruction
+MEAD HDTF,Emotinoal Talking Control,✓ ✓,✓ ✓,✓ ✓(Always neutral)
+CC v1,Facial Motion Control,✓,,✓
+TalkingHead 1KH,Evaluation*,✓,✓,

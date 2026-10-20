@@ -223,12 +223,18 @@ def main():
         help="Parse one PDF, specified relative to --input-dir or as an absolute path",
     )
     parser.add_argument(
+        "--no-ocr",
+        action="store_true",
+        help="Skip OCR; born-digital PDFs already carry a text layer",
+    )
+    parser.add_argument(
         "--markdown-only",
         action="store_true",
         help="Regenerate Markdown with page markers from existing Docling JSON",
     )
     args = parser.parse_args()
 
+    pipeline_options.do_ocr = not args.no_ocr
     INPUT_DIR = args.input_dir.resolve()
     OUTPUT_DIR = args.output_dir.resolve()
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)

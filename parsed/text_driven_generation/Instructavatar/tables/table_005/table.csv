@@ -1,0 +1,7 @@
+﻿Methods.InstructAvatar,SyncD↓ AUF1↑.9.747,SyncD↓ AUF1↑.0.537,Mot.↑.4.46
+(a) w/o CLIP Adapter,9.903,0.512,4.31
+(b) w/o AU loss,9.753,0.504,-
+(c) w/o Empty noise,10.427,0.469,3.23
+(d) w/ Label input,9.763,0.469,-
+(e) All tokens for Emo.,9.842,0.417,-
+(f) [EOS] token for Mot.,-,-,4.03
