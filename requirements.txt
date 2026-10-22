@@ -5,3 +5,7 @@ qdrant-client>=1.19.1
 numpy>=2.5.4
 docling>=2.140.0
 pytest>=9.1.1
+pydantic>=2.14.1
+accelerate>=1.15.0
+bitsandbytes>=0.50.2
+# optional: anthropic (only for an anthropic:<model> generator)

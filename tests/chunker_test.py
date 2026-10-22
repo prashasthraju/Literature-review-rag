@@ -85,3 +85,34 @@ def test_oversized_text_is_split_without_lowercasing(tokenizer):
     assert len(chunks) > 1
     assert all("CamelCase" in chunk["text"] for chunk in chunks)
     assert "Ünïque" in chunks[0]["text"]
+
+
+def test_front_matter_and_author_headings_are_dropped():
+    markdown = """## A Paper Title
+
+Jane Doe1, John Roe2
+
+1 University of Somewhere
+
+## Liang Pan
+
+S-Lab, Some University E-mail: liang.pan@example.edu
+
+Abstract. Our method does useful things across many words of real content here.
+
+Permission to make digital or hard copies of all or part of this work is granted.
+
+* Equal contribution. The abstract continues here with more real content.
+
+## 1 Introduction
+
+Body text that is long enough to be kept as content in the chunk.
+"""
+    _title, sections = parse_sections(markdown)
+    texts = [text for section in sections for text, _page in section["blocks"]]
+    assert texts == [
+        "Abstract. Our method does useful things across many words of real content here.",
+        "The abstract continues here with more real content.",
+        "Body text that is long enough to be kept as content in the chunk.",
+    ]
+    assert [section["section_path"][-1] for section in sections] == ["A Paper Title", "1 Introduction"]

@@ -1,29 +1,84 @@
-"""Hybrid retrieval shared by interactive search and evaluation.
+"""Hybrid retrieval shared by interactive search, indexing and evaluation.
 
 Both entry points previously carried their own copy of the dense + BM25 + RRF
 logic and had drifted apart (search.py read a different Qdrant path than the
 indexer wrote). Keep retrieval behaviour here only.
+
+Every setting lives in a RetrievalConfig loaded from configs/retrieval/*.json,
+so each experiment is a named, versioned configuration and the previous best
+pipeline can be restored by name (docs/retrieval_results.md).
 """
 
 import json
+import re
+from dataclasses import asdict, dataclass, field, replace
 from pathlib import Path
 
 import numpy as np
 
-from src.embed_text import passage_for_record, query_for_embedding
-from src.lexical import BM25Index, reciprocal_rank_fusion
+from src.embed_text import (
+    QUERY_PREFIX,
+    clean_passage,
+    context_header,
+    passage_for_record,
+)
+from src.lexical import STOPWORDS, BM25Index, reciprocal_rank_fusion
 from src.reranking import rerank_candidates
 
+ROOT = Path(__file__).resolve().parents[1]
 CHUNKS_FILE = Path("chunks.jsonl")
 DB_PATH = Path("qdrant_db_token_chunks")
+CONFIG_DIR = ROOT / "configs" / "retrieval"
+DEFAULT_CONFIG = CONFIG_DIR / "retrieval-v2.json"
+RETRIEVERS = ("dense", "bm25", "hybrid")
+
+# Kept for callers that only need the v1 defaults.
 COLLECTION = "research_papers_v1"
 MODEL_NAME = "BAAI/bge-base-en-v1.5"
-# Reranking the hybrid candidates was the largest single gain on the dev set
-# (see docs/evaluation.md), so interactive search uses it unless disabled.
 DEFAULT_RERANKER = "BAAI/bge-reranker-base"
 TOP_K = 5
 CANDIDATE_K = 20
-RETRIEVERS = ("dense", "bm25", "hybrid")
+
+TABLE_ROW_RE = re.compile(r"^[^\n:]{1,80}: [^\n]*;")
+
+
+@dataclass(frozen=True)
+class RetrievalConfig:
+    name: str = "retrieval-v1"
+    retriever: str = "hybrid"
+    collection: str = COLLECTION
+    embedding_model: str = MODEL_NAME
+    query_prefix: str = QUERY_PREFIX
+    # Dense passages: whole chunks, or overlapping word windows inside each
+    # chunk (scored by their best window) so one fact is not diluted by a
+    # 480-token chunk. BM25 and the reranker always see whole chunks.
+    dense_units: str = "chunk"
+    dense_title: bool = True
+    window_words: int = 96
+    window_stride: int = 48
+    bm25_title: bool = True
+    bm25_clean: bool = True
+    bm25_stopwords: bool = True
+    fusion: str = "rrf"
+    rrf_k: int = 60
+    dense_weight: float = 1.0
+    bm25_weight: float = 1.0
+    candidate_k: int = CANDIDATE_K
+    reranker: str | None = None
+    top_k: int = TOP_K
+    notes: str = ""
+    extra: dict = field(default_factory=dict)
+
+    @classmethod
+    def load(cls, path=DEFAULT_CONFIG, **overrides):
+        path = Path(path)
+        if not path.is_absolute() and not path.exists():
+            path = CONFIG_DIR / (path.name if path.suffix else f"{path}.json")
+        data = json.loads(path.read_text(encoding="utf-8"))
+        return replace(cls(**data), **overrides)
+
+    def to_dict(self):
+        return asdict(self)
 
 
 def load_chunks(path=CHUNKS_FILE):
@@ -37,43 +92,115 @@ def load_chunks(path=CHUNKS_FILE):
     return records
 
 
+def bm25_passage(record, config):
+    if not config.bm25_clean:
+        return record.get("text", "")
+    if config.bm25_title:
+        return passage_for_record(record)
+    return passage_for_record({**record, "document_title": None})
+
+
+def dense_header(record, config):
+    title = record.get("document_title") if config.dense_title else None
+    return context_header(record.get("section_title"), title)
+
+
+def split_windows(text, window_words, stride):
+    """Word windows over a chunk; table rows are kept whole as their own units."""
+    units = []
+    paragraph = []
+    for line in (text or "").splitlines():
+        if TABLE_ROW_RE.match(line.strip()):
+            if paragraph:
+                units.append(" ".join(paragraph))
+                paragraph = []
+            units.append(line.strip())
+        elif line.strip():
+            paragraph.append(line.strip())
+    if paragraph:
+        units.append(" ".join(paragraph))
+
+    windows = []
+    for unit in units:
+        words = clean_passage(unit).split()
+        if not words:
+            continue
+        if len(words) <= window_words:
+            windows.append(" ".join(words))
+            continue
+        for start in range(0, len(words), stride):
+            windows.append(" ".join(words[start:start + window_words]))
+            if start + window_words >= len(words):
+                break
+    return windows
+
+
+def dense_units(records, config):
+    """(chunk_id, passage) pairs that are embedded for the dense channel."""
+    for record in records:
+        header = dense_header(record, config)
+        if config.dense_units == "chunk":
+            text = clean_passage(record.get("text"))
+            yield record["chunk_id"], f"{header}. {text}" if header and text else header or text
+            continue
+        windows = split_windows(record.get("text"), config.window_words, config.window_stride)
+        for window in windows or [header]:
+            yield record["chunk_id"], f"{header}. {window}" if header else window
+
+
+def best_per_chunk(scored, limit):
+    """Max-pool window scores to their parent chunk."""
+    best = {}
+    for chunk_id, score in scored:
+        if chunk_id not in best or score > best[chunk_id]:
+            best[chunk_id] = score
+    return sorted(best.items(), key=lambda item: item[1], reverse=True)[:limit]
+
+
 class QdrantDenseIndex:
-    def __init__(self, db_path=DB_PATH, collection=COLLECTION):
+    def __init__(self, db_path=DB_PATH, collection=COLLECTION, oversample=1):
         from qdrant_client import QdrantClient
 
         self.collection = collection
+        self.oversample = oversample
         self.client = QdrantClient(path=str(db_path))
         if not self.client.collection_exists(collection):
             self.client.close()
             raise RuntimeError(
-                f"Qdrant collection {collection!r} not found in {db_path}; run `python -m src.index` first."
+                f"Qdrant collection {collection!r} not found in {db_path}; "
+                "run `python -m src.index --config <config>` first."
             )
 
     def search(self, vector, limit):
         points = self.client.query_points(
             collection_name=self.collection,
             query=vector.tolist(),
-            limit=limit,
+            limit=limit * self.oversample,
             with_payload=["chunk_id"],
         ).points
-        return [
-            (point.payload["chunk_id"], point.score)
-            for point in points
-            if point.payload and point.payload.get("chunk_id")
-        ]
+        return best_per_chunk(
+            (
+                (point.payload["chunk_id"], point.score)
+                for point in points
+                if point.payload and point.payload.get("chunk_id")
+            ),
+            limit,
+        )
 
     def close(self):
         self.client.close()
 
 
 class MemoryDenseIndex:
-    """Exact cosine search over freshly encoded chunks; used to score a chunks
-    file without rebuilding the Qdrant store."""
+    """Exact cosine search over freshly encoded units; used to score a chunks
+    file or a configuration without rebuilding the Qdrant store."""
 
-    def __init__(self, model, records, batch_size=32):
-        self.chunk_ids = [record["chunk_id"] for record in records]
-        self.vectors = model.encode(
-            [passage_for_record(record) for record in records],
+    def __init__(self, model, records, config=None, batch_size=32, vectors=None):
+        config = config or RetrievalConfig()
+        units = list(dense_units(records, config))
+        self.chunk_ids = [chunk_id for chunk_id, _text in units]
+        self.vectors = vectors if vectors is not None else model.encode(
+            [text for _chunk_id, text in units],
             batch_size=batch_size,
             normalize_embeddings=True,
             convert_to_numpy=True,
@@ -82,76 +209,95 @@ class MemoryDenseIndex:
 
     def search(self, vector, limit):
         scores = self.vectors @ vector
-        top = np.argsort(-scores)[:limit]
-        return [(self.chunk_ids[index], float(scores[index])) for index in top]
+        top = np.argsort(-scores)[: limit * 8]
+        return best_per_chunk(((self.chunk_ids[index], float(scores[index])) for index in top), limit)
 
     def close(self):
         pass
+
+
+def fuse(config, dense_hits, lexical_hits, limit):
+    dense_ids = [chunk_id for chunk_id, _score in dense_hits]
+    lexical_ids = [chunk_id for chunk_id, _score in lexical_hits]
+    if config.fusion == "rrf" and config.dense_weight == config.bm25_weight:
+        return reciprocal_rank_fusion(dense_ids, lexical_ids, k=config.rrf_k, limit=limit)
+    fused = {}
+    for weight, ranked in ((config.dense_weight, dense_ids), (config.bm25_weight, lexical_ids)):
+        for rank, chunk_id in enumerate(ranked, start=1):
+            fused[chunk_id] = fused.get(chunk_id, 0.0) + weight / (config.rrf_k + rank)
+    return [chunk_id for chunk_id, _score in sorted(fused.items(), key=lambda item: item[1], reverse=True)[:limit]]
 
 
 class Retriever:
     def __init__(
         self,
         records,
-        mode="hybrid",
-        model_name=MODEL_NAME,
-        reranker_model=None,
-        candidate_k=CANDIDATE_K,
+        config=None,
         dense_backend="qdrant",
         db_path=DB_PATH,
-        collection=COLLECTION,
+        model=None,
+        reranker=None,
+        dense_index=None,
+        **overrides,
     ):
-        if mode not in RETRIEVERS:
-            raise ValueError(f"Unknown retriever {mode!r}; expected one of {RETRIEVERS}")
-        self.mode = mode
-        self.candidate_k = candidate_k
+        config = replace(config or RetrievalConfig(), **{key: value for key, value in overrides.items() if value is not None})
+        if config.retriever not in RETRIEVERS:
+            raise ValueError(f"Unknown retriever {config.retriever!r}; expected one of {RETRIEVERS}")
+        self.config = config
         self.records = {record["chunk_id"]: record for record in records}
 
         self.bm25 = None
-        if mode in {"bm25", "hybrid"}:
+        if config.retriever in {"bm25", "hybrid"}:
             self.bm25 = BM25Index(
-                (record["chunk_id"], passage_for_record(record)) for record in records
+                ((record["chunk_id"], bm25_passage(record, config)) for record in records),
+                stopwords=STOPWORDS if config.bm25_stopwords else frozenset(),
             )
 
-        self.model = None
-        self.dense = None
-        if mode in {"dense", "hybrid"}:
-            from sentence_transformers import SentenceTransformer
+        self.model = model
+        self.dense = dense_index
+        if config.retriever in {"dense", "hybrid"} and self.dense is None:
+            if self.model is None:
+                from sentence_transformers import SentenceTransformer
 
-            self.model = SentenceTransformer(model_name)
+                self.model = SentenceTransformer(config.embedding_model)
             if dense_backend == "memory":
-                self.dense = MemoryDenseIndex(self.model, records)
+                self.dense = MemoryDenseIndex(self.model, records, config)
             else:
-                self.dense = QdrantDenseIndex(db_path, collection)
+                oversample = 1 if config.dense_units == "chunk" else 8
+                self.dense = QdrantDenseIndex(db_path, config.collection, oversample)
 
-        self.reranker = None
-        if reranker_model:
+        self.reranker = reranker
+        if config.reranker and self.reranker is None:
             from sentence_transformers import CrossEncoder
 
-            self.reranker = CrossEncoder(reranker_model)
+            self.reranker = CrossEncoder(config.reranker)
 
-    def search(self, question, top_k=TOP_K):
+    def search(self, question, top_k=None):
         """Return ranked hits: dicts with chunk_id, record and per-channel scores."""
-        candidate_k = max(top_k, self.candidate_k)
+        config = self.config
+        top_k = top_k or config.top_k
+        candidate_k = max(top_k, config.candidate_k)
 
         dense_hits = []
-        if self.dense is not None:
+        if self.dense is not None and config.retriever in {"dense", "hybrid"}:
             vector = self.model.encode(
-                query_for_embedding(question),
+                config.query_prefix + (question or "").strip(),
                 normalize_embeddings=True,
                 convert_to_numpy=True,
             )
             dense_hits = self.dense.search(vector, candidate_k)
-        lexical_hits = self.bm25.search(question, limit=candidate_k) if self.bm25 else []
+        lexical_hits = (
+            self.bm25.search(question, limit=candidate_k)
+            if self.bm25 is not None and config.retriever in {"bm25", "hybrid"}
+            else []
+        )
 
-        dense_ids = [chunk_id for chunk_id, _score in dense_hits]
-        lexical_ids = [chunk_id for chunk_id, _score in lexical_hits]
-        if self.mode == "dense":
-            candidate_ids = dense_ids
-        elif self.mode == "bm25":
-            candidate_ids = lexical_ids
+        if config.retriever == "dense":
+            candidate_ids = [chunk_id for chunk_id, _score in dense_hits]
+        elif config.retriever == "bm25":
+            candidate_ids = [chunk_id for chunk_id, _score in lexical_hits]
         else:
-            candidate_ids = reciprocal_rank_fusion(dense_ids, lexical_ids, limit=candidate_k)
+            candidate_ids = fuse(config, dense_hits, lexical_hits, candidate_k)
 
         rerank_scores = {}
         if self.reranker is not None:

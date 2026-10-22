@@ -1,0 +1,899 @@
+{
+ "created_at": "2026-10-20T12:11:09.183768+00:00",
+ "dataset": "retrieval_dev.jsonl",
+ "chunks": "chunks.jsonl",
+ "chunk_count": 863,
+ "unresolved_anchors": 0,
+ "config": {
+  "name": "retrieval-v1+top_k=20",
+  "retriever": "hybrid",
+  "collection": "research_papers_v1",
+  "embedding_model": "BAAI/bge-base-en-v1.5",
+  "query_prefix": "Represent this sentence for searching relevant passages: ",
+  "dense_units": "chunk",
+  "dense_title": true,
+  "window_words": 96,
+  "window_stride": 48,
+  "bm25_title": true,
+  "bm25_clean": true,
+  "bm25_stopwords": true,
+  "fusion": "rrf",
+  "rrf_k": 60,
+  "dense_weight": 1.0,
+  "bm25_weight": 1.0,
+  "candidate_k": 20,
+  "reranker": "BAAI/bge-reranker-base",
+  "top_k": 20,
+  "notes": "Tagged retrieval-v1 (2026-10-19): hybrid BGE-base + BM25, RRF, bge-reranker-base.",
+  "extra": {}
+ },
+ "summary": {
+  "recall@20": 0.9456928838951312,
+  "precision@20": 0.07247191011235955,
+  "mrr": 0.7502140181915462,
+  "ndcg@20": 0.7732413009511744
+ },
+ "by_category": {
+  "architecture_detail": {
+   "count": 6,
+   "recall@20": 1.0,
+   "precision@20": 0.075,
+   "mrr": 0.75,
+   "ndcg@20": 0.8078486165284411
+  },
+  "audio_driven_generation": {
+   "count": 1,
+   "recall@20": 1.0,
+   "precision@20": 0.1,
+   "mrr": 1.0,
+   "ndcg@20": 0.8574755832030019
+  },
+  "benchmark_fact": {
+   "count": 5,
+   "recall@20": 0.9,
+   "precision@20": 0.06000000000000001,
+   "mrr": 0.6,
+   "ndcg@20": 0.626117805302433
+  },
+  "corpus_fact": {
+   "count": 4,
+   "recall@20": 1.0,
+   "precision@20": 0.075,
+   "mrr": 1.0,
+   "ndcg@20": 0.9667717521713255
+  },
+  "cross_document": {
+   "count": 3,
+   "recall@20": 0.8333333333333334,
+   "precision@20": 0.11666666666666665,
+   "mrr": 0.8333333333333334,
+   "ndcg@20": 0.6581563855996806
+  },
+  "exact_dataset_fact": {
+   "count": 11,
+   "recall@20": 0.9090909090909091,
+   "precision@20": 0.05454545454545454,
+   "mrr": 0.9090909090909091,
+   "ndcg@20": 0.9090909090909091
+  },
+  "exact_table_value": {
+   "count": 15,
+   "recall@20": 1.0,
+   "precision@20": 0.05333333333333334,
+   "mrr": 0.6395238095238096,
+   "ndcg@20": 0.7266572764309109
+  },
+  "implementation_detail": {
+   "count": 1,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "limitation": {
+   "count": 6,
+   "recall@20": 0.8333333333333334,
+   "precision@20": 0.041666666666666664,
+   "mrr": 0.638888888888889,
+   "ndcg@20": 0.7239743774238309
+  },
+  "method_comparison": {
+   "count": 3,
+   "recall@20": 1.0,
+   "precision@20": 0.10000000000000002,
+   "mrr": 1.0,
+   "ndcg@20": 0.9314426491754867
+  },
+  "method_detail": {
+   "count": 18,
+   "recall@20": 0.9166666666666666,
+   "precision@20": 0.09166666666666667,
+   "mrr": 0.7440476190476191,
+   "ndcg@20": 0.7497204031435675
+  },
+  "method_lookup": {
+   "count": 4,
+   "recall@20": 1.0,
+   "precision@20": 0.0625,
+   "mrr": 0.7083333333333334,
+   "ndcg@20": 0.7702910425903233
+  },
+  "paraphrase": {
+   "count": 1,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 0.5,
+   "ndcg@20": 0.6309297535714575
+  },
+  "pipeline_components": {
+   "count": 2,
+   "recall@20": 1.0,
+   "precision@20": 0.1,
+   "mrr": 1.0,
+   "ndcg@20": 0.8693912518409506
+  },
+  "security_definition": {
+   "count": 2,
+   "recall@20": 0.8333333333333333,
+   "precision@20": 0.07500000000000001,
+   "mrr": 0.375,
+   "ndcg@20": 0.5197967370909122
+  },
+  "security_method": {
+   "count": 1,
+   "recall@20": 1.0,
+   "precision@20": 0.15,
+   "mrr": 0.2,
+   "ndcg@20": 0.41782460362476154
+  },
+  "security_risk": {
+   "count": 2,
+   "recall@20": 1.0,
+   "precision@20": 0.125,
+   "mrr": 0.6666666666666666,
+   "ndcg@20": 0.6169191903167504
+  },
+  "semantic": {
+   "count": 1,
+   "recall@20": 1.0,
+   "precision@20": 0.1,
+   "mrr": 0.3333333333333333,
+   "ndcg@20": 0.46662980911231267
+  },
+  "system_design": {
+   "count": 1,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "table_lookup": {
+   "count": 2,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  }
+ },
+ "answerable_count": 89,
+ "unanswerable_count": 7,
+ "latency_ms": {
+  "mean": 327.419203136742,
+  "p50": 310.1794520043768,
+  "p95": 409.79712101398036
+ },
+ "per_query": {
+  "retrieval-001": {
+   "category": "semantic",
+   "latency_ms": 371.82,
+   "recall@20": 1.0,
+   "precision@20": 0.1,
+   "mrr": 0.3333333333333333,
+   "ndcg@20": 0.46662980911231267
+  },
+  "retrieval-002": {
+   "category": "paraphrase",
+   "latency_ms": 311.13,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 0.5,
+   "ndcg@20": 0.6309297535714575
+  },
+  "retrieval-003": {
+   "category": "exact_dataset_fact",
+   "latency_ms": 383.25,
+   "recall@20": 1.0,
+   "precision@20": 0.15,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "retrieval-004": {
+   "category": "method_comparison",
+   "latency_ms": 384.8,
+   "recall@20": 1.0,
+   "precision@20": 0.1,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "retrieval-005": {
+   "category": "security_risk",
+   "latency_ms": 401.57,
+   "recall@20": 1.0,
+   "precision@20": 0.2,
+   "mrr": 1.0,
+   "ndcg@20": 0.7338383806335008
+  },
+  "retrieval-006": {
+   "category": "table_lookup",
+   "latency_ms": 300.21,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "retrieval-007": {
+   "category": "audio_driven_generation",
+   "latency_ms": 297.23,
+   "recall@20": 1.0,
+   "precision@20": 0.1,
+   "mrr": 1.0,
+   "ndcg@20": 0.8574755832030019
+  },
+  "retrieval-008": {
+   "category": "method_lookup",
+   "latency_ms": 310.73,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 0.5,
+   "ndcg@20": 0.6309297535714575
+  },
+  "retrieval-009": {
+   "category": "pipeline_components",
+   "latency_ms": 315.1,
+   "recall@20": 1.0,
+   "precision@20": 0.1,
+   "mrr": 1.0,
+   "ndcg@20": 0.8315546295836225
+  },
+  "retrieval-010": {
+   "category": "method_comparison",
+   "latency_ms": 322.09,
+   "recall@20": 1.0,
+   "precision@20": 0.1,
+   "mrr": 1.0,
+   "ndcg@20": 0.9197207891481876
+  },
+  "retrieval-011": {
+   "category": "exact_dataset_fact",
+   "latency_ms": 299.9,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "retrieval-012": {
+   "category": "method_detail",
+   "latency_ms": 299.4,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 0.5,
+   "ndcg@20": 0.6309297535714575
+  },
+  "retrieval-013": {
+   "category": "security_method",
+   "latency_ms": 306.7,
+   "recall@20": 1.0,
+   "precision@20": 0.15,
+   "mrr": 0.2,
+   "ndcg@20": 0.41782460362476154
+  },
+  "retrieval-014": {
+   "category": "method_detail",
+   "latency_ms": 295.02,
+   "recall@20": 0.5,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 0.7601875334318685
+  },
+  "retrieval-015": {
+   "category": "table_lookup",
+   "latency_ms": 298.56,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "retrieval-016": {
+   "category": "method_lookup",
+   "latency_ms": 312.98,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 0.3333333333333333,
+   "ndcg@20": 0.5
+  },
+  "retrieval-017": {
+   "category": "system_design",
+   "latency_ms": 307.11,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "retrieval-018": {
+   "category": "method_lookup",
+   "latency_ms": 306.44,
+   "recall@20": 1.0,
+   "precision@20": 0.1,
+   "mrr": 1.0,
+   "ndcg@20": 0.9502344167898356
+  },
+  "retrieval-019": {
+   "category": "method_detail",
+   "latency_ms": 415.05,
+   "recall@20": 1.0,
+   "precision@20": 0.25,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "retrieval-020": {
+   "category": "security_definition",
+   "latency_ms": 412.55,
+   "recall@20": 0.6666666666666666,
+   "precision@20": 0.1,
+   "mrr": 0.25,
+   "ndcg@20": 0.32015607447743033
+  },
+  "retrieval-021": {
+   "category": "benchmark_fact",
+   "latency_ms": 304.52,
+   "recall@20": 0.5,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 0.6131471927654584
+  },
+  "retrieval-022": {
+   "category": "method_detail",
+   "latency_ms": 303.25,
+   "recall@20": 1.0,
+   "precision@20": 0.2,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "retrieval-023": {
+   "category": "exact_dataset_fact",
+   "latency_ms": 334.81,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "retrieval-024": {
+   "category": "architecture_detail",
+   "latency_ms": 307.22,
+   "recall@20": 1.0,
+   "precision@20": 0.1,
+   "mrr": 0.5,
+   "ndcg@20": 0.5894966717965162
+  },
+  "retrieval-025": {
+   "category": "corpus_fact",
+   "latency_ms": 306.71,
+   "recall@20": 1.0,
+   "precision@20": 0.15,
+   "mrr": 1.0,
+   "ndcg@20": 0.8670870086853021
+  },
+  "retrieval-026": {
+   "category": "exact_table_value",
+   "latency_ms": 307.61,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "v2-aniportrait-01": {
+   "category": "method_detail",
+   "latency_ms": 307.23,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "v2-aniportrait-03": {
+   "category": "architecture_detail",
+   "latency_ms": 310.12,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 0.5,
+   "ndcg@20": 0.7194373997043942
+  },
+  "v2-aniportrait-05": {
+   "category": "limitation",
+   "latency_ms": 301.41,
+   "recall@20": 0.0,
+   "precision@20": 0.0,
+   "mrr": 0.0,
+   "ndcg@20": 0.0
+  },
+  "v2-artalk-01": {
+   "category": "exact_table_value",
+   "latency_ms": 302.34,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 0.16666666666666666,
+   "ndcg@20": 0.3562071871080222
+  },
+  "v2-artalk-03": {
+   "category": "limitation",
+   "latency_ms": 309.48,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "v2-artalk-05": {
+   "category": "exact_table_value",
+   "latency_ms": 304.57,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "v2-artalk-07": {
+   "category": "exact_dataset_fact",
+   "latency_ms": 303.53,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "v2-avaprintdb-01": {
+   "category": "corpus_fact",
+   "latency_ms": 403.53,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "v2-avaprintdb-03": {
+   "category": "exact_table_value",
+   "latency_ms": 404.2,
+   "recall@20": 1.0,
+   "precision@20": 0.1,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "v2-avaprintdb-05": {
+   "category": "benchmark_fact",
+   "latency_ms": 439.06,
+   "recall@20": 1.0,
+   "precision@20": 0.1,
+   "mrr": 0.3333333333333333,
+   "ndcg@20": 0.5174418337467067
+  },
+  "v2-avaprintdb-07": {
+   "category": "exact_table_value",
+   "latency_ms": 301.82,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "v2-df40-01": {
+   "category": "exact_dataset_fact",
+   "latency_ms": 300.51,
+   "recall@20": 0.0,
+   "precision@20": 0.0,
+   "mrr": 0.0,
+   "ndcg@20": 0.0
+  },
+  "v2-df40-03": {
+   "category": "benchmark_fact",
+   "latency_ms": 302.99,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 0.3333333333333333,
+   "ndcg@20": 0.5
+  },
+  "v2-df40-05": {
+   "category": "method_detail",
+   "latency_ms": 314.95,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 0.3333333333333333,
+   "ndcg@20": 0.5
+  },
+  "v2-df40-07": {
+   "category": "benchmark_fact",
+   "latency_ms": 320.06,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 0.3333333333333333,
+   "ndcg@20": 0.5
+  },
+  "v2-df40-09": {
+   "category": "exact_dataset_fact",
+   "latency_ms": 306.66,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "v2-e3gen-01": {
+   "category": "exact_table_value",
+   "latency_ms": 304.89,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 0.5,
+   "ndcg@20": 0.6309297535714575
+  },
+  "v2-e3gen-03": {
+   "category": "exact_dataset_fact",
+   "latency_ms": 344.01,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "v2-e3gen-05": {
+   "category": "method_lookup",
+   "latency_ms": 302.33,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "v2-facecraft4d-01": {
+   "category": "method_detail",
+   "latency_ms": 301.9,
+   "recall@20": 1.0,
+   "precision@20": 0.1,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "v2-facecraft4d-03": {
+   "category": "exact_table_value",
+   "latency_ms": 312.73,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "v2-facecraft4d-05": {
+   "category": "method_detail",
+   "latency_ms": 302.9,
+   "recall@20": 1.0,
+   "precision@20": 0.1,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "v2-ffpcht-01": {
+   "category": "exact_table_value",
+   "latency_ms": 384.11,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "v2-ffpcht-03": {
+   "category": "benchmark_fact",
+   "latency_ms": 409.16,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "v2-ffpcht-05": {
+   "category": "exact_table_value",
+   "latency_ms": 407.89,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 0.5,
+   "ndcg@20": 0.6309297535714575
+  },
+  "v2-ffpcht-07": {
+   "category": "pipeline_components",
+   "latency_ms": 335.5,
+   "recall@20": 1.0,
+   "precision@20": 0.1,
+   "mrr": 1.0,
+   "ndcg@20": 0.9072278740982787
+  },
+  "v2-avatarforcing-01": {
+   "category": "method_detail",
+   "latency_ms": 306.78,
+   "recall@20": 1.0,
+   "precision@20": 0.1,
+   "mrr": 1.0,
+   "ndcg@20": 0.8868854556705132
+  },
+  "v2-avatarforcing-03": {
+   "category": "architecture_detail",
+   "latency_ms": 341.71,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "v2-avatarforcing-05": {
+   "category": "exact_dataset_fact",
+   "latency_ms": 308.19,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "v2-avatarforcing-07": {
+   "category": "method_detail",
+   "latency_ms": 303.0,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "v2-gaussianavatar-01": {
+   "category": "method_detail",
+   "latency_ms": 314.57,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "v2-gaussianavatar-03": {
+   "category": "method_detail",
+   "latency_ms": 302.2,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 0.14285714285714285,
+   "ndcg@20": 0.38009376671593426
+  },
+  "v2-gaussianavatar-05": {
+   "category": "corpus_fact",
+   "latency_ms": 305.08,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "v2-impostor-01": {
+   "category": "method_detail",
+   "latency_ms": 305.94,
+   "recall@20": 0.5,
+   "precision@20": 0.05,
+   "mrr": 0.5,
+   "ndcg@20": 0.23981246656813146
+  },
+  "v2-impostor-03": {
+   "category": "security_definition",
+   "latency_ms": 310.18,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 0.5,
+   "ndcg@20": 0.7194373997043942
+  },
+  "v2-impostor-05": {
+   "category": "security_risk",
+   "latency_ms": 308.77,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 0.3333333333333333,
+   "ndcg@20": 0.5
+  },
+  "v2-instructavatar-01": {
+   "category": "method_detail",
+   "latency_ms": 321.11,
+   "recall@20": 1.0,
+   "precision@20": 0.1,
+   "mrr": 0.25,
+   "ndcg@20": 0.4344817381527212
+  },
+  "v2-instructavatar-03": {
+   "category": "method_detail",
+   "latency_ms": 316.76,
+   "recall@20": 1.0,
+   "precision@20": 0.15,
+   "mrr": 1.0,
+   "ndcg@20": 0.9072278740982787
+  },
+  "v2-instructavatar-05": {
+   "category": "exact_table_value",
+   "latency_ms": 373.71,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 0.14285714285714285,
+   "ndcg@20": 0.3333333333333333
+  },
+  "v2-instructavatar-07": {
+   "category": "limitation",
+   "latency_ms": 386.99,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 0.3333333333333333,
+   "ndcg@20": 0.5701406500739014
+  },
+  "v2-microexp-01": {
+   "category": "exact_table_value",
+   "latency_ms": 321.14,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 0.25,
+   "ndcg@20": 0.43067655807339306
+  },
+  "v2-microexp-03": {
+   "category": "method_comparison",
+   "latency_ms": 305.63,
+   "recall@20": 1.0,
+   "precision@20": 0.1,
+   "mrr": 1.0,
+   "ndcg@20": 0.8746071583782724
+  },
+  "v2-microexp-05": {
+   "category": "limitation",
+   "latency_ms": 313.42,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "v2-microexp-07": {
+   "category": "cross_document",
+   "latency_ms": 310.57,
+   "recall@20": 1.0,
+   "precision@20": 0.1,
+   "mrr": 1.0,
+   "ndcg@20": 0.9072278740982787
+  },
+  "v2-motiondiffuse-01": {
+   "category": "cross_document",
+   "latency_ms": 304.81,
+   "recall@20": 0.5,
+   "precision@20": 0.1,
+   "mrr": 1.0,
+   "ndcg@20": 0.38009376671593426
+  },
+  "v2-motiondiffuse-03": {
+   "category": "exact_table_value",
+   "latency_ms": 301.45,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 0.3333333333333333,
+   "ndcg@20": 0.5
+  },
+  "v2-motiondiffuse-05": {
+   "category": "implementation_detail",
+   "latency_ms": 313.66,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "v2-motiondiffuse-07": {
+   "category": "architecture_detail",
+   "latency_ms": 331.56,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 0.5,
+   "ndcg@20": 0.6309297535714575
+  },
+  "v2-real3d-01": {
+   "category": "method_detail",
+   "latency_ms": 313.22,
+   "recall@20": 1.0,
+   "precision@20": 0.15,
+   "mrr": 0.16666666666666666,
+   "ndcg@20": 0.3642313813719837
+  },
+  "v2-real3d-03": {
+   "category": "exact_table_value",
+   "latency_ms": 314.2,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "v2-real3d-05": {
+   "category": "method_detail",
+   "latency_ms": 310.23,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 0.5,
+   "ndcg@20": 0.6309297535714575
+  },
+  "v2-real3d-07": {
+   "category": "cross_document",
+   "latency_ms": 300.19,
+   "recall@20": 1.0,
+   "precision@20": 0.15,
+   "mrr": 0.5,
+   "ndcg@20": 0.6871475159848289
+  },
+  "v2-sadtalker-01": {
+   "category": "method_detail",
+   "latency_ms": 318.66,
+   "recall@20": 0.5,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 0.7601875334318685
+  },
+  "v2-sadtalker-03": {
+   "category": "exact_dataset_fact",
+   "latency_ms": 394.43,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "v2-sadtalker-05": {
+   "category": "limitation",
+   "latency_ms": 381.41,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 0.5,
+   "ndcg@20": 0.7737056144690833
+  },
+  "v2-sadtalker-07": {
+   "category": "architecture_detail",
+   "latency_ms": 424.72,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "v2-stmc-01": {
+   "category": "corpus_fact",
+   "latency_ms": 307.55,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "v2-stmc-03": {
+   "category": "architecture_detail",
+   "latency_ms": 306.71,
+   "recall@20": 1.0,
+   "precision@20": 0.15,
+   "mrr": 1.0,
+   "ndcg@20": 0.9072278740982787
+  },
+  "v2-stmc-05": {
+   "category": "limitation",
+   "latency_ms": 310.82,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "v2-stmc-07": {
+   "category": "exact_table_value",
+   "latency_ms": 331.64,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 0.2,
+   "ndcg@20": 0.38685280723454163
+  },
+  "v2-text2avatar-01": {
+   "category": "exact_table_value",
+   "latency_ms": 307.32,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 0.5,
+   "ndcg@20": 0.6309297535714575
+  },
+  "v2-text2avatar-03": {
+   "category": "exact_dataset_fact",
+   "latency_ms": 306.87,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  },
+  "v2-text2avatar-05": {
+   "category": "exact_dataset_fact",
+   "latency_ms": 300.22,
+   "recall@20": 1.0,
+   "precision@20": 0.05,
+   "mrr": 1.0,
+   "ndcg@20": 1.0
+  }
+ }
+}

@@ -4,9 +4,10 @@ Chunk IDs change whenever the chunker changes, which made every chunking
 experiment require a manual label remap. Each labeled example therefore also
 carries ``evidence`` units: a graded fact plus one or more short anchor strings
 quoted from the source paper. A chunk supports a unit when it belongs to the
-same document and contains every anchor after normalization. Metrics are then
-computed over evidence units, so splitting or merging chunks does not change
-the denominator.
+same document and contains every anchor after normalization (or every anchor of
+one of its ``alternatives``, when the fact is stated in several places).
+Metrics are then computed over evidence units, so splitting or merging chunks
+does not change the denominator.
 """
 
 import re
@@ -23,9 +24,36 @@ def normalize(text):
     return NON_ALNUM_RE.sub("", text.lower())
 
 
-def unit_anchors(unit):
-    anchors = unit["anchor"]
+def as_anchor_list(anchors):
     return [anchors] if isinstance(anchors, str) else list(anchors)
+
+
+def unit_anchors(unit):
+    return as_anchor_list(unit["anchor"])
+
+
+def unit_supports(unit):
+    """All (document_id, anchors) pairs that support a unit: the primary anchor
+    plus any ``alternatives``, for a fact stated in more than one place. An
+    alternative is an anchor (string or list) in the unit's own paper, or
+    {"document_id": ..., "anchor": ...} for the same fact in another paper."""
+    supports = [(unit["document_id"], unit_anchors(unit))]
+    for alternative in unit.get("alternatives", []):
+        if isinstance(alternative, dict):
+            supports.append((alternative["document_id"], as_anchor_list(alternative["anchor"])))
+        else:
+            supports.append((unit["document_id"], as_anchor_list(alternative)))
+    return supports
+
+
+def unit_alternatives(unit):
+    return [anchors for _document_id, anchors in unit_supports(unit)]
+
+
+def is_answerable(example):
+    """Unanswerable items have no evidence; they are kept for abstention tests
+    and excluded from retrieval metrics."""
+    return example.get("answerable", True)
 
 
 class EvidenceResolver:
@@ -37,12 +65,15 @@ class EvidenceResolver:
             )
 
     def resolve_unit(self, unit):
-        anchors = [normalize(anchor) for anchor in unit_anchors(unit)]
-        return {
-            chunk_id
-            for chunk_id, text in self.by_document.get(unit["document_id"], [])
-            if all(anchor in text for anchor in anchors)
-        }
+        matches = set()
+        for document_id, anchors in unit_supports(unit):
+            anchors = [normalize(anchor) for anchor in anchors]
+            matches.update(
+                chunk_id
+                for chunk_id, text in self.by_document.get(document_id, [])
+                if all(anchor in text for anchor in anchors)
+            )
+        return matches
 
     def resolve(self, example):
         """Return [(grade, supporting_chunk_ids), ...] for an example's evidence."""

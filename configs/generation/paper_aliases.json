@@ -1,0 +1,60 @@
+{
+ "anipotrait": [
+  "AniPortrait"
+ ],
+ "sadtalker": [
+  "SadTalker"
+ ],
+ "artalk": [
+  "ARTalk"
+ ],
+ "df 40": [
+  "DF40"
+ ],
+ "facecraft": [
+  "FaceCraft4D",
+  "FaceCraft"
+ ],
+ "Hu_GaussianAvatar_Towards_Realistic_Human_Avatar_Modeling_from_a_Single_Video_CVPR_2024_paper": [
+  "GaussianAvatar"
+ ],
+ "Instructavatar": [
+  "InstructAvatar"
+ ],
+ "motion_diffuse": [
+  "MotionDiffuse"
+ ],
+ "Real3d_potrait": [
+  "Real3D-Portrait",
+  "Real3D Portrait",
+  "Real3DPortrait"
+ ],
+ "TEXT2AVATAR": [
+  "Text2Avatar"
+ ],
+ "e3 gen avatars": [
+  "E3 Gen",
+  "E3Gen",
+  "E3-Gen"
+ ],
+ "forcing avatar_real time": [
+  "Avatar Forcing"
+ ],
+ "avaprintdb": [
+  "AVAPrintDB"
+ ],
+ "2401.08559v2": [
+  "STMC",
+  "multi-track timeline"
+ ],
+ "deepfake detection using facial feature points": [
+  "FFP-ChT"
+ ],
+ "Micro-Expression-Aware Avatar Fingerprinting via Inter-Frame Feature Differencing": [
+  "micro-expression-aware",
+  "inter-frame feature differencing"
+ ],
+ "avatar imposter attack scenario": [
+  "Is It Really You"
+ ]
+}

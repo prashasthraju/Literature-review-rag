@@ -1,32 +1,31 @@
 import argparse
+from dataclasses import replace
 
-from src.retrieval import CANDIDATE_K, DEFAULT_RERANKER, RETRIEVERS, TOP_K, Retriever, load_chunks
+from src.retrieval import DEFAULT_CONFIG, RETRIEVERS, RetrievalConfig, Retriever, load_chunks
 
 
 def main():
     parser = argparse.ArgumentParser(description="Search the local research-paper index.")
-    parser.add_argument("--retriever", choices=RETRIEVERS, default="hybrid")
-    parser.add_argument("--top-k", type=int, default=TOP_K)
-    parser.add_argument("--candidate-k", type=int, default=CANDIDATE_K)
+    parser.add_argument("--config", default=str(DEFAULT_CONFIG), help="Retrieval config name or path")
+    parser.add_argument("--retriever", choices=RETRIEVERS)
+    parser.add_argument("--top-k", type=int)
+    parser.add_argument("--candidate-k", type=int)
     parser.add_argument(
         "--reranker-model",
-        default=DEFAULT_RERANKER,
-        help="Cross-encoder used to rerank candidates; pass 'none' to disable",
+        help="Override the config's cross-encoder; pass 'none' to disable",
     )
     args = parser.parse_args()
-    if args.reranker_model.lower() == "none":
-        args.reranker_model = None
 
-    retriever = Retriever(
-        load_chunks(),
-        mode=args.retriever,
-        reranker_model=args.reranker_model,
-        candidate_k=args.candidate_k,
-    )
+    overrides = {"retriever": args.retriever, "top_k": args.top_k, "candidate_k": args.candidate_k}
+    if args.reranker_model:
+        overrides["reranker"] = None if args.reranker_model.lower() == "none" else args.reranker_model
+    overrides = {key: value for key, value in overrides.items() if key == "reranker" or value is not None}
+    config = replace(RetrievalConfig.load(args.config), **overrides)
+    retriever = Retriever(load_chunks(), config)
 
     try:
-        mode = args.retriever + (" + cross-encoder reranking" if args.reranker_model else "")
-        print(f"Research-paper search ({mode}). Type 'exit' to stop.")
+        mode = config.retriever + (f" + {config.reranker} reranking" if config.reranker else "")
+        print(f"Research-paper search ({config.name}: {mode}). Type 'exit' to stop.")
 
         while True:
             question = input("\nQuestion: ").strip()
@@ -37,7 +36,7 @@ def main():
             if not question:
                 continue
 
-            for rank, hit in enumerate(retriever.search(question, top_k=args.top_k), start=1):
+            for rank, hit in enumerate(retriever.search(question), start=1):
                 record = hit["record"]
                 pages = ", ".join(str(page) for page in record.get("page_numbers") or []) or "?"
 

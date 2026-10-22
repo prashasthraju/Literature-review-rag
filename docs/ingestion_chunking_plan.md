@@ -53,3 +53,15 @@ This section records the state after token-aware chunking. The corpus counts, la
 - The 7 papers whose parsed Markdown was not in the repository were re-parsed with `python -m src.ingestion.docparse --no-ocr --pdf ...`; the previous chunker reproduces 1,246 of the original 1,304 chunks from the new parse.
 - Relevance labels are now evidence anchors that survive re-chunking (see `docs/evaluation.md`). Base hybrid Recall@5 went from 0.6154 to 0.7244 (evidence-level metrics), and 0.7628 with reranking; MRR from 0.5686 to 0.5782, and 0.7353 with reranking. Most of that gain comes from the paper-title header, the BM25 cleanup and the reranker; the chunker changes are correctness fixes and score level with the original chunking once reranking is on (details in `docs/evaluation.md`).
 - Full results, timeline and reproduction commands: `docs/retrieval_results.md`.
+
+## Follow-up: front-matter filter (2026-10-20)
+
+- The chunker now drops publisher and author front matter:
+  - permission and copyright notices;
+  - ACM ISBN and DOI lines;
+  - author contact, funding and e-mail blocks;
+  - unpunctuated author and affiliation lines under the title.
+- It also skips author names that Docling parsed as headings (a person-name heading followed by an e-mail), which had split MotionDiffuse's abstract into sections titled with author names.
+- The corpus is now 847 chunks.
+- No evidence anchor was lost.
+- The effect on retrieval is in `docs/retrieval_results.md` (phase 2).

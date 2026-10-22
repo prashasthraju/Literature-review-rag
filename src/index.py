@@ -1,149 +1,82 @@
-
-from pathlib import Path
-import json
-import shutil
+import argparse
 import uuid
+from pathlib import Path
 
-from sentence_transformers import SentenceTransformer
 from qdrant_client import QdrantClient, models
+from sentence_transformers import SentenceTransformer
 
-from src.embed_text import passage_for_record
-from src.retrieval import CHUNKS_FILE, COLLECTION, DB_PATH, MODEL_NAME
+from src.retrieval import CHUNKS_FILE, DB_PATH, DEFAULT_CONFIG, RetrievalConfig, dense_units, load_chunks
 
 BATCH_SIZE = 32
-
-# This script rebuilds the collection on every full indexing run.
-REBUILD_COLLECTION = True
-
-
-def read_batches(path, batch_size):
-    batch = []
-
-    with path.open("r", encoding="utf-8") as f:
-        for line in f:
-            if not line.strip():
-                continue
-
-            batch.append(json.loads(line))
-
-            if len(batch) >= batch_size:
-                yield batch
-                batch = []
-
-    if batch:
-        yield batch
+PAYLOAD_FIELDS = (
+    "document_id", "document_title", "source_file", "section_path", "section_title",
+    "chunk_index", "page_number", "page_numbers", "contains_table", "contains_image_ref",
+)
 
 
 def main():
-    if not CHUNKS_FILE.exists():
-        raise FileNotFoundError(
-            "chunks.jsonl not found. Run `python -m src.ingestion.chunker` first."
+    parser = argparse.ArgumentParser(description="Embed chunks into the Qdrant collection a retrieval config names.")
+    parser.add_argument("--config", default=str(DEFAULT_CONFIG))
+    parser.add_argument("--chunks", type=Path, default=CHUNKS_FILE)
+    parser.add_argument("--db-path", type=Path, default=DB_PATH)
+    args = parser.parse_args()
+
+    if not args.chunks.exists():
+        raise FileNotFoundError(f"{args.chunks} not found. Run `python -m src.ingestion.chunker` first.")
+    config = RetrievalConfig.load(args.config)
+    records = {record["chunk_id"]: record for record in load_chunks(args.chunks)}
+    units = list(dense_units(records.values(), config))
+
+    print(f"Config {config.name}: {config.embedding_model}, {config.dense_units} units -> {config.collection}")
+    model = SentenceTransformer(config.embedding_model, trust_remote_code=True)
+    client = QdrantClient(path=str(args.db_path))
+    try:
+        # Rebuild only this config's collection; other configs' collections stay.
+        if client.collection_exists(config.collection):
+            client.delete_collection(config.collection)
+        client.create_collection(
+            collection_name=config.collection,
+            vectors_config=models.VectorParams(
+                size=model.get_embedding_dimension(),
+                distance=models.Distance.COSINE,
+            ),
         )
 
-    print(f"Loading embedding model: {MODEL_NAME}")
-    model = SentenceTransformer(MODEL_NAME)
-
-    vector_size = model.get_embedding_dimension()
-
-    # Persistent local database. Close it before opening another
-    # client on the same path.
-    client = QdrantClient(path=str(DB_PATH))
-
-    try:
-        exists = client.collection_exists(COLLECTION)
-
-        if exists and REBUILD_COLLECTION:
-            collection_names = [item.name for item in client.get_collections().collections]
-            if collection_names != [COLLECTION]:
-                raise RuntimeError(
-                    f"Refusing to reset {DB_PATH}; expected only {COLLECTION}, "
-                    f"found {collection_names}."
-                )
-            client.close()
-            database_path = Path(DB_PATH).resolve()
-            if database_path.name != Path(DB_PATH).name:
-                raise RuntimeError(f"Refusing to reset unexpected database path: {database_path}")
-            if database_path.exists():
-                shutil.rmtree(database_path)
-            client = QdrantClient(path=str(DB_PATH))
-            exists = client.collection_exists(COLLECTION)
-
-        if not exists:
-            client.create_collection(
-                collection_name=COLLECTION,
-                vectors_config=models.VectorParams(
-                    size=vector_size,
-                    distance=models.Distance.COSINE,
-                ),
-            )
-
-        total = 0
-
-        for batch in read_batches(CHUNKS_FILE, BATCH_SIZE):
-            texts = [passage_for_record(item) for item in batch]
-
+        position = {}
+        for start in range(0, len(units), BATCH_SIZE):
+            batch = units[start:start + BATCH_SIZE]
             vectors = model.encode(
-                texts,
+                [text for _chunk_id, text in batch],
                 batch_size=BATCH_SIZE,
                 normalize_embeddings=True,
                 convert_to_numpy=True,
                 show_progress_bar=False,
             )
-
             points = []
+            for (chunk_id, text), vector in zip(batch, vectors):
+                record = records[chunk_id]
+                unit_index = position.get(chunk_id, 0)
+                position[chunk_id] = unit_index + 1
+                points.append(models.PointStruct(
+                    # Qdrant point IDs must be integers or UUIDs.
+                    id=str(uuid.uuid5(uuid.NAMESPACE_URL, f"{chunk_id}#{unit_index}")),
+                    vector=vector.tolist(),
+                    payload={
+                        "chunk_id": chunk_id,
+                        "unit_index": unit_index,
+                        "unit_text": text,
+                        "text": record["text"],
+                        **{key: record.get(key) for key in PAYLOAD_FIELDS},
+                    },
+                ))
+            client.upsert(collection_name=config.collection, points=points, wait=True)
+            print(f"Indexed {start + len(batch)} / {len(units)} units")
 
-            for item, vector in zip(batch, vectors):
-                # Qdrant point IDs must be integers or UUIDs.
-                point_id = str(
-                    uuid.uuid5(
-                        uuid.NAMESPACE_URL,
-                        item["chunk_id"],
-                    )
-                )
-
-                payload = {
-                    "chunk_id": item["chunk_id"],
-                    "document_id": item["document_id"],
-                    "document_title": item.get("document_title"),
-                    "source_file": item["source_file"],
-                    "section_path": item["section_path"],
-                    "section_title": item["section_title"],
-                    "chunk_index": item["chunk_index"],
-                    "text": item["text"],
-                    "page_number": item["page_number"],
-                    "page_numbers": item["page_numbers"],
-                    "contains_table": item["contains_table"],
-                    "contains_image_ref": item["contains_image_ref"],
-                }
-
-                points.append(
-                    models.PointStruct(
-                        id=point_id,
-                        vector=vector.tolist(),
-                        payload=payload,
-                    )
-                )
-
-            client.upsert(
-                collection_name=COLLECTION,
-                points=points,
-                wait=True,
-            )
-
-            total += len(points)
-            print(f"Indexed {total} chunks")
-
-        print("\nIndexing complete.")
-        stored_count = client.count(collection_name=COLLECTION, exact=True).count
-        if stored_count != total:
-            raise RuntimeError(
-                f"Indexed {total} chunks but Qdrant contains {stored_count} points."
-            )
-        print(f"Collection: {COLLECTION}")
-        print(f"Stored chunks: {stored_count}")
-        print(f"Vector dimension: {vector_size}")
-        print(f"Database path: {Path(DB_PATH).resolve()}")
-
+        stored = client.count(collection_name=config.collection, exact=True).count
+        if stored != len(units):
+            raise RuntimeError(f"Indexed {len(units)} units but Qdrant contains {stored} points.")
+        print(f"\nCollection {config.collection}: {stored} points for {len(records)} chunks")
+        print(f"Database path: {args.db_path.resolve()}")
     finally:
         client.close()
 

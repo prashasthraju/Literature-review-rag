@@ -1,0 +1,20 @@
+{
+  "retriever": "hybrid",
+  "collection": "research_papers_v2",
+  "embedding_model": "BAAI/bge-m3",
+  "query_prefix": "",
+  "dense_units": "window",
+  "dense_title": true,
+  "bm25_title": true,
+  "bm25_clean": true,
+  "bm25_stopwords": true,
+  "fusion": "rrf",
+  "rrf_k": 60,
+  "candidate_k": 20,
+  "top_k": 5,
+  "name": "retrieval-v2",
+  "reranker": "BAAI/bge-reranker-base",
+  "notes": "2026-10-20: bge-m3 dense over 64-word windows (max-pooled to chunks) + titled BM25, RRF, bge-reranker-base. See docs/retrieval_results.md (phase 2).",
+  "window_words": 64,
+  "window_stride": 32
+}

@@ -1,0 +1,18 @@
+{
+  "retriever": "hybrid",
+  "collection": "research_papers_v1",
+  "embedding_model": "BAAI/bge-base-en-v1.5",
+  "query_prefix": "Represent this sentence for searching relevant passages: ",
+  "dense_units": "chunk",
+  "dense_title": true,
+  "bm25_title": true,
+  "bm25_clean": true,
+  "bm25_stopwords": true,
+  "fusion": "rrf",
+  "rrf_k": 60,
+  "candidate_k": 20,
+  "top_k": 5,
+  "name": "retrieval-v1-base",
+  "reranker": null,
+  "notes": "retrieval-v1 without the reranker (the evaluated 'base pipeline')."
+}

@@ -1,8 +1,8 @@
-# Retrieval results: base pipeline, phase 1
+# Retrieval results
 
-This is the record of everything measured for the retrieval pipeline up to 2026-10-19, at the end of the retrieval phase and before answer generation starts. `docs/evaluation.md` holds the methodology and the current numbers; this document holds the history, the experiments behind each decision, and the commands that reproduce them.
+This is the record of everything measured for the retrieval pipeline. Phase 1 (2026-10-19, tag `retrieval-v1`) fixed the base pipeline on a 26-question dev set; phase 2 (2026-10-20, [below](#phase-2-benchmark-v2-and-retrieval-v2)) built a larger benchmark with a held-out test set and produced `retrieval-v2`. `docs/evaluation.md` holds the methodology and the current numbers; this document holds the history, the experiments behind each decision, and the commands that reproduce them.
 
-## Summary
+## Phase 1 summary
 
 - The **current base pipeline** (hybrid BGE + BM25, no reranker) scores Recall@5 **0.724** and MRR **0.578**, against **0.615** and **0.569** for the pipeline it replaces.
 - With the **`bge-reranker-base` cross-encoder**, which interactive search uses by default, it scores Recall@5 **0.763** and MRR **0.735**.
@@ -40,7 +40,7 @@ This is the record of everything measured for the retrieval pipeline up to 2026-
 | AniPortrait | 9 |
 | **Total** | **863** |
 
-## Final configuration
+## Phase 1 configuration
 
 | Component | Setting |
 |---|---|
@@ -258,7 +258,17 @@ python -m src.evaluation.evaluate_retrieval --reranker-model BAAI/bge-reranker-b
 python -m pytest tests
 ```
 
-The baseline and ablation rows come from `scripts/ablate_retrieval.py`. It runs the same `Retriever` with an in-memory dense index, which gives the same rankings as Qdrant, and can swap the BM25 input back to the old raw-text configuration. Results are in `reports/ablations/`; the commands are in the script's docstring. Older chunkings come from git:
+The phase 1 numbers are reproduced exactly by `scripts/run_experiments.py`, which runs the same `Retriever` with an in-memory dense index and named configs (`configs/retrieval/baseline-v0.json` reproduces the raw-text BM25 of the old pipeline). Phase 1 used the v1.1 dataset and the 863-chunk corpus, both at the `retrieval-v1` tag:
+
+```bash
+git show retrieval-v1:data/evaluation/retrieval_dev.jsonl > /tmp/dev_v1.1.jsonl
+git show retrieval-v1:chunks.jsonl > /tmp/chunks_v1.jsonl
+git show a0735cf:chunks.jsonl > /tmp/chunks_a0735cf.jsonl
+python scripts/run_experiments.py baseline-v0 --dataset /tmp/dev_v1.1.jsonl --chunks /tmp/chunks_a0735cf.jsonl   # 0.6154 / 0.5686
+python scripts/run_experiments.py retrieval-v1-base retrieval-v1 --dataset /tmp/dev_v1.1.jsonl --chunks /tmp/chunks_v1.jsonl  # 0.7244 / 0.5782 and 0.7628 / 0.7353
+```
+
+Phase 1 ablation outputs are kept in `reports/ablations/`:
 
 | Result file | Chunks |
 |---|---|
@@ -266,14 +276,162 @@ The baseline and ablation rows come from `scripts/ablate_retrieval.py`. It runs 
 | `char_chunks_2921d65.json` | `git show 2921d65:chunks.jsonl`, raw-text BM25 |
 | `original_chunks_titled*.json` | `a0735cf` chunks with each paper's `document_title` added (title taken from the current `chunks.jsonl` by `document_id`) |
 | `control_old_chunker_new_parse.json` | `a0735cf` chunker run over the current `parsed/` |
-| `current_*.json` | current `chunks.jsonl` |
+| `current_*.json` | the 863-chunk corpus of phase 1 |
 | `chunker_reverts/*.json` | throwaway chunker variants, not kept in the repository |
 
 `scripts/add_evidence_anchors.py` is the one-off migration that turned chunk-ID labels into evidence anchors. It has already been applied.
 
-## Open items for the next phase
+## Phase 1 open items, and what phase 2 did with them
 
-1. **Dense regression.** Find out why dense lost recall on the current chunks: smaller chunks or table-aware splitting, a title only in the BM25 passage, or a different embedder. A stronger dense channel is the most likely next retrieval gain.
-2. **Label review.** Fix the gaps above, check every exact-value question against the PDFs, and add questions. Twenty-six questions cannot separate changes of a few points.
-3. **Figure-dependent questions.** None exist yet, so there is no evidence either way for adding OCR or image descriptions.
-4. **Answer generation.** It is not built yet, so there are no measures of answer quality, citations or abstention. Retrieval returns page numbers and paper titles, ready for citations.
+1. **Dense regression:** fixed. A different embedder (`bge-m3`) over 64-word windows takes dense-only Recall@5 from 0.667 to 0.818 on the larger dev set (phase 2 below).
+2. **Label review:** partly done. The three known gaps were fixed, and a retriever-independent search for restated facts added alternatives to 23 units. The questions are still model-drafted and need a human review.
+3. **Figure-dependent questions:** still open; benchmark v2 has none.
+4. **Answer generation:** built in phase 2; see `docs/generation.md`.
+
+## Phase 2: benchmark v2 and retrieval-v2
+
+Phase 2 (2026-10-20) replaced the 26-question set with a benchmark large enough to separate configurations, kept a held-out test set aside, fixed the dense regression and the front-matter noise, and settled the configuration with a pre-registered decision rule.
+
+### Benchmark v2
+
+| Split | File | Questions | Answerable | Evidence units | Unanswerable |
+|---|---|---:|---:|---:|---:|
+| Dev | `data/evaluation/retrieval_dev.jsonl` | 96 | 89 | 135 | 7 |
+| Test (held out) | `data/evaluation/retrieval_test.jsonl` | 61 | 54 | 80 | 7 |
+
+- **The 26 phase 1 questions** stay in dev.
+- **117 new questions** were written from the parsed papers (not from chunks or retrieval output), 4–9 per paper, covering 17 categories. They include table and exact-value questions and 7 cross-paper questions.
+  - The wording avoids the anchor sentences: the build script rejected any question sharing 5 or more consecutive words with its anchor.
+  - Within each paper, questions alternate between dev and test.
+- **14 unanswerable questions** were checked absent from the corpus with a regular expression; they are split 7/7.
+- **Label corrections.**
+  - **Alternatives.** A unit can list `alternatives`: other passages, in the same paper or another, that state the same fact. Any one of them covers the unit, without adding a unit.
+  - **Known gaps.** The phase 1 gaps (003, 019, 022) were fixed this way.
+  - **Search for restatements.** A search found passages that contain an anchor's numbers or at least 70% of its content words. It did not use any retriever. Reviewing its output added alternatives to 23 units in dev and test. Two items whose units restated one fact (020, 021) were merged into one unit each.
+- **Who wrote it.** Every new question is marked `model-drafted`: the same assistant that tuned the pipeline wrote both splits. The labels need a human review before the scores are treated as more than directional.
+- **Test file.** SHA-256 at the single test run: `da01cba608afd89c345931883b7e00982e37e2712f0adfa9975e1cb10801d03b`.
+
+### Decision rule (fixed before the experiments)
+
+- Configurations are compared per question with a paired bootstrap (10,000 resamples) on Recall@k, MRR and nDCG@k (`scripts/compare_runs.py`).
+- A change is adopted only if the 95% interval for Recall or MRR excludes zero and the other metric does not get significantly worse. Otherwise the simpler or cheaper option stays.
+- Tuning used dev only. Test was run once, at the end, for the reference and final configurations together.
+
+### Front-matter filter (ingestion fix)
+
+- **The problem.** Front matter took result slots in the error analysis:
+  - copyright and ACM permission notices;
+  - author lists, affiliations and e-mail blocks;
+  - funding notes;
+  - MotionDiffuse's author names, parsed as headings that split its abstract into sections.
+- **The fix.** The chunker now drops these blocks, and skips author-name headings that are followed by an e-mail. The corpus goes from 863 to 847 chunks, and no anchor was lost.
+- **The effect.** On dev, base MRR rose 0.627 → 0.645 and the bge-m3 windows hybrid's recall 0.863 → 0.875; with the reranker there was no change. It is kept as a correctness fix.
+
+### Dense channel and embedders (screening on dev)
+
+Screening runs used the dev set before the label corrections and front-matter filter, so compare rows within this table only.
+
+| Dense channel alone | Recall@5 | MRR |
+|---|---:|---:|
+| `bge-base-en-v1.5`, whole chunks, titled (v1) | 0.620 | 0.466 |
+| `bge-base`, whole chunks, no title | 0.556 | 0.354 |
+| `bge-base`, 96-word windows | 0.626 | 0.478 |
+| `bge-base`, 64-word windows | 0.702 | 0.564 |
+| `bge-base`, 160-word windows | 0.633 | 0.469 |
+| `bge-m3`, whole chunks | 0.738 | 0.632 |
+| `bge-m3`, 64-word windows | 0.764 | 0.622 |
+| `snowflake-arctic-embed-m-v1.5`, whole chunks | 0.760 | 0.579 |
+| `snowflake-arctic-embed-m-v1.5`, 64-word windows | 0.768 | 0.590 |
+
+- **Windows.** Each chunk is split into overlapping 64-word windows, with table rows kept whole. Each window is embedded with the paper and section header, and a chunk scores as its best window. BM25, the reranker and the generator still see whole chunks.
+- **The title helps dense on this set** (0.620 vs 0.556). The phase 1 finding that it hurt recall came from 26 questions and does not hold up.
+- **Embedders.** `bge-m3` and `arctic` are both far stronger than `bge-base`.
+
+| Hybrid (screening) | Recall@5 | MRR | p50 latency |
+|---|---:|---:|---:|
+| v1-base (`bge-base` chunks) | 0.832 | 0.627 | 6 ms |
+| `bge-base` 64-word windows | 0.811 | 0.662 | 5 ms |
+| `bge-m3` chunks | 0.817 | 0.707 | 11 ms |
+| `bge-m3` 64-word windows | 0.863 | 0.705 | 12 ms |
+| `arctic` 64-word windows | 0.876 | 0.674 | 6 ms |
+| `bge-m3` windows, dense weight 1.5 in RRF | 0.852 | 0.710 | 11 ms |
+| v1 (`bge-base` + `bge-reranker-base`) | 0.848 | 0.743 | 305 ms |
+| `bge-m3` windows + `bge-reranker-base` | 0.860 | 0.737 | 316 ms |
+| `bge-m3` windows + `bge-reranker-v2-m3` | 0.882 | 0.720 | 1,124 ms |
+| `arctic` windows + `bge-reranker-base` | 0.854 | 0.739 | 310 ms |
+| `arctic` windows + `bge-reranker-v2-m3` | 0.873 | 0.716 | 1,131 ms |
+
+- **The reranker evens out first stages.** Once results are reranked, every first stage lands within a point of v1 at top 5.
+- **`bge-reranker-v2-m3`** trades MRR for recall again, at almost four times the latency. It is not adopted.
+
+### Final dev results (corrected labels, 847-chunk corpus)
+
+| Config | Recall@5 | MRR | nDCG@5 | Recall@8 | p50 latency (Qdrant) |
+|---|---:|---:|---:|---:|---:|
+| BM25 alone | 0.841 | 0.607 | 0.650 | | |
+| Dense alone, v1 (`bge-base`) | 0.667 | 0.490 | 0.510 | | |
+| Dense alone, v2 (`bge-m3` windows) | 0.818 | 0.659 | 0.678 | | |
+| `retrieval-v1-base` | 0.863 | 0.654 | 0.685 | 0.920 | 8 ms |
+| **`retrieval-v2-base`** | **0.918** | **0.732** | **0.760** | 0.942 | 28 ms |
+| `retrieval-v1` | 0.880 | 0.751 | 0.761 | 0.938 | 310 ms |
+| **`retrieval-v2`** | **0.886** | **0.750** | **0.759** | **0.961** | 330 ms |
+
+Paired bootstrap (dev, 89 questions):
+- **`retrieval-v2-base` vs `retrieval-v1-base`:**
+  - Recall@5 +0.054 [+0.006, +0.107]
+  - MRR +0.072 [+0.005, +0.138]
+  - nDCG@5 +0.071 [+0.022, +0.121]
+  - All three are significant.
+- **`retrieval-v2` vs `retrieval-v1`:**
+  - Recall@5 and MRR are tied (±0.01).
+  - Recall@8 is +0.022 [0.000, +0.051], with 3 questions better and 0 worse.
+
+The Qdrant collection reproduces the in-memory scores exactly for v1. For v2-base it gives MRR 0.732 against 0.726 in memory, because batch order changes the bge-m3 encodings slightly and near-ties flip.
+
+### Held-out test (single run)
+
+| Config | Recall@5 | MRR | nDCG@5 |
+|---|---:|---:|---:|
+| `retrieval-v1-base` | 0.667 | 0.519 | 0.559 |
+| **`retrieval-v2-base`** | **0.769** | **0.607** | **0.644** |
+| `retrieval-v1` | 0.759 | 0.638 | 0.658 |
+| **`retrieval-v2`** | **0.769** | **0.639** | **0.661** |
+
+- **The test questions are harder than dev.** Most are detail and exact-value questions that alternate with the dev questions within each paper.
+- **The ordering is the same as on dev:**
+  - v2-base beats v1-base significantly: Recall +0.102 [+0.009, +0.204], MRR +0.088 [+0.006, +0.174].
+  - v2 and v1 tie.
+  - v2-base is roughly level with v1 at a tenth of the latency.
+
+### Decision
+
+- **`retrieval-v2` is the new default** for search and for the generator's context. It uses:
+  - `bge-m3` over 64-word windows;
+  - titled BM25 with stopwords;
+  - RRF with k = 60 and 20 candidates;
+  - `bge-reranker-base`.
+- **Why adopt it when it only ties v1 after reranking.** Its first stage is significantly better on both dev and test. That matters in fast mode (`retrieval-v2-base`, about 28 ms). It also matters for the 8 chunks the generator reads, where v2 finds 96% of the evidence against 94%. With reranking it is no worse than v1 anywhere.
+- **The cost:** a larger embedder (568M parameters, against 110M) and about 5.6 times as many vectors (4,760 window points for 847 chunks).
+- **Rollback:** `retrieval-v1` remains a config with its own Qdrant collection.
+
+### Reproduce phase 2
+
+```bash
+python -m src.ingestion.chunker                       # 847 chunks
+python -m src.index --config retrieval-v1             # collection research_papers_v1
+python -m src.index --config retrieval-v2             # collection research_papers_v2 (window points)
+python -m src.evaluation.audit_ground_truth --dataset data/evaluation/retrieval_dev.jsonl
+python -m src.evaluation.audit_ground_truth --dataset data/evaluation/retrieval_test.jsonl
+python -m src.evaluation.evaluate_retrieval --config retrieval-v2 --output reports/v3_retrieval_eval_dev_retrieval-v2.json
+python -m src.evaluation.evaluate_retrieval --config retrieval-v2 --dataset data/evaluation/retrieval_test.jsonl \
+    --output reports/v3_retrieval_eval_test_retrieval-v2.json
+# experiments: any config with inline overrides, in-memory dense index, encodings cached in .cache/
+python scripts/run_experiments.py retrieval-v1 "retrieval-v1-base:embedding_model=BAAI/bge-m3,query_prefix=,dense_units=window,window_words=64,window_stride=32"
+python scripts/compare_runs.py reports/experiments/retrieval_dev/retrieval-v1.json reports/experiments/retrieval_dev/<candidate>.json --categories
+```
+
+Per-query experiment outputs are in `reports/experiments/retrieval_dev/`. Full ranked outputs for the four reference configurations are in `reports/v3_retrieval_eval_{dev,test}_*.json`.
+
+### Remaining retrieval misses
+
+On dev, `retrieval-v2` misses some evidence at 8 for 6 questions (retrieval-001, 007, 014, 024, v2-microexp-03, v2-df40-01). Five are partial misses, where a secondary unit of a two-part question is not found. The full miss is a table caption that uses the abbreviations FS/FR/EFS/FE while the question spells them out (v2-df40-01). None points to another systematic fault like the front matter.

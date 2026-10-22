@@ -27,6 +27,22 @@ BOILERPLATE_SECTION_RE = re.compile(
 )
 # Chunks with less real text than this (e.g. a lone figure reference) are dropped.
 MIN_CONTENT_CHARS = 40
+# Publisher and front-matter blocks (permission notices, copyright, author
+# contacts, funding) carry no content but ranked in the top 5 for many queries.
+FRONT_MATTER_RE = re.compile(
+    r"^(?:permission to make digital or hard copies|©\s*\d{4}|\(c\)\s*\d{4}|acm isbn|"
+    r"authors?['’] contact information|this (?:cvpr|iccv|eccv|wacv) paper is the open access version|"
+    r"received: date|this (?:work|research|project) (?:was|is|has been) (?:partially |partly )?supported by|"
+    r"\[?https?://doi\.org/\S+\]?(?:\(\S+\))?$)",
+    re.IGNORECASE,
+)
+FRONT_MATTER_ANYWHERE_RE = re.compile(r"personal use of this material is permitted|copyright held by the owner", re.IGNORECASE)
+NOTE_PREFIX_RE = re.compile(
+    r"^(?:\d\s*)?[*∗†‡⋆]+\s*(?:equal contributions?|corresponding authors?)\.?\s*", re.IGNORECASE
+)
+EMAIL_RE = re.compile(r"[\w.+-]+@[\w-]+(?:\.[\w-]+)+|\{[\w.,\s-]+\}@")
+PERSON_HEADING_RE = re.compile(r"^[A-Z][a-z]+(?:[ -][A-Z][a-z]+){1,3}$")
+FRONT_MATTER_MAX_WORDS = 150
 
 
 class TokenBudget:
@@ -176,6 +192,25 @@ def split_large_block(block, budget):
     return parts
 
 
+def strip_front_matter(block):
+    """Return the block without publisher/author boilerplate, or None to drop it."""
+    if table_parts(block):
+        return block
+    if FRONT_MATTER_RE.match(block) or FRONT_MATTER_ANYWHERE_RE.search(block):
+        return None
+    block = NOTE_PREFIX_RE.sub("", block).strip()
+    if not block:
+        return None
+    if EMAIL_RE.search(block) and len(block.split()) < FRONT_MATTER_MAX_WORDS:
+        return None
+    return block
+
+
+def is_title_matter(block):
+    """Short unpunctuated lines under the title: author lists, affiliations, venue."""
+    return len(block.split()) < 30 and not block.rstrip().endswith((".", ":", "?"))
+
+
 def parse_sections(markdown):
     """Return (document_title, sections); the title is the first heading."""
     sections = []
@@ -184,6 +219,7 @@ def parse_sections(markdown):
     page_number = 1
     document_title = None
     skip_section = False
+    in_title_matter = False
     marker_block = "__DOCLING_PAGE_MARKER__"
     markdown = PAGE_MARKER_RE.sub(
         lambda match: f"\n\n{marker_block}:{match.group(1)}:{match.group(2)}\n\n",
@@ -198,10 +234,8 @@ def parse_sections(markdown):
             })
         blocks.clear()
 
-    for block in re.split(r"\n\s*\n", markdown):
-        block = block.strip()
-        if not block:
-            continue
+    raw_blocks = [block.strip() for block in re.split(r"\n\s*\n", markdown) if block.strip()]
+    for position, block in enumerate(raw_blocks):
 
         marker_match = re.fullmatch(
             re.escape(marker_block) + r":(start|break):(\d+)",
@@ -215,14 +249,29 @@ def parse_sections(markdown):
 
         match = re.match(r"^(#{1,6})\s+(.+)$", block)
         if match:
+            title = match.group(2).strip()
+            # Author names parsed as headings, each followed by an affiliation
+            # with an e-mail, would otherwise split the abstract into sections.
+            following = raw_blocks[position + 1] if position + 1 < len(raw_blocks) else ""
+            if document_title and PERSON_HEADING_RE.match(title) and EMAIL_RE.search(following):
+                continue
             flush()
             level = len(match.group(1))
-            title = match.group(2).strip()
+            in_title_matter = document_title is None
             document_title = document_title or title
             skip_section = bool(BOILERPLATE_SECTION_RE.match(title))
             heading_stack[:] = heading_stack[:level - 1]
             heading_stack.append(title)
             continue
+
+        block = strip_front_matter(block)
+        if block is None:
+            continue
+        if in_title_matter:
+            if re.match(r"^abstract\b", block, re.IGNORECASE) or len(block.split()) >= 30:
+                in_title_matter = False
+            elif is_title_matter(block):
+                continue
 
         table = table_parts(block)
         if table and blocks and blocks[-1][1] == page_number:

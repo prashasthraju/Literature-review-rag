@@ -1,0 +1,18 @@
+{
+  "retriever": "hybrid",
+  "collection": "research_papers_v1",
+  "embedding_model": "BAAI/bge-base-en-v1.5",
+  "query_prefix": "Represent this sentence for searching relevant passages: ",
+  "dense_units": "chunk",
+  "dense_title": true,
+  "bm25_title": true,
+  "bm25_clean": false,
+  "bm25_stopwords": false,
+  "fusion": "rrf",
+  "rrf_k": 60,
+  "candidate_k": 20,
+  "top_k": 5,
+  "name": "baseline-v0",
+  "reranker": null,
+  "notes": "Pipeline before 2026-10-19: raw-text BM25 without stopwords. Run on git:a0735cf:chunks.jsonl to reproduce the 0.6154 baseline."
+}
