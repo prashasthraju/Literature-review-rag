@@ -47,7 +47,8 @@ class BM25Index:
             for term, posting in self.postings.items()
         }
 
-    def search(self, query, limit=20):
+    def search(self, query, limit=20, allowed=None):
+        """Top documents for the query; ``allowed`` restricts results to those doc ids."""
         q_tokens = tokenize(query, self.stopwords)
         if not q_tokens or not self.doc_ids:
             return []
@@ -63,6 +64,8 @@ class BM25Index:
                 )
                 scores[idx] += qf * idf * (tf * (self.k1 + 1)) / denom
 
+        if allowed is not None:
+            scores = {idx: score for idx, score in scores.items() if self.doc_ids[idx] in allowed}
         ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)[:limit]
         return [(self.doc_ids[idx], score) for idx, score in ranked]
 

@@ -14,7 +14,9 @@ from pathlib import Path
 from src.context import assemble_context
 from src.generation.answer import build_messages, invalid_output, load_aliases, named_documents, parse_draft, validate
 from src.generation.backends import make_generator
+from src.generation.followup import build_condense_messages, parse_condensed
 from src.retrieval import RetrievalConfig, Retriever, load_chunks
+from src.tracing import Trace
 
 ROOT = Path(__file__).resolve().parents[1]
 GENERATION_CONFIG = ROOT / "configs" / "generation" / "default.json"
@@ -32,6 +34,7 @@ class GenerationConfig:
     context_budget: int = 2000
     max_new_tokens: int = 512
     quantize: str | None = "4bit"
+    condense_max_new_tokens: int = 64
 
     @classmethod
     def load(cls, path=GENERATION_CONFIG, **overrides):
@@ -69,21 +72,54 @@ class RagPipeline:
             else {}
         ))
 
-    def answer(self, question):
-        return self.answer_from_hits(question, self.retriever.search(question, top_k=self.config.context_hits))
+    # The stages below are what the chat API sequences; answer() runs them all.
 
-    def answer_from_hits(self, question, hits):
-        bundle = assemble_context(hits, budget=self.config.context_budget)
-        messages = build_messages(question, bundle, self.config.prompt_version)
-        raw = self.generator.generate(messages, prefill=ANSWER_PREFILL)
-        try:
-            draft = parse_draft(raw)
-        except ValueError as error:
-            return invalid_output(question, raw, error, bundle, self.config.prompt_version, self.generator.name)
-        return validate(
-            question, draft, bundle, self.config.prompt_version, self.generator.name, raw,
-            required_documents=named_documents(question, self.aliases),
-        )
+    def answer(self, question, document_ids=None, trace=None):
+        return self.answer_from_hits(question, self.search(question, document_ids, trace), trace)
+
+    def answer_from_hits(self, question, hits, trace=None):
+        return self.generate(question, self.build_context(hits, trace), trace)
+
+    def standalone_question(self, history, message, trace=None):
+        """Resolve a follow-up against the conversation; unchanged when there is no history."""
+        if not history:
+            return message.strip()
+        with (trace or Trace()).span("rewrite_question", turns=len(history)) as span:
+            raw = self.generator.generate(
+                build_condense_messages(history, message), max_new_tokens=self.config.condense_max_new_tokens
+            )
+            question = parse_condensed(raw, message)
+            span["rewritten"] = question != message.strip()
+        return question
+
+    def search(self, question, document_ids=None, trace=None):
+        return self.retriever.search(question, top_k=self.config.context_hits, document_ids=document_ids, trace=trace)
+
+    def build_context(self, hits, trace=None):
+        with (trace or Trace()).span("context", hits=len(hits)) as span:
+            bundle = assemble_context(hits, budget=self.config.context_budget)
+            span.update(sources=len(bundle.passages), tokens=bundle.token_count, excluded=len(bundle.excluded))
+        return bundle
+
+    def generate(self, question, bundle, trace=None):
+        trace = trace or Trace()
+        with trace.span("generation", model=self.generator.name, prompt=self.config.prompt_version) as span:
+            raw = self.generator.generate(build_messages(question, bundle, self.config.prompt_version), prefill=ANSWER_PREFILL)
+            span["output_chars"] = len(raw)
+        with trace.span("validation") as span:
+            try:
+                answer = validate(
+                    question, parse_draft(raw), bundle, self.config.prompt_version, self.generator.name, raw,
+                    required_documents=named_documents(question, self.aliases),
+                )
+            except ValueError as error:
+                answer = invalid_output(question, raw, error, bundle, self.config.prompt_version, self.generator.name)
+            span.update(
+                status=answer.status,
+                citations=len(answer.citations),
+                invalid_citations=sum(not c.valid for c in answer.citations),
+            )
+        return answer
 
     def close(self):
         self.retriever.close()

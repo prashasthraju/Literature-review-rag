@@ -7,12 +7,25 @@ PDFs ─ Docling ─> parsed/ ─ chunker ─> chunks.jsonl ─ indexer ─> Qdr
                                                    └─ BM25 (titled passages)
 question ─> hybrid retrieval (RRF) ─> bge-reranker-base ─> context assembly (cited, budgeted)
         ─> local LLM (Qwen3-4B, 4-bit) ─> answer contract ─> citation validator ─> answer + sources
+browser (React) ─> FastAPI (/api, SSE) ─> the same pipeline; conversations and traces in SQLite
 ```
+
+## Chat app
+
+```bash
+cd frontend && npm install && npm run build && cd ..
+.venv/bin/python -m src.api  # open http://127.0.0.1:8000
+```
+
+Ask questions, follow up, restrict a question to chosen papers, open each cited passage or the PDF at the cited page, and export a conversation as Markdown notes. See `docs/chatbot.md`.
 
 ## Quick start
 
+Use the project's own virtual environment (`.venv`, Python 3.12). It has no pip, so install with uv; on this machine a plain `python` may resolve to another project's environment.
+
 ```bash
-pip install -r requirements.txt                    # Python 3.12, CUDA GPU with 8 GB recommended
+source .venv/bin/activate                          # or call .venv/bin/python directly
+uv pip install --python .venv/bin/python -r requirements.txt   # CUDA GPU with 8 GB recommended
 python -m src.ingestion.chunker                    # parsed/ -> chunks.jsonl (847 chunks)
 python -m src.index --config retrieval-v2          # builds the Qdrant collection
 python -m src.search                               # interactive retrieval only
@@ -31,14 +44,17 @@ python -m src.rag --json "..."                     # full record: citations, pro
 | `src/index.py`, `src/search.py` | Build a config's Qdrant collection; interactive search |
 | `src/context.py` | Context assembly: merge neighbouring chunks, token budget, provenance, exclusion log |
 | `src/generation/` | Answer contract, prompt construction, citation validation (`answer.py`); model backends |
-| `src/rag.py` | End-to-end question answering |
+| `src/rag.py` | End-to-end question answering, as traced stages (rewrite, search, context, generate) |
+| `src/api/` | FastAPI chat server: streaming chat, papers and PDFs, conversations, feedback, traces |
+| `src/tracing.py` | Per-request spans (timings and counts, no document text) |
+| `frontend/` | React + TypeScript + Vite + Tailwind chat UI |
 | `src/evaluation/` | Evidence-anchor labels, metrics, evaluator, label audit |
 | `configs/retrieval/`, `configs/generation/` | Named, versioned configurations (`retrieval-v2` is the default) |
-| `prompts/` | Versioned prompts (`answer_v1.md`) |
+| `prompts/` | Versioned prompts (`answer_v1.md`, `answer_v2.md`, `condense_v1.md` for follow-ups) |
 | `data/evaluation/` | Benchmark v2: `retrieval_dev.jsonl` (96 questions) and held-out `retrieval_test.jsonl` (61) |
 | `scripts/` | Experiment runner, paired bootstrap comparison, generation evaluation |
 | `reports/` | Saved evaluation outputs |
-| `docs/` | Evaluation method, retrieval results and history, generation design and results |
+| `docs/` | Evaluation method, retrieval results and history, generation design and results, chatbot |
 
 ## Current results
 

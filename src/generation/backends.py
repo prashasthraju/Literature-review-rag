@@ -31,7 +31,7 @@ class TransformersGenerator:
         )
         self.model.eval()
 
-    def generate(self, messages, prefill=""):
+    def generate(self, messages, prefill="", max_new_tokens=None):
         """Greedy decoding; ``prefill`` starts the reply (e.g. '{"status": "') to force the format."""
         import torch
 
@@ -40,7 +40,7 @@ class TransformersGenerator:
         with torch.inference_mode():
             output = self.model.generate(
                 **inputs,
-                max_new_tokens=self.max_new_tokens,
+                max_new_tokens=max_new_tokens or self.max_new_tokens,
                 do_sample=False,
                 pad_token_id=self.tokenizer.eos_token_id,
             )
@@ -58,13 +58,13 @@ class AnthropicGenerator:
         self.max_tokens = max_tokens
         self.client = anthropic.Anthropic()
 
-    def generate(self, messages, prefill=""):
+    def generate(self, messages, prefill="", max_new_tokens=None):
         system = "\n\n".join(m["content"] for m in messages if m["role"] == "system")
         turns = [m for m in messages if m["role"] != "system"]
         if prefill:
             turns.append({"role": "assistant", "content": prefill})
         response = self.client.messages.create(
-            model=self.model, max_tokens=self.max_tokens, system=system, messages=turns
+            model=self.model, max_tokens=max_new_tokens or self.max_tokens, system=system, messages=turns
         )
         return prefill + "".join(block.text for block in response.content if block.type == "text")
 

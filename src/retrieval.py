@@ -24,6 +24,7 @@ from src.embed_text import (
 )
 from src.lexical import STOPWORDS, BM25Index, reciprocal_rank_fusion
 from src.reranking import rerank_candidates
+from src.tracing import Trace
 
 ROOT = Path(__file__).resolve().parents[1]
 CHUNKS_FILE = Path("chunks.jsonl")
@@ -171,12 +172,21 @@ class QdrantDenseIndex:
                 "run `python -m src.index --config <config>` first."
             )
 
-    def search(self, vector, limit):
+    def search(self, vector, limit, allowed=None):
+        query_filter = None
+        if allowed is not None:
+            from qdrant_client import models
+
+            # Window points carry only their chunk_id, so a paper filter is a chunk-id filter.
+            query_filter = models.Filter(must=[
+                models.FieldCondition(key="chunk_id", match=models.MatchAny(any=sorted(allowed)))
+            ])
         points = self.client.query_points(
             collection_name=self.collection,
             query=vector.tolist(),
             limit=limit * self.oversample,
             with_payload=["chunk_id"],
+            query_filter=query_filter,
         ).points
         return best_per_chunk(
             (
@@ -207,9 +217,11 @@ class MemoryDenseIndex:
             show_progress_bar=False,
         )
 
-    def search(self, vector, limit):
+    def search(self, vector, limit, allowed=None):
         scores = self.vectors @ vector
-        top = np.argsort(-scores)[: limit * 8]
+        if allowed is not None:
+            scores = np.where([chunk_id in allowed for chunk_id in self.chunk_ids], scores, -np.inf)
+        top = [index for index in np.argsort(-scores)[: limit * 8] if np.isfinite(scores[index])]
         return best_per_chunk(((self.chunk_ids[index], float(scores[index])) for index in top), limit)
 
     def close(self):
@@ -272,36 +284,53 @@ class Retriever:
 
             self.reranker = CrossEncoder(config.reranker)
 
-    def search(self, question, top_k=None):
-        """Return ranked hits: dicts with chunk_id, record and per-channel scores."""
+    def search(self, question, top_k=None, document_ids=None, trace=None):
+        """Return ranked hits: dicts with chunk_id, record and per-channel scores.
+
+        ``document_ids`` restricts every channel to those papers; ``trace``
+        receives one span per stage.
+        """
         config = self.config
+        trace = trace or Trace()
         top_k = top_k or config.top_k
         candidate_k = max(top_k, config.candidate_k)
+        allowed = None
+        if document_ids:
+            wanted = set(document_ids)
+            allowed = {chunk_id for chunk_id, record in self.records.items() if record.get("document_id") in wanted}
+            if not allowed:
+                return []
 
         dense_hits = []
         if self.dense is not None and config.retriever in {"dense", "hybrid"}:
-            vector = self.model.encode(
-                config.query_prefix + (question or "").strip(),
-                normalize_embeddings=True,
-                convert_to_numpy=True,
-            )
-            dense_hits = self.dense.search(vector, candidate_k)
-        lexical_hits = (
-            self.bm25.search(question, limit=candidate_k)
-            if self.bm25 is not None and config.retriever in {"bm25", "hybrid"}
-            else []
-        )
+            with trace.span("embed_query", model=config.embedding_model):
+                vector = self.model.encode(
+                    config.query_prefix + (question or "").strip(),
+                    normalize_embeddings=True,
+                    convert_to_numpy=True,
+                )
+            with trace.span("dense_search", filtered=allowed is not None) as span:
+                dense_hits = self.dense.search(vector, candidate_k, allowed)
+                span["candidates"] = len(dense_hits)
+        lexical_hits = []
+        if self.bm25 is not None and config.retriever in {"bm25", "hybrid"}:
+            with trace.span("bm25_search", filtered=allowed is not None) as span:
+                lexical_hits = self.bm25.search(question, limit=candidate_k, allowed=allowed)
+                span["candidates"] = len(lexical_hits)
 
         if config.retriever == "dense":
             candidate_ids = [chunk_id for chunk_id, _score in dense_hits]
         elif config.retriever == "bm25":
             candidate_ids = [chunk_id for chunk_id, _score in lexical_hits]
         else:
-            candidate_ids = fuse(config, dense_hits, lexical_hits, candidate_k)
+            with trace.span("fusion", method=config.fusion) as span:
+                candidate_ids = fuse(config, dense_hits, lexical_hits, candidate_k)
+                span["candidates"] = len(candidate_ids)
 
         rerank_scores = {}
         if self.reranker is not None:
-            ranked = rerank_candidates(self.reranker, question, candidate_ids, self.records, top_k)
+            with trace.span("rerank", model=config.reranker, candidates=len(candidate_ids)):
+                ranked = rerank_candidates(self.reranker, question, candidate_ids, self.records, top_k)
             ranked_ids = [chunk_id for chunk_id, _score in ranked]
             rerank_scores = dict(ranked)
         else:

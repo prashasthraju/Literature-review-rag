@@ -8,3 +8,6 @@ __pycache__/
 *.pyc
 .pytest_cache/
 .cache/
+data/app/
+frontend/node_modules/
+frontend/dist/
