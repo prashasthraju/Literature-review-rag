@@ -164,3 +164,27 @@ def test_retriever_paper_filter_restricts_both_channels():
     hits = retriever.search("SadTalker deepfake", top_k=2, document_ids=["df 40"])
     assert [hit["chunk_id"] for hit in hits] == ["d1"]
     assert retriever.search("SadTalker", document_ids=["unknown"]) == []
+
+
+def test_metrics_report_requests_errors_and_service_time(client):
+    client.post("/api/chat", json={"message": "What does SadTalker predict?"})
+    client.generator.generate = lambda *_a, **_k: (_ for _ in ()).throw(RuntimeError("boom"))
+    client.post("/api/chat", json={"message": "What does SadTalker predict again?"})
+    metrics = client.get("/api/metrics").json()
+    assert metrics["requests"] == 2
+    assert metrics["error_rate"] == 0.5
+    assert "queue_wait" in metrics["stage_ms"] and metrics["service_ms"]["p50"] is not None
+
+
+def test_percentiles_and_slo_need_enough_traffic():
+    from src.api.metrics import check_slo, percentile, summarize
+
+    assert percentile([1, 2, 3, 4], 0.5) == 2.5 and percentile([], 0.5) is None
+    trace = lambda ms, status="answered": {"status": status, "total_ms": ms, "spans": [  # noqa: E731
+        {"name": "queue_wait", "ms": 100.0}, {"name": "generation", "ms": ms - 100}]}
+    metrics = summarize([trace(5100), trace(7100), trace(0, "error")], {1: 1, -1: 1})
+    assert metrics["service_ms"]["p50"] == 5000 + 1000 and metrics["thumbs_down_rate"] == 0.5
+    assert all(ok is None for *_rest, ok in check_slo(metrics))  # 3 requests < min_requests
+    slo = {"min_requests": 1, "service_p95_ms": 100, "service_p50_ms": 100, "error_rate_max": 0.5,
+           "invalid_output_rate_max": 0.5, "thumbs_down_rate_max": 0.1}
+    assert {name: ok for name, _v, _l, ok in check_slo(metrics, slo)}["service_p95_ms"] is False

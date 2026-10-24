@@ -23,7 +23,8 @@
   "approximate_quote_rate": 0.08875739644970414,
   "citation_coverage": 0.7649812734082396,
   "cited_evidence_rate": 0.9302325581395349,
-  "invalid_output_rate": 0.0
+  "invalid_output_rate": 0.0,
+  "unsupported_number_rate": 0.011627906976744186
  },
  "rows": [
   {
@@ -198,7 +199,8 @@
    "citation_coverage": 0.6,
    "abstention_correct": true,
    "citation_validity": 0.75,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "retrieval-002",
@@ -329,7 +331,8 @@
    "citation_coverage": 0.5,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": false
+   "cites_evidence": false,
+   "unsupported_numbers": []
   },
   {
    "query_id": "retrieval-003",
@@ -474,7 +477,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "retrieval-004",
@@ -624,7 +628,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "retrieval-005",
@@ -773,7 +778,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "retrieval-006",
@@ -902,7 +908,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "retrieval-007",
@@ -1053,7 +1060,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "retrieval-008",
@@ -1200,7 +1208,8 @@
    "citation_coverage": 0.5,
    "abstention_correct": true,
    "citation_validity": 0.5,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "retrieval-009",
@@ -1343,7 +1352,8 @@
    "citation_coverage": 0.6666666666666666,
    "abstention_correct": true,
    "citation_validity": 0.5,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "retrieval-010",
@@ -1504,7 +1514,8 @@
    "citation_coverage": 0.3333333333333333,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "retrieval-011",
@@ -1622,7 +1633,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "retrieval-012",
@@ -1797,7 +1809,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "retrieval-013",
@@ -1952,7 +1965,8 @@
    "citation_coverage": 0.25,
    "abstention_correct": true,
    "citation_validity": 0.3333333333333333,
-   "cites_evidence": false
+   "cites_evidence": false,
+   "unsupported_numbers": []
   },
   {
    "query_id": "retrieval-014",
@@ -2069,7 +2083,8 @@
    "citation_coverage": 0.0,
    "abstention_correct": false,
    "citation_validity": 0.0,
-   "cites_evidence": null
+   "cites_evidence": null,
+   "unsupported_numbers": []
   },
   {
    "query_id": "retrieval-015",
@@ -2201,7 +2216,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "retrieval-016",
@@ -2371,7 +2387,8 @@
    "citation_coverage": 0.0,
    "abstention_correct": false,
    "citation_validity": 0.0,
-   "cites_evidence": null
+   "cites_evidence": null,
+   "unsupported_numbers": []
   },
   {
    "query_id": "retrieval-017",
@@ -2522,7 +2539,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": false
+   "cites_evidence": false,
+   "unsupported_numbers": []
   },
   {
    "query_id": "retrieval-018",
@@ -2718,7 +2736,8 @@
    "citation_coverage": 0.0,
    "abstention_correct": true,
    "citation_validity": 0.6,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "retrieval-019",
@@ -2915,7 +2934,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "retrieval-020",
@@ -3060,7 +3080,8 @@
    "citation_coverage": 0.5,
    "abstention_correct": true,
    "citation_validity": 0.5,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "retrieval-021",
@@ -3179,7 +3200,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "retrieval-022",
@@ -3330,7 +3352,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "retrieval-023",
@@ -3461,7 +3484,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "retrieval-024",
@@ -3632,7 +3656,8 @@
    "citation_coverage": 0.5,
    "abstention_correct": true,
    "citation_validity": 0.6666666666666666,
-   "cites_evidence": false
+   "cites_evidence": false,
+   "unsupported_numbers": []
   },
   {
    "query_id": "retrieval-025",
@@ -3829,7 +3854,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 0.8,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "retrieval-026",
@@ -3947,7 +3973,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-aniportrait-01",
@@ -4071,7 +4098,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-aniportrait-03",
@@ -4225,7 +4253,8 @@
    "citation_coverage": 0.25,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-aniportrait-05",
@@ -4344,7 +4373,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-artalk-01",
@@ -4458,7 +4488,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-artalk-03",
@@ -4580,7 +4611,8 @@
    "citation_coverage": 0.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-artalk-05",
@@ -4690,7 +4722,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-artalk-07",
@@ -4806,7 +4839,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-avaprintdb-01",
@@ -4925,7 +4959,8 @@
    "citation_coverage": 0.5,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-avaprintdb-03",
@@ -5018,7 +5053,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-avaprintdb-05",
@@ -5185,7 +5221,8 @@
    "citation_coverage": 0.0,
    "abstention_correct": true,
    "citation_validity": 0.5,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-avaprintdb-07",
@@ -5294,7 +5331,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-df40-01",
@@ -5469,7 +5507,8 @@
    "citation_coverage": 0.2,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": false
+   "cites_evidence": false,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-df40-03",
@@ -5612,7 +5651,8 @@
    "citation_coverage": 0.5,
    "abstention_correct": true,
    "citation_validity": 0.5,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-df40-05",
@@ -5769,7 +5809,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 0.6666666666666666,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-df40-07",
@@ -5885,7 +5926,8 @@
    "citation_coverage": null,
    "abstention_correct": false,
    "citation_validity": null,
-   "cites_evidence": null
+   "cites_evidence": null,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-df40-09",
@@ -6025,7 +6067,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-e3gen-01",
@@ -6157,7 +6200,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-e3gen-03",
@@ -6281,7 +6325,8 @@
    "citation_coverage": 0.5,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-e3gen-05",
@@ -6441,7 +6486,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-facecraft4d-01",
@@ -6588,7 +6634,8 @@
    "citation_coverage": 0.75,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-facecraft4d-03",
@@ -6714,7 +6761,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-facecraft4d-05",
@@ -6861,7 +6909,8 @@
    "citation_coverage": 0.75,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-ffpcht-01",
@@ -6983,7 +7032,8 @@
    "citation_coverage": 0.5,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-ffpcht-03",
@@ -7110,7 +7160,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-ffpcht-05",
@@ -7234,7 +7285,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-ffpcht-07",
@@ -7379,7 +7431,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-avatarforcing-01",
@@ -7569,7 +7622,8 @@
    "citation_coverage": 0.8,
    "abstention_correct": true,
    "citation_validity": 0.8,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-avatarforcing-03",
@@ -7729,7 +7783,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-avatarforcing-05",
@@ -7850,7 +7905,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-avatarforcing-07",
@@ -8005,7 +8061,8 @@
    "citation_coverage": 0.75,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-gaussianavatar-01",
@@ -8139,7 +8196,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-gaussianavatar-03",
@@ -8333,7 +8391,8 @@
    "citation_coverage": 0.4,
    "abstention_correct": true,
    "citation_validity": 0.6,
-   "cites_evidence": false
+   "cites_evidence": false,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-gaussianavatar-05",
@@ -8482,7 +8541,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-impostor-01",
@@ -8590,7 +8650,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-impostor-03",
@@ -8728,7 +8789,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-impostor-05",
@@ -8832,7 +8894,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-instructavatar-01",
@@ -8983,7 +9046,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 0.6666666666666666,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-instructavatar-03",
@@ -9107,7 +9171,8 @@
    "citation_coverage": 0.0,
    "abstention_correct": true,
    "citation_validity": 0.5,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-instructavatar-05",
@@ -9225,7 +9290,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-instructavatar-07",
@@ -9371,7 +9437,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-microexp-01",
@@ -9493,7 +9560,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-microexp-03",
@@ -9642,7 +9710,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-microexp-05",
@@ -9800,7 +9869,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-microexp-07",
@@ -9940,7 +10010,8 @@
    "citation_coverage": 0.6666666666666666,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-motiondiffuse-01",
@@ -10068,7 +10139,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-motiondiffuse-03",
@@ -10208,7 +10280,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-motiondiffuse-05",
@@ -10350,7 +10423,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-motiondiffuse-07",
@@ -10475,7 +10549,8 @@
    "citation_coverage": 0.3333333333333333,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-real3d-01",
@@ -10614,7 +10689,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-real3d-03",
@@ -10759,7 +10835,8 @@
    "citation_coverage": 0.5,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-real3d-05",
@@ -10900,7 +10977,8 @@
    "citation_coverage": 0.25,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-real3d-07",
@@ -11086,7 +11164,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-sadtalker-01",
@@ -11221,7 +11300,8 @@
    "citation_coverage": 0.6666666666666666,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-sadtalker-03",
@@ -11339,7 +11419,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-sadtalker-05",
@@ -11481,7 +11562,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-sadtalker-07",
@@ -11614,7 +11696,8 @@
    "citation_coverage": 0.6666666666666666,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-stmc-01",
@@ -11735,7 +11818,8 @@
    "citation_coverage": 0.25,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-stmc-03",
@@ -11835,7 +11919,7 @@
      }
     ]
    },
-   "status": "answered",
+   "status": "partial",
    "answer": "MDM-SMPL represents poses with SMPL joint rotations to avoid expensive test-time optimization and to enable body-part stitching due to the propagation of changes through the kinematic tree [S1]. This representation allows direct SMPL output and significantly reduces the number of diffusion steps from 1000 to 100, resulting in a 10× speed-up in sampling [S3].",
    "citations": [
     {
@@ -11871,16 +11955,27 @@
      ]
     }
    ],
-   "caveats": [],
+   "caveats": [
+    "Not found in the cited passages, please check: 10"
+   ],
    "problems": [
     "S3: quote is from S5, not S3",
-    "answer cites S3 without a verified quote"
+    "answer cites S3 without a verified quote",
+    "numbers not in the cited passages: 10"
    ],
    "raw_output": "{\"status\": \"answered\",\n \"answer\": \"MDM-SMPL represents poses with SMPL joint rotations to avoid expensive test-time optimization and to enable body-part stitching due to the propagation of changes through the kinematic tree [S1]. This representation allows direct SMPL output and significantly reduces the number of diffusion steps from 1000 to 100, resulting in a 10× speed-up in sampling [S3].\",\n \"citations\": [\n    {\"source_id\": \"S1\", \"quote\": \"this SMPL-based representation avoids the need for expensive test-time optimization to fit the generated motion on a SMPL body\"},\n    {\"source_id\": \"S3\", \"quote\": \"fewer steps, combined with pre-computing text embeddings, enable sampling MDM-SMPL in less than 5 seconds on average. This is a substantial improvement over MDM, which takes 4 minutes to generate motions followed by 8 min of optimization to obtain SMPL poses, on average.\"}\n  ],\n \"caveats\": []}",
    "citation_coverage": 0.5,
    "abstention_correct": true,
    "citation_validity": 0.5,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": [
+    {
+     "sentence": "This representation allows direct SMPL output and significantly reduces the number of diffusion steps from 1000 to 100, resulting in a 10× speed-up in sampling [S3].",
+     "numbers": [
+      "10"
+     ]
+    }
+   ]
   },
   {
    "query_id": "v2-stmc-05",
@@ -12044,7 +12139,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-stmc-07",
@@ -12145,7 +12241,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-text2avatar-01",
@@ -12284,7 +12381,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-text2avatar-03",
@@ -12411,7 +12509,8 @@
    "citation_coverage": 1.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-text2avatar-05",
@@ -12550,7 +12649,8 @@
    "citation_coverage": 0.5,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": true
+   "cites_evidence": true,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-unanswerable-01",
@@ -12674,7 +12774,8 @@
    "citation_coverage": 0.0,
    "abstention_correct": true,
    "citation_validity": 1.0,
-   "cites_evidence": null
+   "cites_evidence": null,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-unanswerable-03",
@@ -12785,7 +12886,8 @@
    "citation_coverage": null,
    "abstention_correct": true,
    "citation_validity": null,
-   "cites_evidence": null
+   "cites_evidence": null,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-unanswerable-05",
@@ -12896,7 +12998,8 @@
    "citation_coverage": null,
    "abstention_correct": true,
    "citation_validity": null,
-   "cites_evidence": null
+   "cites_evidence": null,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-unanswerable-07",
@@ -13010,7 +13113,8 @@
    "citation_coverage": null,
    "abstention_correct": true,
    "citation_validity": null,
-   "cites_evidence": null
+   "cites_evidence": null,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-unanswerable-09",
@@ -13121,7 +13225,8 @@
    "citation_coverage": null,
    "abstention_correct": true,
    "citation_validity": null,
-   "cites_evidence": null
+   "cites_evidence": null,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-unanswerable-11",
@@ -13229,7 +13334,8 @@
    "citation_coverage": null,
    "abstention_correct": true,
    "citation_validity": null,
-   "cites_evidence": null
+   "cites_evidence": null,
+   "unsupported_numbers": []
   },
   {
    "query_id": "v2-unanswerable-13",
@@ -13343,8 +13449,9 @@
    "citation_coverage": null,
    "abstention_correct": true,
    "citation_validity": null,
-   "cites_evidence": null
+   "cites_evidence": null,
+   "unsupported_numbers": []
   }
  ],
- "revalidated_at": "2026-10-20T13:44:38.508659+00:00"
+ "revalidated_at": "2026-10-23T06:34:16.148181+00:00"
 }

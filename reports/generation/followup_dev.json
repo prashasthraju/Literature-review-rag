@@ -1,0 +1,614 @@
+{
+ "generator": "hf:Qwen/Qwen3-4B-Instruct-2507",
+ "summary": {
+  "cases": 24,
+  "pass_rate": 1.0,
+  "by_kind": {
+   "pronoun": 1.0,
+   "ellipsis": 1.0,
+   "topic_switch": 1.0,
+   "standalone": 1.0,
+   "multi_turn": 1.0
+  }
+ },
+ "rows": [
+  {
+   "id": "followup-01",
+   "kind": "pronoun",
+   "history": [
+    [
+     "What does SadTalker predict from speech audio?",
+     "SadTalker predicts 3D motion coefficients (head pose and expression) of a 3DMM from audio [S1]."
+    ]
+   ],
+   "message": "What are its limitations?",
+   "must_include": [
+    [
+     "SadTalker"
+    ],
+    [
+     "limitation"
+    ]
+   ],
+   "must_exclude": [],
+   "rewritten": "What are the limitations of SadTalker?",
+   "ok": true,
+   "missing": [],
+   "leaked": []
+  },
+  {
+   "id": "followup-02",
+   "kind": "pronoun",
+   "history": [
+    [
+     "What does SadTalker predict from speech audio?",
+     "SadTalker predicts 3D motion coefficients (head pose and expression) of a 3DMM from audio [S1]."
+    ]
+   ],
+   "message": "What dataset does it train on?",
+   "must_include": [
+    [
+     "SadTalker"
+    ],
+    [
+     "dataset",
+     "train"
+    ]
+   ],
+   "must_exclude": [],
+   "rewritten": "What dataset does SadTalker train on?",
+   "ok": true,
+   "missing": [],
+   "leaked": []
+  },
+  {
+   "id": "followup-03",
+   "kind": "pronoun",
+   "history": [
+    [
+     "How does ARTalk generate lip motion?",
+     "ARTalk uses an autoregressive model that predicts motion codes from speech [S1]."
+    ]
+   ],
+   "message": "How is it evaluated?",
+   "must_include": [
+    [
+     "ARTalk"
+    ],
+    [
+     "evaluat"
+    ]
+   ],
+   "must_exclude": [],
+   "rewritten": "How is ARTalk evaluated?",
+   "ok": true,
+   "missing": [],
+   "leaked": []
+  },
+  {
+   "id": "followup-04",
+   "kind": "pronoun",
+   "history": [
+    [
+     "How many techniques does DF40 cover?",
+     "DF40 comprises 40 distinct deepfake techniques [S1]."
+    ]
+   ],
+   "message": "What detectors did they benchmark on it?",
+   "must_include": [
+    [
+     "DF40"
+    ],
+    [
+     "detector"
+    ]
+   ],
+   "must_exclude": [],
+   "rewritten": "What detectors did they benchmark on DF40?",
+   "ok": true,
+   "missing": [],
+   "leaked": []
+  },
+  {
+   "id": "followup-05",
+   "kind": "pronoun",
+   "history": [
+    [
+     "What is MotionDiffuse?",
+     "MotionDiffuse is a diffusion-based framework for text-driven human motion generation [S1]."
+    ]
+   ],
+   "message": "What are the results on HumanML3D?",
+   "must_include": [
+    [
+     "MotionDiffuse"
+    ],
+    [
+     "HumanML3D"
+    ]
+   ],
+   "must_exclude": [],
+   "rewritten": "What are the results on HumanML3D for MotionDiffuse?",
+   "ok": true,
+   "missing": [],
+   "leaked": []
+  },
+  {
+   "id": "followup-06",
+   "kind": "pronoun",
+   "history": [
+    [
+     "What does AniPortrait do?",
+     "AniPortrait generates photorealistic portrait animation driven by audio and a reference image [S1]."
+    ]
+   ],
+   "message": "What GPU did they use?",
+   "must_include": [
+    [
+     "AniPortrait"
+    ],
+    [
+     "GPU"
+    ]
+   ],
+   "must_exclude": [],
+   "rewritten": "What GPU did they use in AniPortrait?",
+   "ok": true,
+   "missing": [],
+   "leaked": []
+  },
+  {
+   "id": "followup-07",
+   "kind": "ellipsis",
+   "history": [
+    [
+     "What does SadTalker predict from speech audio?",
+     "SadTalker predicts 3D motion coefficients (head pose and expression) of a 3DMM from audio [S1]."
+    ]
+   ],
+   "message": "And the training data?",
+   "must_include": [
+    [
+     "SadTalker"
+    ],
+    [
+     "training",
+     "data"
+    ]
+   ],
+   "must_exclude": [],
+   "rewritten": "What is the training data used for SadTalker?",
+   "ok": true,
+   "missing": [],
+   "leaked": []
+  },
+  {
+   "id": "followup-08",
+   "kind": "ellipsis",
+   "history": [
+    [
+     "How does ARTalk generate lip motion?",
+     "ARTalk uses an autoregressive model that predicts motion codes from speech [S1]."
+    ]
+   ],
+   "message": "What about the baselines?",
+   "must_include": [
+    [
+     "ARTalk"
+    ],
+    [
+     "baseline"
+    ]
+   ],
+   "must_exclude": [],
+   "rewritten": "What about the baselines for ARTalk?",
+   "ok": true,
+   "missing": [],
+   "leaked": []
+  },
+  {
+   "id": "followup-09",
+   "kind": "ellipsis",
+   "history": [
+    [
+     "How many techniques does DF40 cover?",
+     "DF40 comprises 40 distinct deepfake techniques [S1]."
+    ]
+   ],
+   "message": "How about the evaluation protocol?",
+   "must_include": [
+    [
+     "DF40"
+    ],
+    [
+     "protocol",
+     "evaluat"
+    ]
+   ],
+   "must_exclude": [],
+   "rewritten": "What is the evaluation protocol for DF40?",
+   "ok": true,
+   "missing": [],
+   "leaked": []
+  },
+  {
+   "id": "followup-10",
+   "kind": "pronoun",
+   "history": [
+    [
+     "What is MotionDiffuse?",
+     "MotionDiffuse is a diffusion-based framework for text-driven human motion generation [S1]."
+    ]
+   ],
+   "message": "What metrics does the paper report?",
+   "must_include": [
+    [
+     "MotionDiffuse"
+    ],
+    [
+     "metric"
+    ]
+   ],
+   "must_exclude": [],
+   "rewritten": "What metrics does the MotionDiffuse paper report?",
+   "ok": true,
+   "missing": [],
+   "leaked": []
+  },
+  {
+   "id": "followup-11",
+   "kind": "pronoun",
+   "history": [
+    [
+     "What does SadTalker predict from speech audio?",
+     "SadTalker predicts 3D motion coefficients (head pose and expression) of a 3DMM from audio [S1]."
+    ]
+   ],
+   "message": "Does it need a reference video?",
+   "must_include": [
+    [
+     "SadTalker"
+    ],
+    [
+     "reference video",
+     "video"
+    ]
+   ],
+   "must_exclude": [],
+   "rewritten": "Does SadTalker need a reference video?",
+   "ok": true,
+   "missing": [],
+   "leaked": []
+  },
+  {
+   "id": "followup-12",
+   "kind": "pronoun",
+   "history": [
+    [
+     "How does ARTalk generate lip motion?",
+     "ARTalk uses an autoregressive model that predicts motion codes from speech [S1]."
+    ]
+   ],
+   "message": "What is the frame rate?",
+   "must_include": [
+    [
+     "ARTalk"
+    ],
+    [
+     "frame rate",
+     "fps"
+    ]
+   ],
+   "must_exclude": [],
+   "rewritten": "What is the frame rate of ARTalk?",
+   "ok": true,
+   "missing": [],
+   "leaked": []
+  },
+  {
+   "id": "followup-13",
+   "kind": "topic_switch",
+   "history": [
+    [
+     "What does SadTalker predict from speech audio?",
+     "SadTalker predicts 3D motion coefficients (head pose and expression) of a 3DMM from audio [S1]."
+    ]
+   ],
+   "message": "What does ARTalk predict instead?",
+   "must_include": [
+    [
+     "ARTalk"
+    ]
+   ],
+   "must_exclude": [
+    "SadTalker"
+   ],
+   "rewritten": "What does ARTalk predict instead?",
+   "ok": true,
+   "missing": [],
+   "leaked": []
+  },
+  {
+   "id": "followup-14",
+   "kind": "topic_switch",
+   "history": [
+    [
+     "How many techniques does DF40 cover?",
+     "DF40 comprises 40 distinct deepfake techniques [S1]."
+    ]
+   ],
+   "message": "Now tell me about MotionDiffuse's architecture.",
+   "must_include": [
+    [
+     "MotionDiffuse"
+    ],
+    [
+     "architecture"
+    ]
+   ],
+   "must_exclude": [
+    "DF40"
+   ],
+   "rewritten": "Now tell me about MotionDiffuse's architecture.",
+   "ok": true,
+   "missing": [],
+   "leaked": []
+  },
+  {
+   "id": "followup-15",
+   "kind": "topic_switch",
+   "history": [
+    [
+     "How does ARTalk generate lip motion?",
+     "ARTalk uses an autoregressive model that predicts motion codes from speech [S1]."
+    ]
+   ],
+   "message": "How does AniPortrait handle pose?",
+   "must_include": [
+    [
+     "AniPortrait"
+    ],
+    [
+     "pose"
+    ]
+   ],
+   "must_exclude": [
+    "ARTalk"
+   ],
+   "rewritten": "How does AniPortrait handle pose?",
+   "ok": true,
+   "missing": [],
+   "leaked": []
+  },
+  {
+   "id": "followup-16",
+   "kind": "standalone",
+   "history": [
+    [
+     "What does SadTalker predict from speech audio?",
+     "SadTalker predicts 3D motion coefficients (head pose and expression) of a 3DMM from audio [S1]."
+    ]
+   ],
+   "message": "What is the Real3D-Portrait method?",
+   "must_include": [
+    [
+     "Real3D"
+    ]
+   ],
+   "must_exclude": [
+    "SadTalker",
+    "speech audio"
+   ],
+   "rewritten": "What is the Real3D-Portrait method?",
+   "ok": true,
+   "missing": [],
+   "leaked": []
+  },
+  {
+   "id": "followup-17",
+   "kind": "standalone",
+   "history": [
+    [
+     "What is MotionDiffuse?",
+     "MotionDiffuse is a diffusion-based framework for text-driven human motion generation [S1]."
+    ]
+   ],
+   "message": "Which datasets are used in DF40?",
+   "must_include": [
+    [
+     "DF40"
+    ],
+    [
+     "dataset"
+    ]
+   ],
+   "must_exclude": [
+    "MotionDiffuse"
+   ],
+   "rewritten": "Which datasets are used in DF40?",
+   "ok": true,
+   "missing": [],
+   "leaked": []
+  },
+  {
+   "id": "followup-18",
+   "kind": "standalone",
+   "history": [
+    [
+     "How does ARTalk generate lip motion?",
+     "ARTalk uses an autoregressive model that predicts motion codes from speech [S1]."
+    ]
+   ],
+   "message": "What metrics are used to evaluate face forgery detectors?",
+   "must_include": [
+    [
+     "detector",
+     "forgery"
+    ],
+    [
+     "metric"
+    ]
+   ],
+   "must_exclude": [
+    "ARTalk"
+   ],
+   "rewritten": "What metrics are used to evaluate face forgery detectors?",
+   "ok": true,
+   "missing": [],
+   "leaked": []
+  },
+  {
+   "id": "followup-19",
+   "kind": "multi_turn",
+   "history": [
+    [
+     "What does SadTalker predict from speech audio?",
+     "SadTalker predicts 3D motion coefficients from audio [S1]."
+    ],
+    [
+     "How does ARTalk generate lip motion?",
+     "ARTalk predicts motion codes autoregressively [S1]."
+    ]
+   ],
+   "message": "What are the limitations of the second one?",
+   "must_include": [
+    [
+     "ARTalk"
+    ],
+    [
+     "limitation"
+    ]
+   ],
+   "must_exclude": [
+    "SadTalker"
+   ],
+   "rewritten": "What are the limitations of ARTalk?",
+   "ok": true,
+   "missing": [],
+   "leaked": []
+  },
+  {
+   "id": "followup-20",
+   "kind": "multi_turn",
+   "history": [
+    [
+     "What does SadTalker predict from speech audio?",
+     "SadTalker predicts 3D motion coefficients from audio [S1]."
+    ],
+    [
+     "How does ARTalk generate lip motion?",
+     "ARTalk predicts motion codes autoregressively [S1]."
+    ]
+   ],
+   "message": "Compare it with the first on speed.",
+   "must_include": [
+    [
+     "ARTalk"
+    ],
+    [
+     "SadTalker"
+    ],
+    [
+     "speed",
+     "fast",
+     "latency",
+     "time"
+    ]
+   ],
+   "must_exclude": [],
+   "rewritten": "Compare SadTalker's speed with ARTalk's speed.",
+   "ok": true,
+   "missing": [],
+   "leaked": []
+  },
+  {
+   "id": "followup-21",
+   "kind": "pronoun",
+   "history": [
+    [
+     "How many techniques does DF40 cover?",
+     "DF40 comprises 40 distinct deepfake techniques [S1]."
+    ]
+   ],
+   "message": "Which methods are included in it?",
+   "must_include": [
+    [
+     "DF40"
+    ],
+    [
+     "method"
+    ]
+   ],
+   "must_exclude": [],
+   "rewritten": "Which methods are included in DF40?",
+   "ok": true,
+   "missing": [],
+   "leaked": []
+  },
+  {
+   "id": "followup-22",
+   "kind": "pronoun",
+   "history": [
+    [
+     "What does AniPortrait do?",
+     "AniPortrait generates photorealistic portrait animation driven by audio and a reference image [S1]."
+    ]
+   ],
+   "message": "Is the code released?",
+   "must_include": [
+    [
+     "AniPortrait"
+    ],
+    [
+     "code",
+     "release"
+    ]
+   ],
+   "must_exclude": [],
+   "rewritten": "Has the code for AniPortrait been released?",
+   "ok": true,
+   "missing": [],
+   "leaked": []
+  },
+  {
+   "id": "followup-23",
+   "kind": "ellipsis",
+   "history": [
+    [
+     "What is MotionDiffuse?",
+     "MotionDiffuse is a diffusion-based framework for text-driven human motion generation [S1]."
+    ]
+   ],
+   "message": "Why does that matter?",
+   "must_include": [
+    [
+     "MotionDiffuse"
+    ]
+   ],
+   "must_exclude": [],
+   "rewritten": "Why does MotionDiffuse matter?",
+   "ok": true,
+   "missing": [],
+   "leaked": []
+  },
+  {
+   "id": "followup-24",
+   "kind": "standalone",
+   "history": [
+    [
+     "What does AniPortrait do?",
+     "AniPortrait generates photorealistic portrait animation driven by audio and a reference image [S1]."
+    ]
+   ],
+   "message": "Hello, what can you do?",
+   "must_include": [],
+   "must_exclude": [
+    "AniPortrait"
+   ],
+   "rewritten": "Hello, what can you do?",
+   "ok": true,
+   "missing": [],
+   "leaked": []
+  }
+ ]
+}

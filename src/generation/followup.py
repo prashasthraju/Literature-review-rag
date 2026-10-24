@@ -8,7 +8,7 @@ single-turn behaviour (docs/generation.md) is what a chat turn gets.
 
 import re
 
-from src.generation.answer import MARKER_RE, load_prompt
+from src.generation.answer import MARKER_RE, load_prompt, named_documents
 
 CONDENSE_PROMPT = "condense_v1"
 HISTORY_TURNS = 3
@@ -44,3 +44,16 @@ def parse_condensed(raw, message):
     if not line or len(line.split()) > MAX_QUESTION_WORDS:
         return message.strip()
     return line
+
+
+def rewrite(generator, history, message, max_new_tokens, aliases=None):
+    """The standalone question.
+
+    A message that names a paper is about that paper and already stands alone, so it is used
+    as is: rewriting it only added risks (swapping DF40 for MotionDiffuse, appending the
+    previous turn's topic). Otherwise the model resolves the reference from the conversation.
+    """
+    if named_documents(message, aliases or {}):
+        return message.strip()
+    raw = generator.generate(build_condense_messages(history, message), max_new_tokens=max_new_tokens)
+    return parse_condensed(raw, message)

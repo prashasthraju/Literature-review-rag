@@ -48,6 +48,7 @@ def score_answer(row, answer, example, resolver):
         "citations": [c.model_dump() for c in answer.citations],
         "caveats": answer.caveats,
         "problems": answer.problems,
+        "unsupported_numbers": answer.unsupported_numbers,
         "raw_output": answer.raw_output,
         "citation_coverage": answer.citation_coverage,
         "abstention_correct": (answer.status == "insufficient_evidence") != answerable,
@@ -81,6 +82,9 @@ def summarize(rows, generated):
             "citation_coverage": mean(row["citation_coverage"] for row in rows),
             "cited_evidence_rate": mean(float(row["cites_evidence"]) for row in rows if row["cites_evidence"] is not None),
             "invalid_output_rate": mean(float(row["status"] == "invalid_output") for row in rows),
+            "unsupported_number_rate": mean(
+                float(bool(row["unsupported_numbers"])) for row in rows if row["status"] in {"answered", "partial"}
+            ),
         })
     return summary
 

@@ -1,0 +1,9 @@
+{
+  "_comment": "Service objectives for the local single-GPU deployment, over the last 24 hours. Latency is service time (queue wait excluded). Typical answer: 6 s.",
+  "min_requests": 20,
+  "service_p95_ms": 15000,
+  "service_p50_ms": 9000,
+  "error_rate_max": 0.02,
+  "invalid_output_rate_max": 0.03,
+  "thumbs_down_rate_max": 0.2
+}

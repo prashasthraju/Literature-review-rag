@@ -14,7 +14,7 @@ from pathlib import Path
 from src.context import assemble_context
 from src.generation.answer import build_messages, invalid_output, load_aliases, named_documents, parse_draft, validate
 from src.generation.backends import make_generator
-from src.generation.followup import build_condense_messages, parse_condensed
+from src.generation.followup import rewrite
 from src.retrieval import RetrievalConfig, Retriever, load_chunks
 from src.tracing import Trace
 
@@ -85,10 +85,7 @@ class RagPipeline:
         if not history:
             return message.strip()
         with (trace or Trace()).span("rewrite_question", turns=len(history)) as span:
-            raw = self.generator.generate(
-                build_condense_messages(history, message), max_new_tokens=self.config.condense_max_new_tokens
-            )
-            question = parse_condensed(raw, message)
+            question = rewrite(self.generator, history, message, self.config.condense_max_new_tokens, self.aliases)
             span["rewritten"] = question != message.strip()
         return question
 

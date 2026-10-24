@@ -9,7 +9,7 @@ import json
 import sqlite3
 import threading
 import uuid
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 SCHEMA = """
@@ -163,6 +163,19 @@ class ChatStore:
         trace["config"] = json.loads(trace["config"]) if trace["config"] else None
         trace["spans"] = json.loads(trace["spans"])
         return trace
+
+    def trace_rows(self, hours=24.0):
+        """(status, error, total_ms, spans) for requests in the last ``hours``, oldest first."""
+        cutoff = (datetime.now(timezone.utc) - timedelta(hours=hours)).isoformat(timespec="seconds")
+        rows = self._read(
+            "SELECT created_at, status, error, total_ms, spans FROM traces WHERE created_at >= ? ORDER BY created_at", (cutoff,)
+        )
+        return [{**dict(row), "spans": json.loads(row["spans"])} for row in rows]
+
+    def feedback_counts(self, hours=24.0):
+        cutoff = (datetime.now(timezone.utc) - timedelta(hours=hours)).isoformat(timespec="seconds")
+        rows = self._read("SELECT rating, COUNT(*) AS n FROM feedback WHERE created_at >= ? GROUP BY rating", (cutoff,))
+        return {row["rating"]: row["n"] for row in rows}
 
     def close(self):
         self.db.close()

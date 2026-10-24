@@ -15,6 +15,7 @@ from typing import Literal
 from pydantic import BaseModel, Field, ValidationError
 
 from src.evaluation.evidence import normalize
+from src.generation.guardrails import unsupported_numbers
 
 ROOT = Path(__file__).resolve().parents[2]
 PROMPT_DIR = ROOT / "prompts"
@@ -67,6 +68,7 @@ class Answer(BaseModel):
     citations: list[ValidatedCitation]
     caveats: list[str]
     problems: list[str]
+    unsupported_numbers: list[dict] = Field(default_factory=list)
     citation_coverage: float | None
     prompt_version: str
     model: str
@@ -203,6 +205,16 @@ def validate(question, draft, bundle, prompt_version, model_name, raw_output="",
     elif draft.citations:
         problems.append("insufficient_evidence answer should not carry citations")
 
+    caveats = list(draft.caveats)
+    flagged = []
+    if status in {"answered", "partial"}:
+        flagged = unsupported_numbers(answer_sentences(draft.answer), valid_sources, {p.source_id: p.text for p in bundle.passages})
+        if flagged:
+            numbers = sorted({number for item in flagged for number in item["numbers"]})
+            caveats.append(f"Not found in the cited passages, please check: {', '.join(numbers)}")
+            problems.append(f"numbers not in the cited passages: {', '.join(numbers)}")
+            status = "partial"
+
     answer_text = draft.answer.strip()
     if status == "insufficient_evidence" and (draft.status != "insufficient_evidence" or not answer_text):
         answer_text = "The retrieved sources do not verifiably support an answer to this question."
@@ -212,8 +224,9 @@ def validate(question, draft, bundle, prompt_version, model_name, raw_output="",
         status=status,
         answer=answer_text,
         citations=citations,
-        caveats=draft.caveats,
+        caveats=caveats,
         problems=problems,
+        unsupported_numbers=flagged,
         citation_coverage=coverage,
         prompt_version=prompt_version,
         model=model_name,

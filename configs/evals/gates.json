@@ -1,0 +1,18 @@
+{
+  "_comment": "Floors/ceilings for a generation report on retrieval_dev (96 questions). Set about 3 points below the answer_v2 dev run, because one question moves a rate by 1 point; tighten when the set grows. The held-out test set is never used here.",
+  "dataset": "retrieval_dev.jsonl",
+  "min": {
+    "context_evidence_coverage": 0.92,
+    "abstention_accuracy": 0.94,
+    "abstain_rate_on_unanswerable": 0.95,
+    "answered_rate_on_answerable": 0.93,
+    "citation_validity": 0.88,
+    "citation_coverage": 0.72,
+    "cited_evidence_rate": 0.90
+  },
+  "max": {
+    "invalid_output_rate": 0.02,
+    "unsupported_number_rate": 0.05,
+    "approximate_quote_rate": 0.15
+  }
+}

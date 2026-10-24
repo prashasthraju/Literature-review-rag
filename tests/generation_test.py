@@ -114,3 +114,40 @@ def test_answer_must_cite_the_paper_the_question_names():
     answer = validate("What does AniPortrait predict?", draft, bundle(), "v", "m", required_documents={"aniportrait"})
     assert answer.status == "insufficient_evidence"
     assert "no verified citation from the paper the question names; answer withheld" in answer.problems
+
+
+def test_number_not_in_cited_passage_is_flagged_and_downgraded():
+    answer = check(json.dumps({
+        "status": "answered",
+        "answer": "SadTalker predicts 73 motion coefficients [S1].",
+        "citations": [{"source_id": "S1", "quote": "generates 3D motion coefficients (head pose, expression)"}],
+    }))
+    assert answer.status == "partial"
+    assert answer.unsupported_numbers[0]["numbers"] == ["73"]
+    assert any("73" in caveat for caveat in answer.caveats)
+
+
+def test_numbers_present_in_passage_or_derived_from_markers_are_not_flagged():
+    answer = check(json.dumps({
+        "status": "answered",
+        "answer": "It predicts 3D motion coefficients [S1].",
+        "citations": [{"source_id": "S1", "quote": "generates 3D motion coefficients (head pose, expression)"}],
+    }))
+    assert answer.status == "answered" and not answer.unsupported_numbers
+
+
+def test_message_naming_a_paper_is_not_rewritten():
+    from src.generation.followup import rewrite
+
+    class Generator:
+        calls = 0
+
+        def generate(self, messages, max_new_tokens=None):
+            Generator.calls += 1
+            return "Which datasets are used in MotionDiffuse?"
+
+    aliases = {"df 40": ["DF40"], "motion_diffuse": ["MotionDiffuse"]}
+    history = [("What is MotionDiffuse?", "A diffusion model [S1].")]
+    assert rewrite(Generator(), history, "Which datasets are used in DF40?", 64, aliases) == "Which datasets are used in DF40?"
+    assert Generator.calls == 0
+    assert rewrite(Generator(), history, "Which datasets are used?", 64, aliases) == "Which datasets are used in MotionDiffuse?"

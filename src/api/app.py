@@ -48,6 +48,7 @@ from src.api.schemas import (
     PaperView,
     SourceView,
 )
+from src.api.metrics import summarize
 from src.api.store import ChatStore, new_id, now
 from src.tracing import Trace
 
@@ -224,6 +225,11 @@ def create_app(pipeline=None, pipeline_factory=None, records=None, db_path=DEFAU
             raise HTTPException(404, detail="message not found")
         store.set_feedback(message_id, body.rating, body.comment)
 
+    @app.get("/api/metrics")
+    def metrics(hours: float = 24.0):
+        """Request counts, error rate, latency percentiles and feedback over the last ``hours``."""
+        return summarize(store.trace_rows(hours), store.feedback_counts(hours))
+
     @app.get("/api/traces/{request_id}")
     def trace(request_id: str):
         found = store.trace(request_id)
@@ -256,7 +262,9 @@ def create_app(pipeline=None, pipeline_factory=None, records=None, db_path=DEFAU
         try:
             if lock.locked():
                 emit("stage", {"stage": "queued"})
-            async with lock:
+            with trace.span("queue_wait"):
+                await lock.acquire()
+            try:
                 question = request.message
                 if history:
                     emit("stage", {"stage": "rewriting"})
@@ -269,6 +277,8 @@ def create_app(pipeline=None, pipeline_factory=None, records=None, db_path=DEFAU
                 emit("sources", {"sources": [source_view(p, cited=False).model_dump() for p in bundle.passages]})
                 emit("stage", {"stage": "generating"})
                 answer = await asyncio.to_thread(pipeline.generate, question, bundle, trace)
+            finally:
+                lock.release()
             message = assistant_message(
                 answer, bundle, trace, message_id=message_id, conversation_id=conversation_id,
                 question=request.message, standalone=question, paper_ids=request.paper_ids, debug=request.debug,
